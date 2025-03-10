@@ -1,0 +1,131 @@
+
+body{
+    margin: 0;
+}
+nav{
+    display: flex;
+    flex-direction: column;
+}
+.arriba{
+    background-color: #003f5a;    
+    height: 40px;
+    width: 100%;
+}
+.medio{
+    display: flex;    
+    background-color: #ebd9c8;   
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    height: 100px;
+    width: 100%;
+}
+.abajo{
+    background-color: #007a7a;    
+    height: 40px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    font-family: flame;
+}
+.abajo a{
+    text-decoration: none;
+    color: white;
+}
+.logoNav{
+    margin-left: 5%;
+    width: 20%;
+    height: auto;
+}
+.buscador{
+    width: 500px;
+    padding: 5px;
+    font-family: Poppins;
+    border-radius: 30px;
+    border-color: white;
+    border-style: none;    
+}
+.buscador input{
+    border-color: white;
+    border-style: none;
+}
+.navDiv{
+    display: flex;
+    align-items: center;
+    font-family: Poppins;
+    color: #003f5a;  
+    flex-direction: column;   
+    margin: 10px;
+    margin-right: 40px;
+}
+.navDiv img{
+    width: 50%;        
+    height: 50%;
+    
+}
+.navDiv a {
+    text-decoration: none;
+    color:#003f5a;
+}
+.accesoDirecto{
+    display: flex;
+}
+.seccion1{    
+    padding: 5%;
+    display: flex;
+    font-family: poppins;    
+    background-color: #ebd9c8;
+    justify-content: center;
+    background-image: url("images/fondoColores.png");
+    background-size: 80% ;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.divConsejos{
+    max-width: 300px;
+    height: auto;
+    display: flex;
+    align-items: center; 
+    gap: 20px;  
+    padding: 50px;
+}
+.divConsejos img{
+    width: 60px;
+    height: 60px;
+}
+.divConsejos h1{
+    font-family: flame regular ;
+    font-size: medium;
+    color: rgba(26, 21, 21, 0.89);
+    text-align: end;
+    margin: 0;
+}
+.textoConsejos p{
+    font-size: 16px;
+    max-width: 200px;
+    max-width: 700px;
+    font-size: small;
+    text-align: right;
+    margin: 0;       
+}
+.textoConsejosRight h1{
+    font-family: flame regular ;
+    font-size: medium;
+    color: rgba(26, 21, 21, 0.89);
+    text-align: left;
+    margin: 0;
+}
+
+.textoConsejosRight p{
+    font-size: 16px;
+    max-width: 200px;
+    max-width: 700px;
+    font-size: small;
+    text-align: left;
+    margin: 0;       
+}
+
+
+
+
