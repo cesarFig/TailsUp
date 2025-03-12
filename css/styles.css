@@ -2,10 +2,6 @@
 body{
     margin: 0;
     align-items: center;
-
-    :root {
-        --background-color-nav: #003f55;
-      }
 }
 
 @media (max-width:768px){    
@@ -18,6 +14,10 @@ body{
     .imagenSeccion1{
         width: 100%;
         height: auto;
+    }
+    .seccionProducts{
+        display: flex; 
+        flex-direction: column;
     }
 }
 

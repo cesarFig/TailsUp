@@ -3,9 +3,8 @@ nav{
     flex-direction: column;
 }
 
-
 .arriba{
-    background-color: var(--background-color-nav);    
+    background-color: #003f5a;    
     height: 40px;
     width: 100%;
 }
