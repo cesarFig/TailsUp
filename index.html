@@ -3,23 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/nav.css">
+    <link rel="stylesheet" href="css/seccion1.css">
+    <link rel="stylesheet" href="css/seccion2.css">
     <title>Tails Up</title>
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 </head>
 <body>
-    <p>hola</p>
     <header>
         <nav>
             <div class="arriba"></div>
             <div class="medio">
                 <img class= "logoNav" src="images/logoCompleto.png" alt="logoNav.png">
-                <div>                                      
+                <div class="buscadorDiv">                                      
                     <input class="buscador" type="search" placeholder="Buscar">
                 </div>
                 <div class="accesoDirecto">
                     <div class="navDiv">
-                        <img src="images/Carrito.png" alt="carrito.png">                                                        
+                       <a href="hola"> <img src="images/Carrito.png" alt="carrito.png"></a>
                         <a href="hola">Carrito</a>                                            
                     </div>  
                     <div class="navDiv">
@@ -30,10 +32,10 @@
                 
             </div>
             <div class="abajo">
-                <a  href="hola">Home</a>
-                <a  href="hola">Categoria</a>
-                <a  href="hola">Consejos</a>
-                <a  href="hola">Acerca de</a>
+                <a href="hola">Home</a>
+                <a href="hola">Categoria</a>
+                <a href="hola">Consejos</a>
+                <a href="hola">Acerca de</a>
             </div>
         </nav>
     </header>
@@ -62,7 +64,8 @@
             </div>
         </div>
         <div>
-            <img src="images/perrosMain.png" alt="perrosMain.png">
+            <img class="imagenSeccion1"src="images/perrosMain.png" alt="perrosMain.png">
+        
         </div>
         <div>
             <div class="divConsejos">
@@ -87,6 +90,20 @@
                     <p>Este es un texto de prueba para la vista previa</p>
                 </div>
             </div>
+        </div>
+    </section>
+    <section class="seccion2">
+        <div class="DivSec2">
+            <img src="images/perro.png" alt="perro.png">
+        </div>
+        <div class="textoSeccion2">
+            <h3>AHORRA 20% OFF</h3>
+            <h4>ALIMENTOS PARA MASCOTAS</h4>
+            <p>Compra y obten productos gratis</p>
+            <button class="btnBuyNow">Comprar ahora</button>
+        </div>
+        <div class="LstDivSec2">
+            <img src="images/comidaGato.png" alt="comidaGato.png">
         </div>
     </section>
 </body>

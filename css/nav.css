@@ -1,0 +1,84 @@
+nav{
+    display: flex;
+    flex-direction: column;
+}
+
+
+.arriba{
+    background-color: var(--background-color-nav);    
+    height: 40px;
+    width: 100%;
+}
+.medio{
+    display:flex;    
+    background-color: #ebd9c8;   
+    align-items: center;
+    justify-content: space-evenly;
+    gap: 20px;
+    height: 100px;
+    width: 100%;
+    gap: 60px;
+}
+.abajo{
+    background-color: #007a7a;    
+    height: 40px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    font-family: flame;
+}
+.abajo a{
+    text-decoration: none;
+    color: white;
+}
+.logoNav{
+    
+    width: 20%;
+    height: auto;
+}
+.buscadorDiv{
+    width: 50%; 
+    display: flex;   
+    justify-content: center;
+}
+.buscador{
+    width: 75%;
+    padding: 10px;
+    font-family: Poppins;
+    border-radius: 30px;
+    border-color: white;
+    border-style: none;          
+}
+.buscador input{
+    border-color: white;
+    border-style: none;
+    
+}
+.navDiv{
+    display: flex;
+    align-items: center;
+    font-family: Poppins;
+    color: #003f5a;  
+    flex-direction: column;   
+    margin: 10px;
+    margin-right: 40px;
+}
+.navDiv img{
+    width: 50%;        
+    height: 50%;
+    
+}
+.navDiv a {
+    text-decoration: none;
+    color:#003f5a;
+}
+.navDiv a:hover{
+    color: #007a7a;
+}
+.accesoDirecto{
+    display: flex;
+}
+.abajo a:hover{
+    color: #ebd9c8;
+}

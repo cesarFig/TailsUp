@@ -1,0 +1,71 @@
+.seccion2{
+    display: flex;
+    width: 80%;
+    margin: 30px;
+    margin-top: 3%;
+    margin-left: 10%;
+    background-color: #007a7a;
+    background-image: url("../images/backSection2.png");
+    background-size: cover;
+    background-repeat: none;
+    background-position: center;
+    max-height: 90%;
+    border-radius: 25px;
+    justify-content: space-evenly;
+    align-items: center;   
+}
+
+.textoSeccion2{
+    font-family: Poppins;
+    padding: 10px;  
+    justify-content: center;
+    margin-left: 10%;
+}
+.textoSeccion2 h3{
+    color: #de6600;
+    margin: 0;
+    font-size: 25px;
+} 
+.textoSeccion2 h4{
+    color: #003f5a;
+    margin: 0;
+    margin-top: 3px;
+    font-size: 20px;
+} 
+.textoSeccion2 p{
+    color: #595959;
+    font-size: 14px;
+    margin: 10px;        
+    margin-left: 0;
+}
+.btnBuyNow{
+    border-radius: 5px;
+    border: none;
+    padding: 12px;
+    margin-top:3px;
+    font-family: Poppins;
+    font-size: 10px;
+    width: 50%;
+}
+.DivSec2{
+    position: relative;
+    width: 20%;
+    max-height: 40%;  
+}
+.DivSec2 img{
+    position: absolute;
+    width: 200%;
+    height: auto;   
+    transform: translate(-10%, -50%);
+}
+.LstDivSec2{
+    position: relative;
+    width: 20%;
+    max-height: 40%;  
+}
+.LstDivSec2 img{
+    position: absolute;
+    width: 125%;
+    height: auto;   
+    transform: translate(-12%, -36%);  
+}

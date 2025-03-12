@@ -1,0 +1,55 @@
+
+.seccion1{    
+    padding: 5%;
+    display: flex;
+    font-family: poppins;    
+    background-color: #ebd9c8;
+    justify-content: center;
+    background-image: url("../images/fondoColores.png");
+    background-size: 80% ;
+    background-position: center;
+    background-repeat: no-repeat;    
+}
+.divConsejos{
+    max-width: 300px;
+    height: auto;
+    display: flex;
+    align-items: center; 
+    gap: 20px;  
+    padding: 50px;
+}
+.divConsejos img{
+    width: 60px;
+    height: 60px;
+}
+.divConsejos h1{
+    font-family: flame regular ;
+    font-size: medium;
+    color: rgba(26, 21, 21, 0.89);
+    text-align: end;
+    margin: 0;
+}
+.textoConsejos p{
+    font-size: 16px;
+    max-width: 200px;
+    max-width: 700px;
+    font-size: small;
+    text-align: right;
+    margin: 0;       
+}
+.textoConsejosRight h1{
+    font-family: flame regular ;
+    font-size: medium;
+    color: rgba(26, 21, 21, 0.89);
+    text-align: left;
+    margin: 0;
+}
+
+.textoConsejosRight p{
+    font-size: 16px;
+    max-width: 200px;
+    max-width: 700px;
+    font-size: small;
+    text-align: left;
+    margin: 0;       
+}
