@@ -19,59 +19,78 @@
     gap: 10px;
 }
 .seccionProducts{
-font-family: poppins;
-align-items: center;
-display: flex;
-justify-content: space-between;
-gap: 20px;
-margin: 10%;
-margin-top: 0;
-margin-bottom: 0%;
+    font-family: poppins;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin: 0 10%; 
+    box-sizing: border-box; 
 }
 .productCard{
-border-radius: 10px;
+    width: 23.5%;
+    border-radius: 10px;
+    max-height: 20%;
 }
 .productImage{
     position: relative;
     background-color: #f1f1f1;
-    border-radius: 2px;
+    border-radius: 10px;
 }
 .productImage img{
    width: 90%;
    transform: translateX(6%);
 }
 .productTitle{
-    font-family: poppins;
+    font-family: poppins; 
+    border-left: 0.1px solid #003f5a;   
+    border-right: 0.1px solid #003f5a;    
 }
 .productTitle h4{
     margin: 0;
+    margin-left: 5%;
 }
 .productRating{
     display: flex;
     gap: 2%;
+    border-left: 0.1px solid #003f5a;   
+    border-right: 0.1px solid #003f5a;
 }
 .productRating p{
     font-size: 13px;
     color: gray;
     margin-top: 6%;
+    margin: 3%;
+    margin-left: 0;
 }
 .productRating img{
+    margin-left: 5%;
     width: 8%;
     height: 5%;
-    transform: translateY(72%);
+    transform: translateY(30%);
+}
+.productPrice{    
+    border-left: 0.1px solid #003f5a;   
+    border-right: 0.1px solid #003f5a;
 }
 
 .productPrice p{
     color:#003f5a;
     margin: 0;
     font-size: 15px;
+    margin-left: 5%;
 }
 .productPrice s{
     color: gray;
 }
 .productBtns{
-    margin: 0;
-    
+    text-align: center;
+    margin: 0;    
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border-left: 0.1px solid #003f5a;   
+    border-right: 0.1px solid #003f5a;
+    border-bottom: 0.1px solid #003f5a;
 }
 .btnCompra{
     color: white;
@@ -93,4 +112,10 @@ border-radius: 10px;
     padding: 0;
     width: 100%;
     height: auto;
+}
+.section4{
+    background-color: #003f5a;
+    margin-top: 3%;
+    text-align: center;
+    display: flex;
 }

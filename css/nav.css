@@ -1,8 +1,22 @@
 nav{
     display: flex;
     flex-direction: column;
+    width: 100%;
 }
-
+.navBtn{
+    width: 90%;
+    height: auto;
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    margin-left: 4px;
+    font-size: 90%;
+}
+.carrito{
+    width: 100%;
+    margin-right: 90px;
+    transform: translateX(-10%);
+}
 .arriba{
     background-color: #003f5a;    
     height: 40px;
@@ -80,4 +94,13 @@ nav{
 }
 .abajo a:hover{
     color: #ebd9c8;
+}
+.miCuentaBtn{
+    width: 100%;
+    height: auto;
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    margin-left: 4px;
+    font-size: 90%;
 }

@@ -15,9 +15,17 @@ body{
         width: 100%;
         height: auto;
     }
-    .seccionProducts{
-        display: flex; 
+    .seccionProducts{  
+        display: flex;
         flex-direction: column;
+        gap: 3px;
+        margin: 0 5%;
+    }
+    .seccionProducts > .productCard { 
+        width: 40%;
+    }
+    .section4{
+        width: 50%;
     }
 }
 
