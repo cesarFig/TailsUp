@@ -9,8 +9,11 @@ html, body{
 }
 
 @media (max-width:768px){ 
+    .medio{
+        gap: 0px !important;
+    }
     .logoNav{
-        width: 100%;        
+        width: 40% !important;        
     }
     .navDiv{
         font-size: 0%;
@@ -48,6 +51,16 @@ html, body{
     }
     .btnCarrito{
         display: none;
+    }
+    .buscador{
+        display: none;
+    }
+    #btnBuscar{
+        background: #ebd9c8 !important;    
+    }
+    #btnBuscar img{ 
+        margin-top: 15px !important;       
+        width: 90% !important;
     }
 }
 

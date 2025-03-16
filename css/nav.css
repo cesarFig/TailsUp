@@ -58,9 +58,10 @@ nav{
     width: 75%;
     padding: 10px;
     font-family: Poppins;
-    border-radius: 30px;
+    border-radius: 0 30px 30px 0;
     border-color: white;
-    border-style: none;          
+    border-style: none; 
+    outline: none;         
 }
 .buscador input{
     border-color: white;
@@ -100,4 +101,14 @@ nav{
     flex-direction: column;
     margin-left: 4px;
     font-size: 90%;
+}
+#btnBuscar{
+    background: white;
+    border: none;
+    border-radius: 30px 0px 0px 30px;    
+}
+#btnBuscar img{
+    margin-left: 5px;  
+    width: 70%;
+    margin-top: 3px;
 }
