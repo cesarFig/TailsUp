@@ -46,9 +46,8 @@ html, body{
         font-size: 13px;
         margin-left: 25%;
     }
-    .btnCompra{
-        width: 10%;
-        
+    .btnCarrito{
+        display: none;
     }
 }
 
