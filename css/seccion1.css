@@ -1,12 +1,13 @@
 
 .seccion1{    
-    padding: 5%;
+    width: 100%;
+    padding: 0;
     display: flex;
     font-family: poppins;    
     background-color: #ebd9c8;
     justify-content: center;
     background-image: url("../images/fondoColores.png");
-    background-size: 80% ;
+    background-size: 80vw ;
     background-position: center;
     background-repeat: no-repeat;    
 }

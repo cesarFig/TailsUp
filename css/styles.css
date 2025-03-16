@@ -1,16 +1,31 @@
 
-body{
+html, body{
     margin: 0;
     align-items: center;
+    overflow-x: hidden;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0;
 }
 
-@media (max-width:768px){    
+@media (max-width:768px){ 
+    .logoNav{
+        width: 100%;        
+    }
+    .navDiv{
+        font-size: 0%;
+    }
     .seccion1{
         flex-direction: column;
         align-items: center; 
         text-align: center; 
     }
-    
+    .DivSec2{
+        display: none;
+    }
+    .LstDivSec2{
+        display: none;
+    }
     .imagenSeccion1{
         width: 100%;
         height: auto;
@@ -24,8 +39,12 @@ body{
     .seccionProducts > .productCard { 
         width: 40%;
     }
-    .section4{
-        width: 50%;
+    .imgPerro{
+        display: none;
+    }
+    .containerTexto{
+        font-size: 13px;
+        margin-left: 25%;
     }
 }
 

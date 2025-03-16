@@ -12,6 +12,7 @@ nav{
     margin-left: 4px;
     font-size: 90%;
 }
+
 .carrito{
     width: 100%;
     margin-right: 90px;
@@ -26,8 +27,7 @@ nav{
     display:flex;    
     background-color: #ebd9c8;   
     align-items: center;
-    justify-content: space-evenly;
-    gap: 20px;
+    gap: 10px;
     height: 100px;
     width: 100%;
     gap: 60px;
@@ -46,7 +46,6 @@ nav{
     color: white;
 }
 .logoNav{
-    
     width: 20%;
     height: auto;
 }
@@ -74,13 +73,11 @@ nav{
     font-family: Poppins;
     color: #003f5a;  
     flex-direction: column;   
-    margin: 10px;
-    margin-right: 40px;
+    
 }
 .navDiv img{
     width: 50%;        
     height: 50%;
-    
 }
 .navDiv a {
     text-decoration: none;
