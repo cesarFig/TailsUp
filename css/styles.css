@@ -42,12 +42,13 @@ html, body{
     .seccionProducts > .productCard { 
         width: 40%;
     }
-    .imgPerro{
-        display: none;
-    }
-    .containerTexto{
-        font-size: 13px;
-        margin-left: 25%;
+    .section4{        
+        flex-direction: column;
+    }  
+    .imgPerro{        
+        width: 50% !important;
+        margin-left: 30%;
+        margin-top: 5%;
     }
     .btnCarrito{
         display: none;
@@ -60,8 +61,20 @@ html, body{
     }
     #btnBuscar img{ 
         margin-top: 15px !important;       
-        width: 90% !important;
+        width: 100% !important;
     }
+    .containerTexto{
+        position: absolute;
+        transform: translateY(120%);
+        margin-top: 0% !important;
+        font-size: 12px;
+        width: 100% !important;
+        margin-left: 5%;        
+    }
+    #btnBuscarBlog{
+        width:90% !important;    
+    }
+    
 }
 
 

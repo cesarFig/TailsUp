@@ -1,6 +1,7 @@
 .section4{
     width: 100%;  
     height:450px;  
+    background: #b2c5cd;
 }
 .imgPerro{    
     width: 70%;
@@ -17,5 +18,25 @@
     width: 50%;
     margin-top: 10%;
     margin-bottom: 10%;    
-    margin-right: 10%;
+    margin-right: 10%;  
+    text-align: left;
+}
+.containerTexto h1{
+    color: #003f5a; 
+    text-align: left;    
+}
+.containerTexto p{
+    color: #007A7A; 
+    text-align: left;
+    font-size: 94%;
+}
+
+#btnBuscarBlog{
+    background:#007A7A; 
+    border-radius: 5px;
+    padding: 10px;
+    font-family: poppins;
+    color: white;
+    border: none;
+    width:50%;    
 }
