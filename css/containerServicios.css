@@ -1,0 +1,30 @@
+.containerServicios{
+    margin-top: 0px;
+    display: flex;
+    font-family: flame;
+    width: 70%;
+    margin-left: 16%;
+}
+.divServicios{
+    width: 50%;
+}
+.divServicios p{
+    color: #003F5A;
+    width: 70%;
+    font-size: 45px;
+}
+.divButton{
+    width: 50%;
+    text-align: right;
+}
+.btnServicios{
+    border-radius: 5px;
+    margin-top: 16%;
+    width: 80%;
+    height: 60px;
+    font-family: flame;
+    font-size: 18px;
+    color: #003F5A;
+    border-color: #003F5A;
+    background-color: white;
+}

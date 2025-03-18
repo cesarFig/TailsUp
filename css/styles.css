@@ -68,12 +68,29 @@ html, body{
         transform: translateY(120%);
         margin-top: 0% !important;
         font-size: 12px;
-        width: 100% !important;
+        width: 90% !important;
         margin-left: 5%;        
     }
     #btnBuscarBlog{
         width:90% !important;    
     }
+    .containerServicios{
+        flex-direction: column;        
+    }
+    .divServicios{
+        width: 100% !important;
+    }
+    .divServicios p{
+        color: #003F5A;
+        width: 100% !important;
+        font-size: 30px !important;
+    }
+    .divButton{
+        width: 100% !important;
+        text-align: left !important;
+        
+    }
+  
     
 }
 
