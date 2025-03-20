@@ -2,19 +2,19 @@
     margin-top: 0px;
     display: flex;
     font-family: flame;
-    width: 70%;
-    margin-left: 16%;
+    width: 79%;
+    margin-left: 11%;
 }
 .divServicios{
     width: 50%;
 }
 .divServicios p{
     color: #003F5A;
-    width: 70%;
-    font-size: 45px;
+    width: 80%;
+    font-size: 48px;
 }
 .divButton{
-    width: 50%;
+    width: 50%;    
     text-align: right;
 }
 .btnServicios{
@@ -27,4 +27,31 @@
     color: #003F5A;
     border-color: #003F5A;
     background-color: white;
+}
+.containerEstetica{
+    display: flex;
+    width: 50%;
+    margin-left: 11%;
+    gap: 20%;
+}
+.esteticaCard{
+    width: 20%;
+}
+
+.esteticaCard h3{
+    font-family: flame;
+    color: #003F5A;
+}
+
+.esteticaCard img{
+   width: 250px;
+   height: auto;
+}
+
+.esteticaCard p{
+    max-width: 100%;
+    color: gray;
+    margin: 0px;
+    font-family: poppins;
+    font-size: 13px;
 }
