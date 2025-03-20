@@ -30,12 +30,13 @@
 }
 .containerEstetica{
     display: flex;
-    width: 50%;
-    margin-left: 11%;
-    gap: 20%;
+    width: 80%;
+    gap: 2%;
+    margin-left: 10%;
+    
 }
 .esteticaCard{
-    width: 20%;
+    width: 100%;    
 }
 
 .esteticaCard h3{
@@ -54,4 +55,8 @@
     margin: 0px;
     font-family: poppins;
     font-size: 13px;
+}
+.esteticaCard img{
+    width: 100%;
+    object-fit: contain;
 }

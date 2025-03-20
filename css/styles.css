@@ -79,18 +79,31 @@ html, body{
     }
     .divServicios{
         width: 100% !important;
+        text-align: center;
     }
     .divServicios p{
         color: #003F5A;
         width: 100% !important;
         font-size: 30px !important;
     }
-    .divButton{
+    .divButton{        
         width: 100% !important;
-        text-align: left !important;
-        
+        text-align: center !important;
     }
-  
+    .btnServicios{
+        margin: 0px 0px 8% 0px !important;
+    }
+    .esteticaCard{
+        width: 90% !important;
+        margin-left: 4%;
+        margin-bottom: 10%;
+    }
+    .containerEstetica{
+        display: grid !important;
+        grid-template-columns: repeat(2, 1fr); 
+        gap: 5px !important; 
+    }
+    
     
 }
 
