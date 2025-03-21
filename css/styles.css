@@ -1,6 +1,6 @@
 
 html, body{
-    margin: 0;
+    margin: 0px;
     align-items: center;
     overflow-x: hidden;
     width: 100%;
@@ -103,6 +103,29 @@ html, body{
         grid-template-columns: repeat(2, 1fr); 
         gap: 5px !important; 
     }
+    #btnCarrusel{
+        display: none !important;
+    }
+    .containerCuidador{
+        flex-direction: column;
+    }
+    .divCuidador{
+        
+    }
+    .divCuidador img{
+        width: 70%;
+        object-fit: contain;
+        margin-left: 80% !important;
+    }
+    .divCuidadorText{
+        width: 100% !important;
+        margin: 0px 0px 0px 0px !important;
+        text-align: center !important;   
+    }
+    .divCuidadorText h1, p{
+        margin: 0;
+    }
+  
     
     
 }

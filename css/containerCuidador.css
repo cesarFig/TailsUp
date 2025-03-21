@@ -1,0 +1,41 @@
+.containerCuidador{
+    background-color: #EBD9C8;
+    display: flex;
+    height: 570px;
+    max-width: 100%;
+}
+.divCuidador{
+    width: 40%;
+    padding: 4%;
+}
+.divCuidador img{
+    width: 70%;
+    object-fit: contain;
+    margin-left: 13%;
+}
+.divCuidadorText{
+    width: 40%;
+    text-align: left;
+    margin: 13% 0px 0px 0px;
+}
+
+.divCuidadorText h1{
+    font-family: flame;
+    font-size: 40px;
+    color: #003F5A;
+}
+.divCuidadorText p{
+    font-family: poppins;
+    color: gray;
+}
+#btnConviertete{
+    border: none;
+    color: white;
+    border-radius: 10px;
+    height: 50px;
+    width: 35%;
+    background-color: #0C7769;
+    font-family: flame;
+    margin-top: 2%;
+    
+}

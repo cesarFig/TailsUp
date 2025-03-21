@@ -29,6 +29,7 @@
     background-color: white;
 }
 .containerEstetica{
+    position: relative;
     display: flex;
     width: 80%;
     gap: 2%;
@@ -59,4 +60,13 @@
 .esteticaCard img{
     width: 100%;
     object-fit: contain;
+}
+#btnCarrusel{
+    position: absolute;
+    border-radius: 70%;
+    height: 50px;
+    width: 50px;
+    background-color: #DE6600;
+    border: none;    
+    transform: translate(1055px,110px);
 }
