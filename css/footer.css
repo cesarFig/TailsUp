@@ -1,12 +1,98 @@
 footer{
-    background-color: #0C7769;
-    height: 15vw;
+    background: linear-gradient(270deg,#0C7769 , #003F5A);
+    height: 20vw;
     margin: 0px;
+    padding: 5%;
     position: relative;
     border-radius: 30px 30px 0px 0px;
 }
 .imgPatita{
     width: 7%;
     position: absolute;
-    transform:translate(650%, -60%) ;
+    transform:translate(590%, -135%) ;
+}
+.containerNaranja{
+    display: flex;
+    background-color: #DE6600;
+    width: 80%;
+    margin-left: 10%; 
+      
+    border-radius: 10px; 
+}
+.divTextoRegistro{
+    width: 40%;
+    font-family: flame;
+    color: white;
+}
+.divTextoRegistro p{
+    margin-left: 17%;
+    font-size: 23px;
+}
+.divIngresa{
+    width: 50%;
+    text-align: center;    
+    display: flex;
+    justify-content: space-between;    
+    background-color: white;
+    height:90%;
+    border-radius: 10px;
+    padding:8px;    
+    margin-top: 2%;
+    margin-left: 6%;
+}
+.inputRegistra{
+    height: 30px;
+    border-radius: 6px;   
+    width: 71%;
+    border: 1px solid gray;  
+    padding-left: 2%;
+}
+.btnSuscribirse{
+    width: 25%;
+    border-radius: 6px;
+    height: 35px;
+    border-style: none;
+    background-color: #DE6600;
+    color: white;
+    padding: 2%;
+}
+.containerRedes{
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+    padding: 3%;
+    padding-left: 2%;
+    gap: 70px;
+}
+.containerEnlaces{
+    width: 70%;
+    display: flex;
+    justify-content: space-evenly;    
+}
+ 
+.containerEnlaces a{
+    font-family: flame;
+    text-decoration: none;
+    color: aliceblue;   
+    font-size: 80%; 
+}
+.containerImagenes{
+    width: 30%;
+    display: flex;
+    justify-content: space-evenly;    
+    gap:1%;
+}
+hr{
+    width: 80%;
+}
+.containerFinal{
+    display: flex;
+    font-family: poppins;
+    color: white;
+    font-size: 80%;
+    justify-content: space-evenly;
+}
+
+.containerFinal p{
+    margin-top: 5%;
 }

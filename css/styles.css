@@ -109,9 +109,6 @@ html, body{
     .containerCuidador{
         flex-direction: column;
     }
-    .divCuidador{
-        
-    }
     .divCuidador img{
         width: 70%;
         object-fit: contain;
@@ -124,7 +121,32 @@ html, body{
     }
     .divCuidadorText h1, p{
         margin: 0;
+    }    
+    .containerNaranja{
+        width: 80%;
+        margin-left: 10%; 
+        border-radius: 10px;
+        height: 30%; 
     }
+    .divTextoRegistro p{  
+        margin-left: 2% !important;  
+        margin-top: 9%;    
+        font-size: 70% !important;
+    }
+    .divIngresa{
+        height:40% !important;        
+        padding:8px;    
+        margin-top: 3% !important;        
+    }
+    .inputRegistra{
+        height: 90% !important;
+        font-size: 70%;
+    }
+    .btnSuscribirse{                
+        height: 100% !important;   
+        font-size: 50%;
+    }
+
   
     
     
