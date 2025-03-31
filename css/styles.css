@@ -22,7 +22,28 @@ html, body{
         flex-direction: column;
         align-items: center; 
         text-align: center; 
+        background-image: none !important;
     }
+    .imagenTelefono{
+        display: flex !important;
+        background-image: url("/images/fondoColores.png");
+        background-position: center;
+        background-size: 120%;
+        background-repeat: no-repeat;
+    }
+    .containerC1{
+        display: flex;
+    }
+    .fade {
+        opacity: 0;
+        transition: opacity 1s ease-in-out;
+      }
+    .containerC2{
+        display: none !important;
+    }
+    .imagenCompu{
+        display: none !important;
+    } 
     .DivSec2{
         display: none;
     }
