@@ -7,9 +7,10 @@
     background-color: #ebd9c8;
     justify-content: center;
     background-image: url("../images/fondoColores.png");
-    background-size: 80vw ;
+    background-size: 75vw ;
     background-position: center;
     background-repeat: no-repeat;    
+    margin-top: 140px;    
 }
 .divConsejos{
     max-width: 300px;

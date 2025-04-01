@@ -47,8 +47,15 @@ const imagenesOriginales = [
   function detenerCarrusel() {
     if (intervalo) {
       clearInterval(intervalo);
-      intervalo = null;
+      intervalo = null;  
+      const imagenes = document.querySelectorAll('.divConsejos img');
+      let contador = 1; 
+      imagenes.forEach(img=> {      
+      img.src= 'images/circulo'+contador+'.png';
+      contador++;    
+    });    
     }
+    
   }
   
   // Función para manejar cambios en el tamaño de la pantalla

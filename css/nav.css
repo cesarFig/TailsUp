@@ -31,6 +31,8 @@ nav{
     height: 100px;
     width: 100%;
     gap: 60px;    
+    position: fixed;
+    z-index: 100;
 }
 .abajo{
     background-color: #007a7a;    
@@ -40,6 +42,9 @@ nav{
     align-items: center;
     justify-content: space-evenly;
     font-family: flame;
+    position: fixed;
+    margin-top: 100px;
+    z-index: 100;
 }
 .abajo a{
     text-decoration: none;
