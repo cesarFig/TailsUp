@@ -1,0 +1,435 @@
+
+@font-face {
+    font-family: 'Poppins';
+    src: url('Poppins-Regular.ttf') ;
+}
+@font-face {
+    font-family: 'Flame Regular';
+    src: url('FlameRegular.otf') ;
+}
+
+@font-face {
+    font-family: 'Flame Sans';
+    src: url('FlameSans.otf') ;
+}
+
+
+
+
+body {
+    font-family: 'Poppins';
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-image: url("../images/imagefondo.png");
+    background-repeat: no-repeat; 
+    background-position: center;
+    background-size: 100%;
+}
+
+.container {
+    display: flex;
+    width: 58%;
+    height: 80%;
+    background: #F3F3F3;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+.login-box {
+    width: 38%;
+    padding: 4%;
+    display: flex;
+    flex-direction: column;
+    align-items: relative;
+    background: #F3F3F3;
+    margin-left: 4%;
+    margin-top: 1%;
+
+}
+
+.logo img {
+    width: 80%;
+    margin-bottom: 10%;
+    margin-left: 10%;
+}
+
+.google-btn {
+    width: 100%;
+    padding: 10px;
+    background: white;
+    border: 1px solid #DE6600;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-family: 'Flame Sans';
+}
+
+.google-btn img {
+    width: 7%;
+}
+
+.divider {
+    font-size: 100%;
+    color: #003F5A;
+    font-family: poppins;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin: 20px 0;
+    font-family: 'Flame Sans';
+}
+
+.divider::before,
+.divider::after {
+    content: " ";
+    flex: 1;
+    border-bottom: 1px solid #777;
+    margin: 1%;
+}  
+
+form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.input-group {
+    display: flex;
+    align-items: center;
+    border: 1px solid #DE6600;
+    border-radius: 25px;
+    padding: 10px;
+    margin-bottom: 15px;
+    background: #fff;
+    margin-top: 1%;
+}
+
+.input-group img {
+    width: 5%;
+    margin-right: 10px;
+}
+
+.input-group input {
+    border: none;
+    outline: none;
+    width: 100%;
+    font-size: 100%;
+    font-family: 'Flame Sans';
+}
+
+.login-btn {
+    background: #DE6600;
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 25px;
+    font-size: 100%;
+    cursor: pointer;
+    font-family: 'Flame Sans';
+}
+
+.register {
+    font-size: 95%;
+    margin-top: 15px;
+    text-align: center;
+    font-family: 'Flame Sans';
+    color: #525252;
+
+}
+
+.register a {
+    font-size: 100%;
+    color: #007A7A;
+    text-decoration: none;
+    font-weight: bold;
+    text-align: center;
+    font-family: 'Flame Sans';
+}
+
+.info-box{
+    width: 18%; /* Tamaño fijo */
+    height: 51%; /* Tamaño fijo */
+    background: #007A7A;
+    color: white;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: relative;
+    justify-content: center;
+    position: absolute;
+    right: 25%;
+    top: 49%;
+    transform: translateY(-50%);
+    border-radius: 50px;
+}
+
+.info-box h2 {
+    font-size: 200%;
+    font-family: 'Flame Regular', sans-serif;
+    letter-spacing: 2px;
+    position: absolute;
+    top: 5%;
+}
+
+.info-box p {
+    font-size: 100%;
+    font-family: 'Flame Regular';
+    letter-spacing: 1px;
+    position: absolute;
+    top: 30%;
+    margin-left: 6%;
+    max-width: 50%;
+}
+
+.huella1 {
+    width: 28%;
+    position: absolute;
+    bottom: 17%;
+    left: -45px;
+}
+
+.huella2 {
+    width: 18%;
+    position: absolute;
+    top: 20%;
+    right: -20px;
+}
+
+.info-img {
+    width: 100%;
+    position: absolute;
+    bottom: -8%;
+    right: -16%;
+}
+
+/* ===========================
+   📱 RESPONSIVE DESIGN 
+=========================== */
+
+    
+
+ @media screen and (max-width: 1024px) {
+    body {
+        background-size: cover; 
+        background-position: center;
+    }
+
+    .container {
+        width: 70%;
+        height: auto;
+        padding: 3%;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .login-box {
+        width: 90%;
+        margin-left: 0;
+        padding: 5%;
+    }
+
+    .logo img {
+        width: 65%;
+        margin-bottom: 5%;
+        margin-top: -7%;
+        margin-left: 18%;
+    }
+
+    .google-btn {
+        font-size: 1rem;
+        padding: 10px;
+        width: 100%;
+    }
+
+    .google-btn img {
+        width: 5%;
+    }
+
+    .divider {
+        font-size: 1rem;
+        width: 100%;
+    }
+
+    .divider::before,
+    .divider::after {
+        flex: 1;
+        border-bottom: 1px solid #777;
+        margin: 2%;
+    }
+
+    form {
+        width: 100%;
+    }
+
+    .input-group {
+        padding: 8px;
+    }
+
+    .input-group img {
+        width: 5%;
+    }
+
+    .input-group input {
+        font-size: 1rem;
+    }
+
+    .forgot-password {
+        font-size: 0.9rem;
+    }
+
+    .login-btn {
+        font-size: 1rem;
+        padding: 10px;
+        width: 100%;
+    }
+
+    .register {
+        font-size: 1rem;
+    }
+
+    .register a {
+        font-size: 1rem;
+    }
+
+    .info-box {
+        display: none; /* Se oculta en pantallas medianas */
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .container {
+        width: 70%;
+        height: auto;
+        padding: 5%;
+    }
+
+    .login-box {
+        width: 90%;
+        padding: 5%;
+    }
+
+    .logo img {
+        width: 65%;
+        margin-bottom: 8%;
+        margin-top: -7%;
+        margin-left: 18%;
+    }
+
+    .google-btn {
+        font-size: 0.9rem;
+        padding: 8px;
+    }
+
+    .google-btn img {
+        width: 5%;
+    }
+
+    .input-group {
+        padding: 6px;
+    }
+
+    .input-group img {
+        width: 4%;
+        margin-left: 1%;
+    }
+
+    .input-group input {
+        font-size: 0.9rem;
+    }
+
+    .forgot-password {
+        font-size: 0.85rem;
+    }
+
+    .login-btn {
+        font-size: 0.9rem;
+        padding: 8px;
+    }
+
+    .register {
+        font-size: 0.9rem;
+    }
+
+    .register a {
+        font-size: 0.9rem;
+    }
+
+    .info-box {
+        display: none; /* Se oculta en pantallas medianas */
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .container {
+        width: 70%;
+        height: auto;
+        padding: 5%;
+    }
+
+    .login-box {
+        width: 90%;
+        padding: 5%;
+    }
+
+    .logo img {
+        width: 80%;
+        margin-bottom: 8%;
+        margin-top: -7%;
+        margin-left: 10%;
+    }
+
+    .google-btn {
+        font-size: 0.8rem;
+        padding: 6px;
+    }
+
+    .google-btn img {
+        width: 8%;
+    }
+
+    .input-group {
+        padding: 5px;
+    }
+
+    .input-group img {
+        width: 8%;
+    }
+
+    .input-group input {
+        font-size: 0.85rem;
+    }
+
+    .forgot-password {
+        font-size: 0.8rem;
+    }
+
+    .login-btn {
+        font-size: 0.85rem;
+        padding: 6px;
+    }
+
+    .register {
+        font-size: 0.8rem;
+    }
+
+    .register a {
+        font-size: 0.8rem;
+    }
+
+    .info-box {
+        display: none; /* Se oculta en pantallas medianas */
+    }
+}
