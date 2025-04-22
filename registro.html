@@ -19,20 +19,20 @@
                 <img src="images/google-icon.png" alt="Google"> Registrarse con Google
             </button>
             <div class="divider">Registra tus datos</div>
-            <form>
+            <form method="POST" action="http://localhost/TailsUp-Backend/endPointRegistro.php">
                 <div class="input-group">
                     <img src="images/user-icon.png" alt="User">
-                    <input type="nombre" placeholder="Nombre" required>
+                    <input type="text" placeholder="Nombre" required name="nombre">
                 </div>
                 <div class="input-group">
                     <img src="images/email-icon.png" alt="Email">
-                    <input type="email" placeholder="Email" required>
+                    <input type="email" placeholder="Email" required name="email">
                 </div>
                 <div class="input-group">
                     <img src="images/lock-icon.png" alt="Contraseña">
-                    <input type="password" placeholder="Contraseña" required>
+                    <input type="password" placeholder="Contraseña" required name="contrasena">
                 </div>
-                <button type="submit" class="login-btn">Registrar</button>
+                <button name="btnRegistro" type="submit" class="login-btn">Registrar</button>
             </form>
             <p class="register">¿Ya tienes una cuenta? <a href="login.html">Iniciar sesión</a></p>
         </div>
@@ -49,6 +49,6 @@
                 Esto es un placeholder del texto que pondremos en esta sección
             </p>
         </div>
-    </div>
+    </div>    
 </body>
 </html>

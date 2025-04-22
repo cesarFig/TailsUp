@@ -8,6 +8,7 @@ html, body{
     padding: 0;
 }
 
+
 @media (max-width:768px){ 
     .medio{
         gap: 0px !important;
@@ -65,6 +66,7 @@ html, body{
     }
     .section4{        
         flex-direction: column;
+        height: 50% !important;
     }  
     .imgPerro{        
         width: 50% !important;
@@ -84,16 +86,15 @@ html, body{
         margin-top: 15px !important;       
         width: 100% !important;
     }
-    .containerTexto{
-        position: absolute;
-        transform: translateY(120%);
-        margin-top: 0% !important;
+    .containerTexto{                
+        margin-top: -10% !important;
         font-size: 12px;
         width: 90% !important;
         margin-left: 5%;        
     }
     #btnBuscarBlog{
         width:90% !important;    
+        margin-top: 2% !important;
     }
     .containerServicios{
         flex-direction: column;        
@@ -129,7 +130,13 @@ html, body{
     }
     .containerCuidador{
         flex-direction: column;
+        height: 520px !important;        
     }
+    footer{
+        margin-top: -4% !important;
+        height: 35vw !important;
+    }
+
     .divCuidador img{
         width: 70%;
         object-fit: contain;
@@ -152,22 +159,49 @@ html, body{
     .divTextoRegistro p{  
         margin-left: 2% !important;  
         margin-top: 9%;    
-        font-size: 70% !important;
+        font-size: 55% !important;
     }
     .divIngresa{
         height:40% !important;        
-        padding:8px;    
-        margin-top: 3% !important;        
+        margin-left: 2% !important;
+        margin-top: 1.5% !important;        
     }
     .inputRegistra{
         height: 90% !important;
         font-size: 70%;
+        margin-left: -4px;
     }
     .btnSuscribirse{                
         height: 100% !important;   
         font-size: 50%;
+        width: 30% !important;
+        margin-left: 3%;
     }
-
+    .containerRedes{
+        flex-direction: column;  
+        align-items: center;    
+        gap: 10px !important;           
+    }
+    .containerEnlaces{
+      gap: 30px;
+      margin-left: -6%;
+    }
+    .containerImagenes img{
+        height: 60% !important;
+    }
+    .containerImagenes{
+        margin-left: -40%;
+        gap: 50% !important;
+    }
+    .containerFinal img{
+        width: 27%;
+    }
+    .containerFinal p{
+        font-size: 65%;
+    }
+    hr{
+        margin-top: -4%;
+    }
   
     
     

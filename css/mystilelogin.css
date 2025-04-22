@@ -12,12 +12,8 @@
     font-family: 'Flame Sans';
     src: url('FlameSans.otf') ;
 }
-
-
-
-
 body {
-    font-family: 'Poppins';
+    font-family: Poppins;
     margin: 0;
     padding: 0;
     display: flex;
@@ -48,8 +44,7 @@ body {
     align-items: relative;
     background: #F3F3F3;
     margin-left: 4%;
-    margin-top: 3%;
-
+    margin-top: 3%;    
 }
 
 .logo img {
@@ -113,7 +108,7 @@ form {
     padding: 10px;
     margin-bottom: 10px;
     background: #fff;
-    margin-top: 3%;
+    margin-top: 3%;    
 }
 
 .input-group img {

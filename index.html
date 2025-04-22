@@ -30,7 +30,7 @@
                        <a class="navBtn" href="carrito"><img class="carrito" src="images/Carrito.png" alt="carrito.png">Carrito</a>                                                                                          
                     </div>  
                     <div class="navDiv">                                     
-                        <a class="navBtn" href="login.html"><img class="carrito"src="images/micuenta.png" alt="micuenta.png">Mi cuenta</a>                                            
+                        <a class="navBtn" id="micuenta" href="login.html"><img class="carrito"src="images/micuenta.png" alt="micuenta.png">Mi cuenta</a>                                            
                     </div>
                 </div>
                 
@@ -244,7 +244,7 @@
             </div>
         </div>
     </section>
-    <section class="section4">
+    <div class="section4">
         <div class="imgPerro">
             <img src="images/perritoNaranja.png" alt="perritoNaranja.png">
         </div>
@@ -253,7 +253,7 @@
             <p>Cada perro tiene una raza y características diferentes, por lo que su estilo de vida, alimentación e incluso entretenimiento son diferentes, por favor trae a tu mascota a nuestra tienda para que te asesoremos por expertos.</p>
             <button id="btnBuscarBlog">Buscar en nuestro blog</button>
         </div>
-    </section>
+    </div>
     <section class="containerServicios">
         <div class="divServicios">
             <p>Como consentir a tus mascotas</p>
@@ -314,10 +314,10 @@
                 <a href="/contacto">Contacto</a>
             </div>
             <div class="containerImagenes">
-                <a href="/facebook"><img src="/images/facebook.png" alt="facebook.png"></a>
-                <a href="/twitter"><img src="/images/twitter.png" alt="twitter.com"></a>            
-                <a href="/insta"><img src="/images/instagram.png" alt="instagram.png"></a>            
-                <a href="/youtube"><img src="/images/youTube.png" alt="youtube.png"></a>
+                <a href="/facebook"><img src="images/facebook.png" alt="facebook.png"></a>
+                <a href="/twitter"><img src="images/twitter.png" alt="twitter.com"></a>            
+                <a href="/insta"><img src="images/instagram.png" alt="instagram.png"></a>            
+                <a href="/youtube"><img src="images/youTube.png" alt="youtube.png"></a>
             </div>
         </div>        
         <hr>  
@@ -327,6 +327,25 @@
             <p>Terminos de servicio</p>
         </div>       
     </footer>
-    <script src="js/carrusel.js"></script>
+    <script src="js/carrusel.js"></script>   
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            fetch("session.php")
+                .then(response => response.json())
+                .then(data => {
+                    if (data.nombre) {
+                        let miCuenta = document.getElementById("micuenta");
+                        let iconoCuenta = document.getElementById("iconoCuenta");
+        
+                        // Cambiar el texto de "Mi cuenta" al nombre del usuario
+                        miCuenta.innerHTML = `<img class="carrito" id="iconoCuenta" src="images/micuenta.png" alt="micuenta.png"> ${data.nombre}`;
+        
+                        // Cambiar el href para que vaya a "micuenta.php" si el usuario ha iniciado sesión
+                        miCuenta.href = "login.html";
+                    }
+                })
+                .catch(error => console.error("Error al obtener la sesión:", error));
+        });
+        </script>
 </body>
 </html>

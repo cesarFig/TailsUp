@@ -5,6 +5,7 @@ footer{
     padding: 5%;
     position: relative;
     border-radius: 30px 30px 0px 0px;
+    margin-top: -2%;
 }
 .imgPatita{
     width: 7%;
@@ -15,8 +16,7 @@ footer{
     display: flex;
     background-color: #DE6600;
     width: 80%;
-    margin-left: 10%; 
-      
+    margin-left: 10%;       
     border-radius: 10px; 
 }
 .divTextoRegistro{
@@ -26,7 +26,7 @@ footer{
 }
 .divTextoRegistro p{
     margin-left: 17%;
-    font-size: 23px;
+    font-size: 110%;
 }
 .divIngresa{
     width: 50%;
