@@ -3,20 +3,38 @@ nav{
     flex-direction: column;
     width: 100%;
 }
-.navBtn{
-    width: 90%;
-    height: auto;
-    margin-top: 30px;
+.carritoBtn{
+    width: 45px;
+    height: 75px;
     display: flex;
-    flex-direction: column;
+    text-align: center;
     margin-left: 4px;
-    font-size: 90%;
+    align-items: center;
+}
+.carritoTxt{
+    font-size: 85%;
+    margin-top: -41%;  
+    margin-left: 4px;
 }
 
+.loginBtn{
+    width: 45px;
+    height: 75px;
+
+    display: flex;
+    text-align: center;
+    margin-left: 4px;
+    align-items: center;    
+}
+.miCuentaTxt{
+    font-size: 85%;
+    margin-top: -32%;
+}
 .carrito{
-    width: 100%;
-    margin-right: 90px;
-    transform: translateX(-10%);    
+    width: 130% !important;             
+}
+.login{
+    width: 100% !important;
 }
 .arriba{
     background-color: #003f5a;    
@@ -71,7 +89,6 @@ nav{
 .buscador input{
     border-color: white;
     border-style: none;
-    
 }
 .navDiv{
     display: flex;
@@ -79,7 +96,6 @@ nav{
     font-family: Poppins;
     color: #003f5a;  
     flex-direction: column;   
-    
 }
 .navDiv img{
     width: 50%;        
@@ -93,7 +109,9 @@ nav{
     color: #007a7a;
 }
 .accesoDirecto{
+    width: 20%;
     display: flex;
+    justify-content: space-evenly;
 }
 .abajo a:hover{
     color: #ebd9c8;
