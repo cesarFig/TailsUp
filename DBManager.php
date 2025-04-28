@@ -70,6 +70,16 @@ class DBManager{
     
         return $resultado;
     }
+
+    public function getProductos(){
+        $link = $this->open();
+        $sql = "SELECT * FROM productos";
+        $query = mysqli_prepare($link, $sql);
+        $resultado = mysqli_stmt_execute($query);
+        $this->close($link);
+    
+        return $resultado;
+    }
     
     
 }
