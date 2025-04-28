@@ -1,0 +1,211 @@
+
+html, body{
+    margin: 0px;
+    align-items: center;
+    overflow-x: hidden;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0;
+}
+
+.payment-steps {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2.5%;
+}
+
+.step {
+    display: flex;
+    align-items: center;
+    margin: 0 15px;
+}
+
+.number {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    color: #fff;
+    background-color: #ccc;
+    font-size: 14px;
+    margin-right: 5px;
+}
+
+.text {
+    color: #ccc;
+    font-size: 14px;
+}
+.step.active .number {
+    background-color: #004466;
+}
+
+.step.active .text {
+    color: #004466;
+    font-weight: bold;
+}
+
+/* styles.css */
+
+/* --- General Styles for the Container --- */
+.order-container {
+    width: 400px; /* Adjust width as needed */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin: 20px auto; /* Center the container horizontally */
+    padding: 20px;
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+}
+
+/* --- Order Summary Section --- */
+.order-summary h2 {
+    font-size: 1.5em;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.order-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #eee; /* Separator between items */
+}
+
+.order-item:last-child {
+    border-bottom: none; /* Remove border from the last item */
+}
+
+.product-name {
+    flex-grow: 1; /* Allow product name to take up more space */
+    margin-right: 10px;
+    color: #555;
+}
+
+.item-details {
+    display: flex;
+    align-items: center;
+}
+
+.quantity {
+    font-size: 0.9em;
+    color: #777;
+    margin-right: 10px;
+}
+
+.price {
+    font-weight: bold;
+    color: #333;
+}
+
+/* --- Payment Options Section --- */
+.payment-options {
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px solid #ccc;
+}
+
+/* --- Discount Coupon --- */
+.discount-coupon h3 {
+    font-size: 1.1em;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.coupon-input {
+    display: flex;
+}
+
+.coupon-input input[type="text"] {
+    flex-grow: 1;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 3px 0 0 3px;
+    font-size: 0.9em;
+}
+
+.coupon-input .apply-coupon {
+    background-color: #f0f0f0;
+    color: #333;
+    border: 1px solid #ddd;
+    border-radius: 0 3px 3px 0;
+    padding: 8px 15px;
+    font-size: 0.9em;
+    cursor: pointer;
+}
+
+.coupon-input .apply-coupon:hover {
+    background-color: #e0e0e0;
+}
+
+/* --- Confirm Button --- */
+.confirm-button {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.confirm-order {
+    background-color: #007bff; /* Example primary color */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 12px 25px;
+    font-size: 1em;
+    cursor: pointer;
+}
+
+.confirm-order:hover {
+    background-color: #0056b3;
+}
+
+
+/* styles.css */
+
+/* --- General Styles for the Order Summary Container --- */
+.order-summary-container {
+    width: 350px; /* Adjust width as needed */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 15px;
+    box-sizing: border-box;
+}
+
+.order-summary-container h2 {
+    font-size: 1.3em;
+    margin-bottom: 15px;
+    color: #333;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+}
+
+/* --- Individual Order Item --- */
+.order-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    font-size: 0.9em;
+}
+
+.product-name {
+    flex-grow: 1;
+    margin-right: 10px;
+    color: #555;
+}
+
+.quantity {
+    color: #777;
+    margin-right: 10px;
+}
+
+.price {
+    font-weight: bold;
+    color: #333;
+}
+
+/* Optional: Add spacing between items */
+.order-item + .order-item {
+    margin-top: 5px;
+}
