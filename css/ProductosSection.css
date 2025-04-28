@@ -47,10 +47,10 @@
    width: 90%;
    transform: translateX(6%);
 }
-.productTitle{
+.productTitle{       
     font-family: poppins; 
     border-left: 0.1px solid #003f5a;   
-    border-right: 0.1px solid #003f5a;    
+    border-right: 0.1px solid #003f5a;     
 }
 .productTitle h4{
     margin: 0;
