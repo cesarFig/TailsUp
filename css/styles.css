@@ -6,6 +6,20 @@ html, body{
     box-sizing: border-box;
     padding: 0;
 }
+@font-face {
+    font-family: 'Flame';
+    src: url('../fonts/FlameRegular.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: 'Poppins';
+    src: url('../fonts/Poppins-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
+
+
 @media (max-width:1145px){
     .seccion1{
         flex-direction: column;        
@@ -26,7 +40,6 @@ html, body{
     }
     .consejosPhoneView{
         display: flex !important;   
-        
     }
     .containerC2{
         display: none !important;
@@ -34,12 +47,45 @@ html, body{
 }
 
 @media (max-width:768px){ 
+    .seccion1{
+        margin-top: 110px !important;
+    }
+    .carruselEstetica li{        
+        width: 40vw !important;         
+    }    
+    .carruselEstetica {
+        gap: 0% !important;
+        width: calc(6 * 40vw) !important; /* 6 elementos de 40vw = 240vw */
+        animation: slideMobileEstetica 20s linear infinite !important;
+    }        
+    @keyframes slideMobileEstetica {
+        0%   { margin-left: 0; }
+        10%  { margin-left: 0; }
+    
+        15%  { margin-left: -40vw; }
+        25%  { margin-left: -40vw; }
+    
+        30%  { margin-left: -80vw; }
+        40%  { margin-left: -80vw; }
+    
+        45%  { margin-left: -120vw; }
+        55%  { margin-left: -120vw; }
+    
+        60%  { margin-left: -160vw; }
+        70%  { margin-left: -160vw; }
+    
+        75%  { margin-left: -200vw; }
+        85%  { margin-left: -200vw; }
+    
+        100% { margin-left: -200vw; } /* Se reinicia */
+    }
+    
     .sliderConsejos li {
         width: 100vw !important;
     }
     .sliderConsejos {
         width: calc(6 * 100vw) !important; /* total = 600vw */
-        animation: slideMobile 20s infinite alternate ease-in-out !important;
+        animation: slideMobile 20s infinite ease-in-out !important;
     }
     @keyframes slideMobile {
         0%   { margin-left: 0; }
@@ -114,6 +160,17 @@ html, body{
     .divConsejosPhone{
         max-width: 100% !important;
     }
+    .divConsejosPhone p{
+        font-size: 13px !important;    
+    }
+    .divConsejosPhone img{
+        width: 50px !important;
+        height: 50px !important;
+    }
+    .divConsejosPhone h1{        
+        font-size: 18px !important;
+        font-family: flame !important;
+    }    
     .seccionProducts{  
         display: flex;
         flex-direction: column;
@@ -147,7 +204,7 @@ html, body{
     }
     #btnBuscar img{ 
         margin-top: 17px !important;       
-        width: 30px !important;
+        width: 27px !important;
     }
     .containerTexto{                
         margin-top: -10% !important;
@@ -163,6 +220,7 @@ html, body{
         flex-direction: column;        
     }
     .divServicios{
+        margin-top: 8%;
         width: 100% !important;
         text-align: center;
     }
@@ -172,6 +230,7 @@ html, body{
         font-size: 30px !important;
     }
     .divButton{        
+        margin-top: 6%;
         width: 100% !important;
         text-align: center !important;
     }
@@ -195,44 +254,65 @@ html, body{
         flex-direction: column;
         height: 520px !important;        
     }
-    footer{
-        margin-top: -4% !important;
+    footer{        
+        margin-top: -5% !important;
         height: 35vw !important;
     }
-
+    #btnConviertete{
+        height: 35px !important;
+        width: 30% !important;
+        margin-top: 0% !important;
+        transition: all 0.3s ease;  
+    }
     .divCuidador img{
-        width: 70%;
+        width: 110% !important;
         object-fit: contain;
-        margin-left: 80% !important;
+        margin-left: 60% !important;
     }
     .divCuidadorText{
         width: 100% !important;
         margin: 0px 0px 0px 0px !important;
         text-align: center !important;   
     }
+    .divCuidadorText h1{
+        font-size: 25px !important;
+    }
     .divCuidadorText h1, p{
-        margin: 0;
-    }    
-    .containerNaranja{
-        width: 80%;
-        margin-left: 10%; 
+        margin: 0;        
+    }  
+    .divCuidadorText p{
+        margin-top: 2%;
+        margin-bottom: 5%;
+        font-size: 13px !important;
+        text-align: justify;
+        width: 80% !important;
+        margin-left: 10% !important;        
+    }  
+    .containerNaranja{       
+        width: 90% !important;
+        margin-left: 5% !important; 
+        margin-top: 2%;
         border-radius: 10px;
-        height: 30%; 
+        height: 40%;         
     }
     .divTextoRegistro p{  
         margin-left: 2% !important;  
-        margin-top: 9%;    
+        margin-top: 12%;    
         font-size: 55% !important;
     }
     .divIngresa{
         height:40% !important;        
         margin-left: 2% !important;
-        margin-top: 1.5% !important;        
+        margin-top: 3% !important;        
     }
     .inputRegistra{
         height: 90% !important;
         font-size: 70%;
         margin-left: -4px;
+        border-radius: 5px !important;
+    }
+    .inputRegistra::placeholder{
+        font-size: 10px !important;        
     }
     .btnSuscribirse{                
         height: 100% !important;   
@@ -265,8 +345,25 @@ html, body{
     hr{
         margin-top: -4%;
     }
-  
-    
+    .imgPatita{
+        width: 13% !important;
+        position: absolute;
+        transform:translate(300%, -100%) !important; 
+    }
+    .carritoBtn{
+        width: 30px !important;
+        height: 65px !important;
+    }
+    .loginBtn{
+        width: 40px !important;
+        height: 65px !important;
+    }
+    .medio{
+        height: 70px !important;
+    }
+    .abajo{   
+        margin-top: 70px !important;        
+    }
     
 }
 

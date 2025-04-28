@@ -55,6 +55,11 @@ footer{
     background-color: #DE6600;
     color: white;
     padding: 2%;
+    transition: all 0.3s ease;  
+}
+.btnSuscribirse:hover{
+    transform: scale(1.05);
+    background-color: #003F5A;
 }
 .containerRedes{
     width: 90%;

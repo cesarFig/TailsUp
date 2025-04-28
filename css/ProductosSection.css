@@ -107,12 +107,21 @@
     width: 75%;
     margin-bottom: 5%;
     font-size: 12px;
+    transition: all 0.3s ease; 
+}
+.btnCompra:hover{
+    background-color: #de6600;
+    transform: scale(1.05);
 }
 .btnCarrito{
     border: none;
     transform: translateY(19%);
     max-width: 30%;
     margin-top: 5%;
+    transition: all 0.3s ease; 
+}
+.btnCarrito:hover{
+    transform: scale(1.05);
 }
 .btnCarrito img{
     padding: 0;

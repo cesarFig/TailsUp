@@ -43,7 +43,7 @@
     display: flex;
     align-items: center; 
     gap: 20px;  
-    padding: 50px;      
+    padding: 27px;      
 }
 .divConsejosPhone p{
     font-size: 18spx;    
@@ -129,12 +129,12 @@
     display: none;
 }
 .sliderConsejos {
-    width: calc(6 * 50vw); /* o 300vw */
+    width: 300vw; /* o 300vw */
     display: flex;
     list-style-type: none;
     padding: 0;
     margin: 0;
-    animation: slide 20s infinite alternate ease-in-out;
+    animation: slide 20s infinite alternate ease-in-out;    
 }
 
 .sliderConsejos li{
@@ -151,7 +151,7 @@
     50% { margin-left: -200vw; }
     70% { margin-left: -200vw; }
     75% { margin-left: -100vw; } /* si quieres volver */
-    100% { margin-left: 0; }     /* bucle completo */
+    100% { margin-left: 0; }  
 }
 
 

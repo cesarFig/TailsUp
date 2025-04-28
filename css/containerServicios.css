@@ -27,6 +27,11 @@
     color: #003F5A;
     border-color: #003F5A;
     background-color: white;
+    transition: all 0.3s ease;  
+}
+.btnServicios:hover{
+    transform: scale(1.05);
+    background-color: #b2c5cd;
 }
 .containerEstetica{
     position: relative;
@@ -34,7 +39,7 @@
     width: 80%;
     gap: 2%;
     margin-left: 10%;
-    
+    overflow: hidden;
 }
 .esteticaCard{
     width: 100%;    
@@ -60,12 +65,25 @@
 .esteticaCard img{
     width: 100%;
 }
-#btnCarrusel{
-    position: absolute;
-    border-radius: 70%;
-    height: 50px;
-    width: 50px;
-    background-color: #DE6600;
-    border: none;    
-    transform: translate(1055px,110px);
+.carruselEstetica{
+    width: 300vw; /* o 300vw */
+    display: flex;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    gap: .7%;
+    animation: slide 20s infinite ease-in-out !important;
+}
+.carruselEstetica li{
+    position: relative; 
+    width: 19vw; 
+    display: flex;
+    flex-shrink: 0;
+}
+@keyframes slide {
+    0% { margin-left: 0; }
+    20% { margin-left: 0; }
+    25% { margin-left: -80vw; }
+    45% { margin-left: -80vw; }    
+    100% { margin-left: -80vw; }     /* bucle completo */
 }

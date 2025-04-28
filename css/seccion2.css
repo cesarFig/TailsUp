@@ -46,6 +46,11 @@
     font-family: Poppins;
     font-size: 10px;
     width: 50%;
+    transition: all 0.3s ease; 
+}
+.btnBuyNow:hover{
+    background-color: #ebd9c8;
+    transform: scale(1.05); 
 }
 .DivSec2{
     position: relative;
