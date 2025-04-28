@@ -31,7 +31,7 @@
     height: 60px;
 }
 .divConsejos h1{
-    font-family: flame regular ;
+    font-family: flame;
     font-size: medium;
     color: rgba(26, 21, 21, 0.89);
     text-align: end;
@@ -54,7 +54,7 @@
     height: 60px;
 }
 .divConsejosPhone h1{
-    font-family: flame regular ;
+    font-family: 'Flame', sans-serif;
     font-size: x-large;
     color: rgba(26, 21, 21, 0.89);
     text-align: end;
@@ -98,7 +98,7 @@
     text-align: left;
 }
 .textoConsejosRight h1{
-    font-family: flame regular ;
+    font-family: 'Flame', sans-serif;
     font-size: medium;
     color: rgba(26, 21, 21, 0.89);
     text-align: left;

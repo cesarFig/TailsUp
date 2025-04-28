@@ -20,7 +20,7 @@
 }
 
 .divCuidadorText h1{
-    font-family: flame;
+    font-family: 'Flame', sans-serif;
     font-size: 40px;
     color: #003F5A;
 }
@@ -36,7 +36,7 @@
     height: 50px;
     width: 35%;
     background-color: #0C7769;
-    font-family: flame;
+    font-family: 'Flame', sans-serif;
     margin-top: 2%;
     
 }

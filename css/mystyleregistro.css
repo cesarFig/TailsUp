@@ -1,21 +1,3 @@
-
-@font-face {
-    font-family: 'Poppins';
-    src: url('Poppins-Regular.ttf') ;
-}
-@font-face {
-    font-family: 'Flame Regular';
-    src: url('FlameRegular.otf') ;
-}
-
-@font-face {
-    font-family: 'Flame Sans';
-    src: url('FlameSans.otf') ;
-}
-
-
-
-
 body {
     font-family: 'Poppins';
     margin: 0;
@@ -177,7 +159,7 @@ form {
 
 .info-box h2 {
     font-size: 200%;
-    font-family: 'Flame Regular', sans-serif;
+    font-family: 'Flame', sans-serif;
     letter-spacing: 2px;
     position: absolute;
     top: 5%;
@@ -185,7 +167,7 @@ form {
 
 .info-box p {
     font-size: 100%;
-    font-family: 'Flame Regular';
+    font-family: 'Flame', sans-serif;
     letter-spacing: 1px;
     position: absolute;
     top: 30%;

@@ -1,211 +1,422 @@
+/* styles.css */
 
 html, body{
-    margin: 0px;
-    align-items: center;
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif; /* Or the specific font if known */
+    background-color: #f8f9fa; /* Light gray background from image */
+    color: #343a40; /* Default dark text color */
     overflow-x: hidden;
     width: 100%;
     box-sizing: border-box;
-    padding: 0;
 }
 
+/* --- Payment Steps (Adjusted for closer match) --- */
 .payment-steps {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 2.5%;
+    margin: 2.5% auto 40px auto; /* Add more bottom margin */
+    padding-bottom: 20px;
+    max-width: 1200px;
 }
 
 .step {
     display: flex;
     align-items: center;
-    margin: 0 15px;
+    margin: 0 25px; /* Slightly more spacing */
 }
 
 .number {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 30px;
-    height: 30px;
+    width: 28px; /* Slightly smaller */
+    height: 28px;
     border-radius: 50%;
     color: #fff;
-    background-color: #ccc;
+    background-color: #ced4da; /* Lighter gray for inactive */
     font-size: 14px;
-    margin-right: 5px;
+    margin-right: 8px;
+    font-weight: bold;
 }
 
 .text {
-    color: #ccc;
+    color: #adb5bd; /* Lighter gray text for inactive */
     font-size: 14px;
+    font-weight: 500;
 }
 .step.active .number {
-    background-color: #004466;
+    background-color: #004466; /* Dark teal/blue from image */
 }
 
 .step.active .text {
-    color: #004466;
+    color: #004466; /* Dark teal/blue from image */
     font-weight: bold;
 }
 
-/* styles.css */
-
-/* --- General Styles for the Container --- */
-.order-container {
-    width: 400px; /* Adjust width as needed */
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    margin: 20px auto; /* Center the container horizontally */
-    padding: 20px;
-    box-sizing: border-box; /* Include padding and border in the element's total width and height */
-}
-
-/* --- Order Summary Section --- */
-.order-summary h2 {
-    font-size: 1.5em;
-    margin-bottom: 15px;
-    color: #333;
-}
-
-.order-item {
+/* --- Main Content Layout --- */
+.cart-main-content {
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    padding: 10px 0;
-    border-bottom: 1px solid #eee; /* Separator between items */
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 0 20px;
+    gap: 40px; /* Increased space between columns */
+    /* Remove background/borders from main layout if they existed */
+    background-color: transparent;
 }
 
-.order-item:last-child {
-    border-bottom: none; /* Remove border from the last item */
+/* Left Column: Cart Details - REMOVE container look */
+.cart-details-column {
+    flex: 3;
+    /* REMOVE background, padding, border-radius, box-shadow */
+    /* background-color: #fff; */
+    /* padding: 20px; */
+    /* border-radius: 8px; */
+    /* box-shadow: 0 2px 5px rgba(0,0,0,0.1); */
 }
 
-.product-name {
-    flex-grow: 1; /* Allow product name to take up more space */
-    margin-right: 10px;
-    color: #555;
+.cart-details-column h2 {
+    font-size: 1.1em; /* Smaller header */
+    margin-bottom: 15px;
+    color: #6c757d; /* Gray header text */
+    font-weight: 600;
+    /* Remove border if needed */
+    /* border-bottom: 1px solid #eee; */
+    /* padding-bottom: 10px; */
 }
 
-.item-details {
+/* Cart Table Styling */
+.cart-table {
+    width: 100%;
+    border-collapse: collapse; /* Ensure borders collapse into a single line */
+    margin-top: 15px;
+}
+
+/* Apply padding and vertical align to all td cells */
+.cart-table td {
+    padding: 15px 8px; /* More vertical padding */
+    text-align: left;
+    vertical-align: middle; /* Keep this for now, might help with non-flex cells */
+    /* REMOVE border-bottom from cells */
+    /* border-bottom: 1px solid #dee2e6; */
+}
+
+/* Apply border to the bottom of each table row in the body */
+.cart-table tbody tr {
+    border-bottom: 1px solid #dee2e6; /* Subtle border like image */
+}
+
+/* Remove border from the last table row in the body */
+.cart-table tbody tr:last-child {
+    border-bottom: none;
+}
+
+.cart-table th {
+    font-weight: 600;
+    font-size: 0.85em; /* Smaller header font */
+    color: #6c757d; /* Gray header text */
+    background-color: transparent; /* No background */
+    text-transform: uppercase; /* Match image header style */
+    border-bottom: 2px solid #dee2e6; /* Keep thicker bottom border for header row */
+    padding: 15px 8px; /* Apply consistent padding to header cells as well */
+    text-align: left; /* Ensure header text is left-aligned */
+    vertical-align: middle; /* Also apply vertical align to header cells */
+}
+
+/* Checkbox styling */
+.cart-table td:first-child, .cart-table th:first-child {
+    width: 30px; /* Space for checkbox */
+    text-align: center;
+    padding-left: 0;
+    padding-right: 0;
+}
+.cart-table input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+}
+
+
+.product-image-cell {
+    width: 70px; /* Adjusted width */
+    padding-right: 15px; /* Space between image and text */
+    /* Ensure image cell content is centered (using flex for robustness) */
     display: flex;
+    justify-content: center;
     align-items: center;
 }
 
-.quantity {
-    font-size: 0.9em;
-    color: #777;
-    margin-right: 10px;
+.product-image {
+    width: 60px; /* Slightly larger image */
+    height: 60px;
+    object-fit: contain;
+    border-radius: 8px; /* Rounded corners for image */
 }
 
-.price {
+.product-info .product-name {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 4px;
+    color: #343a40; /* Darker product name */
+    font-size: 0.95em;
+}
+
+.product-info .product-size {
+    display: block;
+    font-size: 0.8em;
+    color: #6c757d; /* Lighter gray for size */
+}
+
+.product-price {
+    font-size: 0.9em;
+}
+.product-price .current-price {
+    display: block;
     font-weight: bold;
-    color: #333;
+    color: #343a40; /* Dark price */
 }
 
-/* --- Payment Options Section --- */
-.payment-options {
-    margin-top: 20px;
-    padding-top: 15px;
-    border-top: 1px solid #ccc;
+.product-price .original-price {
+    display: block;
+    font-size: 0.9em; /* Relative to parent */
+    color: #adb5bd; /* Light gray strikethrough price */
+    text-decoration: line-through;
 }
 
-/* --- Discount Coupon --- */
-.discount-coupon h3 {
-    font-size: 1.1em;
-    margin-bottom: 10px;
-    color: #333;
+/* Quantity Input Styling */
+/* Apply flexbox directly to the td with class product-quantity */
+.product-quantity {
+    display: flex; /* Make the td a flex container */
+    align-items: center; /* Vertically center the content (the buttons and input group) */
+    justify-content: center; /* Horizontally center the content (the buttons and input group) */
+    /* Remove the text-align: center; if display: flex is used for centering */
+    /* text-align: center; */
 }
 
-.coupon-input {
-    display: flex;
-}
-
-.coupon-input input[type="text"] {
-    flex-grow: 1;
-    padding: 8px;
-    border: 1px solid #ddd;
-    border-radius: 3px 0 0 3px;
-    font-size: 0.9em;
-}
-
-.coupon-input .apply-coupon {
-    background-color: #f0f0f0;
-    color: #333;
-    border: 1px solid #ddd;
-    border-radius: 0 3px 3px 0;
-    padding: 8px 15px;
-    font-size: 0.9em;
+.quantity-btn {
+    background-color: #e9ecef; /* Light gray background */
+    border: 1px solid #ced4da; /* Subtle border */
+    color: #495057; /* Darker gray text */
     cursor: pointer;
+    width: 24px; /* Smaller buttons */
+    height: 24px;
+    font-size: 0.9em;
+    border-radius: 4px; /* Slightly rounded corners */
+    /* line-height: 22px; Removed line-height for flex centering */
+    text-align: center; /* Keep for text fallback */
+    padding: 0;
+    /* Centering content *within* the button using flexbox */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* Ensure no vertical margin or padding that could push it */
+    margin: 0;
+}
+.quantity-btn:hover {
+    background-color: #dee2e6;
 }
 
-.coupon-input .apply-coupon:hover {
-    background-color: #e0e0e0;
+.quantity-input {
+    width: 35px; /* Narrower input */
+    height: 24px; /* Ensure input height matches button height */
+    text-align: center;
+    border: 1px solid #ced4da;
+    /* Use horizontal margin only */
+    margin: 0 4px;
+    border-radius: 4px; /* Slightly rounded corners */
+    font-size: 0.9em;
+    font-weight: 500;
+    background-color: #fff; /* White background for input */
+    /* Ensure no vertical padding */
+    padding: 0;
+    /* Hide spinner arrows */
+    -moz-appearance: textfield;
+}
+.quantity-input::-webkit-outer-spin-button,
+.quantity-input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
 }
 
-/* --- Confirm Button --- */
-.confirm-button {
-    margin-top: 20px;
+
+.product-total {
+    font-weight: bold;
+    font-size: 1em; /* Standard size */
+    color: #343a40; /* Dark text */
+}
+
+.product-action {
     text-align: center;
 }
 
-.confirm-order {
-    background-color: #007bff; /* Example primary color */
-    color: white;
+.delete-btn {
+    background: none;
     border: none;
-    border-radius: 5px;
-    padding: 12px 25px;
-    font-size: 1em;
+    color: #dc3545; /* Red delete icon */
     cursor: pointer;
+    font-size: 1.1em; /* Adjust icon size */
+    padding: 5px; /* Add padding for easier clicking */
+}
+.delete-btn:hover {
+    color: #a71d2a;
 }
 
-.confirm-order:hover {
-    background-color: #0056b3;
+/* Right Column: Order Summary - REMOVE container look */
+.order-summary-column {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 30px; /* Space between logical sections */
 }
 
-
-/* styles.css */
-
-/* --- General Styles for the Order Summary Container --- */
-.order-summary-container {
-    width: 350px; /* Adjust width as needed */
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    padding: 15px;
-    box-sizing: border-box;
+.order-summary-box {
+    /* REMOVE background, padding, border-radius, box-shadow */
+    /* background-color: #fff; */
+    /* padding: 20px; */
+    /* border-radius: 8px; */
+    /* box-shadow: 0 2px 5px rgba(0,0,0,0.1); */
 }
 
-.order-summary-container h2 {
-    font-size: 1.3em;
+.order-summary-box h2 {
+    font-size: 1.1em; /* Smaller header */
     margin-bottom: 15px;
-    color: #333;
-    border-bottom: 1px solid #eee;
-    padding-bottom: 10px;
+    color: #6c757d; /* Gray header text */
+    font-weight: 600;
+    /* Remove border if needed */
+    /* border-bottom: 1px solid #eee; */
+    /* padding-bottom: 10px; */
 }
 
-/* --- Individual Order Item --- */
-.order-item {
+.summary-item {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 8px 0;
-    font-size: 0.9em;
+    padding: 10px 0; /* Adjust padding */
+    font-size: 0.9em; /* Slightly smaller text */
+    border-bottom: 1px solid #dee2e6; /* Subtle separator */
+}
+.summary-item:last-of-type {
+    border-bottom: none;
 }
 
-.product-name {
+.summary-product-name {
     flex-grow: 1;
     margin-right: 10px;
-    color: #555;
+    color: #495057; /* Standard text color */
 }
 
-.quantity {
-    color: #777;
-    margin-right: 10px;
+.summary-quantity {
+    color: #6c757d; /* Lighter gray quantity */
+    margin-right: 15px;
+    font-weight: 500;
+    font-size: 0.9em; /* Smaller quantity text */
 }
 
-.price {
+.summary-price {
     font-weight: bold;
-    color: #333;
+    color: #343a40; /* Dark price */
 }
 
-/* Optional: Add spacing between items */
-.order-item + .order-item {
-    margin-top: 5px;
+
+/* Discount Coupon Section - REMOVE container look */
+.discount-coupon {
+    /* REMOVE background, padding, border-radius, box-shadow */
+    /* background-color: #fff; */
+    /* padding: 20px; */
+    /* border-radius: 8px; */
+    /* box-shadow: 0 2px 5px rgba(0,0,0,0.1); */
+}
+
+.discount-coupon h3 {
+    font-size: 1.1em;
+    margin-bottom: 10px;
+    color: #6c757d; /* Gray header */
+    font-weight: 600;
+}
+
+.coupon-input-group {
+    display: flex;
+}
+
+.coupon-input {
+    flex-grow: 1;
+    padding: 10px 12px; /* Adjust padding */
+    border: 1px solid #ced4da; /* Gray border */
+    border-radius: 6px 0 0 6px; /* Rounded left corners */
+    font-size: 0.9em;
+}
+.coupon-input:focus {
+    outline: none;
+    border-color: #004466; /* Highlight border on focus */
+    box-shadow: 0 0 0 2px rgba(0, 68, 102, 0.2); /* Subtle glow */
+}
+
+.apply-coupon-btn {
+    background-color: #004466; /* Dark teal/blue background */
+    color: #fff; /* White text */
+    border: 1px solid #004466;
+    border-left: none;
+    border-radius: 0 6px 6px 0; /* Rounded right corners */
+    padding: 10px 18px; /* Adjust padding */
+    font-size: 0.9em;
+    cursor: pointer;
+    font-weight: 600; /* Bolder text */
+    transition: background-color 0.2s ease;
+}
+
+.apply-coupon-btn:hover {
+    background-color: #003355; /* Slightly darker on hover */
+    border-color: #003355;
+}
+
+/* Confirm Button Section - REMOVE container look */
+.confirm-button-container {
+    /* REMOVE background, padding, border-radius, box-shadow */
+    /* background-color: #fff; */
+    /* padding: 20px; */
+    /* border-radius: 8px; */
+    /* box-shadow: 0 2px 5px rgba(0,0,0,0.1); */
+    text-align: center; /* Center button */
+    margin-top: 10px; /* Add some space above */
+}
+
+.confirm-order-btn {
+    background-color: #004466; /* Dark teal/blue background */
+    color: white;
+    border: none;
+    border-radius: 6px; /* Rounded corners */
+    padding: 12px 30px;
+    font-size: 1em; /* Adjust font size */
+    font-weight: bold;
+    cursor: pointer;
+    width: 100%;
+    box-sizing: border-box;
+    transition: background-color 0.2s ease;
+}
+
+.confirm-order-btn:hover {
+    background-color: #003355; /* Slightly darker on hover */
+}
+
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+    .cart-main-content {
+        flex-direction: column;
+    }
+    .cart-details-column, .order-summary-column {
+        flex: none;
+        width: 100%;
+        box-sizing: border-box;
+    }
+    /* Add more space below table on mobile */
+    .cart-details-column {
+        margin-bottom: 30px;
+    }
+}
+
+/* Hide redundant old containers (if they existed) */
+.order-container, .order-summary-container {
+    display: none;
 }

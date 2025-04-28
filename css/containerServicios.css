@@ -1,7 +1,7 @@
 .containerServicios{
     margin-top: 0px;
     display: flex;
-    font-family: flame;
+    font-family: 'Flame', sans-serif;
     width: 79%;
     margin-left: 11%;
 }
@@ -22,7 +22,7 @@
     margin-top: 16%;
     width: 80%;
     height: 60px;
-    font-family: flame;
+    font-family: 'Flame', sans-serif;
     font-size: 18px;
     color: #003F5A;
     border-color: #003F5A;
@@ -41,7 +41,7 @@
 }
 
 .esteticaCard h3{
-    font-family: flame;
+    font-family: 'Flame', sans-serif;
     color: #003F5A;
 }
 

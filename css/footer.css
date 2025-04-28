@@ -21,7 +21,7 @@ footer{
 }
 .divTextoRegistro{
     width: 40%;
-    font-family: flame;
+    font-family: 'Flame', sans-serif;
     color: white;
 }
 .divTextoRegistro p{
@@ -71,7 +71,7 @@ footer{
 }
  
 .containerEnlaces a{
-    font-family: flame;
+    font-family: 'Flame', sans-serif;
     text-decoration: none;
     color: aliceblue;   
     font-size: 80%; 

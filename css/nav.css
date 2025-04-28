@@ -59,7 +59,7 @@ nav{
     display: flex;
     align-items: center;
     justify-content: space-evenly;
-    font-family: flame;
+    font-family: 'Flame', sans-serif;
     position: fixed;
     margin-top: 100px;
     z-index: 100;

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="css/fonts.css">
+        <link rel="stylesheet" href="css/carritoStyles/styles.css">
+        <link rel="stylesheet" href="css/carritoStyles/navbar-style.css">
+        <title>Tails Up | Carrito</title>
+        <link rel="shortcut icon" href="images/isotipoTailsUp.png" type="image/x-icon">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    </head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="nav-left">
+                <img src="images/isotipo.png" alt="Isotipo" class="isotipo">
+                <img src="images/logoFinal.png" alt="Logo Tails Up" class="logotipo">
+            </div>
+            <div class="nav-center">
+                <a href="#" class="nav-link">Home</a>
+                <a href="#" class="nav-link">Categorías</a>
+                <a href="#" class="nav-link">Consejos</a>
+                <a href="#" class="nav-link">Acerca</a>
+            </div>
+            <div class="nav-right">
+                <div class="cart-wrapper">
+                    <div class="cart-icon-background">
+                        <img src="images/shopping_cart_icon.svg" alt="Carrito" class="cart-icon">
+                    </div>
+                    <img src="images/no-profile.png" alt="Usuario" class="user-icon">
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="payment-steps">
+        <div class="step active">
+            <span class="number">1</span>
+            <span class="text">Selecciona el pago</span>
+        </div>
+        <div class="step">
+            <span class="number">2</span>
+            <span class="text">Información del pago</span>
+        </div>
+        <div class="step">
+            <span class="number">3</span>
+            <span class="text">Completar</span>
+        </div>
+    </div>
+
+    <main class="cart-main-content">
+
+        <section class="cart-details-column">
+            <table class="cart-table">
+                <thead>
+                    <tr>
+                        <th></th> <th colspan="2">Producto</th>
+                        <th>Precio/unidad</th>
+                        <th>Cantidad</th>
+                        <th>Monto total</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><input type="checkbox"></td> <td class="product-image-cell"><img src="https://cdn.pixabay.com/photo/2016/05/04/11/25/giraffe-1371203_1280.jpg" alt="Producto" class="product-image"></td>
+                        <td class="product-info">
+                            <span class="product-name">BASKETBALL Y FUTBOL JUGUETES PARA MASC...</span>
+                            <span class="product-size">Size: L</span>
+                        </td>
+                        <td class="product-price">
+                            <span class="current-price">$300.00</span>
+                            <span class="original-price">$328.85</span>
+                        </td>
+                        <td class="product-quantity">
+                            <button class="quantity-btn">-</button>
+                            <input type="number" value="2" min="1" class="quantity-input">
+                            <button class="quantity-btn">+</button>
+                        </td>
+                        <td class="product-total">$600.00</td>
+                        <td class="product-action"><button class="delete-btn"><i class="fas fa-trash"></i></button></td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox"></td> <td class="product-image-cell"><img src="https://cdn.pixabay.com/photo/2016/05/04/11/25/giraffe-1371203_1280.jpg" alt="Producto" class="product-image"></td>
+                        <td class="product-info">
+                            <span class="product-name">WELLNESS-SIGNATURE SELECT TM</span>
+                            <span class="product-size">Tamaño 5.0KG (110)</span>
+                        </td>
+                        <td class="product-price">
+                            <span class="current-price">$200.00</span>
+                            <span class="original-price">$293.01</span>
+                        </td>
+                        <td class="product-quantity">
+                            <button class="quantity-btn">-</button>
+                            <input type="number" value="2" min="1" class="quantity-input">
+                            <button class="quantity-btn">+</button>
+                        </td>
+                        <td class="product-total">$400.00</td>
+                        <td class="product-action"><button class="delete-btn"><i class="fas fa-trash"></i></button></td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox"></td> <td class="product-image-cell"><img src="https://cdn.pixabay.com/photo/2016/05/04/11/25/giraffe-1371203_1280.jpg" alt="Producto" class="product-image"></td>
+                        <td class="product-info">
+                            <span class="product-name">ENCORE COMIDA GATO</span>
+                            <span class="product-size">Tamaño: 5.0KG (11.0lb)</span>
+                        </td>
+                        <td class="product-price">
+                            <span class="current-price">$400.00</span>
+                            <span class="original-price">$450.64</span>
+                        </td>
+                        <td class="product-quantity">
+                            <button class="quantity-btn">-</button>
+                            <input type="number" value="10" min="1" class="quantity-input">
+                            <button class="quantity-btn">+</button>
+                        </td>
+                        <td class="product-total">$4000.00</td>
+                        <td class="product-action"><button class="delete-btn"><i class="fas fa-trash"></i></button></td>
+                    </tr>
+                    </tbody>
+            </table>
+        </section>
+
+        <aside class="order-summary-column">
+            <div class="order-summary-box">
+                <h2>Tu orden</h2>
+                   <div class="summary-item">
+                    <span class="summary-product-name">ENCORE COMIDA GATO</span>
+                    <span class="summary-quantity">10x</span>
+                    <span class="summary-price">$4000.00</span>
+                </div>
+                   <div class="summary-item">
+                    <span class="summary-product-name">WELLNESS SIGNATURE SELECT TM</span>
+                    <span class="summary-quantity">2x</span>
+                    <span class="summary-price">$400.00</span>
+                </div>
+                   <div class="summary-item">
+                    <span class="summary-product-name">ROYAL CANIN CUIDADO DE DIETA SENSIBLE</span>
+                    <span class="summary-quantity">2x</span>
+                    <span class="summary-price">$900.00</span>
+                </div>
+                   <div class="summary-item">
+                    <span class="summary-product-name">Juguete mordelón perro</span>
+                    <span class="summary-quantity">2x</span>
+                    <span class="summary-price">$640.00</span>
+                </div>
+                   <div class="summary-item">
+                    <span class="summary-product-name">Juguete de hueso</span>
+                    <span class="summary-quantity">2x</span>
+                    <span class="summary-price">$1400.00</span>
+                </div>
+                </div>
+
+            <div class="discount-coupon">
+                <h3>Cupón de descuento</h3>
+                <div class="coupon-input-group">
+                    <input type="text" placeholder="Escribe el cupón" class="coupon-input">
+                    <button class="apply-coupon-btn">Aplicar</button>
+                </div>
+            </div>
+
+            <div class="confirm-button-container">
+                <button class="confirm-order-btn">Confirmar</button>
+            </div>
+        </aside>
+
+    </main>
+
+    </body>
+</html>

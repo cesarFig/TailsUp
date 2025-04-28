@@ -1,0 +1,53 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+/* Flame Regular */
+@font-face {
+  font-family: 'Flame'; /* Usamos 'Flame' para la familia principal (regular/bold) */
+  src: url('../fonts/FlameRegular.woff2') format('woff2');
+  font-weight: normal; /* Peso estándar */
+  font-style: normal;
+}
+
+/* Flame Bold */
+@font-face {
+  font-family: 'Flame Bold'; /* Sigue en la familia 'Flame' */
+  src: url('../fonts/flameBold.woff2') format('woff2');
+  font-weight: normal; 
+  font-style: normal;
+}
+
+/* Flame Condensed */
+@font-face {
+  font-family: 'Flame Condensed'; /* ¡Nombre de familia diferente! */
+  src: url('../fonts/flameCondensed.woff2') format('woff2');
+  /* Asigna un peso estándar (normal o bold) según cómo sea la fuente condensed */
+  font-weight: normal; 
+  font-style: normal;
+  /* Ya no necesitas la nota sobre condensed, el nombre de la familia lo indica */
+}
+
+/* Flame Sans */
+@font-face {
+  font-family: 'Flame Sans'; /* ¡Nombre de familia diferente! */
+  src: url('../fonts/flameSans.woff2') format('woff2');
+  /* Asigna un peso estándar (normal o bold) según cómo sea la fuente sans */
+  font-weight: normal; 
+  font-style: normal;
+  /* Ya no necesitas la nota sobre sans, el nombre de la familia lo indica */
+}
+
+.bold-text {
+  font-family: 'Flame', sans-serif;
+  font-weight: bold; /* Will use the Flame Bold font file */
+}
+
+.condensed-text {
+  font-family: 'Flame', sans-serif;
+  /* Use this class to apply the condensed font */
+}
+
+.sans-text {
+    font-family: 'Flame', sans-serif;
+    /* Use this class to apply the sans font */
+    /* If you used 'Flame Sans' font-family, you'd use font-family: 'Flame Sans', sans-serif; */
+}
