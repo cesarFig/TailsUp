@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tails Up | Tienda</title>
+    <link rel="shortcut icon" href="images/isotipoTailsUp.png" type="image/x-icon">
+    <link rel="stylesheet" href="css/fonts.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/nav.css">
+    <link rel="stylesheet" href="css/seccion2.css">
+    <link rel="stylesheet" href="css/shopStyles/bodyStyle.css">
+    <link rel="stylesheet" href="css/shopStyles/stylesResponsive.css">
+    <link rel="stylesheet" href="css/footer.css">
+</head>
+
+<body>
+    <header>
+        <nav>
+            <div class="medio">
+                <img class="logoNav" src="images/logoCompleto.png" alt="logoNav.png">
+                <div class="buscadorDiv">
+                    <button id="btnBuscar"><img src="images/lupa.png" alt="lupa.png"></button>
+                    <input class="buscador" type="search" placeholder="Buscar">
+                </div>
+                <div class="accesoDirecto">
+                    <div class="navDiv">
+                        <a class="carritoBtn" href="carrito.html"><img class="carrito" src="images/Carrito.png"
+                                alt="carrito.png"></a>
+                        <a class="carritoTxt" href="carrito.html">Carrito</a>
+                    </div>
+                    <div class="navDiv">
+                        <a class="loginBtn" href="login.html"><img class="login" src="images/micuenta.png"
+                                alt="micuenta.png"></a>
+                        <a class="miCuentaTxt" id="micuenta" href="login.html">Mi cuenta</a>
+                    </div>
+                </div>
+
+            </div>
+            <div class="abajo">
+                <a href="/index.html">Home</a>
+                <a href="/shop.html">Tienda</a>
+                <a href="hola">Consejos</a>                
+                <a href="hola">Acerca de</a>
+            </div>
+        </nav>
+    </header>
+    <!--Shop by pet-->
+    <div class="containerShopByPet">
+        <h1>Comprar por mascota</h1>
+        <div class="containerBtnCategoria">
+            <button class="btnCategoriaPet"><img src="images/imgBtnCat.png" alt="btnCat.png"> Gato</button>
+            <button class="btnCategoriaPet"><img src="images/imgBtnHamster.png" alt="btnCat.png">Hamster</button>
+            <button class="btnCategoriaPet"><img src="images/imgBtnDog.png" alt="btnCat.png">Perro</button>
+            <button class="btnCategoriaPet"><img src="images/imgBtnAve.png" alt="btnCat.png">Ave</button>
+            <button class="btnCategoriaPet"><img src="images/imgBtnConejo.png" alt="btnCat.png">Conejo</button>
+            <button class="btnCategoriaPet"><img src="images/imgBtnTortuga.png" alt="btnCat.png">Tortuga</button>
+        </div>
+    </div>
+    <div class="divBtnFiltros">
+        <button class="toggleFiltrosBtn">☰ Filtros</button>
+    </div>
+    
+
+    <!--Filtro y productos-->
+    <div class="containerFiltro-Products">
+        <div class="containerFiltros">
+            <button class="cerrarBtn">X</button>
+            <h4>Filtrar por categoria</h4>
+            <div class="containerInputs">
+                <div>
+                    <label class="filter-option"><input type="checkbox"> Furniture </label>
+                    <label class="filter-option"><input type="checkbox"> Bowls </label>
+                    <label class="filter-option"><input type="checkbox"> Clothing </label>
+                    <label class="filter-option"><input type="checkbox"> Food </label>
+                    <label class="filter-option"><input type="checkbox"> Toys </label>
+                    <label class="filter-option"><input type="checkbox"> Sale </label>
+                </div>
+                <div class="containerNumInputs">
+                    <span>21</span>
+                    <span>25</span>
+                    <span>12</span>
+                    <span>80</span>
+                    <span>90</span>
+                    <span>24</span>
+                </div>
+            </div>
+            <h4 class="titlePrecio">Filtrar por precio</h4>
+            <input type="range" class="rangoPrecio" min="9" max="399">
+            <div class="containerTextFiltro">
+                <p>Price: $9 - $399</p><button class="btnAplicar">Aplicar</button>
+            </div>
+            <h4 class="titleBrands">Filter by brands</h4>
+            <div class="containerInputs">
+                <div>
+                    <label class="filter-option"><input type="checkbox"> Natural food </label>
+                    <label class="filter-option"><input type="checkbox"> Pet care </label>
+                    <label class="filter-option"><input type="checkbox"> Dogs friend </label>
+                    <label class="filter-option"><input type="checkbox"> Pet food </label>
+                    <label class="filter-option"><input type="checkbox"> Favorite pet </label>
+                    <label class="filter-option"><input type="checkbox"> Green line </label>
+                </div>
+                <div class="containerNumInputs">
+                    <span>28</span>
+                    <span>16</span>
+                    <span>18</span>
+                    <span>40</span>
+                    <span>26</span>
+                    <span>15</span>
+                </div>
+            </div>
+            <h4 class="titleBrands">Filter by tags</h4>
+            <div class="tags">
+                <div>
+                    <button class="tag">Dog food</button>
+                    <button class="tag">Cat food</button>
+                    <button class="tag">Natural</button>
+                </div>
+                <div>
+                    <button class="tag">Parrot</button>
+                    <button class="tag">Small dog</button>
+                    <button class="tag">Cat</button>
+                </div>
+                <h4 class="titleBrands">Productos populares</h4>
+                <div class="containerPopPrd">
+                    <div class="PopularPrd">
+                        <div class="imgProduct">
+                            <img src="images/filletOFlakes.png" alt="imagenProducto">
+                        </div>
+                        <div class="textPopPrd">
+                            <h4>Producto mamalon</h4>
+                            <p>$567</p>
+                        </div>
+                    </div>
+                    <div class="PopularPrd">
+                        <div class="imgProduct">
+                            <img src="images/filletOFlakes.png" alt="imagenProducto">
+                        </div>
+                        <div class="textPopPrd">
+                            <h4>Mas producto</h4>
+                            <p>$290</p>
+                        </div>
+                    </div>
+                    <div class="PopularPrd">
+                        <div class="imgProduct">
+                            <img src="images/pelotita.png" alt="imagenProducto">
+                        </div>
+                        <div class="textPopPrd">
+                            <h4>Sexoooooo</h4>
+                            <p>$121</p>
+                        </div>
+                    </div>
+                    <div class="PopularPrd">
+                        <div class="imgProduct">
+                            <img src="images/encore..png" alt="imagenProducto">
+                        </div>
+                        <div class="textPopPrd">
+                            <h4>masSexo</h4>
+                            <p>$234</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>    
+        <div class="containerProductos">
+            <div class="titleSection">
+                <h4>COMIDA</h4>
+                <img src="images/huellaNaranja.png" alt="huellaNaranja.png">
+            </div>
+            <section class="seccionProducts" id="contenedorProductos">
+                <!-- Aqui van los productos mas vendidos de comida-->
+            </section>
+            <div class="titleSection2">
+                <h4>JUGUETES</h4>
+                <img src="images/huellaNaranja.png" alt="huellaNaranja.png">
+            </div>
+            <section class="seccionProducts" id="contenedorToys">
+                <!-- Aqui van los productos mas vendidos de juguetes-->
+            </section>
+            <section class="seccion2">
+                <div class="DivSec2">
+                    <img src="images/perro.png" alt="perro.png">
+                </div>
+                <div class="textoSeccion2">
+                    <h3>AHORRA 20% OFF</h3>
+                    <h4>ALIMENTOS PARA MASCOTAS</h4>
+                    <p>Compra y obten productos gratis</p>
+                    <button class="btnBuyNow">Comprar ahora</button>
+                </div>
+                <div class="LstDivSec2">
+                    <img src="images/comidaGato.png" alt="comidaGato.png">
+                </div>
+            </section>
+        </div>
+    </div>
+    <div class="containerProductos1">
+        <div class="titleSection">
+            <h4>ROPA PARA MASCOTA</h4>
+            <img src="images/huellaNaranja.png" alt="huellaNaranja.png">
+        </div>
+        <section class="seccionProducts" id="contenedorProductos2">
+            <!-- Aqui van los productos mas vendidos de comida-->
+        </section>
+        <div class="titleSection2">
+            <h4>ASEO PARA TU MASCOTA</h4>
+            <img src="images/huellaNaranja.png" alt="huellaNaranja.png">
+        </div>
+        <section class="seccionProducts" id="contenedorToys2">
+            <!-- Aqui van los productos mas vendidos de juguetes-->
+        </section>       
+    </div>
+    <div class="containerImgPerros">
+        <div class="imgPerro">
+            <img src="images/imgPerroShop.png" alt="Imagen">
+        </div>
+        <div class="imgPerro">
+            <img src="images/imgPerroShop2.png" alt="Imagen">
+        </div>
+        <div class="imgPerro">
+            <img src="images/imgPerroShop3.png" alt="Imagen">
+        </div>
+        <div class="imgPerro">
+            <img src="images/imgPerroShop4.png" alt="Imagen">
+        </div>
+
+    </div>
+    <div class="containerProductos3">
+        <div class="titleSection">
+            <h4></h4>
+            <img src="images/huellaNaranja.png" alt="huellaNaranja.png">
+        </div>
+        <section class="seccionProducts" id="contenedorProductos3">
+            <!-- Aqui van los productos mas vendidos de comida-->
+        </section>               
+    </div>
+
+    <footer>
+        <img class="imgPatita" src="images/patita.png" alt="patita.png">
+        <div class="containerNaranja">
+            <div class="divTextoRegistro">
+                <p>Registrate para obtener actualizaciones y novedades.</p>
+            </div>
+            <div class="divIngresa">
+                <input class="inputRegistra" type="text" placeholder="Ingresa tu email">
+                <button class="btnSuscribirse">Suscribirse</button>
+            </div>
+        </div>
+        <div class="containerRedes">
+            <div class="containerEnlaces">
+                <a href="/index.html">Home</a>
+                <a href="/shop.html">Categoria</a>
+                <a href="/Acerca">Acerca</a>
+                <a href="/contacto">Contacto</a>
+            </div>
+            <div class="containerImagenes">
+                <a href="/facebook"><img src="images/facebook.png" alt="facebook.png"></a>
+                <a href="/twitter"><img src="images/twitter.png" alt="twitter.com"></a>            
+                <a href="/insta"><img src="images/instagram.png" alt="instagram.png"></a>            
+                <a href="/youtube"><img src="images/youTube.png" alt="youtube.png"></a>
+            </div>
+        </div>        
+        <hr>  
+        <div class="containerFinal">
+            <p>Derechos reservados al ITM</p>  
+            <img src="images/logoFinal.png" alt="tailsUp.png">
+            <p>Terminos de servicio</p>
+        </div>       
+    </footer>
+
+
+
+
+    <script src="js/productCard.js"></script>    
+    <script src="js/productCard2.js"></script>  
+    <script src="js/productCard3.js"></script>  
+    <script>
+        const toggleBtn = document.querySelector('.toggleFiltrosBtn');
+        const cerrarBtn = document.querySelector('.cerrarBtn');
+        const filtros = document.querySelector('.containerFiltros');
+      
+        toggleBtn.addEventListener('click', () => {
+          filtros.classList.add('visible');
+        });
+        cerrarBtn.addEventListener('click', () => {
+          filtros.classList.remove('visible');
+        });
+      
+        function cerrarFiltros() {
+          filtros.classList.remove('visible');
+        }
+      </script>
+      
+</body>
+
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Corazón Toggle Contorno</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    .heart-btn {
+      background: none;
+      border: none;
+      font-size: 40px;
+      cursor: pointer;
+      color: grey;
+      transition: color 0.3s ease;
+    }
+
+    .heart-btn.active {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+
+  <button class="heart-btn" id="heart-button">
+    <i class="fa-regular fa-heart" id="heart-icon"></i>
+  </button>
+
+  <script>
+    const button = document.getElementById('heart-button');
+    const icon = document.getElementById('heart-icon');
+
+    button.addEventListener('click', () => {
+      button.classList.toggle('active');
+      icon.classList.toggle('fa-regular');
+      icon.classList.toggle('fa-solid');
+    });
+  </script>
+
+</body>
+</html>

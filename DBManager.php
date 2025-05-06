@@ -6,7 +6,7 @@ class DBManager{
 	private $pass;
 
     public function __construct() {
-        $this->db = "tailsUp";
+        $this->db = "tailsup";
         $this->host = "localhost";
         $this->user = "root";
         $this->pass = null;        
@@ -72,13 +72,20 @@ class DBManager{
     }
 
     public function getProductos(){
+        
         $link = $this->open();
         $sql = "SELECT * FROM productos";
-        $query = mysqli_prepare($link, $sql);
-        $resultado = mysqli_stmt_execute($query);
+
+        $result = mysqli_query($link, $sql, MYSQLI_ASSOC) or die('Error query');
+
+        $rows = [];
+        while($columns = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+            $rows[] = $columns;
+        }
+
         $this->close($link);
-    
-        return $resultado;
+
+        return $rows;
     }
     
     

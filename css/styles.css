@@ -1,4 +1,5 @@
-html, body{
+html,
+body {
     margin: 0px;
     align-items: center;
     overflow-x: hidden;
@@ -6,366 +7,515 @@ html, body{
     box-sizing: border-box;
     padding: 0;
 }
+
 @font-face {
     font-family: 'Flame';
     src: url('../fonts/FlameRegular.otf') format('opentype');
     font-weight: normal;
     font-style: normal;
-  }
-  @font-face {
+}
+
+@font-face {
     font-family: 'Poppins';
     src: url('../fonts/Poppins-Regular.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
-  }
+}
 
 
-@media (max-width:1145px){
-    .seccion1{
-        flex-direction: column;        
-        align-items: center;   
+@media (max-width:1145px) {
+    .seccion1 {
+        flex-direction: column;
+        align-items: center;
         background-image: none !important;
     }
-    .imgTabletView{
+
+    .imgTabletView {
         display: flex !important;
     }
-    .imgTabletView img{
-        width: 90%;     
-        margin-left: auto;   
+
+    .imgTabletView img {
+        width: 90%;
+        margin-left: auto;
         margin-right: auto;
         margin-top: 5%;
     }
-    .containerC1{
+
+    .containerC1 {
         display: none !important;
     }
-    .consejosPhoneView{
-        display: flex !important;   
+
+    .consejosPhoneView {
+        display: flex !important;
     }
-    .containerC2{
+
+    .containerC2 {
         display: none !important;
-    } 
+    }
 }
 
-@media (max-width:768px){ 
-    .seccion1{
+@media (max-width:768px) {
+    .seccion1 {
         margin-top: 110px !important;
     }
-    .carruselEstetica li{        
-        width: 40vw !important;         
-    }    
+
+    .carruselEstetica li {
+        width: 40vw !important;
+    }
+
     .carruselEstetica {
         gap: 0% !important;
-        width: calc(6 * 40vw) !important; /* 6 elementos de 40vw = 240vw */
+        width: calc(6 * 40vw) !important;
+        /* 6 elementos de 40vw = 240vw */
         animation: slideMobileEstetica 20s linear infinite !important;
-    }        
-    @keyframes slideMobileEstetica {
-        0%   { margin-left: 0; }
-        10%  { margin-left: 0; }
-    
-        15%  { margin-left: -40vw; }
-        25%  { margin-left: -40vw; }
-    
-        30%  { margin-left: -80vw; }
-        40%  { margin-left: -80vw; }
-    
-        45%  { margin-left: -120vw; }
-        55%  { margin-left: -120vw; }
-    
-        60%  { margin-left: -160vw; }
-        70%  { margin-left: -160vw; }
-    
-        75%  { margin-left: -200vw; }
-        85%  { margin-left: -200vw; }
-    
-        100% { margin-left: -200vw; } /* Se reinicia */
     }
-    
+
+    @keyframes slideMobileEstetica {
+        0% {
+            margin-left: 0;
+        }
+
+        10% {
+            margin-left: 0;
+        }
+
+        15% {
+            margin-left: -40vw;
+        }
+
+        25% {
+            margin-left: -40vw;
+        }
+
+        30% {
+            margin-left: -80vw;
+        }
+
+        40% {
+            margin-left: -80vw;
+        }
+
+        45% {
+            margin-left: -120vw;
+        }
+
+        55% {
+            margin-left: -120vw;
+        }
+
+        60% {
+            margin-left: -160vw;
+        }
+
+        70% {
+            margin-left: -160vw;
+        }
+
+        75% {
+            margin-left: -200vw;
+        }
+
+        85% {
+            margin-left: -200vw;
+        }
+
+        100% {
+            margin-left: -200vw;
+        }
+
+        /* Se reinicia */
+    }
+
     .sliderConsejos li {
         width: 100vw !important;
     }
+
     .sliderConsejos {
-        width: calc(6 * 100vw) !important; /* total = 600vw */
+        width: calc(6 * 100vw) !important;
+        /* total = 600vw */
         animation: slideMobile 20s linear infinite !important;
     }
+
     @keyframes slideMobile {
-        0%   { margin-left: 0; }
-        10%  { margin-left: 0; }    
-        15%  { margin-left: -100vw; }
-        25%  { margin-left: -100vw; }
-        30%  { margin-left: -200vw; }
-        40%  { margin-left: -200vw; }
-        45%  { margin-left: -300vw; }
-        55%  { margin-left: -300vw; }
-        60%  { margin-left: -400vw; }
-        70%  { margin-left: -400vw; }
-        75%  { margin-left: -500vw; }
-        95%  { margin-left: -500vw; }
-        100% { margin-left: 0; } /* reinicia */
+        0% {
+            margin-left: 0;
+        }
+
+        10% {
+            margin-left: 0;
+        }
+
+        15% {
+            margin-left: -100vw;
+        }
+
+        25% {
+            margin-left: -100vw;
+        }
+
+        30% {
+            margin-left: -200vw;
+        }
+
+        40% {
+            margin-left: -200vw;
+        }
+
+        45% {
+            margin-left: -300vw;
+        }
+
+        55% {
+            margin-left: -300vw;
+        }
+
+        60% {
+            margin-left: -400vw;
+        }
+
+        70% {
+            margin-left: -400vw;
+        }
+
+        75% {
+            margin-left: -500vw;
+        }
+
+        95% {
+            margin-left: -500vw;
+        }
+
+        100% {
+            margin-left: 0;
+        }
+
+        /* reinicia */
     }
-    .imgTabletView{
+
+    .imgTabletView {
         display: none !important;
     }
-    .medio{
+
+    .medio {
         gap: 0px !important;
     }
-    .accesoDirecto{
-        width:60% !important ;
+
+    .accesoDirecto {
+        width: 60% !important;
     }
-    .logoNav{
-        width: 40% !important;        
+
+    .logoNav {
+        width: 40% !important;
     }
-    .navDiv{
+
+    .navDiv {
         font-size: 0%;
     }
-    .seccion1{
+
+    .seccion1 {
         flex-direction: column;
-        align-items: center; 
-        text-align: center; 
+        align-items: center;
+        text-align: center;
         background-image: none !important;
-    } 
-    .imagenTelefono{
+    }
+
+    .imagenTelefono {
         display: flex !important;
         background-image: url("/images/fondoColores.png");
         background-position: center;
         background-size: 100%;
-        background-repeat: no-repeat;                    
+        background-repeat: no-repeat;
     }
-    .containerC1{
+
+    .containerC1 {
         display: none !important;
     }
-    .consejosPhoneView{
+
+    .consejosPhoneView {
         display: flex !important;
     }
-    .containerC2{
+
+    .containerC2 {
         display: none !important;
     }
-    .imagenCompu{
+
+    .imagenCompu {
         display: none !important;
-    } 
-    .DivSec2{
+    }
+
+    .DivSec2 {
         display: none;
     }
-    .LstDivSec2{
+
+    .LstDivSec2 {
         display: none;
     }
-    .imagenSeccion1{
+
+    .imagenSeccion1 {
         width: 85%;
         height: auto;
         margin-left: auto;
         margin-right: auto;
     }
-    .divConsejosPhone2{
+
+    .divConsejosPhone2 {
         display: none !important;
     }
-    .divConsejosPhone{
+
+    .divConsejosPhone {
         max-width: 100% !important;
     }
-    .divConsejosPhone p{
-        font-size: 13px !important;    
+
+    .divConsejosPhone p {
+        font-size: 13px !important;
     }
-    .divConsejosPhone img{
+
+    .divConsejosPhone img {
         width: 50px !important;
         height: 50px !important;
     }
-    .divConsejosPhone h1{        
+
+    .divConsejosPhone h1 {
         font-size: 18px !important;
         font-family: flame !important;
-    }    
-    .seccionProducts{  
+    }
+
+    .seccionProducts {
         display: flex;
         flex-direction: column;
         gap: 3px;
         margin: 0 5%;
     }
-    .seccionProducts > .productCard { 
+
+    .seccionProducts>.productCard {
         width: 40%;
         margin-left: 5%;
     }
-    .section4{        
+
+    .section4 {
         flex-direction: column;
         height: 50% !important;
-    }  
-    .imgPerro{        
+    }
+
+    .imgPerro {
         width: 50% !important;
         margin-left: 30%;
         margin-top: 5%;
     }
-    .btnCarrito{
+
+    .btnCarrito {
         display: none;
     }
-    .buscador{
+
+    .buscador {
         display: none;
     }
-    .buscadorDiv{
+
+    .buscadorDiv {
         margin-right: -8%;
     }
-    #btnBuscar{
-        background: #ebd9c8 !important;    
+
+    #btnBuscar {
+        background: #ebd9c8 !important;
     }
-    #btnBuscar img{ 
-        margin-top: 17px !important;       
+
+    #btnBuscar img {
+        margin-top: 17px !important;
         width: 27px !important;
     }
-    .containerTexto{                
+
+    .containerTexto {
         margin-top: -10% !important;
         font-size: 12px;
         width: 90% !important;
-        margin-left: 5%;        
+        margin-left: 5%;
     }
-    #btnBuscarBlog{
-        width:90% !important;    
+
+    #btnBuscarBlog {
+        width: 90% !important;
         margin-top: 2% !important;
     }
-    .containerServicios{
-        flex-direction: column;        
+
+    .containerServicios {
+        flex-direction: column;
     }
-    .divServicios{
+
+    .divServicios {
         margin-top: 8%;
         width: 100% !important;
         text-align: center;
     }
-    .divServicios p{
+
+    .divServicios p {
         color: #003F5A;
         width: 100% !important;
         font-size: 30px !important;
     }
-    .divButton{        
+
+    .divButton {
         margin-top: 6%;
         width: 100% !important;
         text-align: center !important;
     }
-    .btnServicios{
+
+    .btnServicios {
         margin: 0px 0px 8% 0px !important;
     }
-    .esteticaCard{
+
+    .esteticaCard {
         width: 90% !important;
         margin-left: 4%;
         margin-bottom: 10%;
     }
-    .containerEstetica{
+
+    .containerEstetica {
         display: grid !important;
-        grid-template-columns: repeat(2, 1fr); 
-        gap: 5px !important; 
+        grid-template-columns: repeat(2, 1fr);
+        gap: 5px !important;
     }
-    #btnCarrusel{
+
+    #btnCarrusel {
         display: none !important;
     }
-    .containerCuidador{
+
+    .containerCuidador {
         flex-direction: column;
-        height: 520px !important;        
+        height: 520px !important;
     }
-    footer{        
-        margin-top: -5% !important;
-        height: 35vw !important;
+
+    footer {
+        min-height: 45vw !important;
     }
-    #btnConviertete{
+
+    #btnConviertete {
         height: 35px !important;
         width: 30% !important;
         margin-top: 0% !important;
-        transition: all 0.3s ease;  
+        transition: all 0.3s ease;
     }
-    .divCuidador img{
+
+    .divCuidador img {
         width: 110% !important;
         object-fit: contain;
         margin-left: 60% !important;
     }
-    .divCuidadorText{
+
+    .divCuidadorText {
         width: 100% !important;
         margin: 0px 0px 0px 0px !important;
-        text-align: center !important;   
+        text-align: center !important;
     }
-    .divCuidadorText h1{
+
+    .divCuidadorText h1 {
         font-size: 25px !important;
     }
-    .divCuidadorText h1, p{
-        margin: 0;        
-    }  
-    .divCuidadorText p{
+
+    .divCuidadorText h1,
+    p {
+        margin: 0;
+    }
+
+    .divCuidadorText p {
         margin-top: 2%;
         margin-bottom: 5%;
         font-size: 13px !important;
         text-align: justify;
         width: 80% !important;
-        margin-left: 10% !important;        
-    }  
-    .containerNaranja{       
+        margin-left: 10% !important;
+    }
+
+    .containerNaranja {
         width: 90% !important;
-        margin-left: 5% !important; 
+        margin-left: 5% !important;
         margin-top: 2%;
         border-radius: 10px;
-        height: 40%;         
+        height: 40%;
     }
-    .divTextoRegistro p{  
-        margin-left: 2% !important;  
-        margin-top: 12%;    
+
+    .divTextoRegistro p {
+        margin-left: 2% !important;
+        margin-top: 12%;
         font-size: 55% !important;
     }
-    .divIngresa{
-        height:40% !important;        
+
+    .divIngresa {
+        height: 40% !important;
         margin-left: 2% !important;
-        margin-top: 3% !important;        
+        margin-top: 3% !important;
     }
-    .inputRegistra{
+
+    .inputRegistra {
         height: 90% !important;
         font-size: 70%;
         margin-left: -4px;
         border-radius: 5px !important;
     }
-    .inputRegistra::placeholder{
-        font-size: 10px !important;        
+
+    .inputRegistra::placeholder {
+        font-size: 10px !important;
     }
-    .btnSuscribirse{                
-        height: 100% !important;   
+
+    .btnSuscribirse {
+        height: 100% !important;
         font-size: 50%;
         width: 30% !important;
         margin-left: 3%;
     }
-    .containerRedes{
-        flex-direction: column;  
-        align-items: center;    
-        gap: 10px !important;           
+
+    .containerRedes {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px !important;
     }
-    .containerEnlaces{
-      gap: 30px;
-      margin-left: -6%;
+
+    .containerEnlaces {
+        gap: 30px;
+        margin-left: -6%;
     }
-    .containerImagenes img{
+
+    .containerImagenes img {
         height: 60% !important;
     }
-    .containerImagenes{
+
+    .containerImagenes {
         margin-left: -40%;
         gap: 50% !important;
     }
-    .containerFinal img{
+
+    .containerFinal img {
         width: 27%;
     }
-    .containerFinal p{
+
+    .containerFinal p {
         font-size: 65%;
     }
-    hr{
+
+    hr {
         margin-top: -4%;
     }
-    .imgPatita{
+
+    .imgPatita {
         width: 13% !important;
         position: absolute;
-        transform:translate(300%, -100%) !important; 
+        transform: translate(300%, -100%) !important;
     }
-    .carritoBtn{
+
+    .carritoBtn {
         width: 30px !important;
         height: 65px !important;
     }
-    .loginBtn{
+
+    .loginBtn {
         width: 40px !important;
         height: 65px !important;
     }
-    .medio{
+
+    .medio {
         height: 70px !important;
     }
-    .abajo{   
-        margin-top: 70px !important;        
+
+    .abajo {
+        margin-top: 70px !important;
     }
-    
+
 }
-
-
-
