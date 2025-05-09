@@ -87,6 +87,62 @@ class DBManager{
 
         return $rows;
     }
+    public function guardarCodigoRecuperacion($email, $codigo) {
+        $link = $this->open();
+    
+    $stmt = mysqli_prepare($link, "UPDATE usuarios SET codigo_password = ? WHERE email = ?");
+    mysqli_stmt_bind_param($stmt, "is", $codigo, $email);
+    $resultado = mysqli_stmt_execute($stmt);
+    
+    $this->close($link);
+    return $resultado; // true si tuvo éxito, false si falló
+    }
+    public function findUsuarioPorCorreo($email) {
+        $link = $this->open();
+    
+        $stmt = mysqli_prepare($link, "SELECT nombre, email FROM usuarios WHERE email = ?");
+        mysqli_stmt_bind_param($stmt, "s", $email);
+        mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_get_result($stmt);
+    
+        $usuario = mysqli_fetch_array($result, MYSQLI_ASSOC);
+    
+        $this->close($link);
+        return $usuario; // Devuelve null si no hay coincidencia
+    }
+    public function verificarCodigoporEmail($codigo, $email) {
+        $link = $this->open();
+    
+        $stmt = mysqli_prepare($link, "SELECT codigo_password FROM usuarios WHERE codigo_password = ? AND email = ?");
+        mysqli_stmt_bind_param($stmt, "ss", $codigo, $email);
+        mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_get_result($stmt);
+    
+        $existe = mysqli_fetch_array($result, MYSQLI_ASSOC);
+    
+        $this->close($link);
+        return $existe !== null; // Devuelve true si encontró una coincidencia exacta
+    }
+    public function actualizarContrasena($email, $nuevaContrasena) {
+        $link = $this->open();
+    
+        $hash = password_hash($nuevaContrasena, PASSWORD_DEFAULT);
+    
+        // Actualiza la contraseña y borra el código
+        $sql = "UPDATE usuarios SET contrasena = ?, codigo_password = NULL WHERE email = ?";
+    
+        $stmt = mysqli_prepare($link, $sql);
+        mysqli_stmt_bind_param($stmt, "ss", $hash, $email);
+        $resultado = mysqli_stmt_execute($stmt);
+    
+        $this->close($link);
+    
+        return $resultado;
+    }
+    
+    
+    
+    
     
     
 }

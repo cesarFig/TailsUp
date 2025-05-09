@@ -8,6 +8,31 @@ body {
     padding: 0;
 }
 
+.dropdown-menu {    
+    font-family: poppins;
+    width: 20%;
+    background-color: white;
+    border: 1px solid #ccc;
+    padding: 10px;
+    z-index: 1000;
+    right: 0;
+            
+    top: 100px;          /* Siempre a 100px desde el top del viewport */
+    right: 0;      
+}
+.dropdown-menu ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.dropdown-menu ul li {
+    margin: 5px 0;
+}
+.dropdown-menu ul li a {
+    text-decoration: none;
+    color: #333;
+}
+
 @font-face {
     font-family: 'Flame';
     src: url('../fonts/FlameRegular.otf') format('opentype');
@@ -517,5 +542,7 @@ body {
     .abajo {
         margin-top: 70px !important;
     }
+
+
 
 }

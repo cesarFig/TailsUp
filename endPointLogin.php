@@ -1,25 +1,31 @@
 <?php
 require "DBManager.php";
-session_start();
 
-if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["btnInicioSesion"])) {
-    $email = $_POST["email"];
-    $contrasena = $_POST["contrasena"];
+// Permitir CORS y JSON como respuesta
+header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Headers: Content-Type");
+header("Access-Control-Allow-Methods: POST");
+header("Content-Type: application/json");
+
+// Solo procesar POST
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    $email = $_POST["email"] ?? '';
+    $contrasena = $_POST["contrasena"] ?? '';
+
     $db = new DBManager();
     $usuario = $db->findUsuario($email, $contrasena);
     
     if ($usuario) {
-        // Guardar el nombre del usuario en la sesión
-        $_SESSION['usuario'] = [
-            'nombre' => $usuario['nombre'], // Aquí se almacena el nombre
-            'email' => $usuario['email'],
-            'autenticado' => true
-        ];
-        
-        header("Location: index.html");
-        exit();
+                
+        echo json_encode([
+            'success' => true,
+            'nombre' => $usuario['nombre']
+        ]);
     } else {
-        echo "Email o contraseña incorrectos";
+        echo json_encode([
+            'success' => false,
+            'error' => 'Email o contraseña incorrectos'
+        ]);
     }
+    exit();
 }
-?>

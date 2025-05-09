@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tails Up - Login</title>
+    <link rel="stylesheet" href="css/mystilelogin.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <div class="login-box">
+            <div class="logo">
+                <img src="images/logo.png" alt="Tails Up">
+            </div>
+
+            <div class="divider">Ingresa tu correo</div>
+            <form id="recuperarForm">
+                <div class="input-group">
+                    <img src="images/email-icon.png" alt="Email">
+                    <input type="email" placeholder="Email" required name="email" id="email">
+                </div>
+                <button type="submit" class="login-btn" name="btnRecuperar">Recuperar contraseña</button>
+            </form>
+
+        </div>
+        <div class="info-box">
+            <div class="paw-icons">
+                <img src="images/patita.png" class="huella1">
+                <img src="images/patita.png" class="huella2">
+            </div>
+            <img src="images/mascota.png" alt="Mujer con perro" class="info-img">
+
+            <h2>Un sitio para tu mascota</h2>
+            <p>Esto es un placeholder del texto que pondremos en esta sección
+                Esto es un placeholder del texto que pondremos en esta sección
+                Esto es un placeholder del texto que pondremos en esta sección
+            </p>
+        </div>
+    </div>
+    <script>
+        document.getElementById("recuperarForm").addEventListener("submit", function (e) {
+            e.preventDefault(); 
+            const email = document.getElementById("email").value;
+
+            fetch("http://localhost/TailsUp-Backend/endPointRecuperar.php", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/x-www-form-urlencoded",
+                },
+                body: `email=${encodeURIComponent(email)}`
+            })
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data); // Para ver la respuesta
+                    if (data.success) {
+                        localStorage.setItem("emailRecuperacion", email);
+                        window.location.href = "ingresar.html";
+                    } else {
+                        alert(data.message);
+                    }
+                })
+                .catch(error => {
+                    console.error("Error:", error);
+                    alert("Hubo un problema al procesar la solicitud.");
+                });
+        });
+    </script>
+</body>
+
+</html>
