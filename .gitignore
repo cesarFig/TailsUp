@@ -1,0 +1,10 @@
+/vendor/
+composer.lock
+
+# Archivos del sistema
+.DS_Store
+Thumbs.db
+
+# Configuración de editores
+.vscode/
+.idea/

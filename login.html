@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,6 +10,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
+
 <body>
     <div class="container">
         <div class="login-box">
@@ -19,16 +21,16 @@
                 <img src="images/google-icon.png" alt="Google"> Iniciar con Google
             </button>
             <div class="divider">Inicia con un correo</div>
-            <form method="post" action="http://localhost/TailsUp-Backend/endPointLogin.php">                 
+            <form id="loginForm">
                 <div class="input-group">
                     <img src="images/email-icon.png" alt="Email">
-                    <input type="email" placeholder="Email" required name="email" >                  
+                    <input type="email" placeholder="Email" required name="email">
                 </div>
                 <div class="input-group">
                     <img src="images/lock-icon.png" alt="Contraseña">
-                    <input type="password" placeholder="Contraseña" required name="contrasena" >
+                    <input type="password" placeholder="Contraseña" required name="contrasena">
                 </div>
-                <a href="#" class="forgot-password">¿Olvidaste tu contraseña?</a>
+                <a href="/recuperar.html" class="forgot-password">¿Olvidaste tu contraseña?</a>
                 <button type="submit" class="login-btn" name="btnInicioSesion" href="index.html">Iniciar sesión</button>
             </form>
             <p class="register">¿Aún no tienes una cuenta? <a href="registro.html">Regístrate</a></p>
@@ -47,6 +49,36 @@
             </p>
         </div>
     </div>
-    
+    <script>
+document.getElementById('loginForm').addEventListener('submit', async function (e) {
+    e.preventDefault();
+
+    const form = e.target;
+    const formData = new FormData(form);
+
+    try {
+        const response = await fetch('http://localhost/TailsUp-Backend/endPointLogin.php', {
+            method: 'POST',
+            body: formData
+        });
+
+        const data = await response.json();
+
+        if (data.success) {
+            // Guarda el nombre del usuario en localStorage
+            localStorage.setItem('usuario', data.nombre); // Ajusta 'nombre' al campo real que devuelve tu endpoint
+            // Redirige al index
+            window.location.href = 'index.html';
+        } else {
+            alert('Credenciales incorrectas');
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        alert('Error al iniciar sesión');
+    }
+});
+</script>   
+
 </body>
+
 </html>

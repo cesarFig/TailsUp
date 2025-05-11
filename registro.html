@@ -19,7 +19,7 @@
                 <img src="images/google-icon.png" alt="Google"> Registrarse con Google
             </button>
             <div class="divider">Registra tus datos</div>
-            <form method="POST" action="http://localhost/TailsUp-Backend/endPointRegistro.php">
+            <form id="registroForm">
                 <div class="input-group">
                     <img src="images/user-icon.png" alt="User">
                     <input type="text" placeholder="Nombre" required name="nombre">
@@ -49,6 +49,30 @@
                 Esto es un placeholder del texto que pondremos en esta sección
             </p>
         </div>
-    </div>    
+    </div> 
+    <script>
+        document.getElementById('registroForm').addEventListener('submit', async function (e) {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+
+    try {
+        const response = await fetch('http://localhost/TailsUp-Backend/endPointRegistro.php', {
+            method: 'POST',
+            body: formData
+        });
+
+        const result = await response.json();
+
+        if (result.success) {
+            localStorage.setItem('usuario', result.nombre);
+            window.location.href = 'index.html';
+        } else {
+            alert(result.error || 'Error en el registro');
+        }
+    } catch (err) {
+        alert('Error de red o servidor');
+    }
+});
+    </script>   
 </body>
 </html>

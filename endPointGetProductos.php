@@ -1,6 +1,7 @@
 <?php
-
+header("Access-Control-Allow-Origin: *");
 require 'DBManager.php';
+
 
 function getProductos() {    
     $dbManager = new DBManager();
@@ -9,6 +10,6 @@ function getProductos() {
     echo json_encode($productos);
 }
 
-$response = getProductos();
+getProductos(); 
 
 ?>

@@ -1,0 +1,101 @@
+@media (max-width:768px) {
+    .containerShopByPet {
+        margin-top: 110px !important;
+    }
+
+    .containerFiltros {
+        display: none !important;
+    }
+
+    .containerProductos {
+        width: 100% !important;
+    }
+
+    .containerImgPerros {
+        display: grid !important;
+        gap: 0px !important;
+        grid-template-columns: repeat(2, 1fr) !important;
+        margin-left: 0% !important;
+    }
+
+    .imgPerro {
+        width: 90% !important;
+    }
+
+    .containerFiltros {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 90vw !important;
+        height: 100vh;
+        background-color: rgba(248, 249, 250, 0.9);
+        backdrop-filter: blur(6px);
+        z-index: 10000;
+        padding: 20px;
+        overflow-y: auto;
+    }
+
+    .containerFiltros.visible {
+        display: block !important;
+    }
+
+    .containerFiltros.hidden {
+        display: none !important;
+    }
+
+    .divBtnFiltros {
+        display: flex !important;
+    }
+
+    .cerrarBtn {
+        display: block !important;
+    }
+}
+
+@media (max-width:1145px) {
+    .containerShopByPet {
+        margin-top: 110px !important;
+    }
+
+    .containerFiltros {
+        display: none !important;
+    }
+
+    .containerProductos {
+        width: 100% !important;
+    }
+
+    .divBtnFiltros {
+        display: flex !important;
+    }
+
+    .cerrarBtn {
+        display: block !important;
+    }
+
+    .containerFiltros.visible {
+        display: block !important;
+    }
+
+    .containerFiltros.hidden {
+        display: none !important;
+    }
+
+    .containerFiltros {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 95vw;
+        height: 100vh;
+
+        background-color: rgba(248, 249, 250, 0.9);
+        backdrop-filter: blur(6px);
+
+        z-index: 10000;
+        padding: 20px;
+        overflow-y: auto;
+    }
+    footer{
+        height: 28vw !important;
+    }
+}

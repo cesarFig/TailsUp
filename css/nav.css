@@ -1,7 +1,7 @@
 nav{
     display: flex;
     flex-direction: column;
-    width: 100%;
+    width: 100%;    
 }
 .carritoBtn{
     width: 45px;
@@ -50,7 +50,8 @@ nav{
     width: 100%;
     gap: 60px;    
     position: fixed;
-    z-index: 100;
+    z-index: 101;
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.4);
 }
 .abajo{
     background-color: #007a7a;    
