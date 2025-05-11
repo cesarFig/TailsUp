@@ -65,8 +65,9 @@ document.getElementById('loginForm').addEventListener('submit', async function (
         const data = await response.json();
 
         if (data.success) {
-            // Guarda el nombre del usuario en localStorage
+            // Guarda el nombre del usuario y id en localStorage
             localStorage.setItem('usuario', data.nombre); // Ajusta 'nombre' al campo real que devuelve tu endpoint
+            localStorage.setItem('idUsuario', data.idUsuario); // Ajusta 'id' al campo real que devuelve tu endpoint
             // Redirige al index
             window.location.href = 'index.html';
         } else {

@@ -29,7 +29,7 @@ class DBManager{
     public function findUsuario($email, $contrasenaPlana) {
         $link = $this->open();
         
-        $sql = "SELECT  nombre, email, contrasena FROM usuarios WHERE email = ?";
+        $sql = "SELECT idUsuario, nombre, email, contrasena FROM usuarios WHERE email = ?";
         $query = mysqli_prepare($link, $sql);
         
         if (!$query) {
@@ -140,10 +140,57 @@ class DBManager{
         return $resultado;
     }
     
-    
-    
-    
-    
-    
+    public function getCarrito($idUsuario) {
+        $link = $this->open();
+
+        $sql = "SELECT ci.id_item, ci.id_producto, ci.cantidad, p.nombre_producto, p.precio_actual,p.precio_anterior, p.imagen_producto FROM carrito_items ci INNER JOIN productos p ON ci.id_producto = p.id_producto WHERE ci.id_carrito = (SELECT id_carrito FROM carritos WHERE idUsuario = ?)";
+        error_log("Ejecutando consulta SQL: $sql con idUsuario=$idUsuario");
+        $query = mysqli_prepare($link, $sql);
+
+        if (!$query) {
+            $this->close($link);
+            return false;
+        }
+
+        mysqli_stmt_bind_param($query, "i", $idUsuario);
+        mysqli_stmt_execute($query);
+        $result = mysqli_stmt_get_result($query);
+
+        $items = [];
+        while ($row = mysqli_fetch_assoc($result)) {
+            $items[] = $row;
+        }
+
+        $this->close($link);
+        return $items;
+    }
+
+    public function eliminarCarritoItem($id, $idUsuario) {
+        $link = $this->open();
+
+        $query = "DELETE FROM carrito_items WHERE id_item = ? AND id_carrito = (SELECT id_carrito FROM carritos WHERE idUsuario = ?)";
+        $stmt = mysqli_prepare($link, $query);
+        mysqli_stmt_bind_param($stmt, "ii", $id, $idUsuario);
+
+        $resultado = mysqli_stmt_execute($stmt);
+
+        $this->close($link);
+
+        return $resultado;
+    }
+
+    public function actualizarCantidadCarritoItem($id, $cantidad, $idUsuario) {
+        $link = $this->open();
+
+        $query = "UPDATE carrito_items SET cantidad = ? WHERE id_item = ? AND id_carrito = (SELECT id_carrito FROM carritos WHERE idUsuario = ?)";
+        $stmt = mysqli_prepare($link, $query);
+        mysqli_stmt_bind_param($stmt, "iii", $cantidad, $id, $idUsuario);
+
+        $resultado = mysqli_stmt_execute($stmt);
+
+        $this->close($link);
+
+        return $resultado;
+    }
 }
 ?>
