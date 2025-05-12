@@ -14,11 +14,23 @@ body {
     background-color: white;
     border: 1px solid #ccc;
     padding: 10px;
-    z-index: 1000;
-    right: 0;
-            
-    top: 100px;          /* Siempre a 100px desde el top del viewport */
-    right: 0;      
+    z-index: 101;
+    right: 2.6%;
+    position: fixed; 
+    top: 20px;    
+    border-radius: 10px;     
+        
+}
+.cart-tab {
+    z-index: 101;
+    position: absolute;
+    top: -15px;
+    left: 75%;
+    width: 0;
+    height: 0;
+    border-left: 15px solid transparent;
+    border-right: 15px solid transparent;
+    border-bottom: 15px solid white; /* Color de fondo de la pestaña */
 }
 .dropdown-menu ul {
     list-style: none;
@@ -546,3 +558,4 @@ body {
 
 
 }
+

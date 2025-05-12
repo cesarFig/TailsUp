@@ -13,6 +13,8 @@
     <link rel="stylesheet" href="css/shopStyles/bodyStyle.css">
     <link rel="stylesheet" href="css/shopStyles/stylesResponsive.css">
     <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/ProductosSection.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 
 <body>
@@ -31,8 +33,8 @@
                         <a class="carritoTxt" href="carrito.html">Carrito</a>
                     </div>
                     <div class="navDiv">
-                        <a class="loginBtn" href="login.html"><img class="login" src="images/micuenta.png"
-                                alt="micuenta.png"></a>
+                        <a class="loginBtn" href="login.html" id="micuentaImg"><img class="login"
+                                src="images/micuenta.png" alt="micuenta.png"></a>
                         <a class="miCuentaTxt" id="micuenta" href="login.html">Mi cuenta</a>
                     </div>
                 </div>
@@ -41,7 +43,7 @@
             <div class="abajo">
                 <a href="/index.html">Home</a>
                 <a href="/shop.html">Tienda</a>
-                <a href="hola">Consejos</a>                
+                <a href="hola">Consejos</a>
                 <a href="hola">Acerca de</a>
             </div>
         </nav>
@@ -50,42 +52,29 @@
     <div class="containerShopByPet">
         <h1>Comprar por mascota</h1>
         <div class="containerBtnCategoria">
-            <button class="btnCategoriaPet"><img src="images/imgBtnCat.png" alt="btnCat.png"> Gato</button>
-            <button class="btnCategoriaPet"><img src="images/imgBtnHamster.png" alt="btnCat.png">Hamster</button>
-            <button class="btnCategoriaPet"><img src="images/imgBtnDog.png" alt="btnCat.png">Perro</button>
-            <button class="btnCategoriaPet"><img src="images/imgBtnAve.png" alt="btnCat.png">Ave</button>
-            <button class="btnCategoriaPet"><img src="images/imgBtnConejo.png" alt="btnCat.png">Conejo</button>
-            <button class="btnCategoriaPet"><img src="images/imgBtnTortuga.png" alt="btnCat.png">Tortuga</button>
+            <button class="btnCategoriaPet" data-categoria="Gato"><img src="images/imgBtnCat.png" alt="btnCat.png">
+                Gato</button>
+            <button class="btnCategoriaPet" data-categoria="Hamster"><img src="images/imgBtnHamster.png"
+                    alt="btnCat.png">Hamster</button>
+            <button class="btnCategoriaPet" data-categoria="Perro"><img src="images/imgBtnDog.png"
+                    alt="btnCat.png">Perro</button>
+            <button class="btnCategoriaPet" data-categoria="Ave"><img src="images/imgBtnAve.png"
+                    alt="btnCat.png">Ave</button>
+            <button class="btnCategoriaPet" data-categoria="Conejo"><img src="images/imgBtnConejo.png"
+                    alt="btnCat.png">Conejo</button>
+            <button class="btnCategoriaPet" data-categoria="Tortuga"><img src="images/imgBtnTortuga.png"
+                    alt="btnCat.png">Tortuga</button>
         </div>
     </div>
     <div class="divBtnFiltros">
         <button class="toggleFiltrosBtn">☰ Filtros</button>
     </div>
-    
+
 
     <!--Filtro y productos-->
     <div class="containerFiltro-Products">
         <div class="containerFiltros">
             <button class="cerrarBtn">X</button>
-            <h4>Filtrar por categoria</h4>
-            <div class="containerInputs">
-                <div>
-                    <label class="filter-option"><input type="checkbox"> Furniture </label>
-                    <label class="filter-option"><input type="checkbox"> Bowls </label>
-                    <label class="filter-option"><input type="checkbox"> Clothing </label>
-                    <label class="filter-option"><input type="checkbox"> Food </label>
-                    <label class="filter-option"><input type="checkbox"> Toys </label>
-                    <label class="filter-option"><input type="checkbox"> Sale </label>
-                </div>
-                <div class="containerNumInputs">
-                    <span>21</span>
-                    <span>25</span>
-                    <span>12</span>
-                    <span>80</span>
-                    <span>90</span>
-                    <span>24</span>
-                </div>
-            </div>
             <h4 class="titlePrecio">Filtrar por precio</h4>
             <input type="range" class="rangoPrecio" min="9" max="399">
             <div class="containerTextFiltro">
@@ -94,12 +83,18 @@
             <h4 class="titleBrands">Filter by brands</h4>
             <div class="containerInputs">
                 <div>
-                    <label class="filter-option"><input type="checkbox"> Natural food </label>
-                    <label class="filter-option"><input type="checkbox"> Pet care </label>
-                    <label class="filter-option"><input type="checkbox"> Dogs friend </label>
-                    <label class="filter-option"><input type="checkbox"> Pet food </label>
-                    <label class="filter-option"><input type="checkbox"> Favorite pet </label>
-                    <label class="filter-option"><input type="checkbox"> Green line </label>
+                    <label class="filter-option"><input type="checkbox" value="Natural food">
+                        Natural food </label>
+                    <label class="filter-option"><input type="checkbox" value="Pet care"> Pet care
+                    </label>
+                    <label class="filter-option"><input type="checkbox" value="Dogs friend"> Dogs
+                        friend </label>
+                    <label class="filter-option"><input type="checkbox" value="Pet food"> Pet food
+                    </label>
+                    <label class="filter-option"><input type="checkbox" value="Favorite pet">
+                        Favorite pet </label>
+                    <label class="filter-option"><input type="checkbox" value="Green line"> Green
+                        line </label>
                 </div>
                 <div class="containerNumInputs">
                     <span>28</span>
@@ -113,14 +108,14 @@
             <h4 class="titleBrands">Filter by tags</h4>
             <div class="tags">
                 <div>
-                    <button class="tag">Dog food</button>
-                    <button class="tag">Cat food</button>
-                    <button class="tag">Natural</button>
+                    <button class="tag filtro-tag" data-tag="Dog food">Dog food</button>
+                    <button class="tag filtro-tag" data-tag="Cat food">Cat food</button>
+                    <button class="tag filtro-tag" data-tag="Natural">Natural</button>
                 </div>
                 <div>
-                    <button class="tag">Parrot</button>
-                    <button class="tag">Small dog</button>
-                    <button class="tag">Cat</button>
+                    <button class="tag filtro-tag" data-tag="Parrot">Parrot</button>
+                    <button class="tag filtro-tag" data-tag="Small dog">Small dog</button>
+                    <button class="tag filtro-tag" data-tag="Cat">Cat</button>
                 </div>
                 <h4 class="titleBrands">Productos populares</h4>
                 <div class="containerPopPrd">
@@ -162,7 +157,7 @@
                     </div>
                 </div>
             </div>
-        </div>    
+        </div>
         <div class="containerProductos">
             <div class="titleSection">
                 <h4>COMIDA</h4>
@@ -208,7 +203,7 @@
         </div>
         <section class="seccionProducts" id="contenedorToys2">
             <!-- Aqui van los productos mas vendidos de juguetes-->
-        </section>       
+        </section>
     </div>
     <div class="containerImgPerros">
         <div class="imgPerro">
@@ -232,7 +227,7 @@
         </div>
         <section class="seccionProducts" id="contenedorProductos3">
             <!-- Aqui van los productos mas vendidos de comida-->
-        </section>               
+        </section>
     </div>
 
     <footer>
@@ -255,42 +250,93 @@
             </div>
             <div class="containerImagenes">
                 <a href="/facebook"><img src="images/facebook.png" alt="facebook.png"></a>
-                <a href="/twitter"><img src="images/twitter.png" alt="twitter.com"></a>            
-                <a href="/insta"><img src="images/instagram.png" alt="instagram.png"></a>            
+                <a href="/twitter"><img src="images/twitter.png" alt="twitter.com"></a>
+                <a href="/insta"><img src="images/instagram.png" alt="instagram.png"></a>
                 <a href="/youtube"><img src="images/youTube.png" alt="youtube.png"></a>
             </div>
-        </div>        
-        <hr>  
+        </div>
+        <hr>
         <div class="containerFinal">
-            <p>Derechos reservados al ITM</p>  
+            <p>Derechos reservados al ITM</p>
             <img src="images/logoFinal.png" alt="tailsUp.png">
             <p>Terminos de servicio</p>
-        </div>       
+        </div>
     </footer>
 
 
 
 
-    <script src="js/productCard.js"></script>    
-    <script src="js/productCard2.js"></script>  
-    <script src="js/productCard3.js"></script>  
+    <script src="js/productCard.js"></script>
+    <script src="js/productCard2.js"></script>
+    <script src="js/productCard3.js"></script>
     <script>
         const toggleBtn = document.querySelector('.toggleFiltrosBtn');
         const cerrarBtn = document.querySelector('.cerrarBtn');
         const filtros = document.querySelector('.containerFiltros');
-      
+
         toggleBtn.addEventListener('click', () => {
-          filtros.classList.add('visible');
+            filtros.classList.add('visible');
         });
         cerrarBtn.addEventListener('click', () => {
-          filtros.classList.remove('visible');
+            filtros.classList.remove('visible');
         });
-      
+
         function cerrarFiltros() {
-          filtros.classList.remove('visible');
+            filtros.classList.remove('visible');
         }
-      </script>
-      
+    </script>
+
+    <script>
+        function toggleHeart(btn) {
+            const icon = btn.querySelector('i');
+            const isLiked = btn.classList.toggle('liked');
+
+            // Cambia ícono de contorno a sólido
+            if (isLiked) {
+                icon.classList.remove('fa-regular');
+                icon.classList.add('fa-solid');
+            } else {
+                icon.classList.remove('fa-solid');
+                icon.classList.add('fa-regular');
+            }
+
+            // Reinicia animación si ya está aplicada
+            btn.style.animation = 'none';
+            btn.offsetHeight; // Trigger reflow
+            btn.style.animation = null;
+        }
+    </script>
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            const micuenta = document.getElementById('micuenta');
+            const micuentaImg = document.getElementById('micuentaImg');
+            const menuUsuario = document.getElementById('menuUsuario');
+            const nombreUsuario = localStorage.getItem('usuario');
+
+            if (nombreUsuario) {
+                micuenta.textContent = nombreUsuario;
+                micuenta.href = '#'; // Evita redirección
+                micuentaImg.href = '#'
+                // Mostrar/ocultar menú al hacer clic
+                micuenta.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    menuUsuario.style.display = menuUsuario.style.display === 'none' ? 'block' : 'none';
+                });
+                micuentaImg.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    menuUsuario.style.display = menuUsuario.style.display === 'none' ? 'block' : 'none';
+                });
+
+                // Cerrar sesión
+                document.getElementById('cerrarSesion').addEventListener('click', () => {
+                    localStorage.removeItem('usuario');
+                    window.location.href = 'login.html';
+                });
+            }
+        });
+    </script>
+
+
 </body>
 
 </html>

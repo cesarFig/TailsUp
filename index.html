@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="css/seccion4.css">
     <link rel="stylesheet" href="css/containerServicios.css">
     <link rel="stylesheet" href="css/containerCuidador.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="stylesheet" href="css/footer.css">
     <title>Tails Up</title>
     <link rel="shortcut icon" href="images/isotipoTailsUp.png" type="image/x-icon">
@@ -46,17 +47,19 @@
                 <a href="shop.html">Tienda</a>
                 <a href="hola">Consejos</a>
                 <a href="hola">Acerca de</a>
+
+                <div id="menuUsuario" class="dropdown-menu" style="display: none; position: absolute;">
+                    <div class="cart-tab"></div>
+                    <ul>                        
+                        <li><a href="favoritos.html">Favoritos</a></li>
+                        <li><a href="#" id="cerrarSesion">Cerrar sesión</a></li>
+                    </ul>
+                </div>
             </div>
-              <div id="menuUsuario" class="dropdown-menu" style="display: none; position: absolute;">
-        <ul>            
-            <li><a href="#" >Mis datos</a></li>            
-            <li><a href="#" >Favoritos</a></li>
-            <li><a href="#" id="cerrarSesion">Cerrar sesión</a></li>
-        </ul>
-    </div>
+
         </nav>
     </header>
-   
+
 
 
     <div class="seccion1">
@@ -292,7 +295,7 @@
         </div>
     </footer>
     <script src="js/carrusel.js"></script>
-    <script src="js/productCard.js"></script>
+    <script src="js/productCard2.js"></script>
     <script>
         window.addEventListener('DOMContentLoaded', () => {
             const nombreUsuario = localStorage.getItem('usuario');
@@ -331,6 +334,56 @@
             }
         });
     </script>
+
+    <script>
+        function toggleHeart(btn) {
+            const icon = btn.querySelector('i');
+            const isLiked = btn.classList.toggle('liked');
+
+            // Cambiar ícono
+            icon.classList.toggle('fa-solid', isLiked);
+            icon.classList.toggle('fa-regular', !isLiked);
+
+            // Reiniciar animación
+            btn.style.animation = 'none';
+            btn.offsetHeight;
+            btn.style.animation = null;
+
+            // Obtener nombre de usuario
+            const nombreUsuario = localStorage.getItem('usuario');
+            if (!nombreUsuario) {
+                alert("Debes iniciar sesión para usar esta función.");
+                return;
+            }
+        
+            // Obtener id del producto desde el DOM
+            const card = btn.closest('.productCard');
+            const idProducto = card.dataset.idProducto;
+
+
+            const payload = {
+                nombre: nombreUsuario,
+                id_producto: idProducto,
+                liked: isLiked
+            };
+
+            fetch('http://localhost/TailsUp-Backend/endPointAgregarFavorito.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(payload)
+            })
+                .then(response => response.json())
+                .then(data => {                                                        
+                })
+                .catch(error => {
+                    console.error('Error al agregar/eliminar favorito:', error);
+                });
+        }
+    </script>
+
+
 
 </body>
 

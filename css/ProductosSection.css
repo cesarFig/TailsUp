@@ -33,6 +33,51 @@
     max-height: 20%;
     transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;    
 }
+.heart-button {
+  position: absolute;     /* Lo saca del flujo normal y permite posicionarlo */
+  top: 10px;              /* Espacio desde arriba */
+  right: 10px;            /* Espacio desde la derecha */
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 110%;        /* Tamaño más pequeño */
+  color: black;
+  transition: color 0.3s ease;
+  outline: none;
+  z-index: 90;           /* Se asegura de que esté por encima de los demás elementos */
+}
+
+.containerPC{
+    margin-top: 12%;
+    width: 80%;
+    margin-left: 10%;
+    display: flex;
+    justify-content: space-around;
+}
+
+    .heart-button.liked {
+      color: red;
+      animation: pop 0.4s ease;
+    }
+
+    @keyframes pop {
+      0% {
+        transform: scale(1);
+      }
+      40% {
+        transform: scale(1.4);
+      }
+      60% {
+        transform: scale(0.95);
+      }
+      100% {
+        transform: scale(1);
+      }
+    }
+
+    .heart-button i {
+      pointer-events: none;
+    }
 
 .productCard:hover {
     transform: scale(1.05);
@@ -45,6 +90,7 @@
 }
 .productImage img{
    width: 90%;
+   max-height: 100% !important;
    transform: translateX(6%);
 }
 .productTitle{       

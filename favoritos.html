@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Corazón Animado</title>
+  <!-- Font Awesome -->  
+  <link rel="stylesheet" href="css/nav.css">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/ProductosSection.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+  <header>
+        <nav>
+            <div class="medio">
+                <img class="logoNav" src="images/logoCompleto.png" alt="logoNav.png">
+                <div class="buscadorDiv">
+                    <button id="btnBuscar"><img src="images/lupa.png" alt="lupa.png"></button>
+                    <input class="buscador" type="search" placeholder="Buscar">
+                </div>
+                <div class="accesoDirecto">
+                    <div class="navDiv">
+                        <a class="carritoBtn" href="carrito.html"><img class="carrito" src="images/Carrito.png"
+                                alt="carrito.png"></a>
+                        <a class="carritoTxt" href="carrito.html">Carrito</a>
+                    </div>
+                    <div class="navDiv">
+                        <a id="micuentaImg" class="loginBtn" href="login.html"><img class="login"
+                                src="images/micuenta.png" alt="micuenta.png"></a>
+                        <a id="micuenta" class="miCuentaTxt" id="micuenta" href="login.html">Mi cuenta</a>
+                    </div>
+                </div>
+
+            </div>
+            <div class="abajo">
+                <a href="index.html">Home</a>
+                <a href="shop.html">Tienda</a>
+                <a href="hola">Consejos</a>
+                <a href="hola">Acerca de</a>
+
+                <div id="menuUsuario" class="dropdown-menu" style="display: none; position: absolute;">
+                    <div class="cart-tab"></div>
+                    <ul>                        
+                        <li><a href="favoritos.html">Favoritos</a></li>
+                        <li><a href="#" id="cerrarSesion">Cerrar sesión</a></li>
+                    </ul>
+                </div>
+            </div>
+
+        </nav>
+    </header>
+    <div class="containerPC" id="contenedorProductos">
+        <!-- Aqui van los productos mas vendidos de comida-->
+    </div>
+ 
+
+  <script>
+    function toggleHeart(btn) {
+      const icon = btn.querySelector('i');
+      const isLiked = btn.classList.toggle('liked');
+
+      // Cambia ícono de contorno a sólido
+      if (isLiked) {
+        icon.classList.remove('fa-regular');
+        icon.classList.add('fa-solid');
+      } else {
+        icon.classList.remove('fa-solid');
+        icon.classList.add('fa-regular');
+      }
+
+      // Reinicia animación si ya está aplicada
+      btn.style.animation = 'none';
+      btn.offsetHeight; // Trigger reflow
+      btn.style.animation = null;
+    }
+  </script>
+  
+<script>
+        window.addEventListener('DOMContentLoaded', () => {
+            const micuenta = document.getElementById('micuenta');
+            const micuentaImg = document.getElementById('micuentaImg');
+            const menuUsuario = document.getElementById('menuUsuario');
+            const nombreUsuario = localStorage.getItem('usuario');
+
+            if (nombreUsuario) {
+                micuenta.textContent = nombreUsuario;
+                micuenta.href = '#'; // Evita redirección
+                micuentaImg.href = '#'
+                // Mostrar/ocultar menú al hacer clic
+                micuenta.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    menuUsuario.style.display = menuUsuario.style.display === 'none' ? 'block' : 'none';
+                });
+                micuentaImg.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    menuUsuario.style.display = menuUsuario.style.display === 'none' ? 'block' : 'none';
+                });
+
+                // Cerrar sesión
+                document.getElementById('cerrarSesion').addEventListener('click', () => {
+                    localStorage.removeItem('usuario');
+                    window.location.href = 'login.html';
+                });
+            }
+        });
+    </script>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const nombreUsuario = localStorage.getItem('usuario');
+
+  function formatearPrecio(precio) {
+    if (!precio.includes('.')) return `${precio}.00`;
+    const partes = precio.split('.');
+    return partes[1].length === 1 ? `${precio}0` : precio;
+  }
+  function manejarTruncadoResponsivo(selector) {
+    const elementos = document.querySelectorAll(selector);
+    
+    let maxCaracteres = window.innerWidth <= 768 ? 10 : 22;
+    
+    elementos.forEach(elemento => {
+      const titulo = elemento.querySelector('h4');
+      if (!titulo) return;
+  
+      if (!titulo.hasAttribute('data-texto-completo')) {
+        titulo.setAttribute('data-texto-completo', titulo.textContent.trim());
+      }
+      
+      const textoOriginal = titulo.getAttribute('data-texto-completo');
+      
+      if (textoOriginal.length > maxCaracteres) {
+        // Cortar estrictamente en el límite de caracteres y agregar los puntos suspensivos
+        const textoTruncado = textoOriginal.substring(0, maxCaracteres) + '...';
+        
+        titulo.textContent = textoTruncado;
+        titulo.setAttribute('title', textoOriginal);
+      } else {
+        titulo.textContent = textoOriginal;
+      }
+    });
+  }
+  function renderizarFavoritos(productos) {
+    const contenedorFavoritos = document.getElementById('contenedorProductos');    
+
+    productos.forEach(producto => {
+      const card = document.createElement('div');
+      card.className = 'productCard';
+      card.dataset.idProducto = producto.id_producto;
+      card.innerHTML = `
+        <div class="productImage">
+          <button class="heart-button liked" onclick="toggleHeart(this)">
+          <i class="fa-solid fa-heart"></i>
+          </button>
+          <img src="images/${producto.imagen_producto}" alt="${producto.nombre_producto}">
+        </div>
+        <div class="productTitle">
+          <h4>${producto.nombre_producto}</h4>
+        </div>
+        <div class="productRating">
+          <img src="images/Star.png" alt="Estrella">
+          <p>(${producto.rating}) ${producto.unidades_vendidas} Sold</p>
+        </div>
+        <div class="productPrice">
+          <p>
+            $${formatearPrecio(String(producto.precio_actual))}
+            ${producto.precio_anterior && producto.precio_anterior !== producto.precio_actual
+              ? `<s>$${formatearPrecio(String(producto.precio_anterior))}</s>` : ''}
+          </p>
+        </div>
+        <div class="productBtns">
+          <button class="btnCompra">Comprar ahora</button>
+          <button class="btnCarrito"><img src="images/CarritoSimple.png" alt="carritoSimple.png"></button>
+        </div>
+      `;
+      contenedorFavoritos.appendChild(card);
+    });
+
+    manejarTruncadoResponsivo('.productTitle');
+    iniciarAjustes();
+  }
+  function iniciarAjustes() {
+    // Definir reglas de ajuste de fuente
+    const reglas = {
+      default: '13px', // tamaño normal
+  condiciones: [
+    { maxCaracteres: 10, fontSize: '16px' },  // si tiene hasta 10 caracteres → fuente grande
+    { maxCaracteres: 14, fontSize: '14px' },  // si tiene hasta 14 caracteres → fuente media
+    { maxCaracteres: 18, fontSize: '12px' }   // si tiene hasta 18 caracteres → fuente más pequeña
+  ]
+    };
+  
+    // Ajustar tamaños de fuente en los elementos de la página
+    ajustarTamañoFuente('.productRating p', reglas);
+    ajustarTamañoFuente('.productPrice p', reglas);
+  }
+    function ajustarTamañoFuente(selector, reglas) {
+    const elementos = document.querySelectorAll(selector);
+  
+    elementos.forEach(elemento => {
+      const texto = elemento.textContent.trim();
+      const longitud = texto.length;
+      
+      // Definir tamaño por defecto
+      let fontSize = reglas.default;
+  
+      // Aplicar reglas de tamaños
+      for (let regla of reglas.condiciones) {
+        if (longitud >= regla.minCaracteres) {
+          fontSize = regla.fontSize;
+        }
+      }
+  
+      elemento.style.fontSize = fontSize;
+    });
+  }
+  console.log("🧑 Enviando nombre de usuario:", nombreUsuario);
+  fetch('http://localhost/TailsUp-Backend/endPointGetFavoritos.php', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ usuario: nombreUsuario })
+  })
+  .then(response => response.json())
+  .then(data => {
+    if (data.status === 'success' && Array.isArray(data.productos)) {
+      console.log(data.productos);
+      renderizarFavoritos(data.productos);
+    } else {
+      console.warn('No se encontraron favoritos o hubo un error en la respuesta');
+    }
+  })
+  .catch(error => {
+    console.error('Error al obtener favoritos:', error);
+  });
+});
+</script>
+<script>
+        function toggleHeart(btn) {
+            const icon = btn.querySelector('i');
+            const isLiked = btn.classList.toggle('liked');
+
+            // Cambiar ícono
+            icon.classList.toggle('fa-solid', isLiked);
+            icon.classList.toggle('fa-regular', !isLiked);
+
+            // Reiniciar animación
+            btn.style.animation = 'none';
+            btn.offsetHeight;
+            btn.style.animation = null;
+
+            // Obtener nombre de usuario
+            const nombreUsuario = localStorage.getItem('usuario');
+            if (!nombreUsuario) {
+                alert("Debes iniciar sesión para usar esta función.");
+                return;
+            }
+
+            // Obtener id del producto desde el DOM
+            const card = btn.closest('.productCard');
+            const idProducto = card.dataset.idProducto;
+
+
+            const payload = {
+                nombre: nombreUsuario,
+                id_producto: idProducto,
+                liked: isLiked
+            };
+
+            fetch('http://localhost/TailsUp-Backend/endPointAgregarFavorito.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(payload)
+            })
+                .then(response => response.json())
+                .then(data => {                                        
+                })
+                .catch(error => {
+                    console.error('Error al agregar/eliminar favorito:', error);
+                });
+        }
+    </script>
+
+
+
+
+
+</body>
+</html>
