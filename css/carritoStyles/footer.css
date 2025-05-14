@@ -1,0 +1,260 @@
+/* Estilos generales del footer */
+footer {
+  background-image: url('../../images/carfooterlong.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 100%;
+  padding: 20px 0;
+  position: relative;
+  color: #252525;
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 15px;
+  position: relative;
+  z-index: 2;
+}
+
+/* Huella superior */
+.footer-top-paw {
+  text-align: center;
+  margin-bottom: 75px;
+  position: relative;
+  z-index: 3;
+}
+
+.footer-top-paw img {
+  width: 50px;
+  filter: drop-shadow(0px 2px 3px rgba(0,0,0,0.4));
+}
+
+/* Contenido principal del footer */
+.footer-main-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  background-color: transparent;
+  padding: 20px 0;
+  position: relative;
+  z-index: 2;
+}
+
+/* Sección "Acerca de" y contacto */
+.footer-about {
+  flex-basis: 35%;
+  padding-right: 20px;
+}
+
+.footer-about p {
+  font-size: 0.9em;
+  line-height: 1.6;
+  color: #252525;
+  margin-bottom: 15px;
+}
+
+.footer-contact p {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+  font-size: 0.9em;
+  color: #252525;
+}
+
+.footer-contact img {
+  width: 16px;
+  margin-right: 8px;
+}
+
+.footer-social {
+  margin-top: 20px;
+}
+
+.footer-social a {
+  margin-right: 10px;
+  display: inline-block;
+}
+
+.footer-social img {
+  width: 24px;
+  opacity: 0.9;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.footer-social a:hover img {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+
+.footer-image-container{
+  text-align: center;
+}
+
+
+/* Rectángulo punteado detrás */
+.footer-image-dashed-box {
+  position: absolute;
+  width: 280px;
+  height: 280px;
+  margin: auto;
+  border: 3px dashed white;
+  border-radius: 8px;
+  transform: rotate(-18deg);
+  z-index: 1;
+}
+
+/* Contenedor de la imagen con borde blanco */
+.footer-image-wrapper {
+  position: relative;
+    z-index: 2; /* Delante del rectángulo punteado */
+    height: auto;
+    display: block;
+}
+
+.footer-image-wrapper img {
+  width: 100%;
+  border: #ffffff 5px solid;
+  height: 100%;
+  object-fit: cover;
+  transform: rotate(18deg);
+  display: flex;
+}
+
+/* Secciones de enlaces (Preguntas y Sitio) */
+.footer-links {
+  flex-basis: 35%;
+  display: flex;
+  justify-content: space-around;
+}
+
+.footer-questions,
+.footer-site {
+  padding: 0 15px;
+}
+
+.footer-links h4 {
+  font-size: 1.1em;
+  color: #252525;
+  margin-bottom: 15px;
+  border-bottom: 1px solid rgba(255,255,255,0.3);
+  padding-bottom: 8px;
+  font-weight: 600;
+}
+
+.footer-links ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-links ul li {
+  margin-bottom: 10px;
+}
+
+.footer-links ul li a {
+  text-decoration: none;
+  color: #252525;
+  font-size: 0.9em;
+  transition: color 0.3s ease, padding-left 0.3s ease;
+}
+
+.footer-links ul li a:hover {
+  color: #ffffff;
+  padding-left: 5px;
+}
+
+/* Estilos para la responsividad (Media Queries) */
+@media (max-width: 992px) {
+  footer{
+    background-image: url('../../images/carfooterlarge.png');
+  }
+
+  .footer-main-content {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .footer-top-paw {
+    margin-bottom: 2px;
+  }
+
+  .footer-about,
+  .footer-image-container,
+  .footer-links {
+    flex-basis: 100%;
+    margin-bottom: 30px;
+    padding-right: 0;
+  }
+  
+  .footer-contact p {
+    justify-content: center;
+  }
+
+  .footer-image-container {
+    max-width: 200px;
+    height: 180px;
+    margin-bottom: 20px;
+  }
+  
+  .footer-image-dashed-box {
+    transform: rotate(-3deg);
+  }
+  
+  .footer-image-wrapper {
+
+    transform: rotate(2deg);
+  }
+
+  .footer-links {
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+
+  .footer-questions,
+  .footer-site {
+    width: 80%;
+    max-width: 300px;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  .footer-links ul li a {
+    display: inline-block;
+  }
+}
+
+@media (max-width: 576px) {
+  .footer-top-paw img {
+    width: 40px;
+  }
+  
+  .footer-top-paw {
+    margin-bottom: 2px;
+  }
+
+  .footer-main-content {
+    padding: 15px 0;
+  }
+
+  .footer-about p,
+  .footer-contact p,
+  .footer-links ul li a {
+    font-size: 0.88em;
+  }
+  
+  .footer-links h4 {
+    font-size: 1.05em;
+  }
+  
+  .footer-image-container {
+    height: 150px;
+  }
+  
+  .footer-image-dashed-box {
+    border: 1px dashed white;
+  }
+}
