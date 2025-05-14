@@ -1,21 +1,26 @@
 <?php
-class DBManager{
+class DBManager
+{
     private $db;
-	private $host;
-	private $user;
-	private $pass;
+    private $host;
+    private $user;
+    private $pass;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->db = "tailsup";
         $this->host = "localhost";
         $this->user = "root";
-        $this->pass = null;        
+        $this->pass = null;
     }
 
     private function open()
     {
         $link = mysqli_connect(
-            $this->host, $this->user, $this->pass, $this->db
+            $this->host,
+            $this->user,
+            $this->pass,
+            $this->db
         ) or die('Error al abrir conexion');
 
         return $link;
@@ -26,21 +31,22 @@ class DBManager{
         mysqli_close($link);
     }
 
-    public function findUsuario($email, $contrasenaPlana) {
+    public function findUsuario($email, $contrasenaPlana)
+    {
         $link = $this->open();
-        
+
         $sql = "SELECT  idUsuario, nombre, email, contrasena FROM usuarios WHERE email = ?";
         $query = mysqli_prepare($link, $sql);
-        
+
         if (!$query) {
             $this->close($link);
             return false;
         }
-        
+
         mysqli_stmt_bind_param($query, "s", $email);
         mysqli_stmt_execute($query);
         $result = mysqli_stmt_get_result($query); // Línea clave
-        
+
         if ($result && $usuario = mysqli_fetch_assoc($result)) {
             if (password_verify($contrasenaPlana, $usuario['contrasena'])) {
                 unset($usuario['contrasena']); // Eliminar contraseña antes de devolver
@@ -48,38 +54,39 @@ class DBManager{
                 return $usuario;
             }
         }
-        
+
         $this->close($link);
         return false;
     }
 
     public function addUsuario($nombre, $email, $contrasena)
-    { 
+    {
         $link = $this->open();
-    
+
         // Usar password_hash para un hashing seguro
         $contrasenaHash = password_hash($contrasena, PASSWORD_DEFAULT);
-    
+
         $sql = "INSERT INTO usuarios (nombre, email, contrasena) VALUES (?, ?, ?)";
-    
+
         $query = mysqli_prepare($link, $sql);
         mysqli_stmt_bind_param($query, "sss", $nombre, $email, $contrasenaHash);
         $resultado = mysqli_stmt_execute($query);
-    
+
         $this->close($link);
-    
+
         return $resultado;
     }
 
-    public function getProductos(){
-        
+    public function getProductos()
+    {
+
         $link = $this->open();
         $sql = "SELECT * FROM productos";
 
         $result = mysqli_query($link, $sql, MYSQLI_ASSOC) or die('Error query');
 
         $rows = [];
-        while($columns = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+        while ($columns = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
             $rows[] = $columns;
         }
 
@@ -87,119 +94,127 @@ class DBManager{
 
         return $rows;
     }
-    public function guardarCodigoRecuperacion($email, $codigo) {
+    public function guardarCodigoRecuperacion($email, $codigo)
+    {
         $link = $this->open();
-    
-    $stmt = mysqli_prepare($link, "UPDATE usuarios SET codigo_password = ? WHERE email = ?");
-    mysqli_stmt_bind_param($stmt, "is", $codigo, $email);
-    $resultado = mysqli_stmt_execute($stmt);
-    
-    $this->close($link);
-    return $resultado; // true si tuvo éxito, false si falló
+
+        $stmt = mysqli_prepare($link, "UPDATE usuarios SET codigo_password = ? WHERE email = ?");
+        mysqli_stmt_bind_param($stmt, "is", $codigo, $email);
+        $resultado = mysqli_stmt_execute($stmt);
+
+        $this->close($link);
+        return $resultado; // true si tuvo éxito, false si falló
     }
-    public function findUsuarioPorCorreo($email) {
+    public function findUsuarioPorCorreo($email)
+    {
         $link = $this->open();
-    
+
         $stmt = mysqli_prepare($link, "SELECT nombre, email FROM usuarios WHERE email = ?");
         mysqli_stmt_bind_param($stmt, "s", $email);
         mysqli_stmt_execute($stmt);
         $result = mysqli_stmt_get_result($stmt);
-    
+
         $usuario = mysqli_fetch_array($result, MYSQLI_ASSOC);
-    
+
         $this->close($link);
         return $usuario; // Devuelve null si no hay coincidencia
     }
-    public function verificarCodigoporEmail($codigo, $email) {
+    public function verificarCodigoporEmail($codigo, $email)
+    {
         $link = $this->open();
-    
+
         $stmt = mysqli_prepare($link, "SELECT codigo_password FROM usuarios WHERE codigo_password = ? AND email = ?");
         mysqli_stmt_bind_param($stmt, "ss", $codigo, $email);
         mysqli_stmt_execute($stmt);
         $result = mysqli_stmt_get_result($stmt);
-    
+
         $existe = mysqli_fetch_array($result, MYSQLI_ASSOC);
-    
+
         $this->close($link);
         return $existe !== null; // Devuelve true si encontró una coincidencia exacta
     }
-    public function actualizarContrasena($email, $nuevaContrasena) {
+    public function actualizarContrasena($email, $nuevaContrasena)
+    {
         $link = $this->open();
-    
+
         $hash = password_hash($nuevaContrasena, PASSWORD_DEFAULT);
-    
+
         // Actualiza la contraseña y borra el código
         $sql = "UPDATE usuarios SET contrasena = ?, codigo_password = NULL WHERE email = ?";
-    
+
         $stmt = mysqli_prepare($link, $sql);
         mysqli_stmt_bind_param($stmt, "ss", $hash, $email);
         $resultado = mysqli_stmt_execute($stmt);
-    
+
         $this->close($link);
-    
+
         return $resultado;
     }
-    
-    public function agregarFavorito($id_usuario, $id_producto) {
-    $link = $this->open();
 
-    $sql = "INSERT INTO favoritos (idUsuario, id_producto) VALUES (?, ?)";
-    $stmt = mysqli_prepare($link, $sql);
+    public function agregarFavorito($id_usuario, $id_producto)
+    {
+        $link = $this->open();
+
+        $sql = "INSERT INTO favoritos (idUsuario, id_producto) VALUES (?, ?)";
+        $stmt = mysqli_prepare($link, $sql);
 
 
-    mysqli_stmt_bind_param($stmt, "ii", $id_usuario, $id_producto);
-    $resultado = mysqli_stmt_execute($stmt);
+        mysqli_stmt_bind_param($stmt, "ii", $id_usuario, $id_producto);
+        $resultado = mysqli_stmt_execute($stmt);
 
-    mysqli_stmt_close($stmt);
-    $this->close($link);
-
-    return $resultado;
-}
-public function obtenerIdUsuarioPorNombre($nombre) {
-    $link = $this->open();
-
-    $sql = "SELECT idUsuario FROM usuarios WHERE nombre = ?";
-    $stmt = mysqli_prepare($link, $sql);
-
-    if (!$stmt) {
+        mysqli_stmt_close($stmt);
         $this->close($link);
-        return false;
+
+        return $resultado;
+    }
+    public function obtenerIdUsuarioPorNombre($nombre)
+    {
+        $link = $this->open();
+
+        $sql = "SELECT idUsuario FROM usuarios WHERE nombre = ?";
+        $stmt = mysqli_prepare($link, $sql);
+
+        if (!$stmt) {
+            $this->close($link);
+            return false;
+        }
+
+        mysqli_stmt_bind_param($stmt, "s", $nombre);
+        mysqli_stmt_execute($stmt);
+
+        $resultado = mysqli_stmt_get_result($stmt);
+
+        if ($fila = mysqli_fetch_assoc($resultado)) {
+            $idUsuario = $fila['idUsuario'];
+        } else {
+            $idUsuario = false;
+        }
+
+        mysqli_stmt_close($stmt);
+        $this->close($link);
+
+        return $idUsuario;
     }
 
-    mysqli_stmt_bind_param($stmt, "s", $nombre);
-    mysqli_stmt_execute($stmt);
+    public function eliminarFavorito($id_usuario, $id_producto)
+    {
+        $link = $this->open();
 
-    $resultado = mysqli_stmt_get_result($stmt);
+        $sql = "DELETE FROM favoritos WHERE idUsuario = ? AND id_producto = ?";
+        $stmt = mysqli_prepare($link, $sql);
+        mysqli_stmt_bind_param($stmt, "ii", $id_usuario, $id_producto);
+        $resultado = mysqli_stmt_execute($stmt);
 
-    if ($fila = mysqli_fetch_assoc($resultado)) {
-        $idUsuario = $fila['idUsuario'];
-    } else {
-        $idUsuario = false;
+        mysqli_stmt_close($stmt);
+        $this->close($link);
+
+        return $resultado;
     }
+    public function obtenerProductosFavoritosPorNombre($nombre)
+    {
+        $link = $this->open();
 
-    mysqli_stmt_close($stmt);
-    $this->close($link);
-
-    return $idUsuario;
-}
-
-public function eliminarFavorito($id_usuario, $id_producto) {
-    $link = $this->open();
-
-    $sql = "DELETE FROM favoritos WHERE idUsuario = ? AND id_producto = ?";
-    $stmt = mysqli_prepare($link, $sql);
-    mysqli_stmt_bind_param($stmt, "ii", $id_usuario, $id_producto);
-    $resultado = mysqli_stmt_execute($stmt);
-
-    mysqli_stmt_close($stmt);
-    $this->close($link);
-
-    return $resultado;
-}
-public function obtenerProductosFavoritosPorNombre($nombre) {
-    $link = $this->open();
-
-    $query = "
+        $query = "
         SELECT p.* 
         FROM usuarios u
         JOIN favoritos f ON u.idUsuario = f.idUsuario
@@ -207,42 +222,95 @@ public function obtenerProductosFavoritosPorNombre($nombre) {
         WHERE u.nombre = ?
     ";
 
-    $stmt = mysqli_prepare($link, $query);
-    mysqli_stmt_bind_param($stmt, "s", $nombre);
-    mysqli_stmt_execute($stmt);
-    $result = mysqli_stmt_get_result($stmt);
+        $stmt = mysqli_prepare($link, $query);
+        mysqli_stmt_bind_param($stmt, "s", $nombre);
+        mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_get_result($stmt);
 
-    $productos = [];
-    while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
-        $productos[] = $row;
+        $productos = [];
+        while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+            $productos[] = $row;
+        }
+
+        $this->close($link);
+        return $productos; // Devuelve array vacío si no hay favoritos
+    }
+    public function buscarProductos($texto)
+    {
+        $link = $this->open();
+
+        $stmt = mysqli_prepare($link, "SELECT * FROM productos WHERE nombre_producto LIKE CONCAT('%', ?, '%') LIMIT 10");
+        mysqli_stmt_bind_param($stmt, "s", $texto);
+        mysqli_stmt_execute($stmt);
+
+        $result = mysqli_stmt_get_result($stmt);
+
+        $productos = [];
+        while ($row = mysqli_fetch_assoc($result)) {
+            $productos[] = $row;
+        }
+
+        mysqli_stmt_close($stmt);
+        $this->close($link);
+
+        return $productos;
     }
 
-    $this->close($link);
-    return $productos; // Devuelve array vacío si no hay favoritos
-}
-public function buscarProductos($texto) {
-    $link = $this->open();
+    public function getCarrito($idUsuario)
+    {
+        $link = $this->open();
 
-    $stmt = mysqli_prepare($link, "SELECT * FROM productos WHERE nombre_producto LIKE CONCAT('%', ?, '%') LIMIT 10");
-    mysqli_stmt_bind_param($stmt, "s", $texto);
-    mysqli_stmt_execute($stmt);
+        $sql = "SELECT ci.id_item, ci.id_producto, ci.cantidad, p.nombre_producto, p.precio_actual,p.precio_anterior, p.imagen_producto FROM carrito_items ci INNER JOIN productos p ON ci.id_producto = p.id_producto WHERE ci.id_carrito = (SELECT id_carrito FROM carritos WHERE idUsuario = ?)";
+        error_log("Ejecutando consulta SQL: $sql con idUsuario=$idUsuario");
+        $query = mysqli_prepare($link, $sql);
 
-    $result = mysqli_stmt_get_result($stmt);
+        if (!$query) {
+            $this->close($link);
+            return false;
+        }
 
-    $productos = [];
-    while ($row = mysqli_fetch_assoc($result)) {
-        $productos[] = $row;
+        mysqli_stmt_bind_param($query, "i", $idUsuario);
+        mysqli_stmt_execute($query);
+        $result = mysqli_stmt_get_result($query);
+
+        $items = [];
+        while ($row = mysqli_fetch_assoc($result)) {
+            $items[] = $row;
+        }
+
+        $this->close($link);
+        return $items;
     }
 
-    mysqli_stmt_close($stmt);
-    $this->close($link);
+    public function eliminarCarritoItem($id, $idUsuario)
+    {
+        $link = $this->open();
 
-    return $productos;
-}
+        $query = "DELETE FROM carrito_items WHERE id_item = ? AND id_carrito = (SELECT id_carrito FROM carritos WHERE idUsuario = ?)";
+        $stmt = mysqli_prepare($link, $query);
+        mysqli_stmt_bind_param($stmt, "ii", $id, $idUsuario);
 
+        $resultado = mysqli_stmt_execute($stmt);
 
+        $this->close($link);
 
+        return $resultado;
+    }
 
-    
+    public function actualizarCantidadCarritoItem($id, $cantidad, $idUsuario)
+    {
+        $link = $this->open();
+
+        $query = "UPDATE carrito_items SET cantidad = ? WHERE id_item = ? AND id_carrito = (SELECT id_carrito FROM carritos WHERE idUsuario = ?)";
+        $stmt = mysqli_prepare($link, $query);
+        mysqli_stmt_bind_param($stmt, "iii", $cantidad, $id, $idUsuario);
+
+        $resultado = mysqli_stmt_execute($stmt);
+
+        $this->close($link);
+
+        return $resultado;
+    }
+
 }
 ?>
