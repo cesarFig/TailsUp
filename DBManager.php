@@ -29,7 +29,7 @@ class DBManager{
     public function findUsuario($email, $contrasenaPlana) {
         $link = $this->open();
         
-        $sql = "SELECT  nombre, email, contrasena FROM usuarios WHERE email = ?";
+        $sql = "SELECT  idUsuario, nombre, email, contrasena FROM usuarios WHERE email = ?";
         $query = mysqli_prepare($link, $sql);
         
         if (!$query) {
