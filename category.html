@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TailsUp | Tienda</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/nav.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/category/mystylecategory.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="medio">
+                <img class="logoNav" src="images/logoCompleto.png" alt="logoNav.png">
+                <div class="buscadorDiv">
+                    <button id="btnBuscar"><img src="images/lupa.png" alt="lupa.png"></button>
+                    <input class="buscador" type="search" placeholder="Buscar" id="inputBusqueda">
+                    <div id="resultadosBusqueda" class="resultadosBusqueda"></div>
+                </div>
+
+                <div class="accesoDirecto">
+                    <div class="navDiv">
+                        <a class="carritoBtn" href="carrito.html"><img class="carrito" src="images/Carrito.png"
+                                alt="carrito.png"></a>
+                        <a class="carritoTxt" href="carrito.html">Carrito</a>
+                    </div>
+                    <div class="navDiv">
+                        <a id="micuentaImg" class="loginBtn" href="login.html"><img class="login"
+                                src="images/micuenta.png" alt="micuenta.png"></a>
+                        <a id="micuenta" class="miCuentaTxt" id="micuenta" href="login.html">Mi cuenta</a>
+                    </div>
+                </div>
+
+            </div>
+            <div class="abajo">
+                <a href="index.html">Home</a>
+                <a href="shop.html">Tienda</a>
+                <a href="hola">Consejos</a>
+                <a href="hola">Acerca de</a>
+
+                <div id="menuUsuario" class="dropdown-menu">
+                    <div class="cart-tab"></div>
+                    <ul>
+                        <li><a href="favoritos.html">Favoritos</a></li>
+                        <li><a href="#" id="cerrarSesion">Cerrar sesión</a></li>
+                    </ul>
+                </div>
+            </div>
+
+        </nav>
+    </header>
+     <div class="containerShopByPet">
+        <h1>Comprar por mascota</h1>
+        <div class="containerBtnCategoria">
+            <button class="btnCategoriaPet" data-categoria="Gato"><img src="images/imgBtnCat.png" alt="btnCat.png">
+                Gato</button>
+            <button class="btnCategoriaPet" data-categoria="Hamster"><img src="images/imgBtnHamster.png"
+                    alt="btnCat.png">Hamster</button>
+            <button class="btnCategoriaPet" data-categoria="Perro"><img src="images/imgBtnDog.png"
+                    alt="btnCat.png">Perro</button>
+            <button class="btnCategoriaPet" data-categoria="Ave"><img src="images/imgBtnAve.png"
+                    alt="btnCat.png">Ave</button>
+            <button class="btnCategoriaPet" data-categoria="Conejo"><img src="images/imgBtnConejo.png"
+                    alt="btnCat.png">Conejo</button>
+            <button class="btnCategoriaPet" data-categoria="Tortuga"><img src="images/imgBtnTortuga.png"
+                    alt="btnCat.png">Tortuga</button>
+        </div>
+    </div>
+    <div class="divBtnFiltros">
+        <button class="toggleFiltrosBtn">☰ Filtros</button>
+    </div>
+    <div class="containerFiltro-Products">
+        <div class="containerFiltros">
+            <button class="cerrarBtn">X</button>
+            <h4 class="titlePrecio">Filtrar por precio</h4>
+            <input type="range" class="rangoPrecio" min="9" max="399">
+            <div class="containerTextFiltro">
+                <p>Price: $9 - $399</p><button class="btnAplicar">Aplicar</button>
+            </div>
+            <h4 class="titleBrands">Filter by brands</h4>
+            <div class="containerInputs">
+                <div>
+                    <label class="filter-option"><input type="checkbox" value="Natural food">
+                        Natural food </label>
+                    <label class="filter-option"><input type="checkbox" value="Pet care"> Pet care
+                    </label>
+                    <label class="filter-option"><input type="checkbox" value="Dogs friend"> Dogs
+                        friend </label>
+                    <label class="filter-option"><input type="checkbox" value="Pet food"> Pet food
+                    </label>
+                    <label class="filter-option"><input type="checkbox" value="Favorite pet">
+                        Favorite pet </label>
+                    <label class="filter-option"><input type="checkbox" value="Green line"> Green
+                        line </label>
+                </div>
+                <div class="containerNumInputs">
+                    <span>28</span>
+                    <span>16</span>
+                    <span>18</span>
+                    <span>40</span>
+                    <span>26</span>
+                    <span>15</span>
+                </div>
+            </div>
+            <h4 class="titleBrands">Filter by tags</h4>
+            <div class="tags">
+                <div>
+                    <button class="tag filtro-tag" data-tag="Dog food">Dog food</button>
+                    <button class="tag filtro-tag" data-tag="Cat food">Cat food</button>
+                    <button class="tag filtro-tag" data-tag="Natural">Natural</button>
+                </div>
+                <div>
+                    <button class="tag filtro-tag" data-tag="Parrot">Parrot</button>
+                    <button class="tag filtro-tag" data-tag="Small dog">Small dog</button>
+                    <button class="tag filtro-tag" data-tag="Cat">Cat</button>
+                </div>
+                <h4 class="titleBrands">Productos populares</h4>
+                <div class="containerPopPrd">
+                    <div class="PopularPrd">
+                        <div class="imgProduct">
+                            <img src="images/filletOFlakes.png" alt="imagenProducto">
+                        </div>
+                        <div class="textPopPrd">
+                            <h4>Producto mamalon</h4>
+                            <p>$567</p>
+                        </div>
+                    </div>
+                    <div class="PopularPrd">
+                        <div class="imgProduct">
+                            <img src="images/filletOFlakes.png" alt="imagenProducto">
+                        </div>
+                        <div class="textPopPrd">
+                            <h4>Mas producto</h4>
+                            <p>$290</p>
+                        </div>
+                    </div>
+                    <div class="PopularPrd">
+                        <div class="imgProduct">
+                            <img src="images/pelotita.png" alt="imagenProducto">
+                        </div>
+                        <div class="textPopPrd">
+                            <h4>Sexoooooo</h4>
+                            <p>$121</p>
+                        </div>
+                    </div>
+                    <div class="PopularPrd">
+                        <div class="imgProduct">
+                            <img src="images/encore..png" alt="imagenProducto">
+                        </div>
+                        <div class="textPopPrd">
+                            <h4>masSexo</h4>
+                            <p>$234</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="contenedor">
+            
+        </div>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  // Opción 1: si usaste localStorage
+  const categoria = localStorage.getItem('categoriaSeleccionada');
+
+  // Opción 2 (si usas URLSearchParams)
+  // const params = new URLSearchParams(window.location.search);
+  // const categoria = params.get('categoria');
+
+  if (categoria) {
+    document.querySelector('h1').textContent = `${categoria}`;    
+  }
+});
+
+</script>
+<script>
+let productosFavoritos = [];
+let productosCategoria = [];
+let categoriaSeleccionada = localStorage.getItem('categoriaSeleccionada');
+
+// Palabras clave por categoría
+const aliasCategorias = {
+  comida: ['alimento', 'comida', 'alimentación'],
+  juguetes: ['juguetes', 'juguete'],
+  ropa: ['ropa'],
+  aseo: ['aseo', 'higiene'],
+  tortugas: ['tortuga'],
+  gatos: ['gato'],
+  perros: ['perro']
+};
+
+document.addEventListener('DOMContentLoaded', function () {
+  if (!categoriaSeleccionada) {
+    document.getElementById('contenedor').innerHTML = '<p>❌ Categoría no seleccionada</p>';
+    return;
+  }
+
+  inicializar();
+
+  document.querySelectorAll('.filtro-tag').forEach(btn => {
+    btn.addEventListener('click', function () {
+      this.classList.toggle('activo');
+      aplicarFiltros();
+    });
+  });
+
+  document.querySelectorAll('.filter-option input[type=checkbox]').forEach(cb => {
+    cb.addEventListener('change', aplicarFiltros);
+  });
+
+  const inputRango = document.querySelector('.rangoPrecio');
+  if (inputRango) {
+    inputRango.addEventListener('input', () => {
+      document.querySelector('.containerTextFiltro p').textContent = `Price: $9 - $${inputRango.value}`;
+    });
+    document.querySelector('.btnAplicar').addEventListener('click', aplicarFiltros);
+  }
+});
+
+function inicializar() {
+  const usuario = localStorage.getItem('usuario');
+  if (!usuario) {
+    obtenerProductosCategoria();
+  } else {
+    fetch("http://localhost/TailsUp-Backend/endPointGetFavoritos.php", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ usuario })
+    })
+      .then(res => res.json())
+      .then(data => {
+        if (data.status === "success") {
+          productosFavoritos = data.productos.map(p => Number(p.id_producto));
+        }
+        obtenerProductosCategoria();
+      })
+      .catch(err => {
+        console.error("❌ Error al obtener favoritos:", err);
+        obtenerProductosCategoria();
+      });
+  }
+}
+
+function obtenerProductosCategoria() {
+  fetch("http://localhost/TailsUp-Backend/endPointGetProductos.php")
+    .then(res => res.json())
+    .then(data => {
+      const claves = aliasCategorias[categoriaSeleccionada.toLowerCase()] || [];
+      productosCategoria = data.filter(p => {
+        const cat = p.categoria.toLowerCase();
+        return claves.some(clave => cat.includes(clave));
+      });
+
+      console.log("✅ Productos filtrados por alias:", productosCategoria);
+      aplicarFiltros();
+    })
+    .catch(err => {
+      console.error("❌ Error al obtener productos:", err);
+    });
+}
+
+function aplicarFiltros() {
+  const maxPrecio = Number(document.querySelector('.rangoPrecio')?.value) || 399;
+
+  const marcasSeleccionadas = Array.from(document.querySelectorAll('.filter-option input[type=checkbox]:checked'))
+    .map(cb => cb.value.toLowerCase());
+
+  const tagsSeleccionados = Array.from(document.querySelectorAll('.filtro-tag.activo'))
+    .map(btn => btn.dataset.tag.toLowerCase());
+
+  const productosFiltrados = productosCategoria.filter(p => {
+    const cumplePrecio = Number(p.precio_actual) <= maxPrecio;
+    const cumpleMarca = marcasSeleccionadas.length === 0 || marcasSeleccionadas.includes(p.marca?.toLowerCase());
+    const cumpleTags = tagsSeleccionados.length === 0 ||
+      (p.tags && tagsSeleccionados.some(tag => p.tags.toLowerCase().includes(tag)));
+    return cumplePrecio && cumpleMarca && cumpleTags;
+  });
+
+  renderProductos(productosFiltrados);
+}
+
+function renderProductos(productos) {
+  const contenedor = document.getElementById('contenedor');
+  contenedor.innerHTML = '';
+
+  if (productos.length === 0) {
+    contenedor.innerHTML = '<p>No se encontraron productos.</p>';
+    return;
+  }
+
+  productos.forEach(p => {
+    const card = document.createElement('div');
+    card.className = 'productCard';
+
+    const esFavorito = productosFavoritos.includes(Number(p.id_producto));
+    const claseCorazon = esFavorito ? 'fa-solid' : 'fa-regular';
+    const claseLiked = esFavorito ? 'liked' : '';
+
+    card.innerHTML = `
+      <div class="productImage">
+        <button class="heart-button ${claseLiked}" onclick="toggleHeart(this, ${p.id_producto})">
+          <i class="${claseCorazon} fa-heart"></i>
+        </button>
+        <img src="images/${p.imagen_producto}" alt="${p.nombre_producto}">
+      </div>
+      <div class="productTitle"><h4>${p.nombre_producto}</h4></div>
+      <div class="productRating">
+        <img src="images/Star.png" alt="Estrella">
+        <p>(${p.rating}) ${p.unidades_vendidas} Sold</p>
+      </div>
+      <div class="productPrice">
+        <p>
+          $${formatearPrecio(p.precio_actual)}
+          ${p.precio_anterior && p.precio_anterior !== p.precio_actual
+            ? `<s>$${formatearPrecio(p.precio_anterior)}</s>` : ''}
+        </p>
+      </div>
+      <div class="productBtns">
+        <button class="btnCompra" onclick="verificarAccionUsuario(() => alert('Comprar ${p.id_producto}'))">Comprar ahora</button>
+        <button class="btnCarrito" onclick="verificarAccionUsuario(() => alert('Agregar al carrito ${p.id_producto}'))">
+          <img src="images/CarritoSimple.png" alt="carritoSimple.png">
+        </button>
+      </div>
+    `;
+
+    card.addEventListener('click', function (e) {
+      if (e.target.closest('.heart-button') || e.target.closest('.btnCompra') || e.target.closest('.btnCarrito')) return;
+      mostrarDetallesProducto(p);
+    });
+
+    contenedor.appendChild(card);
+  });
+}
+
+function toggleHeart(btn, idProducto) {
+  const nombreUsuario = localStorage.getItem('usuario');
+  if (!nombreUsuario) {
+    window.location.href = "login.html";
+    return;
+  }
+
+  btn.classList.toggle('liked');
+  const icon = btn.querySelector('i');
+  const liked = btn.classList.contains('liked');
+
+  icon.classList.toggle('fa-solid', liked);
+  icon.classList.toggle('fa-regular', !liked);
+
+  const payload = {
+    nombre: nombreUsuario,
+    id_producto: idProducto,
+    liked: liked
+  };
+
+  fetch("http://localhost/TailsUp-Backend/endPointAgregarFavorito.php", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payload)
+  })
+    .then(res => res.json())
+    .then(data => {
+      if (data.status !== "success") {
+        console.warn("⚠️ Error al actualizar favorito:", data.message);
+      }
+    })
+    .catch(err => console.error("❌ Error al conectar con el servidor:", err));
+}
+
+function verificarAccionUsuario(callback) {
+  const usuario = localStorage.getItem("usuario");
+  if (!usuario) {
+    window.location.href = "login.html";
+  } else {
+    callback();
+  }
+}
+
+function formatearPrecio(precio) {
+  const p = String(precio);
+  if (!p.includes('.')) return `${p}.00`;
+  const partes = p.split('.');
+  return partes[1].length === 1 ? `${p}0` : p;
+}
+</script>
+ <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            const micuenta = document.getElementById('micuenta');
+            const micuentaImg = document.getElementById('micuentaImg');
+            const menuUsuario = document.getElementById('menuUsuario');
+            const nombreUsuario = localStorage.getItem('usuario');
+
+            if (nombreUsuario) {
+                micuenta.textContent = nombreUsuario;
+                micuenta.href = '#'; // Evita redirección
+                micuentaImg.href = '#'
+                // Mostrar/ocultar menú al hacer clic
+                // Mostrar/ocultar menú al hacer clic
+                const toggleMenu = (e) => {
+                    e.preventDefault();
+                    menuUsuario.classList.toggle('show');
+                };
+
+                micuenta.addEventListener('click', toggleMenu);
+                micuentaImg.addEventListener('click', toggleMenu);
+
+
+                // Cerrar sesión
+                document.getElementById('cerrarSesion').addEventListener('click', () => {
+                    localStorage.removeItem('usuario');
+                    window.location.href = 'login.html';
+                });
+            }
+        });
+    </script>
+
+
+
+    
+</body>
+</html>

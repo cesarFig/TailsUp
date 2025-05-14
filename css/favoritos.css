@@ -8,6 +8,14 @@
     margin-left: 10%;
     gap: 10px;
 }
+.title{
+  width: 100%;
+  text-align: center;
+  margin-top: 12%;
+  font-family: Poppins;
+  color: #de6600;
+}
+
 .titleSection2{
     display: flex;
     font-family: Poppins;
@@ -25,14 +33,28 @@
     flex-wrap: wrap;
     gap: 20px;
     margin: 0 10%; 
-    box-sizing: border-box; 
+    box-sizing: border-box;     
 }
 .productCard {
     width: 23.2%;
     border-radius: 10px;
     max-height: 20%;
-    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;    
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;  
+            transform-origin: center bottom;
 }
+.containerPC {  
+  width: 80%;  
+  overflow: visible; 
+  margin-left: 10%;
+  display: flex;
+  flex-wrap: wrap; /* Permite múltiples filas */
+justify-content: flex-start;
+  gap: 20px; /* Añade espacio entre tarjetas */
+  contain: layout paint;   
+  padding: 20px;
+  margin-bottom: 10%;
+}
+
 .heart-button {
   position: absolute;     /* Lo saca del flujo normal y permite posicionarlo */
   top: 10px;              /* Espacio desde arriba */
@@ -47,13 +69,41 @@
   z-index: 90;           /* Se asegura de que esté por encima de los demás elementos */
 }
 
-.containerPC{
-    margin-top: 12%;
-    width: 80%;
-    margin-left: 10%;
-    display: flex;
-    justify-content: space-around;
+
+
+/* --- Tablets: 2 columnas --- */
+@media screen and (max-width: 1024px) {
+  .productCard {
+    width: 48%; /* 2 por fila */
+  }
+  .containerPC {
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
 }
+
+/* --- Teléfonos: 1 columna --- */
+@media screen and (max-width: 600px) {
+  .productCard {
+    width: 90% !important; /* 1 por fila */
+  }
+  .btnCompra {
+    width: 90%;
+  }
+
+  .productImage img {
+    width: 90%;
+    transform: none;
+    margin: 0 auto;
+    display: block;
+  }
+
+  .btnCarrito {
+    max-width: 25%;
+  }
+}
+
 
     .heart-button.liked {
       color: red;
@@ -80,7 +130,7 @@
     }
 
 .productCard:hover {
-    transform: scale(1.05);
+    transform: scale(1.05);     
     box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
 }
 .productImage{

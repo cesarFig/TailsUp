@@ -1,4 +1,78 @@
+
+let productosFavoritos = [];
+
+function toggleHeart(btn, idProducto) {
+  const nombreUsuario = localStorage.getItem('usuario');
+  if (!nombreUsuario) {
+    window.location.href = "login.html";
+    return;
+  }
+
+  btn.classList.toggle('liked');
+  const icon = btn.querySelector('i');
+  const liked = btn.classList.contains('liked');
+
+  icon.classList.toggle('fa-solid', liked);
+  icon.classList.toggle('fa-regular', !liked);
+
+  const payload = {
+    nombre: nombreUsuario,
+    id_producto: idProducto,
+    liked: liked
+  };
+
+  fetch("http://localhost/TailsUp-Backend/endPointAgregarFavorito.php", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payload)
+  })
+    .then(res => res.json())
+    .then(data => {
+      if (data.status !== "success") {
+        console.warn("⚠️ Error al actualizar favorito:", data.message);
+      }
+    })
+    .catch(err => console.error("❌ Error al conectar con el servidor:", err));
+}
+
+function verificarAccionUsuario(callback) {
+  const usuario = localStorage.getItem("usuario");
+  if (!usuario) {
+    window.location.href = "login.html";
+  } else {
+    callback();
+  }
+}
+
 document.addEventListener('DOMContentLoaded', function () {
+  function inicializarProductos() {
+    const nombreUsuario = localStorage.getItem('usuario');
+    if (!nombreUsuario) {
+      console.warn("⚠️ No hay usuario en localStorage. Se mostrarán productos sin favoritos.");
+      productosFavoritos = [];
+      obtenerProductos();
+      return;
+    }
+
+    fetch('http://localhost/TailsUp-Backend/endPointGetFavoritos.php', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ usuario: nombreUsuario })
+    })
+      .then(res => res.json())
+      .then(data => {
+        if (data.status === "success") {
+          productosFavoritos = data.productos.map(p => Number(p.id_producto));
+        } else {
+          productosFavoritos = [];
+        }
+        obtenerProductos();
+      })
+      .catch(error => {
+        console.error("❌ Error al obtener favoritos:", error);
+        obtenerProductos();
+      });
+  }
 
   function obtenerProductos() {
     fetch('http://localhost/TailsUp-Backend/endPointGetProductos.php')
@@ -34,7 +108,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const ordenados = productos
       .slice()
       .sort((a, b) => Number(b.rating) - Number(a.rating))
-      .slice(0, 4); // Top 4
+      .slice(0, 4);
 
     ordenados.forEach(p => renderProducto(p, contenedor));
   }
@@ -43,8 +117,15 @@ document.addEventListener('DOMContentLoaded', function () {
     const card = document.createElement('div');
     card.className = 'productCard';
 
+    const esFavorito = productosFavoritos.includes(Number(producto.id_producto));
+    const claseCorazon = esFavorito ? 'fa-solid' : 'fa-regular';
+    const claseLiked = esFavorito ? 'liked' : '';
+
     card.innerHTML = `
       <div class="productImage">
+        <button class="heart-button ${claseLiked}" onclick="toggleHeart(this, ${producto.id_producto})">
+          <i class="${claseCorazon} fa-heart"></i>
+        </button>
         <img src="images/${producto.imagen_producto}" alt="${producto.nombre_producto}">
       </div>
       <div class="productTitle">
@@ -62,15 +143,22 @@ document.addEventListener('DOMContentLoaded', function () {
         </p>
       </div>
       <div class="productBtns">
-        <button class="btnCompra">Comprar ahora</button>
-        <button class="btnCarrito">
+        <button class="btnCompra" onclick="verificarAccionUsuario(() => alert('Comprar ${producto.id_producto}'))">Comprar ahora</button>
+        <button class="btnCarrito" onclick="verificarAccionUsuario(() => alert('Agregar al carrito ${producto.id_producto}'))">
           <img src="images/CarritoSimple.png" alt="carritoSimple.png">
         </button>
       </div>
     `;
 
     contenedor.appendChild(card);
+    card.addEventListener('click', function (e) {
+  if (e.target.closest('.heart-button') || e.target.closest('.btnCompra') || e.target.closest('.btnCarrito')) {
+    return; // Evita abrir modal si se hace clic en botones
   }
+
+  mostrarDetallesProducto(producto);
+});
+}
 
   function formatearPrecio(precio) {
     if (!precio.includes('.')) return `${precio}.00`;
@@ -120,12 +208,11 @@ document.addEventListener('DOMContentLoaded', function () {
     ajustarTamañoFuente('.productPrice p', reglas);
   }
 
-  obtenerProductos();
+  inicializarProductos();
   iniciarAjustes();
 
   window.addEventListener('resize', function () {
     manejarTruncadoResponsivo('.productTitle');
     iniciarAjustes();
   });
-
 });

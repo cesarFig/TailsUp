@@ -174,10 +174,10 @@ html, body{
 .product-price .current-price {
     display: block;
     font-weight: bold;
-    color: #DE6600; /* Dark price */
+    color: #343a40; /* Dark price */
 }
 
-.product-price .previous-price {
+.product-price .original-price {
     display: block;
     font-size: 0.9em; /* Relative to parent */
     color: #adb5bd; /* Light gray strikethrough price */
@@ -243,7 +243,7 @@ html, body{
 .product-total {
     font-weight: bold;
     font-size: 1em; /* Standard size */
-    color: #DE6600; /* Dark text */
+    color: #343a40; /* Dark text */
 }
 
 .product-action {
@@ -295,7 +295,6 @@ html, body{
     padding: 10px 0; /* Adjust padding */
     font-size: 0.9em; /* Slightly smaller text */
     border-bottom: 1px solid #dee2e6; /* Subtle separator */
-    margin-bottom: 30px; /* Add spacing between the order list and totals */
 }
 .summary-item:last-of-type {
     border-bottom: none;
@@ -319,26 +318,6 @@ html, body{
     color: #343a40; /* Dark price */
 }
 
-/* Styling for the order summary */
-.order-summary-box .summary-line {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 8px;
-}
-
-.order-summary-box .summary-line span {
-    font-size: 16px;
-}
-
-.order-summary-box .summary-line .total-price {
-    font-weight: bold;
-    color: #DE6600; /* Set the total price number to orange */
-}
-
-.order-summary-box .summary-line .subtotal-price,
-.order-summary-box .summary-line .cupon-discount {
-    text-align: right;
-}
 
 /* Discount Coupon Section - REMOVE container look */
 .discount-coupon {

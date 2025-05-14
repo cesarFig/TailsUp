@@ -26,8 +26,10 @@
                 <img class="logoNav" src="images/logoCompleto.png" alt="logoNav.png">
                 <div class="buscadorDiv">
                     <button id="btnBuscar"><img src="images/lupa.png" alt="lupa.png"></button>
-                    <input class="buscador" type="search" placeholder="Buscar">
+                    <input class="buscador" type="search" placeholder="Buscar" id="inputBusqueda">
+                    <div id="resultadosBusqueda" class="resultadosBusqueda"></div>
                 </div>
+
                 <div class="accesoDirecto">
                     <div class="navDiv">
                         <a class="carritoBtn" href="carrito.html"><img class="carrito" src="images/Carrito.png"
@@ -48,9 +50,9 @@
                 <a href="hola">Consejos</a>
                 <a href="hola">Acerca de</a>
 
-                <div id="menuUsuario" class="dropdown-menu" style="display: none; position: absolute;">
+                <div id="menuUsuario" class="dropdown-menu">
                     <div class="cart-tab"></div>
-                    <ul>                        
+                    <ul>
                         <li><a href="favoritos.html">Favoritos</a></li>
                         <li><a href="#" id="cerrarSesion">Cerrar sesión</a></li>
                     </ul>
@@ -227,29 +229,52 @@
             <button class="btnServicios">Visita los servicios recomendados</button>
         </div>
     </section>
-    <div class="containerEstetica">
-        <div class="esteticaCard">
-            <img src="images/perroRapando.png" alt="perroRapando.png">
-            <h3>Aseo completo</h3>
-            <p>Elimina el pelo suelto y evita enredos y nudos en el pelaje de tu mascota.</p>
+    <div class="carruselWrapper">
+        <div class="sliderTrack" id="sliderTrack">
+            <div class="esteticaCard">
+                <img src="images/perroRapando.png" alt="perroRapando.png">
+                <h3>Aseo completo</h3>
+                <p>Elimina el pelo suelto y evita enredos y nudos en el pelaje de tu mascota.</p>
+            </div>
+            <div class="esteticaCard">
+                <img src="images/perroCortando.png" alt="perroCortando.png">
+                <h3>Cortes de pelo</h3>
+                <p>Recortes elegantes para mantener una longitud de pelaje ordenada y manejable.</p>
+            </div>
+            <div class="esteticaCard">
+                <img src="images/perroSecando.png" alt="perroSecando.png">
+                <h3>Lavado y limpieza</h3>
+                <p>Limpiar y lavar con champú para mantener su pelaje fresco y libre de suciedad y olor.</p>
+            </div>
+            <div class="esteticaCard">
+                <img src="images/gatoCortando.png" alt="gatoCortando.png">
+                <h3>Cortes de uñas</h3>
+                <p>Mantener sus uñas con una longitud adecuada para evitar molestias y crecimiento excesivo.</p>
+            </div>
+            <div class="esteticaCard">
+                <img src="images/perroSecando.png" alt="perroSecando.png">
+                <h3>Lavado y limpieza</h3>
+                <p>Limpiar y lavar con champú para mantener su pelaje fresco y libre de suciedad y olor.</p>
+            </div>
+            <div class="esteticaCard">
+                <img src="images/gatoCortando.png" alt="gatoCortando.png">
+                <h3>Cortes de uñas</h3>
+                <p>Mantener sus uñas con una longitud adecuada para evitar molestias y crecimiento excesivo.</p>
+            </div>
+            <div class="esteticaCard">
+                <img src="images/perroSecando.png" alt="perroSecando.png">
+                <h3>Lavado y limpieza</h3>
+                <p>Limpiar y lavar con champú para mantener su pelaje fresco y libre de suciedad y olor.</p>
+            </div>
+            <div class="esteticaCard">
+                <img src="images/gatoCortando.png" alt="gatoCortando.png">
+                <h3>Cortes de uñas</h3>
+                <p>Mantener sus uñas con una longitud adecuada para evitar molestias y crecimiento excesivo.</p>
+            </div>
         </div>
-        <div class="esteticaCard">
-            <img src="images/perroCortando.png" alt="perroCortando.png">
-            <h3>Cortes de pelo</h3>
-            <p>Recortes elegantes para mantener una longitud de pelaje ordenada y manejable.</p>
-        </div>
-        <div class="esteticaCard">
-            <img src="images/perroSecando.png" alt="perroSecando.png">
-            <h3>Lavado y limpieza</h3>
-            <p>Limpiar y lavar con champú para mantener su pelaje fresco y libre de suciedad y olor.</p>
-        </div>
-        <div class="esteticaCard">
-            <img src="images/gatoCortando.png" alt="gatoCortando.png">
-            <h3>Cortes de uñas</h3>
-            <p>Mantener sus uñas con una longitud adecuada para evitar molestias y crecimiento excesivo.</p>
-        </div>
-        <button id="btnCarrusel"><img src="images/flecha.png" alt="flecha.btn"></button>
     </div>
+
+
     <div class="containerCuidador">
         <div class="divCuidador">
             <img src="images/seniorConPerro.png" alt="cuidador.png">
@@ -262,6 +287,74 @@
             <button id="btnConviertete">Conviertete</button>
         </div>
     </div>
+    <!-- Modal de Detalles del Producto -->
+    <div id="modalProducto" class="modal-producto">
+        <div class="modal-contenido-wrapper">
+            <span class="cerrar-modal" onclick="cerrarModalProducto()">&times;</span>
+
+            <!-- Sección principal con imagen e info -->
+            <div class="modal-contenido-grid">
+                <div class="modal-img">
+                    <img id="modalImagenProducto" src="" alt="Imagen del producto">
+                    <p class="ampliarTexto">Coloca el cursor sobre la imagen para hacer zoom</p>
+                </div>
+
+                <div class="modal-info">
+                    <h2 id="modalNombreProducto" class="titulo"></h2>
+                    <p id="modalMarcaProducto" class="marca-link"></p>
+
+                    <div class="rating">
+                        <div id="modalEstrellas" class="estrellas-dinamicas"></div>
+                        <span id="modalRatingVentas"></span>
+                    </div>
+
+                    <div class="precioSeccion">
+                        <p class="precio-actual" id="modalPrecioProducto"></p>
+                        <p class="precio-anterior" id="modalPrecioAnteriorProducto"></p>
+                    </div>
+
+                    <p id="modalDescripcionProducto" class="descripcion"></p>
+
+                    <div class="cantidadCompra">
+                        <label for="cantidad" style="font-family: poppins;">Cantidad:</label>
+                        <div class="cantidadControles">
+                            <button type="button" onclick="cambiarCantidad(-1)">−</button>
+                            <input type="number" id="cantidad" name="cantidad" value="1" min="1" readonly>
+                            <button type="button" onclick="cambiarCantidad(1)">+</button>
+                        </div>
+                    </div>
+
+                    <div class="botonesModal">
+                        <button class="btnCompraModal">Comprar ahora</button>
+                        <button class="btnCarritoModal">
+                            <img src="images/CarritoSimple.png" alt="carrito"> Agregar al carrito
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Comentarios -->
+            <div class="zonaComentarios">
+                <h3>Reseñas</h3>
+                <div id="comentariosLista" class="comentarios-lista">
+                    <!-- Comentarios cargados dinámicamente -->
+                </div>
+
+                <div class="comentarioForm">
+                    <label for="ratingComentario">Tu calificación:</label>
+                    <div id="estrellasFormulario" class="estrellas-formulario">
+                        <!-- Se llenan dinámicamente -->
+                    </div>
+
+                    <textarea id="nuevoComentario" placeholder="Escribe tu comentario..."></textarea>
+                    <button onclick="agregarComentario()">Enviar</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
     <footer>
         <img class="imgPatita" src="images/patita.png" alt="patita.png">
         <div class="containerNaranja">
@@ -305,6 +398,7 @@
             }
         });
     </script>
+    <script src="js/buscarAndFullCard.js"></script>
     <script>
         window.addEventListener('DOMContentLoaded', () => {
             const micuenta = document.getElementById('micuenta');
@@ -317,72 +411,54 @@
                 micuenta.href = '#'; // Evita redirección
                 micuentaImg.href = '#'
                 // Mostrar/ocultar menú al hacer clic
-                micuenta.addEventListener('click', (e) => {
+                // Mostrar/ocultar menú al hacer clic
+                const toggleMenu = (e) => {
                     e.preventDefault();
-                    menuUsuario.style.display = menuUsuario.style.display === 'none' ? 'block' : 'none';
-                });
-                micuentaImg.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    menuUsuario.style.display = menuUsuario.style.display === 'none' ? 'block' : 'none';
-                });
+                    menuUsuario.classList.toggle('show');
+                };
+
+                micuenta.addEventListener('click', toggleMenu);
+                micuentaImg.addEventListener('click', toggleMenu);
+
 
                 // Cerrar sesión
                 document.getElementById('cerrarSesion').addEventListener('click', () => {
                     localStorage.removeItem('usuario');
-                    localStorage.removeItem('idUsuario');
                     window.location.href = 'login.html';
                 });
             }
         });
     </script>
 
+
+
     <script>
-        function toggleHeart(btn) {
-            const icon = btn.querySelector('i');
-            const isLiked = btn.classList.toggle('liked');
+        document.addEventListener('DOMContentLoaded', () => {
+            const track = document.getElementById('sliderTrack');
+            const cards = document.querySelectorAll('.esteticaCard');
+            const totalCards = cards.length;
 
-            // Cambiar ícono
-            icon.classList.toggle('fa-solid', isLiked);
-            icon.classList.toggle('fa-regular', !isLiked);
+            let currentIndex = 0;
+            let visibleCards = window.innerWidth <= 768 ? 2 : 4;
 
-            // Reiniciar animación
-            btn.style.animation = 'none';
-            btn.offsetHeight;
-            btn.style.animation = null;
-
-            // Obtener nombre de usuario
-            const nombreUsuario = localStorage.getItem('usuario');
-            if (!nombreUsuario) {
-                alert("Debes iniciar sesión para usar esta función.");
-                return;
+            function slide() {
+                const maxIndex = Math.ceil(totalCards / visibleCards) - 1;
+                currentIndex = (currentIndex + 1) > maxIndex ? 0 : currentIndex + 1;
+                const percentage = -(100 * currentIndex);
+                track.style.transform = `translateX(${percentage}%)`;
             }
-        
-            // Obtener id del producto desde el DOM
-            const card = btn.closest('.productCard');
-            const idProducto = card.dataset.idProducto;
 
+            setInterval(slide, 3000);
 
-            const payload = {
-                nombre: nombreUsuario,
-                id_producto: idProducto,
-                liked: isLiked
-            };
+            window.addEventListener('resize', () => {
+                visibleCards = window.innerWidth <= 768 ? 2 : 4;
+                currentIndex = 0;
+                track.style.transform = `translateX(0%)`;
+            });
+        });
 
-            fetch('http://localhost/TailsUp-Backend/endPointAgregarFavorito.php', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(payload)
-            })
-                .then(response => response.json())
-                .then(data => {                                                        
-                })
-                .catch(error => {
-                    console.error('Error al agregar/eliminar favorito:', error);
-                });
-        }
     </script>
+
 
 
 

@@ -1,90 +1,104 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tails Up - Login</title>
-    <link rel="stylesheet" href="css/recuperarStyles/recuperar.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tails Up - Recuperar Contraseña</title>
+  <link rel="stylesheet" href="css/recuperarStyles/recuperar.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet" />
 </head>
-
 <body>
-    <div class="container">
-        <div class="ingresarBox">
-            <div class="logo">
-                <img src="images/logo.png" alt="Tails Up">
-            </div>
-            <div class="containerTexto">
-                <div class="containerImgEmail">
-                    <img src="/images/email.png" alt="email">
-                </div>
-                <h1>Revisa tu correo</h1>                
-            </div>         
-            <p>Hemos enviado un codigo de verificacion de 6 digitos a tu correo</p>
-                <form id="codigoForm">  
-                    <div class="containerInput">
-                        <input type="text" maxlength="1" pattern="\d" inputmode="numeric" oninput="this.value=this.value.replace(/\D/g,'')" required>
-                        <input type="text" maxlength="1" pattern="\d" inputmode="numeric" oninput="this.value=this.value.replace(/\D/g,'')" required>
-                        <input type="text" maxlength="1" pattern="\d" inputmode="numeric" oninput="this.value=this.value.replace(/\D/g,'')" required>
-                        <input type="text" maxlength="1" pattern="\d" inputmode="numeric" oninput="this.value=this.value.replace(/\D/g,'')" required>
-                        <input type="text" maxlength="1" pattern="\d" inputmode="numeric" oninput="this.value=this.value.replace(/\D/g,'')" required>
-                        <input type="text" maxlength="1" pattern="\d" inputmode="numeric" oninput="this.value=this.value.replace(/\D/g,'')" required>
-                        <br><br>
-                        <button type="submit">Verificar</button>
-                    </div>                                      
-                  </form>            
+  <div class="container">
+    <div class="ingresarBox">
+      <div class="logo">
+        <img src="images/logo.png" alt="Tails Up">
+      </div>
+      <div class="containerTexto">
+        <div class="containerImgEmail">
+          <img src="/images/email.png" alt="email">
         </div>
-        
-    </div>
-    <script>
-        document.getElementById("codigoForm").addEventListener("submit", function (e) {
-            e.preventDefault();
-    
-            // Obtener los 6 dígitos del código
-            const inputs = document.querySelectorAll("#codigoForm input[type='text']");
-            let codigoCompleto = "";
-            inputs.forEach(input => codigoCompleto += input.value.trim());
-    
-            // Verificar que el código tenga 6 dígitos
-            if (codigoCompleto.length !== 6) {
-                alert("Por favor ingresa los 6 dígitos del código.");
-                return;
-            }
-    
-            // Obtener el email guardado en localStorage
-            const email = localStorage.getItem("emailRecuperacion");
-            if (!email) {
-                alert("No se encontró el correo electrónico de recuperación. Intenta nuevamente.");
-                return;
-            }
-    
-            // Enviar al backend
-            fetch("http://localhost/TailsUp-Backend/verificarCodigo.php", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/x-www-form-urlencoded"
-                },
-                body: `codigoCompleto=${encodeURIComponent(codigoCompleto)}&email=${encodeURIComponent(email)}`
-            })
-            .then(response => response.text())
-            .then(data => {
-                console.log("Respuesta del servidor:", data);
-                if (data.includes("✔️")) {
-                    window.location.href = "newPassword.html";
-                } else {
-                    alert("Código incorrecto.");
-                }
-            })
-            .catch(error => {
-                console.error("Error:", error);
-                alert("Hubo un problema al verificar el código.");
-            });
-        });
-    </script>
-    
-</body>
+        <h1>Revisa tu correo</h1>                
+      </div>         
+      <p>Hemos enviado un código de verificación de 6 dígitos a tu correo</p>
 
+      <div id="mensaje" class="mensaje-oculto"></div>
+
+      <form id="codigoForm">  
+        <div class="containerInput">
+          <input type="text" maxlength="1" pattern="\d" inputmode="numeric" required>
+          <input type="text" maxlength="1" pattern="\d" inputmode="numeric" required>
+          <input type="text" maxlength="1" pattern="\d" inputmode="numeric" required>
+          <input type="text" maxlength="1" pattern="\d" inputmode="numeric" required>
+          <input type="text" maxlength="1" pattern="\d" inputmode="numeric" required>
+          <input type="text" maxlength="1" pattern="\d" inputmode="numeric" required>
+        </div>
+        <br><br>
+        <button type="submit">Verificar</button>                
+      </form>            
+    </div>
+  </div>
+
+  <script>
+    const inputs = document.querySelectorAll("#codigoForm input");
+    const mensaje = document.getElementById("mensaje");
+
+    // Avanzar automáticamente al siguiente input
+    inputs.forEach((input, index) => {
+      input.addEventListener("input", () => {
+        if (input.value.length === 1 && index < inputs.length - 1) {
+          inputs[index + 1].focus();
+        }
+      });
+
+      input.addEventListener("blur", () => {
+        input.style.borderColor = input.value.trim() === "" ? "red" : "#007A7A";
+      });
+    });
+
+    function mostrarMensaje(texto, tipo = "error") {
+      mensaje.textContent = texto;
+      mensaje.className = "mensaje " + tipo;
+      setTimeout(() => {
+        mensaje.className = "mensaje-oculto";
+      }, 4000);
+    }
+
+    document.getElementById("codigoForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+      let codigoCompleto = "";
+      inputs.forEach(input => codigoCompleto += input.value.trim());
+
+      if (codigoCompleto.length !== 6) {
+        mostrarMensaje("Por favor ingresa los 6 dígitos del código.");
+        return;
+      }
+
+      const email = localStorage.getItem("emailRecuperacion");
+      if (!email) {
+        mostrarMensaje("No se encontró el correo electrónico de recuperación.");
+        return;
+      }
+
+      fetch("http://localhost/TailsUp-Backend/verificarCodigo.php", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: `codigoCompleto=${encodeURIComponent(codigoCompleto)}&email=${encodeURIComponent(email)}`
+      })
+      .then(response => response.text())
+      .then(data => {
+        if (data.includes("✔️")) {
+          window.location.href = "newPassword.html";
+        } else {
+          mostrarMensaje("Código incorrecto.");
+        }
+      })
+      .catch(error => {
+        console.error("Error:", error);
+        mostrarMensaje("Hubo un problema al verificar el código.");
+      });
+    });
+  </script>
+</body>
 </html>

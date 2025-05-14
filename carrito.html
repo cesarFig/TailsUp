@@ -1,17 +1,14 @@
 <!DOCTYPE html>
 <html lang="es">
-
-<head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="css/fonts.css">
-    <link rel="stylesheet" href="css/carritoStyles/styles.css">
-    <link rel="stylesheet" href="css/carritoStyles/footer.css">
-    <link rel="stylesheet" href="css/carritoStyles/navbar-style.css">
-    <title>Tails Up | Carrito</title>
-    <link rel="shortcut icon" href="images/isotipoTailsUp.png" type="image/x-icon">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-</head>
-
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="css/fonts.css">
+        <link rel="stylesheet" href="css/carritoStyles/styles.css">
+        <link rel="stylesheet" href="css/carritoStyles/navbar-style.css">
+        <title>Tails Up | Carrito</title>
+        <link rel="shortcut icon" href="images/isotipoTailsUp.png" type="image/x-icon">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    </head>
 <body>
     <header>
         <nav class="navbar">
@@ -57,8 +54,7 @@
             <table class="cart-table">
                 <thead>
                     <tr>
-                        <th></th>
-                        <th colspan="2">Producto</th>
+                        <th></th> <th colspan="2">Producto</th>
                         <th>Precio/unidad</th>
                         <th>Cantidad</th>
                         <th>Monto total</th>
@@ -66,14 +62,93 @@
                     </tr>
                 </thead>
                 <tbody>
-                </tbody>
+                    <tr>
+                        <td><input type="checkbox"></td> <td class="product-image-cell"><img src="https://cdn.pixabay.com/photo/2016/05/04/11/25/giraffe-1371203_1280.jpg" alt="Producto" class="product-image"></td>
+                        <td class="product-info">
+                            <span class="product-name">BASKETBALL Y FUTBOL JUGUETES PARA MASC...</span>
+                            <span class="product-size">Size: L</span>
+                        </td>
+                        <td class="product-price">
+                            <span class="current-price">$300.00</span>
+                            <span class="original-price">$328.85</span>
+                        </td>
+                        <td class="product-quantity">
+                            <button class="quantity-btn">-</button>
+                            <input type="number" value="2" min="1" class="quantity-input">
+                            <button class="quantity-btn">+</button>
+                        </td>
+                        <td class="product-total">$600.00</td>
+                        <td class="product-action"><button class="delete-btn"><i class="fas fa-trash"></i></button></td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox"></td> <td class="product-image-cell"><img src="https://cdn.pixabay.com/photo/2016/05/04/11/25/giraffe-1371203_1280.jpg" alt="Producto" class="product-image"></td>
+                        <td class="product-info">
+                            <span class="product-name">WELLNESS-SIGNATURE SELECT TM</span>
+                            <span class="product-size">Tamaño 5.0KG (110)</span>
+                        </td>
+                        <td class="product-price">
+                            <span class="current-price">$200.00</span>
+                            <span class="original-price">$293.01</span>
+                        </td>
+                        <td class="product-quantity">
+                            <button class="quantity-btn">-</button>
+                            <input type="number" value="2" min="1" class="quantity-input">
+                            <button class="quantity-btn">+</button>
+                        </td>
+                        <td class="product-total">$400.00</td>
+                        <td class="product-action"><button class="delete-btn"><i class="fas fa-trash"></i></button></td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox"></td> <td class="product-image-cell"><img src="https://cdn.pixabay.com/photo/2016/05/04/11/25/giraffe-1371203_1280.jpg" alt="Producto" class="product-image"></td>
+                        <td class="product-info">
+                            <span class="product-name">ENCORE COMIDA GATO</span>
+                            <span class="product-size">Tamaño: 5.0KG (11.0lb)</span>
+                        </td>
+                        <td class="product-price">
+                            <span class="current-price">$400.00</span>
+                            <span class="original-price">$450.64</span>
+                        </td>
+                        <td class="product-quantity">
+                            <button class="quantity-btn">-</button>
+                            <input type="number" value="10" min="1" class="quantity-input">
+                            <button class="quantity-btn">+</button>
+                        </td>
+                        <td class="product-total">$4000.00</td>
+                        <td class="product-action"><button class="delete-btn"><i class="fas fa-trash"></i></button></td>
+                    </tr>
+                    </tbody>
             </table>
         </section>
 
         <aside class="order-summary-column">
             <div class="order-summary-box">
                 <h2>Tu orden</h2>
-            </div>
+                   <div class="summary-item">
+                    <span class="summary-product-name">ENCORE COMIDA GATO</span>
+                    <span class="summary-quantity">10x</span>
+                    <span class="summary-price">$4000.00</span>
+                </div>
+                   <div class="summary-item">
+                    <span class="summary-product-name">WELLNESS SIGNATURE SELECT TM</span>
+                    <span class="summary-quantity">2x</span>
+                    <span class="summary-price">$400.00</span>
+                </div>
+                   <div class="summary-item">
+                    <span class="summary-product-name">ROYAL CANIN CUIDADO DE DIETA SENSIBLE</span>
+                    <span class="summary-quantity">2x</span>
+                    <span class="summary-price">$900.00</span>
+                </div>
+                   <div class="summary-item">
+                    <span class="summary-product-name">Juguete mordelón perro</span>
+                    <span class="summary-quantity">2x</span>
+                    <span class="summary-price">$640.00</span>
+                </div>
+                   <div class="summary-item">
+                    <span class="summary-product-name">Juguete de hueso</span>
+                    <span class="summary-quantity">2x</span>
+                    <span class="summary-price">$1400.00</span>
+                </div>
+                </div>
 
             <div class="discount-coupon">
                 <h3>Cupón de descuento</h3>
@@ -89,59 +164,6 @@
         </aside>
 
     </main>
-    <footer>
-        <div class="footer-container">
-            <div class="footer-top-paw">
-                <img src="images/isotipo.png" alt="Huella de mascota">
-            </div>
-            <div class="footer-main-content">
-                <div class="footer-about">
-                    <p>Bienvenido a Tails Up! Estamos contentos que formes parte de nuestra familia, puedes contactarnos
-                        en cualquiera de nuestros medios</p>
-                    <div class="footer-contact">
-                        <p><img src="images/email-icon.png" alt="Email"> tailsup@gmail.com</p>
-                        <p><img src="images/email-icon.png" alt="Email"> tailssuport@gmail.com</p>
-                        <p><img src="https://cdn-icons-png.flaticon.com/512/15/15407.png" alt="Teléfono"> +524436568709
-                        </p>
-                        <p><img src="https://cdn-icons-png.flaticon.com/512/15/15407.png" alt="Teléfono"> +52443870989
-                        </p>
-                    </div>
-                    <div class="footer-social">
-                        <a href="#"><img src="https://1000marcas.net/wp-content/uploads/2019/11/insta-logo.png"
-                                alt="Instagram"></a>
-                        <a href="#"><img src="https://img.icons8.com/m_rounded/512/facebook-new.png" alt="Facebook"></a>
-                    </div>
-                </div>
-                <div clas="image-container">
-                    <div class="footer-image-dashed-box"></div>
-                    <div class="footer-image-wrapper">
-                        <img src="images/hamster.png" alt="Hamster">
-                    </div>
-                </div>
-                <div class="footer-links">
-                    <div class="footer-questions">
-                        <h4>Preguntas</h4>
-                        <ul>
-                            <li><a href="#">¿Qué métodos de pa...</a></li>
-                            <li><a href="#">¿Cómo puedo comp...</a></li>
-                            <li><a href="#">Envíos y devoluciones</a></li>
-                        </ul>
-                    </div>
-                    <div class="footer-site">
-                        <h4>Sitio</h4>
-                        <ul>
-                            <li><a href="index.html">Inicio</a></li>
-                            <li><a href="#">About</a></li>
-                            <li><a href="#">Categorías</a></li>
-                            <li><a href="#">Consejos</a></li>
-                            <li><a href="#">Tienda</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
-    <script src="js/carritoItem.js"></script>
-</body>
 
+    </body>
 </html>

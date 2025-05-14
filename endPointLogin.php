@@ -19,8 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 
         echo json_encode([
             'success' => true,
-            'nombre' => $usuario['nombre'],
-            'idUsuario' => $usuario['idUsuario'],
+            'nombre' => $usuario['nombre']
         ]);
     } else {
         echo json_encode([

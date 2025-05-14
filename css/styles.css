@@ -8,41 +8,65 @@ body {
     padding: 0;
 }
 
-.dropdown-menu {    
-    font-family: poppins;
-    width: 20%;
-    background-color: white;
-    border: 1px solid #ccc;
-    padding: 10px;
-    z-index: 101;
-    right: 2.6%;
-    position: fixed; 
-    top: 20px;    
-    border-radius: 10px;     
-        
+.dropdown-menu {
+  font-family: 'Poppins', sans-serif;
+  width: 220px; /* mejor fijo para mantener consistencia */
+  background-color: white;
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 10px;
+  position: fixed;
+  right: 3.9%;
+  top: 17.5%; /* ajustado para que no se solape */
+  z-index: 101;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  opacity: 0;
+  transform: translateY(-10px);
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease;
 }
+
+/* Cuando está visible */
+.dropdown-menu.show {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+/* Triangulito */
 .cart-tab {
-    z-index: 101;
-    position: absolute;
-    top: -15px;
-    left: 75%;
-    width: 0;
-    height: 0;
-    border-left: 15px solid transparent;
-    border-right: 15px solid transparent;
-    border-bottom: 15px solid white; /* Color de fondo de la pestaña */
+  position: absolute;
+  top: -15px;
+  left: 75%;
+  width: 0;
+  height: 0;
+  border-left: 15px solid transparent;
+  border-right: 15px solid transparent;
+  border-bottom: 15px solid white;
+  z-index: 102;
 }
+
+/* Lista interna */
 .dropdown-menu ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
+
 .dropdown-menu ul li {
-    margin: 5px 0;
+  margin: 8px 0;
 }
+
 .dropdown-menu ul li a {
-    text-decoration: none;
-    color: #333;
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+  display: block;
+  transition: color 0.2s ease;
+}
+
+.dropdown-menu ul li a:hover {
+  color: #de6600;
 }
 
 @font-face {
@@ -92,76 +116,7 @@ body {
 }
 
 @media (max-width:768px) {
-    .seccion1 {
-        margin-top: 110px !important;
-    }
-
-    .carruselEstetica li {
-        width: 40vw !important;
-    }
-
-    .carruselEstetica {
-        gap: 0% !important;
-        width: calc(6 * 40vw) !important;
-        /* 6 elementos de 40vw = 240vw */
-        animation: slideMobileEstetica 20s linear infinite !important;
-    }
-
-    @keyframes slideMobileEstetica {
-        0% {
-            margin-left: 0;
-        }
-
-        10% {
-            margin-left: 0;
-        }
-
-        15% {
-            margin-left: -40vw;
-        }
-
-        25% {
-            margin-left: -40vw;
-        }
-
-        30% {
-            margin-left: -80vw;
-        }
-
-        40% {
-            margin-left: -80vw;
-        }
-
-        45% {
-            margin-left: -120vw;
-        }
-
-        55% {
-            margin-left: -120vw;
-        }
-
-        60% {
-            margin-left: -160vw;
-        }
-
-        70% {
-            margin-left: -160vw;
-        }
-
-        75% {
-            margin-left: -200vw;
-        }
-
-        85% {
-            margin-left: -200vw;
-        }
-
-        100% {
-            margin-left: -200vw;
-        }
-
-        /* Se reinicia */
-    }
+   
 
     .sliderConsejos li {
         width: 100vw !important;

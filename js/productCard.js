@@ -1,3 +1,40 @@
+
+  function toggleHeart(btn, idProducto) {    
+  btn.classList.toggle('liked');
+  const icon = btn.querySelector('i');
+  const liked = btn.classList.contains('liked');
+
+  icon.classList.toggle('fa-solid', liked);
+  icon.classList.toggle('fa-regular', !liked);
+
+  const nombreUsuario = localStorage.getItem('usuario');
+  if (!nombreUsuario) {
+    console.warn("⚠️ Usuario no encontrado en localStorage");
+    return;
+  }
+
+  const payload = {
+    usuario: nombreUsuario,
+    id_producto: idProducto,
+    liked: liked
+  };
+
+  console.log("📦 Enviando:", payload); // ⬅️ Verifica esto
+
+  fetch("http://localhost/TailsUp-Backend/endPointAgregarFavorito.php", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payload)
+  })
+    .then(res => res.json())
+    .then(data => {
+      console.log("🔁 Respuesta del servidor:", data); // ⬅️ Verifica si es éxito o error
+      if (data.status !== "success") {
+        console.warn("⚠️ Error al actualizar favorito:", data.message);
+      }
+    })
+    .catch(err => console.error("❌ Error al conectar con el servidor:", err));
+}
 document.addEventListener('DOMContentLoaded', function () {
   let productosGlobales = [];
   let productosFavoritos = [];
@@ -136,6 +173,7 @@ document.addEventListener('DOMContentLoaded', function () {
       card.dataset.idProducto = producto.id_producto;
 
       const esFavorito = productosFavoritos.map(Number).includes(Number(producto.id_producto));
+     
       const claseCorazon = esFavorito ? 'fa-solid' : 'fa-regular';
       const claseLiked = esFavorito ? 'liked' : '';
 
@@ -195,6 +233,8 @@ document.addEventListener('DOMContentLoaded', function () {
       elemento.style.fontSize = fontSize;
     });
   }
+
+
 
   function manejarTruncadoResponsivo(selector) {
     const maxCaracteres = window.innerWidth <= 768 ? 10 : 22;

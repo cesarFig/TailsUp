@@ -28,44 +28,57 @@
     border-color: #003F5A;
     background-color: white;
 }
-.containerEstetica{
-    position: relative;
-    display: flex;
-    width: 80%;
-    gap: 2%;
-    margin-left: 10%;
-    
-}
-.esteticaCard{
-    width: 100%;    
+.carruselWrapper {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  overflow: hidden;
+  padding: 20px 0;
+  box-sizing: border-box;
 }
 
-.esteticaCard h3{
-    font-family: 'Flame', sans-serif;
-    color: #003F5A;
+.sliderTrack {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
 }
 
-.esteticaCard img{
-   width: 250px;
-   height: auto;
+.esteticaCard {
+  flex: 0 0 25%; /* 4 por fila */
+  box-sizing: border-box;
+  padding: 10px;
+  text-align: center;
 }
 
-.esteticaCard p{
-    max-width: 100%;
-    color: gray;
-    margin: 0px;
-    font-family: poppins;
-    font-size: 13px;
+.esteticaCard img {
+  width: 100%;
+  border-radius: 10px;
 }
-.esteticaCard img{
-    width: 100%;
+
+.esteticaCard h3 {
+  font-family: 'Flame', sans-serif;
+  font-size: 1.2rem;
+  color: #003F5A;
+  margin: 10px 0 5px;
 }
-#btnCarrusel{
-    position: absolute;
-    border-radius: 70%;
-    height: 50px;
-    width: 50px;
-    background-color: #DE6600;
-    border: none;    
-    transform: translate(1055px,110px);
+
+.esteticaCard p {
+  font-family: 'Poppins', sans-serif;
+  font-size: 13px;
+  color: gray;
+  margin: 0 auto;
+  max-width: 90%;
 }
+
+/* ✅ RESPONSIVE: solo 2 tarjetas centradas */
+@media (max-width: 768px) {
+  .sliderTrack {
+    justify-content: center;
+  }
+
+  .esteticaCard {
+    flex: 0 0 45%; /* 2 tarjetas por fila con espacio */
+    margin: 0 2.5%;
+  }
+}
+
+

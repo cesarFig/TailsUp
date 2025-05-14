@@ -24,7 +24,8 @@
                 <img class="logoNav" src="images/logoCompleto.png" alt="logoNav.png">
                 <div class="buscadorDiv">
                     <button id="btnBuscar"><img src="images/lupa.png" alt="lupa.png"></button>
-                    <input class="buscador" type="search" placeholder="Buscar">
+                    <input class="buscador" type="search" placeholder="Buscar" id="inputBusqueda">
+                    <div id="resultadosBusqueda" class="resultadosBusqueda"></div>
                 </div>
                 <div class="accesoDirecto">
                     <div class="navDiv">
@@ -45,6 +46,13 @@
                 <a href="/shop.html">Tienda</a>
                 <a href="hola">Consejos</a>
                 <a href="hola">Acerca de</a>
+                <div id="menuUsuario" class="dropdown-menu">
+                    <div class="cart-tab"></div>
+                    <ul>
+                        <li><a href="favoritos.html">Favoritos</a></li>
+                        <li><a href="#" id="cerrarSesion">Cerrar sesión</a></li>
+                    </ul>
+                </div>
             </div>
         </nav>
     </header>
@@ -159,14 +167,14 @@
             </div>
         </div>
         <div class="containerProductos">
-            <div class="titleSection">
+            <div class="titleSection" onclick="irACategoria('Comida')">
                 <h4>COMIDA</h4>
                 <img src="images/huellaNaranja.png" alt="huellaNaranja.png">
             </div>
             <section class="seccionProducts" id="contenedorProductos">
                 <!-- Aqui van los productos mas vendidos de comida-->
             </section>
-            <div class="titleSection2">
+            <div class="titleSection2" onclick="irACategoria('Juguetes')">
                 <h4>JUGUETES</h4>
                 <img src="images/huellaNaranja.png" alt="huellaNaranja.png">
             </div>
@@ -229,6 +237,71 @@
             <!-- Aqui van los productos mas vendidos de comida-->
         </section>
     </div>
+     <div id="modalProducto" class="modal-producto">
+        <div class="modal-contenido-wrapper">
+            <span class="cerrar-modal" onclick="cerrarModalProducto()">&times;</span>
+
+            <!-- Sección principal con imagen e info -->
+            <div class="modal-contenido-grid">
+                <div class="modal-img">
+                    <img id="modalImagenProducto" src="" alt="Imagen del producto">
+                    <p class="ampliarTexto">Coloca el cursor sobre la imagen para hacer zoom</p>
+                </div>
+
+                <div class="modal-info">
+                    <h2 id="modalNombreProducto" class="titulo"></h2>
+                    <p id="modalMarcaProducto" class="marca-link"></p>
+
+                    <div class="rating">
+                        <div id="modalEstrellas" class="estrellas-dinamicas"></div>
+                        <span id="modalRatingVentas"></span>
+                    </div>
+
+                    <div class="precioSeccion">
+                        <p class="precio-actual" id="modalPrecioProducto"></p>
+                        <p class="precio-anterior" id="modalPrecioAnteriorProducto"></p>
+                    </div>
+
+                    <p id="modalDescripcionProducto" class="descripcion"></p>
+
+                    <div class="cantidadCompra">
+                        <label for="cantidad" style="font-family: poppins;">Cantidad:</label>
+                        <div class="cantidadControles">
+                            <button type="button" onclick="cambiarCantidad(-1)">−</button>
+                            <input type="number" id="cantidad" name="cantidad" value="1" min="1" readonly>
+                            <button type="button" onclick="cambiarCantidad(1)">+</button>
+                        </div>
+                    </div>
+
+                    <div class="botonesModal">
+                        <button class="btnCompraModal">Comprar ahora</button>
+                        <button class="btnCarritoModal">
+                            <img src="images/CarritoSimple.png" alt="carrito"> Agregar al carrito
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Comentarios -->
+            <div class="zonaComentarios">
+                <h3>Reseñas</h3>
+                <div id="comentariosLista" class="comentarios-lista">
+                    <!-- Comentarios cargados dinámicamente -->
+                </div>
+
+                <div class="comentarioForm">
+                    <label for="ratingComentario">Tu calificación:</label>
+                    <div id="estrellasFormulario" class="estrellas-formulario">
+                        <!-- Se llenan dinámicamente -->
+                    </div>
+
+                    <textarea id="nuevoComentario" placeholder="Escribe tu comentario..."></textarea>
+                    <button onclick="agregarComentario()">Enviar</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
 
     <footer>
         <img class="imgPatita" src="images/patita.png" alt="patita.png">
@@ -267,6 +340,16 @@
 
 
     <script src="js/productCard.js"></script>
+    <script>
+  function irACategoria(nombreCategoria) {
+    // Opción 1: Usar localStorage
+    localStorage.setItem('categoriaSeleccionada', nombreCategoria);
+    window.location.href = 'category.html';
+
+    // Opción 2 (alternativa): pasar por URL
+    // window.location.href = 'category.html?categoria=' + encodeURIComponent(nombreCategoria);
+  }
+</script>
     <script src="js/productCard2.js"></script>
     <script src="js/productCard3.js"></script>
     <script>
@@ -285,27 +368,8 @@
             filtros.classList.remove('visible');
         }
     </script>
-
-    <script>
-        function toggleHeart(btn) {
-            const icon = btn.querySelector('i');
-            const isLiked = btn.classList.toggle('liked');
-
-            // Cambia ícono de contorno a sólido
-            if (isLiked) {
-                icon.classList.remove('fa-regular');
-                icon.classList.add('fa-solid');
-            } else {
-                icon.classList.remove('fa-solid');
-                icon.classList.add('fa-regular');
-            }
-
-            // Reinicia animación si ya está aplicada
-            btn.style.animation = 'none';
-            btn.offsetHeight; // Trigger reflow
-            btn.style.animation = null;
-        }
-    </script>
+ 
+    <script src="js/buscarAndFullCard.js"></script>
     <script>
         window.addEventListener('DOMContentLoaded', () => {
             const micuenta = document.getElementById('micuenta');
@@ -318,14 +382,15 @@
                 micuenta.href = '#'; // Evita redirección
                 micuentaImg.href = '#'
                 // Mostrar/ocultar menú al hacer clic
-                micuenta.addEventListener('click', (e) => {
+                // Mostrar/ocultar menú al hacer clic
+                const toggleMenu = (e) => {
                     e.preventDefault();
-                    menuUsuario.style.display = menuUsuario.style.display === 'none' ? 'block' : 'none';
-                });
-                micuentaImg.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    menuUsuario.style.display = menuUsuario.style.display === 'none' ? 'block' : 'none';
-                });
+                    menuUsuario.classList.toggle('show');
+                };
+
+                micuenta.addEventListener('click', toggleMenu);
+                micuentaImg.addEventListener('click', toggleMenu);
+
 
                 // Cerrar sesión
                 document.getElementById('cerrarSesion').addEventListener('click', () => {
@@ -335,8 +400,6 @@
             }
         });
     </script>
-
-
 </body>
 
 </html>
