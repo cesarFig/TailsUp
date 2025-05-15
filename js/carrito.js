@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
       return;
     }
 
-    fetch(`http://localhost/TailsUp-Backend/endPointGetCarrito.php?idUsuario=${userId}`)
+    fetch(`http://localhost/TailsUp-Backend/endPointGetCarritoItems.php?idUsuario=${userId}`)
       .then(response => {
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
@@ -92,6 +92,20 @@ document.addEventListener('DOMContentLoaded', function() {
         input.value = nuevaCantidad;
         const isChecked = input.closest('tr').querySelector('input[type="checkbox"]').checked;
         actualizarItem(itemId, nuevaCantidad, isChecked);
+
+        // Actualizar el total de la fila con animación
+        const fila = input.closest('tr');
+        const precioUnitario = parseFloat(fila.querySelector('.current-price').textContent.replace('$', ''));
+        const totalFila = precioUnitario * nuevaCantidad;
+        const totalElement = fila.querySelector('.product-total');
+        totalElement.textContent = `$${totalFila.toFixed(2)}`;
+
+        // Forzar reflujo antes de agregar la clase de animación
+        void fila.offsetWidth;
+        fila.classList.add('update-animation');
+        setTimeout(() => fila.classList.remove('update-animation'), 300);
+
+        actualizarTuOrden();
       });
     });
   }
@@ -116,7 +130,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const seleccionados = document.querySelectorAll('.cart-table tbody tr input[type="checkbox"]:checked');
     const tuOrdenContainer = document.querySelector('.order-summary-box');
 
-    // Limpiar contenido actual
     tuOrdenContainer.innerHTML = '<h2>Tu orden</h2>';
 
     if (seleccionados.length === 0) {
@@ -146,17 +159,16 @@ document.addEventListener('DOMContentLoaded', function() {
       tuOrdenContainer.appendChild(itemResumen);
     });
 
-    // Verificar si hay un cupón aplicado
     const userId = localStorage.getItem('idUsuario');
     fetch(`http://localhost/TailsUp-Backend/endPointGetCarrito.php?idUsuario=${userId}`)
       .then(response => response.json())
       .then(data => {
         if (data.id_cupon) {
-          return fetch(`http://localhost/TailsUp-Backend/endPointGetCupon.php?idCupon=${data.id_cupon}`)
+          return fetch(`http://localhost/TailsUp-Backend/endPointGetCuponWithId.php?idCupon=${data.id_cupon}`)
             .then(response => response.json())
             .then(cuponData => {
               descuentoCupon = (subtotal * cuponData.descuento_porcentaje) / 100;
-              actualizarResumen(subtotal, descuentoCupon);
+              actualizarResumen(subtotal, descuentoCupon, cuponData.codigo_cupon);
             });
         } else {
           actualizarResumen(subtotal, descuentoCupon);
@@ -164,7 +176,7 @@ document.addEventListener('DOMContentLoaded', function() {
       })
       .catch(error => console.error('Error al verificar el cupón:', error));
 
-    function actualizarResumen(subtotal, descuentoCupon) {
+    function actualizarResumen(subtotal, descuentoCupon, nombreCupon = '') {
       const total = subtotal - descuentoCupon;
 
       // Agregar el subtotal
@@ -181,7 +193,9 @@ document.addEventListener('DOMContentLoaded', function() {
       cuponResumen.classList.add('summary-line');
       cuponResumen.innerHTML = `
         <span>Cupones:</span>
+        <span style="color: gray; font-size: 0.9em; float: right;">${nombreCupon}</span>
         <span class="cupon-discount" style="float: right;">-$${descuentoCupon.toFixed(2)}</span>
+        
       `;
       tuOrdenContainer.appendChild(cuponResumen);
 
@@ -263,7 +277,7 @@ document.addEventListener('DOMContentLoaded', function() {
       return;
     }
 
-    fetch(`http://localhost/TailsUp-Backend/endPointGetCupon.php?codigoCupon=${cuponCodigo}`)
+    fetch(`http://localhost/TailsUp-Backend/endPointGetCuponWithCode.php?codigoCupon=${cuponCodigo}`)
       .then(response => {
         if (!response.ok) {
           throw new Error('Cupón no válido o no encontrado.');
@@ -271,12 +285,19 @@ document.addEventListener('DOMContentLoaded', function() {
         return response.json();
       })
       .then(cuponData => {
+        const fechaActual = new Date();
+        const fechaVencimiento = new Date(cuponData.fecha_vencimiento);
+
         if (!cuponData.activo) {
           alert('El cupón ingresado no está activo.');
           return;
         }
 
-        // Actualizar el carrito con el id_cupon
+        if (fechaActual > fechaVencimiento) {
+          alert('El cupón ingresado ha expirado.');
+          return;
+        }
+
         fetch(`http://localhost/TailsUp-Backend/endPointActualizarCuponCarrito.php`, {
           method: 'POST',
           headers: {
@@ -293,7 +314,7 @@ document.addEventListener('DOMContentLoaded', function() {
           .then(data => {
             if (data.success) {
               alert('Cupón aplicado exitosamente.');
-              actualizarTuOrden(); // Recalcular los totales
+              actualizarTuOrden();
             } else {
               alert('No se pudo aplicar el cupón.');
             }
@@ -303,7 +324,6 @@ document.addEventListener('DOMContentLoaded', function() {
       .catch(error => alert(error.message));
   }
 
-  // Agregar evento al botón de aplicar cupón
   const aplicarCuponBtn = document.querySelector('.apply-coupon-btn');
   if (aplicarCuponBtn) {
     aplicarCuponBtn.addEventListener('click', aplicarCupon);

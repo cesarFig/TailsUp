@@ -345,11 +345,107 @@ class DBManager
         return $resultado;
     }
 
-    public function getCarrito($idUsuario)
+    public function getCarritoId($idUsuario)
     {
         $link = $this->open();
 
         $sql = "SELECT id_carrito FROM carritos WHERE idUsuario = ?";
+        $stmt = mysqli_prepare($link, $sql);
+
+        if (!$stmt) {
+            $this->close($link);
+            return false;
+        }
+
+        mysqli_stmt_bind_param($stmt, "i", $idUsuario);
+        mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_get_result($stmt);
+
+        $carrito = mysqli_fetch_assoc($result);
+
+        mysqli_stmt_close($stmt);
+        $this->close($link);
+
+        return $carrito;
+    }
+
+    
+
+    public function getCuponByCodigo($codigoCupon)
+    {
+        $link = $this->open();
+
+        $sql = "SELECT * FROM cupones WHERE codigo_cupon = ?";
+        $query = mysqli_prepare($link, $sql);
+
+        if (!$query) {
+            $this->close($link);
+            return false;
+        }
+
+        mysqli_stmt_bind_param($query, "s", $codigoCupon);
+        mysqli_stmt_execute($query);
+        $result = mysqli_stmt_get_result($query);
+
+        if ($result && $cupon = mysqli_fetch_assoc($result)) {
+            $this->close($link);
+            return $cupon;
+        }
+
+        $this->close($link);
+        return false;
+    }
+
+    public function getCuponById($idCupon)
+    {
+        $link = $this->open();
+
+        $sql = "SELECT * FROM cupones WHERE id_cupon = ?";
+        $query = mysqli_prepare($link, $sql);
+
+        if (!$query) {
+            $this->close($link);
+            return false;
+        }
+
+        mysqli_stmt_bind_param($query, "i", $idCupon);
+        mysqli_stmt_execute($query);
+        $result = mysqli_stmt_get_result($query);
+
+        if ($result && $cupon = mysqli_fetch_assoc($result)) {
+            $this->close($link);
+            return $cupon;
+        }
+
+        $this->close($link);
+        return false;
+    }
+
+    public function actualizarCuponCarrito($idUsuario, $idCupon)
+    {
+        $link = $this->open();
+
+        $sql = "UPDATE carritos SET id_cupon = ? WHERE idUsuario = ?";
+        $query = mysqli_prepare($link, $sql);
+
+        if (!$query) {
+            $this->close($link);
+            return false;
+        }
+
+        mysqli_stmt_bind_param($query, "ii", $idCupon, $idUsuario);
+        $success = mysqli_stmt_execute($query);
+
+        $this->close($link);
+
+        return $success;
+    }
+
+    public function getCarrito($idUsuario)
+    {
+        $link = $this->open();
+
+        $sql = "SELECT * FROM carritos WHERE idUsuario = ?";
         $stmt = mysqli_prepare($link, $sql);
 
         if (!$stmt) {

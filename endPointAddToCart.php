@@ -26,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $dbManager = new DBManager();
 
     try {
-        $carrito = $dbManager->getCarrito($idUsuario);
+        $carrito = $dbManager->getCarritoId($idUsuario);
 
         if (!$carrito) {
             echo json_encode(["error" => "No se encontró un carrito para el usuario"]);

@@ -3,6 +3,13 @@ require_once 'DBManager.php';
 
 header('Content-Type: application/json');
 header('Access-Control-Allow-Origin: *');
+header('Access-Control-Allow-Methods: GET, POST, OPTIONS');
+header('Access-Control-Allow-Headers: Content-Type, Authorization');
+
+if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+    http_response_code(200);
+    exit;
+}
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     $idUsuario = isset($_GET['idUsuario']) ? intval($_GET['idUsuario']) : null;
@@ -13,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     }
 
     $dbManager = new DBManager();
-    $carrito = $dbManager->getCarrito($idUsuario);
+    $carrito = $dbManager->getCarritoItems($idUsuario);
 
     if ($carrito) {
         echo json_encode($carrito);
