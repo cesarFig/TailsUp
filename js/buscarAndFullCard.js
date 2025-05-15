@@ -176,6 +176,7 @@ function renderEstrellasFormulario() {
 }
 
 function mostrarDetallesProducto(producto) {
+    localStorage.setItem('idProductoActual', producto.id_producto);
     document.getElementById('modalImagenProducto').src = 'images/' + producto.imagen_producto;
     document.getElementById('modalNombreProducto').textContent = producto.nombre_producto;
     document.getElementById('modalMarcaProducto').textContent = producto.marca || 'Sin marca';

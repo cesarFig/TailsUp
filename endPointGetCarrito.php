@@ -13,7 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     }
 
     $dbManager = new DBManager();
-    $carrito = $dbManager->getCarrito($idUsuario);
+    $carrito = $dbManager->getCarritoItems($idUsuario);
 
     if ($carrito) {
         echo json_encode($carrito);

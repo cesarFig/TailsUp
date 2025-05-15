@@ -325,8 +325,8 @@
                     </div>
 
                     <div class="botonesModal">
-                        <button class="btnCompraModal">Comprar ahora</button>
-                        <button class="btnCarritoModal">
+                        <button class="btnCompraModal" onclick="verificarAccionUsuario(() => agregarAlCarritoYRedirigir(localStorage.getItem('idProductoActual'), obtenerCantidad()))">Comprar ahora</button>
+                        <button class="btnCarritoModal" onclick="verificarAccionUsuario(() => agregarAlCarrito(localStorage.getItem('idProductoActual'), obtenerCantidad()))">
                             <img src="images/CarritoSimple.png" alt="carrito"> Agregar al carrito
                         </button>
                     </div>
@@ -459,9 +459,54 @@
 
     </script>
 
+    <script>
+        function obtenerCantidad() {
+            const cantidadInput = document.getElementById('cantidad');
+            return cantidadInput ? parseInt(cantidadInput.value, 10) : 1;
+        }
 
+        function agregarAlCarrito(idProducto, cantidad) {
+            const idUsuario = localStorage.getItem('idUsuario');
 
+            console.log("ID Usuario:", idUsuario);
+            console.log("ID Producto:", idProducto);
+            console.log("Cantidad:", cantidad);
+
+            if (!idUsuario) {
+                console.warn("⚠️ Usuario no autenticado. Redirigiendo a la página de inicio de sesión.");
+                window.location.href = "login.html";
+                return;
+            }
+
+            const payload = {
+                idUsuario: idUsuario,
+                idProducto: idProducto,
+                cantidad: cantidad
+            };
+
+            fetch("http://localhost/TailsUp-Backend/endPointAddToCart.php", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(payload)
+            })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.success) {
+                        alert("✅ Producto añadido al carrito correctamente.");
+                    } else {
+                        console.warn("⚠️ Error al añadir al carrito:", data.error);
+                    }
+                })
+                .catch(err => console.error("❌ Error al conectar con el servidor:", err));
+        }
+
+        function agregarAlCarritoYRedirigir(idProducto, cantidad) {
+            agregarAlCarrito(idProducto, cantidad);
+            window.location.href = "carrito.html";
+        }
+    </script>
 
 </body>
 
 </html>
+``` 

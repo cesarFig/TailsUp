@@ -1,5 +1,5 @@
 
-  function toggleHeart(btn, idProducto) {    
+function toggleHeart(btn, idProducto) {
   btn.classList.toggle('liked');
   const icon = btn.querySelector('i');
   const liked = btn.classList.contains('liked');
@@ -35,6 +35,46 @@
     })
     .catch(err => console.error("❌ Error al conectar con el servidor:", err));
 }
+
+function verificarAccionUsuario(callback) {
+  const usuario = localStorage.getItem("usuario");
+  if (!usuario) {
+    window.location.href = "login.html";
+  } else {
+    callback();
+  }
+}
+
+function agregarAlCarrito(idProducto) {
+  const idUsuario = localStorage.getItem('idUsuario');
+  if (!idUsuario) {
+    console.warn("⚠️ Usuario no autenticado. Redirigiendo a la página de inicio de sesión.");
+    window.location.href = "login.html";
+    return;
+  }
+
+  const payload = {
+    idUsuario: idUsuario,
+    idProducto: idProducto,
+    cantidad: 1 // Default quantity, can be adjusted as needed
+  };
+
+  fetch("http://localhost/TailsUp-Backend/endPointAddToCart.php", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payload)
+  })
+    .then(res => res.json())
+    .then(data => {
+      if (data.success) {
+        alert("✅ Producto añadido al carrito correctamente.");
+      } else {
+        console.warn("⚠️ Error al añadir al carrito:", data.error);
+      }
+    })
+    .catch(err => console.error("❌ Error al conectar con el servidor:", err));
+}
+
 document.addEventListener('DOMContentLoaded', function () {
   let productosGlobales = [];
   let productosFavoritos = [];
@@ -45,25 +85,25 @@ document.addEventListener('DOMContentLoaded', function () {
 
   const marcaContadores = new Map(); // Asocia value del checkbox con su <span>
 
-  
+
   document.querySelectorAll('.btnCategoriaPet').forEach(btn => {
-  btn.addEventListener('click', function () {
-    const categoria = this.getAttribute('data-categoria');
+    btn.addEventListener('click', function () {
+      const categoria = this.getAttribute('data-categoria');
 
-    // Si ya estaba seleccionada, desactivarla
-    if (this.classList.contains('selected')) {
-      this.classList.remove('selected');
-      filtrarPorCategoria("Todos");
-      return;
-    }
+      // Si ya estaba seleccionada, desactivarla
+      if (this.classList.contains('selected')) {
+        this.classList.remove('selected');
+        filtrarPorCategoria("Todos");
+        return;
+      }
 
-    // Desmarcar todos y marcar solo este
-    document.querySelectorAll('.btnCategoriaPet').forEach(b => b.classList.remove('selected'));
-    this.classList.add('selected');
+      // Desmarcar todos y marcar solo este
+      document.querySelectorAll('.btnCategoriaPet').forEach(b => b.classList.remove('selected'));
+      this.classList.add('selected');
 
-    filtrarPorCategoria(categoria);
+      filtrarPorCategoria(categoria);
+    });
   });
-});
 
 
   function mapearContadoresMarcas() {
@@ -173,7 +213,7 @@ document.addEventListener('DOMContentLoaded', function () {
       card.dataset.idProducto = producto.id_producto;
 
       const esFavorito = productosFavoritos.map(Number).includes(Number(producto.id_producto));
-     
+
       const claseCorazon = esFavorito ? 'fa-solid' : 'fa-regular';
       const claseLiked = esFavorito ? 'liked' : '';
 
@@ -195,11 +235,11 @@ document.addEventListener('DOMContentLoaded', function () {
           <p>
             $${formatearPrecio(String(producto.precio_actual))}
             ${producto.precio_anterior && producto.precio_anterior !== producto.precio_actual
-              ? `<s>$${formatearPrecio(String(producto.precio_anterior))}</s>` : ''}
+          ? `<s>$${formatearPrecio(String(producto.precio_anterior))}</s>` : ''}
           </p>
         </div>
         <div class="productBtns">
-          <button class="btnCompra">Comprar ahora</button>
+          <button class="btnCompra" onclick="verificarAccionUsuario(() => agregarAlCarrito(${producto.id_producto}))">Comprar ahor</button>
           <button class="btnCarrito"><img src="images/CarritoSimple.png" alt="carritoSimple.png"></button>
         </div>
       `;
@@ -278,7 +318,7 @@ document.addEventListener('DOMContentLoaded', function () {
       filtroPrecioMaximo = Number(inputRango.value);
       filtrarPorCategoria("Todos");
       this.classList.add('animate');
-  setTimeout(() => this.classList.remove('animate'), 300);
+      setTimeout(() => this.classList.remove('animate'), 300);
     });
   }
 

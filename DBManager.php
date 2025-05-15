@@ -256,7 +256,7 @@ class DBManager
         return $productos;
     }
 
-    public function getCarrito($idUsuario)
+    public function getCarritoItems($idUsuario)
     {
         $link = $this->open();
 
@@ -281,6 +281,8 @@ class DBManager
         $this->close($link);
         return $items;
     }
+
+
 
     public function eliminarCarritoItem($id, $idUsuario)
     {
@@ -310,6 +312,61 @@ class DBManager
         $this->close($link);
 
         return $resultado;
+    }
+
+    public function agregarItemCarrito($idCarrito, $idProducto, $cantidad)
+    {
+        $link = $this->open();
+
+        // Check if the item already exists in the cart
+        $checkQuery = "SELECT cantidad FROM carrito_items WHERE id_carrito = ? AND id_producto = ?";
+        $checkStmt = mysqli_prepare($link, $checkQuery);
+        mysqli_stmt_bind_param($checkStmt, "ii", $idCarrito, $idProducto);
+        mysqli_stmt_execute($checkStmt);
+        $result = mysqli_stmt_get_result($checkStmt);
+
+        if ($row = mysqli_fetch_assoc($result)) {
+            // If the item exists, update the quantity
+            $newCantidad = $row['cantidad'] + $cantidad;
+            $updateQuery = "UPDATE carrito_items SET cantidad = ? WHERE id_carrito = ? AND id_producto = ?";
+            $updateStmt = mysqli_prepare($link, $updateQuery);
+            mysqli_stmt_bind_param($updateStmt, "iii", $newCantidad, $idCarrito, $idProducto);
+            $resultado = mysqli_stmt_execute($updateStmt);
+        } else {
+            // If the item does not exist, insert a new row
+            $insertQuery = "INSERT INTO carrito_items (id_carrito, id_producto, cantidad) VALUES (?, ?, ?)";
+            $insertStmt = mysqli_prepare($link, $insertQuery);
+            mysqli_stmt_bind_param($insertStmt, "iii", $idCarrito, $idProducto, $cantidad);
+            $resultado = mysqli_stmt_execute($insertStmt);
+        }
+
+        $this->close($link);
+
+        return $resultado;
+    }
+
+    public function getCarrito($idUsuario)
+    {
+        $link = $this->open();
+
+        $sql = "SELECT id_carrito FROM carritos WHERE idUsuario = ?";
+        $stmt = mysqli_prepare($link, $sql);
+
+        if (!$stmt) {
+            $this->close($link);
+            return false;
+        }
+
+        mysqli_stmt_bind_param($stmt, "i", $idUsuario);
+        mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_get_result($stmt);
+
+        $carrito = mysqli_fetch_assoc($result);
+
+        mysqli_stmt_close($stmt);
+        $this->close($link);
+
+        return $carrito;
     }
 
 }

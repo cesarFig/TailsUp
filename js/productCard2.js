@@ -1,4 +1,3 @@
-
 let productosFavoritos = [];
 
 function toggleHeart(btn, idProducto) {
@@ -42,6 +41,36 @@ function verificarAccionUsuario(callback) {
   } else {
     callback();
   }
+}
+
+function agregarAlCarrito(idProducto) {
+  const idUsuario = localStorage.getItem('idUsuario');
+  if (!idUsuario) {
+    console.warn("⚠️ Usuario no autenticado. Redirigiendo a la página de inicio de sesión.");
+    window.location.href = "login.html";
+    return;
+  }
+
+  const payload = {
+    idUsuario: idUsuario,
+    idProducto: idProducto,
+    cantidad: 1 // Default quantity, can be adjusted as needed
+  };
+
+  fetch("http://localhost/TailsUp-Backend/endPointAddToCart.php", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payload)
+  })
+    .then(res => res.json())
+    .then(data => {
+      if (data.success) {
+        alert("✅ Producto añadido al carrito correctamente.");
+      } else {
+        console.warn("⚠️ Error al añadir al carrito:", data.error);
+      }
+    })
+    .catch(err => console.error("❌ Error al conectar con el servidor:", err));
 }
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -139,11 +168,11 @@ document.addEventListener('DOMContentLoaded', function () {
         <p>
           $${formatearPrecio(String(producto.precio_actual))}
           ${producto.precio_anterior && producto.precio_anterior !== producto.precio_actual
-            ? `<s>$${formatearPrecio(String(producto.precio_anterior))}</s>` : ''}
+        ? `<s>$${formatearPrecio(String(producto.precio_anterior))}</s>` : ''}
         </p>
       </div>
       <div class="productBtns">
-        <button class="btnCompra" onclick="verificarAccionUsuario(() => alert('Comprar ${producto.id_producto}'))">Comprar ahora</button>
+        <button class="btnCompra" onclick="verificarAccionUsuario(() => agregarAlCarrito(${producto.id_producto}))">Comprar ahora</button>
         <button class="btnCarrito" onclick="verificarAccionUsuario(() => alert('Agregar al carrito ${producto.id_producto}'))">
           <img src="images/CarritoSimple.png" alt="carritoSimple.png">
         </button>
@@ -152,13 +181,13 @@ document.addEventListener('DOMContentLoaded', function () {
 
     contenedor.appendChild(card);
     card.addEventListener('click', function (e) {
-  if (e.target.closest('.heart-button') || e.target.closest('.btnCompra') || e.target.closest('.btnCarrito')) {
-    return; // Evita abrir modal si se hace clic en botones
-  }
+      if (e.target.closest('.heart-button') || e.target.closest('.btnCompra') || e.target.closest('.btnCarrito')) {
+        return; // Evita abrir modal si se hace clic en botones
+      }
 
-  mostrarDetallesProducto(producto);
-});
-}
+      mostrarDetallesProducto(producto);
+    });
+  }
 
   function formatearPrecio(precio) {
     if (!precio.includes('.')) return `${precio}.00`;
