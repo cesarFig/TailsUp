@@ -260,7 +260,7 @@ class DBManager
     {
         $link = $this->open();
 
-        $sql = "SELECT ci.id_item, ci.id_producto, ci.cantidad, p.nombre_producto, p.precio_actual,p.precio_anterior, p.imagen_producto FROM carrito_items ci INNER JOIN productos p ON ci.id_producto = p.id_producto WHERE ci.id_carrito = (SELECT id_carrito FROM carritos WHERE idUsuario = ?)";
+        $sql = "SELECT ci.id_item, ci.id_producto, ci.cantidad, p.nombre_producto, p.precio_actual,p.precio_anterior, p.imagen_producto, ci.is_selected FROM carrito_items ci INNER JOIN productos p ON ci.id_producto = p.id_producto WHERE ci.id_carrito = (SELECT id_carrito FROM carritos WHERE idUsuario = ?)";
         error_log("Ejecutando consulta SQL: $sql con idUsuario=$idUsuario");
         $query = mysqli_prepare($link, $sql);
 
@@ -299,13 +299,13 @@ class DBManager
         return $resultado;
     }
 
-    public function actualizarCantidadCarritoItem($id, $cantidad, $idUsuario)
+    public function actualizarCarritoItem($id, $cantidad, $idUsuario, $isChecked)
     {
         $link = $this->open();
 
-        $query = "UPDATE carrito_items SET cantidad = ? WHERE id_item = ? AND id_carrito = (SELECT id_carrito FROM carritos WHERE idUsuario = ?)";
+        $query = "UPDATE carrito_items SET cantidad = ?, is_selected = ? WHERE id_item = ? AND id_carrito = (SELECT id_carrito FROM carritos WHERE idUsuario = ?)";
         $stmt = mysqli_prepare($link, $query);
-        mysqli_stmt_bind_param($stmt, "iii", $cantidad, $id, $idUsuario);
+        mysqli_stmt_bind_param($stmt, "iisi", $cantidad, $isChecked, $id, $idUsuario);
 
         $resultado = mysqli_stmt_execute($stmt);
 

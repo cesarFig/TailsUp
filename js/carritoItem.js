@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', function() {
         data.forEach(item => {
           const row = document.createElement('tr');
           row.innerHTML = `
-            <td><input type="checkbox"></td>
+            <td><input type="checkbox" ${item.is_selected ? 'checked' : ''}></td>
             <td class="product-image-cell"><img src="images/${item.imagen_producto}" alt="${item.nombre_producto}" class="product-image"></td>
             <td class="product-info">
               <span class="product-name">${item.nombre_producto}</span>
@@ -90,7 +90,8 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         input.value = nuevaCantidad;
-        actualizarCantidad(itemId, nuevaCantidad);
+        const isChecked = input.closest('tr').querySelector('input[type="checkbox"]').checked;
+        actualizarItem(itemId, nuevaCantidad, isChecked);
       });
     });
   }
@@ -98,7 +99,16 @@ document.addEventListener('DOMContentLoaded', function() {
   function agregarEventosCheckboxes() {
     const checkboxes = document.querySelectorAll('.cart-table tbody tr input[type="checkbox"]');
     checkboxes.forEach(checkbox => {
-      checkbox.addEventListener('change', actualizarTuOrden);
+        checkbox.addEventListener('change', function () {
+            const row = this.closest('tr');
+            const itemId = row.querySelector('.quantity-input').getAttribute('data-id');
+            const nuevaCantidad = parseInt(row.querySelector('.quantity-input').value, 10);
+            const isChecked = this.checked;
+
+            actualizarItem(itemId, nuevaCantidad, isChecked);
+
+            actualizarTuOrden();
+        });
     });
   }
 
@@ -212,30 +222,35 @@ document.addEventListener('DOMContentLoaded', function() {
       .catch(error => console.error('Error al eliminar el producto:', error));
   }
 
-  function actualizarCantidad(itemId, nuevaCantidad) {
+  function actualizarItem(itemId, nuevaCantidad, isChecked) {
     const userId = localStorage.getItem('idUsuario');
 
-    fetch(`http://localhost/TailsUp-Backend/endPointActualizarCantidadCarrito.php`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ id: itemId, cantidad: nuevaCantidad, idUsuario: userId })
+    // Log the values to the console
+    console.log("Item ID:", itemId);
+    console.log("Nueva Cantidad:", nuevaCantidad);
+    console.log("Checkbox Activo:", isChecked);
+
+    fetch(`http://localhost/TailsUp-Backend/endPointActualizarItemCarrito.php`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ id: itemId, cantidad: nuevaCantidad, idUsuario: userId, isChecked: isChecked })
     })
-      .then(response => {
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        return response.json();
-      })
-      .then(data => {
-        if (data.success) {
-          obtenerCarrito(); // Recargar el carrito
-        } else {
-          console.error('Error al actualizar la cantidad:', data.message);
-        }
-      })
-      .catch(error => console.error('Error al actualizar la cantidad:', error));
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            return response.json();
+        })
+        .then(data => {
+            if (data.success) {
+                console.log('Item actualizado exitosamente:', data);
+            } else {
+                console.error('Error al actualizar el item:', data.message);
+            }
+        })
+        .catch(error => console.error('Error al actualizar el item:', error));
   }
 
   function aplicarCupon() {
