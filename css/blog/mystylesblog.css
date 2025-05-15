@@ -1,0 +1,748 @@
+/*Imagen y titulo*/
+.mascotas-header {
+  margin: 0;
+  padding: 0;
+  margin-top: 10%;
+}
+
+.mascotas-full {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.mascotas-titulo {
+  background-color: #f9a825;
+  text-align: center;
+  font-family: flame;
+}
+
+.mascotas-titulo h1 {
+  margin: 0;
+  font-size: 5vw;
+  color: white;
+  text-wrap: balance;
+}
+
+/*Cards de servicios*/
+.servicios-mascota {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1.5rem;
+  padding: 2rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.servicio {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: poppins;
+}
+
+.servicio img {
+  width: 90%;
+  height: 350px;
+  object-fit: cover;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.servicio p {
+  margin-top: 0.5rem;
+  font-weight: bold;
+  font-size: 1rem;
+  text-align: center;
+}
+
+/*Consejos*/
+.blog-consejos {
+  padding: 2rem 5vw;
+  box-sizing: border-box;
+}
+
+/* --- Consejos superiores --- */
+.consejos-row {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 3rem;
+}
+
+.consejo-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  /* ← más corto */
+  border-radius: 16px;
+  padding-left: 3%;
+  min-height: 220px;
+  flex: 1 1 45%;
+  box-sizing: border-box;
+}
+
+.consejo-texto {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  flex: 1;
+  max-width: 60%;
+}
+
+.consejo-titulo {
+  font-weight: bold;
+  font-size: 1.5rem;
+  /* antes era 1.2rem */
+  color: #ebd9c8;
+  font-family: Flame;
+  text-decoration: none;
+  margin-bottom: 0.7rem;
+}
+
+
+.consejo-titulo:hover {
+  text-decoration: underline;
+}
+
+.consejo-descripcion {
+  font-family: poppins;
+  font-size: 1rem;
+  /* antes era 0.95rem */
+  margin: 0;
+}
+
+.consejo-card img {
+  height: 200px;
+  /* antes 140px */
+  width: auto;
+  max-width: 180px;
+  object-fit: contain;
+}
+
+
+/* Diferentes estilos por tarjeta */
+.consejo1 {
+  color: white;
+  background: linear-gradient(90deg, #007A7A 0%, #A1CECE 100%);
+}
+
+.consejo2 {
+  background: linear-gradient(90deg, #007A7A 0%, #A1CECE 100%);
+  color: white;
+}
+
+.consejo2 h3,
+.consejo2 p {
+  color: white;
+}
+
+/* --- Preguntas Frecuentes --- */
+.faq-titulo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.titulo-preguntas {
+  font-weight: bold;
+  font-size: 1.2rem;
+  color: #e65100;
+  font-family: flame;
+}
+
+.badge-frecuentes {
+  background-color: #f57c00;
+  color: white;
+  padding: 0.25rem 0.6rem;
+  font-size: 0.8rem;
+  border-radius: 7px;
+  font-family: poppins;
+}
+
+.faq-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.5rem;
+}
+
+.faq-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  /* esto empuja el botón hacia abajo */
+  border: 2px solid #ccc;
+  border-radius: 12px;
+  background-color: #fff;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+
+.faq-card img {
+  margin-top: 1rem;
+  width: 250px;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-bottom: 1rem;
+  margin-left: 1rem;
+}
+
+.faq-card h4 {
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+  font-family: flame;
+}
+
+.faq-card p {
+  font-size: 0.85rem;
+  margin-bottom: 1rem;
+  color: #444;
+  font-family: poppins;
+}
+
+.faq-card button {
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 0px 0px 10px 10px;
+  font-size: 0.95rem;
+  font-family: flame;
+  width: 100%;
+  text-align: center;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.faq-card.naranja {
+  border-color: #ff9800;
+}
+
+.faq-card.naranja button {
+  background-color: #ffe0b2;
+  color: #e65100;
+}
+
+.faq-card.verde {
+  border-color: #4db6ac;
+}
+
+.faq-card.verde button {
+  background-color: #b2dfdb;
+  color: #00695c;
+}
+
+/*Como puedo ayudar a mi perro...*/
+.seccion-final {
+  display: flex;
+  gap: 2rem;
+  padding: 3rem 5vw;
+  flex-wrap: wrap;
+  align-items: flex-start;
+}
+
+.col-izquierda,
+.col-derecha {
+  flex: 1;
+  max-width: 90%;
+}
+
+.col-izquierda {
+  flex: 1;
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: left;
+}
+
+.col-izquierda img {
+  margin-top: 10%;
+  width: 100%;
+  max-width: 350px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.texto-principal {
+  margin-top: 1rem;
+}
+
+.texto-principal a {
+  font-weight: bold;
+  color: #007a7a;
+  text-decoration: none;
+  font-size: 1.1rem;
+  font-family: Flame;
+}
+
+.texto-principal a:hover {
+  text-decoration: underline;
+}
+
+.texto-principal p {
+  margin-top: 0.5rem;
+  color: #333;
+  font-size: 0.95rem;
+  font-family: poppins;
+}
+
+.col-derecha {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.mini-card {
+  display: flex;
+  align-items: center;
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  padding: 0.8rem 1rem;
+  gap: 1rem;
+  min-height: 100px;  
+}
+
+
+.mini-card img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.mini-texto a {
+  font-weight: bold;
+  font-size: 1rem;
+  color:  #007a7a;
+  text-decoration: none;
+  font-family: flame;
+}
+.mini-texto a:hover{
+  text-decoration: underline;
+}
+
+.mini-texto {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;  
+}
+
+.mini-texto p {
+  font-size: 0.85rem;
+  color: #444;
+  margin-top: 0.3rem;
+  font-family: poppins;
+}
+
+.mini-card.naranja {
+  border-color: #ff9800;
+}
+
+.mini-card.azul {
+  border-color: #26a69a;
+}
+
+/*Nombre para*/
+.nombres-mascotas {  
+  position: relative;
+  background-color: #fff;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.nombres-header {
+  text-align: left; /* ✅ Alineación izquierda */
+  margin-bottom: 2rem;
+  margin-left: 2rem;
+}
+
+.nombres-header h2 {
+  font-size: 1.2rem;  
+  color: #002b45;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  font-family: Flame;
+}
+
+.badge {
+  background-color: #014d56;
+  color: white;
+  font-size: 0.8rem;
+  padding: 0.3rem 0.7rem;
+  border-radius: 8px;
+  font-family: poppins;
+}
+
+.nombres-galeria {
+  display: flex;
+  justify-content: space-between;   
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.n-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1 1 20%;
+  min-width: 160px;
+}
+
+.n-card img {
+  width: 250px;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 2.5px solid #ccc;
+  box-shadow: 0 0 8px rgba(0,0,0,0.1);
+}
+
+.n-card.hembra img {
+  border-color: #f57c00;
+}
+
+.n-card.macho img {
+  border-color: #01579b;
+}
+
+.n-card p {
+  margin-top: 1rem;
+  font-size: 1rem;
+  font-weight: bold;  
+  font-family: poppins;
+}
+
+/*Seccion huskis*/
+.seccion-curiosidades {
+  background-color: #f4e2cf;
+  padding: 3rem 5vw;
+  font-family: 'Poppins', sans-serif;
+}
+
+.titulo-curiosidades {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: #002b45;
+  margin-bottom: 2rem;
+  text-align: left;
+}
+
+/* Contenedor principal en 3 columnas */
+.curiosidades-body {
+  display: flex;
+  gap: 1rem;
+  align-items: stretch; /* las columnas laterales igualan altura de la central */
+}
+
+/* Columnas laterales: dos mini-cards que se reparten la altura */
+.col-lateral {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  flex: 0 0 250px; /* ahora son más anchas */
+}
+
+/* Cada mini-card ocupa la mitad de la altura total de su columna */
+.col-lateral .miniatura-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+  flex: 1;           /* se expanden para llenar toda la columna */
+}
+
+/* Imagen y texto dentro de cada mini-card */
+.miniatura-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.miniatura-card span {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 0.6rem;
+  background-color: rgba(0, 96, 128, 0.8);
+  color: #fff;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+/* Columna central: imagen + texto apilados */
+.col-central {
+  display: flex;
+  flex-direction: column;
+  flex: 1;           /* usar todo el espacio restante */
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+/* Imagen central ocupando toda la parte superior */
+.central-img {
+  width: 100%;
+  height: 300px;     /* ← altura fija */
+  object-fit: cover;
+  flex: none;        /* ← ya no ocupa todo el espacio libre */
+}
+
+/* Texto central debajo */
+.central-texto {
+  padding: 1.5rem 1rem;
+  background-color: #f4e2cf;
+}
+
+.central-texto h3 {
+  margin: 0 0 0.5rem;
+  font-size: 1.3rem;
+  color: #002b45;
+}
+
+.central-texto p {
+  margin: 0;
+  font-size: 0.95rem;
+  color: #333;
+  line-height: 1.6;
+}
+
+/* ---------------------------------------------
+   TABLETS (hasta 1024px)
+   --------------------------------------------- */
+@media (max-width: 1024px) {
+  /* Header mascots */
+  .mascotas-titulo h1 {
+    font-size: 6vw;
+  }
+
+  /* Services cards: muévete de 180px a 150px y menos gap */
+  .servicio img {
+    height: 280px;
+  }
+  .servicios-mascota {
+    gap: 1rem;
+    padding: 1.5rem;
+  }
+
+  /* Consejos superiores: de fila a dos filas */
+  .consejos-row {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  .consejo-card {
+    flex: 1 1 48%;
+    margin-bottom: 1rem;
+    padding-left: 2%;
+  }
+
+  /* FAQ: de dos columnas a dos columnas más estrechas */
+  .faq-cards {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  }
+  .faq-card img {
+    width: 200px;
+    height: 200px;
+  }
+
+  /* “Cómo ayudar…”: de dos columnas a una sola fila apilada */
+  .seccion-final {
+    flex-wrap: wrap;
+  }
+  .col-izquierda,
+  .col-derecha {
+    max-width: 100%;
+  }
+  .col-lateral {
+    flex: 0 0 180px;
+  }
+  .central-img {
+    height: 220px;
+  }
+
+  /* Nombres para: de 4 a 2 por fila */
+  .nombres-galeria {
+    gap: 1.5rem;
+  }
+  .n-card {
+    flex: 1 1 45%;
+    min-width: 140px;
+  }
+
+  /* Curiosidades Husky: apila laterales, mantiene central */
+  .curiosidades-body {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-rows: 180px auto 180px;
+    grid-template-areas:
+      "left-top centro right-top"
+      "left-bottom centro right-bottom";
+  }
+  .left-bottom { grid-area: left-bottom; }
+  .right-bottom { grid-area: right-bottom; }
+  .desc-curiosidad h3 {
+    font-size: 1.2rem;
+  }
+}
+
+/* ---------------------------------------------
+   MÓVILES (hasta 768px)
+   --------------------------------------------- */
+@media (max-width: 768px) {
+  /* Header mascots */
+  .mascotas-titulo h1 {
+    font-size: 8vw;
+  }
+
+  /* Services cards: 2 por fila */
+  .servicios-mascota {
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  }
+  .servicio img {
+    height: 220px;
+  }
+
+  /* Consejos superiores: apilar */
+  .consejos-row {
+    flex-direction: column;
+  }
+  .consejo-card {
+    flex: 1 1 100%;
+    padding-left: 5%;
+  }
+
+  /* FAQ: una columna */
+  .faq-cards {
+    grid-template-columns: 1fr;
+  }
+  .faq-card img {
+    width: 180px;
+    height: 180px;
+    margin: 0 auto 1rem;
+  }
+
+  /* Cómo ayudar: apilar */
+  .seccion-final {
+    flex-direction: column;
+  }
+  .central-img {
+    height: 200px;
+  }
+  .col-lateral {
+    flex: 1 1 auto;
+  }
+
+  /* Nombres para: 1 por fila */
+  .nombres-galeria {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .n-card {
+    flex: none;
+    width: 60%;
+    margin: 0 auto;
+  }
+
+  /* Curiosidades Husky: todo apilado */
+  .curiosidades-body {
+    display: flex;
+    flex-direction: column;
+  }
+  .left-top,
+  .left-bottom,
+  .right-top,
+  .right-bottom {
+    height: 180px;
+  }
+  .center-image img {
+    height: 260px;
+  }
+}
+
+/* ---------------------------------------------
+   SMARTPHONES GRANDES (hasta 480px)
+   --------------------------------------------- */
+@media (max-width: 480px) {
+  /* Header mascots */
+  .mascotas-titulo h1 {
+    font-size: 10vw;
+  }
+
+  /* Services cards: 1 por fila */
+  .servicios-mascota {
+    grid-template-columns: 1fr;
+  }
+  .servicio img {
+    height: 200px;
+  }
+
+  /* Consejos superiores: botones más pequeños */
+  .consejo-card img {
+    height: 160px;
+    max-width: 140px;
+  }
+
+  /* FAQ: imagenes y botones más pequeños */
+  .faq-card img {
+    width: 140px;
+    height: 140px;
+  }
+  .faq-card button {
+    padding: 0.5rem;
+    font-size: 0.85rem;
+  }
+
+  /* Cómo ayudar: reduce imagen y texto */
+  .central-img {
+    height: 180px;
+  }
+  .central-texto h3 {
+    font-size: 1.1rem;
+  }
+
+  /* Nombres para: reduce bordes y texto */
+  .n-card img {
+    width: 120px;
+    height: 120px;
+  }
+  .nombres-header h2 {
+    font-size: 1rem;
+  }
+
+  /* Curiosidades Husky: compacta */
+  .grid-curiosidades {
+    grid-template-columns: 1fr;
+    grid-template-rows:
+      180px 180px 260px 180px 180px;
+    grid-template-areas:
+      "left-top"
+      "left-bottom"
+      "center-image"
+      "right-top"
+      "right-bottom";
+  }
+  .husky-central img {
+    height: 260px;
+  }
+}
+@media (max-width: 480px) {
+  /* Nombres Para Tu Mascota: 2 tarjetas por fila */
+  .nombres-galeria {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+  .n-card {
+    /* Que no tenga width fijo para adaptarse al grid */
+    flex: none;
+    width: 100%;
+    margin: 0;
+  }
+}
+
+
+
