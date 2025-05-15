@@ -1,5 +1,0 @@
-/* Animación para suavizar cambios en las filas del carrito */
-.update-animation {
-  transition: background-color 0.3s ease;
-  background-color: #f0f8ff; /* Color de fondo temporal */
-}

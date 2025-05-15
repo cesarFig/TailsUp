@@ -89,21 +89,17 @@ document.addEventListener('DOMContentLoaded', function() {
           nuevaCantidad--;
         }
 
+        // Eliminar referencias a la animación
         input.value = nuevaCantidad;
         const isChecked = input.closest('tr').querySelector('input[type="checkbox"]').checked;
         actualizarItem(itemId, nuevaCantidad, isChecked);
 
-        // Actualizar el total de la fila con animación
+        // Actualizar el total de la fila
         const fila = input.closest('tr');
         const precioUnitario = parseFloat(fila.querySelector('.current-price').textContent.replace('$', ''));
         const totalFila = precioUnitario * nuevaCantidad;
         const totalElement = fila.querySelector('.product-total');
         totalElement.textContent = `$${totalFila.toFixed(2)}`;
-
-        // Forzar reflujo antes de agregar la clase de animación
-        void fila.offsetWidth;
-        fila.classList.add('update-animation');
-        setTimeout(() => fila.classList.remove('update-animation'), 300);
 
         actualizarTuOrden();
       });
