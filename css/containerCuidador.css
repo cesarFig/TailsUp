@@ -38,5 +38,12 @@
     background-color: #0C7769;
     font-family: 'Flame', sans-serif;
     margin-top: 2%;
-    
+cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+#btnConviertete:hover{
+    color: white;
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    background-color: #de6600;
 }

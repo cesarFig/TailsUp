@@ -38,5 +38,13 @@
     font-family: poppins;
     color: white;
     border: none;
-    width:50%;    
+    width:50%;   
+       cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease; 
+}
+#btnBuscarBlog:hover{
+    color: white;
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    background-color: #de6600;
 }

@@ -1,0 +1,582 @@
+<!-- blog.html -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>TailsUp | Blog</title>
+  <link rel="stylesheet" href="css/blog/infoblog.css">
+  <link rel="stylesheet" href="css/nav.css">
+  <link rel="stylesheet" href="css/footer.css">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="shortcut icon" href="images/isotipoTailsUp.png" type="image/x-icon">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="medio">
+                <img class="logoNav" src="images/logoCompleto.png" alt="logoNav.png">
+                <div class="buscadorDiv">
+                    <button id="btnBuscar"><img src="images/lupa.png" alt="lupa.png"></button>
+                    <input class="buscador" type="search" placeholder="Buscar" id="inputBusqueda">
+                    <div id="resultadosBusqueda" class="resultadosBusqueda"></div>
+                </div>
+
+                <div class="accesoDirecto">
+                    <div class="navDiv">
+                        <a class="carritoBtn" href="carrito.html"><img class="carrito" src="images/Carrito.png"
+                                alt="carrito.png"></a>
+                        <a class="carritoTxt" href="carrito.html">Carrito</a>
+                    </div>
+                    <div class="navDiv">
+                        <a id="micuentaImg" class="loginBtn" href="login.html"><img class="login"
+                                src="images/micuenta.png" alt="micuenta.png"></a>
+                        <a id="micuenta" class="miCuentaTxt" id="micuenta" href="login.html">Mi cuenta</a>
+                    </div>
+                </div>
+
+            </div>
+            <div class="abajo">
+                <a href="index.html">Home</a>
+                <a href="shop.html">Tienda</a>
+                <a href="blog.html">Consejos</a>
+                <a href="hola">Acerca de</a>
+
+                <div id="menuUsuario" class="dropdown-menu">
+                    <div class="cart-tab"></div>
+                    <ul>
+                        <li><a href="favoritos.html">Favoritos</a></li>
+                        <li><a href="#" id="cerrarSesion">Cerrar sesión</a></li>
+                    </ul>
+                </div>
+            </div>
+
+        </nav>
+    </header>
+
+
+
+  <div id="contenedor-articulo"></div>
+  <footer>
+        <img class="imgPatita" src="images/patita.png" alt="patita.png">
+        <div class="containerNaranja">
+            <div class="divTextoRegistro">
+                <p>Registrate para obtener actualizaciones y novedades.</p>
+            </div>
+            <div class="divIngresa">
+                <input class="inputRegistra" type="text" placeholder="Ingresa tu email">
+                <button class="btnSuscribirse">Registrarse</button>
+            </div>
+        </div>
+        <div class="containerRedes">
+            <div class="containerEnlaces">
+                <a href="/home">Home</a>
+                <a href="/Categoria">Categoria</a>
+                <a href="/Acerca">Acerca</a>
+                <a href="/contacto">Contacto</a>
+            </div>
+            <div class="containerImagenes">
+                <a href="/facebook"><img src="images/facebook.png" alt="facebook.png"></a>
+                <a href="/twitter"><img src="images/twitter.png" alt="twitter.com"></a>
+                <a href="/insta"><img src="images/instagram.png" alt="instagram.png"></a>
+                <a href="/youtube"><img src="images/youTube.png" alt="youtube.png"></a>
+            </div>
+        </div>
+        <hr>
+        <div class="containerFinal">
+            <p>Derechos reservados al ITM</p>
+            <img src="images/logoFinal.png" alt="tailsUp.png">
+            <p>Terminos de servicio</p>
+        </div>
+    </footer>
+
+  <script>    
+    const articulos = [
+      {
+        titulo: "¿Por qué llevar a tu perro al veterinario?",
+        fecha: "octubre 14, 2024",
+        contenido: `
+          <p>Como dueño responsable, la salud y el bienestar de tu perro son las principales prioridades. Las visitas periódicas al veterinario desempeñan un papel crucial para garantizar que tu mascota goce de la mejor salud posible. </p>
+          <h3>Importancia de las visitas regulares al veterinario</h3>
+          <p>Una de las principales razones para programar visitas periódicas al veterinario es preguntar y orientarse en la mejor alimentación para su mascota, con una dieta de calidad que asegure una mejor calidad de vida posible. detectar posibles problemas de salud a tiempo. La detección temprana puede conducir a un tratamiento más eficaz y un mejor pronóstico, lo que podría salvar a tu perro de dolor y sufrimiento innecesarios. También ayudan a garantizar que tu mascota esté al día con las vacunas y preventivos.</p>
+          <p>Otra razón por la que las citas periódicas con el veterinario son importantes es que le brindan a su veterinario la oportunidad de controlar el crecimiento, el desarrollo y la salud general de tu perro. Esto puede ayudar a identificar cualquier cambio y anomalía que requiera una mayor investigación. Además, las visitas periódicas pueden ayudar a construir una relación entre tu mascota y su veterinario, lo que les facilitará el manejo dentro del consultorio y menor estrés en tu perro.</p>
+          <p>Finalmente, las visitas periódicas al veterinario pueden ayudar a educar a los dueños de mascotas sobre las mejores formas de cuidarlas. Los veterinarios pueden proporcionar información valiosa sobre nutrición, ejercicio, aseo y otros aspectos del cuidado de las mascotas, ayudándole a tomar decisiones informadas para mantener la salud y el bienestar general de su mascota.</p>
+          <h3>¿Cada cuánto debes llevar a tu perro al veterinario?</h3>
+          <p>La frecuencia de las visitas al veterinario de perros varía según su edad, raza y salud general. Como norma general, aquí tienes una pauta sobre la frecuencia con la que debes llevar a tu perro al veterinario:</p>
+          <p>Cachorros (hasta 1 año): Los cachorros deben visitar al veterinario cada 3-4 semanas hasta que tengan aproximadamente 16 semanas para recibir vacunas y controles. Después de eso, es posible que necesiten vacunas adicionales y visitas cada 6 meses hasta que alcancen la edad adulta.</p>
+          <p>Perros adultos (de 1 a 7 años): Los perros adultos deben someterse al menos a una revisión veterinaria al año. Sin embargo, algunas razas o perros con problemas de salud específicos pueden requerir visitas más frecuentes.</p>
+          <p> Perros mayores (de 7 años en adelante): a medida que los perros envejecen, se vuelven más propensos a sufrir diversos problemas de salud. Se recomienda que los perros mayores visitan al veterinario al menos dos veces al año para realizar chequeos y controlar cualquier problema de salud actual.</p>
+          <h3>Claves de una revisión completa</h3>
+          <p>El veterinario comenzará el examen del cuerpo de tu perro, comprobando si hay anomalías o cambios en su piel, pelaje, orejas, ojos, nariz, boca, dientes y encías. También escucharán el corazón y los pulmones de tu mascota y examinarán su abdomen en busca de signos de malestar o hinchazón.</p>
+          <p>Evaluación de peso y condición corporal para determinar si tiene un peso saludable o si puede ser necesario realizar algún ajuste en su dieta o régimen de ejercicio.</p>
+          <p>La prevención y tratamiento de parásitos. Tu veterinario analizará las opciones de tratamiento y prevención de parásitos, como el control de pulgas y garrapatas.</p>
+          <p>Las vacunas son una parte esencial del cuidado preventivo de las mascotas. Su veterinario evaluará qué vacunas necesita su mascota y se asegurará de que esté al día con todas las vacunas necesarias.</p>
+          <p>Pruebas de diagnóstico, esto puede incluir análisis de sangre, análisis de orina u otros tipos de pruebas para detectar cualquier problema de salud subyacente.</p>
+          <p>Revisión bucal ya que la salud dental es esencial para las mascotas y tu veterinario debe examinar los dientes y las encías de tu mascota en busca de signos de enfermedad dental o caries.</p>
+          <p>Evaluación del comportamiento y el temperamento de tu mascota, brindándole orientación sobre cuestiones de entrenamiento y comportamiento si es necesario.</p>
+          <p></p>
+        `
+      },
+      {
+        titulo: "10 trucos para perros para frenar a un comedor rápido",
+        fecha: "julio 15, 2024",
+        contenido: `
+          <p>Si tu perro devora su comida como si estuviera muy hambriento, ¡no te preocupes! Aquí hay algunas soluciones rápidas para frenar este mal hábito:</p>
+          <h3>1. Tira las croquetas sobre una alfombra o tapete de olfación. </h3>
+          <p>Debido a que las croquetas para perros están esparcidas en todas direcciones, tu perro tendrá que detenerse, olfatear y picotear la superficie, lo que ralentizará considerablemente su alimentación. Si no tienes un tapete, puedes simplemente tirar las croquetas directamente al suelo.</p>
+          <h3>2. Utiliza un comedero tipo rompecabezas.</h3>
+          <p>Hay muchas marcas y variedades de juguetes fabricados específicamente para frenar a los perros que comen rápido. Los comederos tipo rompecabezas son excelentes porque también sirven para darle a tu perro un poco de ejercicio mental, y los juguetes rellenos de golosinas realmente hacen que su perro se esfuerce para alcanzar cada bocado sabroso. Mientras más los uses tu perro aprenderá a tener más paciencia al comer.</p>
+          <h3>3. Prueba con un dispensador de premios.</h3>
+          <p>Mientras tu perro juega con el juguete dispensador de premios, soltará las croquetas una a la vez. Esta es una excelente manera de alimentar a tu perro, hacerle un poco de ejercicio y mantenerlo ocupado.</p>
+          <h3>4. Pega la comida seca a la comida húmeda.</h3>
+          <p>Unta una bandeja para hornear galletas con comida húmeda y luego espolvorea con croquetas. La comida húmeda actúa como una especie de pegamento, lo que impide que su perro se trague las croquetas demasiado rápido.</p>
+          <h3>5. Aliméntalo mientras lo entrenas.</h3>
+          <p>Mejora las habilidades de obediencia de tu perro haciendo que la hora de comer también sea un momento para entrenar. Haz que tu perro se siente, se acueste o realice alguna otra habilidad antes de recompensarlo con cada bocado.</p>          
+          <h3>6. Esconde la comida.</h3>
+          <p>La mayoría de los perros disfrutan de un buen juego de escondite. Esconde diferentes porciones de croquetas en diferentes lugares de la casa o el jardín y haz que su perro use su olfato para encontrarlas.</p>          
+          <h3>7. Utiliza un recipiente de alimentación lenta.</h3>
+          <p>Estos tazones resistentes tienen una cúpula en el centro, que empuja la comida hacia los lados para que su perro no pueda tomar grandes tragos. Algunos cuencos de alimentación lenta tienen forma de pequeños laberintos, que convierten el comer en un juego.</p>          
+          <h3>8. Voltea el recipiente.</h3>
+          <p>Toma el plato de tu perro, dale la vuelta y extiende la comida. Tu perro tendrá que mover la cabeza para comer la comida del pliegue del recipiente, lo que ralentiza el proceso.</p>          
+          <h3>9. Divide el alimento.</h3>
+          <p>Coloca la comida de tu perro en un molde para muffins. Tendrá que levantar la cabeza para comer cada espacio individual, lo que le obligará a tomar un pequeño descanso entre bocado y bocado. O divide el alimento en varios escalones de la casa para ayudar a moverse entre bocados.</p>          
+          <h3>10. Dale comidas más pequeñas con más frecuencia. </h3>
+          <p>En lugar de alimentar a tu perro con una o dos comidas abundantes al día, dividelas en varias comidas pequeñas y aliméntalo a intervalos durante el día. Esto mantendrá su estómago lleno durante todo el día y evitará que se atiborre porque se muere de hambre.</p>                    
+        `
+      }
+      ,
+      {
+        titulo: "¿Cómo saber si mi gato está enfermo?",
+        fecha: "abril 28, 2025",
+        contenido: `
+          <p>Tener un gato en casa es una de las cosas más lindas que existen. Son compañeros cariñosos, independientes y, sí, un poco misteriosos. Pero justo por ser tan discretos, a veces es muy difícil darnos cuenta cuando algo no anda bien. </p>
+          <p>Cuidar su salud es clave para que vivan muchos años felices. Aquí te contamos por qué cuesta tanto saber si tu gato está enfermo y qué señales debes mirar.</p>
+          <h3>¿Por qué los gatos son tan expertos en esconder que están enfermos?</h3>
+          <p>Resulta que en la naturaleza, si un gato mostraba que estaba débil, corría más riesgo de ser atacado. Por eso, evolucionaron para ocultar cualquier dolencia. Hoy, aunque tu gato duerma como un rey, sigue teniendo ese instinto.</p>
+          <p>Además, muchas enfermedades en gatos avanzan sin dar síntomas claros hasta que están bastante graves. Por eso es tan importante conocerlo bien y estar atentos a los cambios.</p>
+          <h3>Señales que pueden indicar que tu gato está enfermo</h3>
+          <p>Aunque a veces son muy sutiles, estas pistas pueden ayudarte a detectar que algo no anda bien:</p>
+          <p>Deja de comer o come de más.</p>
+          <p>Se esconde o está más arisco.</p>
+          <p>Su pelaje se ve opaco o desordenado porque deja de acicalarse.</p>
+          <p>Cambia sus hábitos en la caja de arena.</p>
+          <p>Pierde o gana peso sin explicación.</p>
+          <p>Se ve cansado o duerme demasiado.</p>
+          <p>Tose, respira raro o vomita seguido.</p>
+          <p>Nariz, ojos o encías con colores o secreciones raras.</p>          
+        `
+      },
+       {
+  titulo: "¿Con qué frecuencia debo bañar a mi perro?",
+  fecha: "abril 14, 2025",
+  contenido: `
+    <p>Nadie quiere un cachorro con mal olor, pero un simple baño no siempre será suficiente para solucionarlo. Aunque muchos dueños de mascotas suelen esperar hasta que su perro realmente necesite un baño para hacerlo (levantemos la mano), los baños regulares son, en realidad, una parte fundamental del cuidado de nuestras mascotas.</p>
+
+    <h3>¿Qué significa "baño regular"?</h3>
+    <p>La respuesta es simple: depende. Desde un par de veces por mes hasta una vez cada pocos meses, la frecuencia varía dependiendo de varios factores, como el nivel de actividad de tu cachorro, el tipo de pelaje que tenga y el estado de su piel. En general, la mayoría de los perros se benefician de un baño aproximadamente una vez al mes, pero, como hemos mencionado, esto puede variar según las necesidades individuales de cada perro.</p>
+
+    <h3>La importancia de los baños regulares para la salud de tu perro</h3>
+    <p>Comenzamos con lo más básico. Si tu perro huele mal o parece que necesita un baño, probablemente sea el momento adecuado para dárselo. La higiene es tan importante para tu perro como lo es para ti. Los baños regulares no solo eliminan la suciedad y el mal olor del pelaje de tu perro, sino que también ayudan a mantener su piel en buen estado. Bañar a tu perro no se trata solo de que luzca bien, sino de mantener su barrera de defensa intacta. La piel es el órgano más grande de tu perro y necesita mantenerse limpia y saludable para ofrecer protección contra el ambiente externo.</p>
+
+    <h3>¿Con qué frecuencia debes bañar a tu perro?</h3>
+    <p>No existe una fórmula exacta sobre la frecuencia ideal de baños, pero se puede determinar un estimado tomando en cuenta tres factores clave:</p>
+    <ol>
+      <li>Estilo de vida</li>
+      <li>Tipo de pelaje</li>
+      <li>Condiciones de la piel</li>
+    </ol>
+
+    <h3>Estilo de vida</h3>
+    <p>Al igual que las personas, si un perro está expuesto a actividades físicas o entornos sucios, necesitará bañarse con mayor frecuencia. El nivel de actividad de tu perro debe ser el factor principal para decidir con qué frecuencia bañar a tu mascota. Para los perros muy activos, como los que disfrutan de largas caminatas o juegos al aire libre, se recomienda bañarlos al menos cada dos semanas.</p>
+    <p>Sin embargo, si a tu perro le gusta nadar en el mar, revolcarse en el barro o hacer cualquier actividad que lo ensucie, lo ideal es bañarlo inmediatamente después de cada sesión, incluso si acabas de bañarlo. Y si tu perro huele mal, es hora de un baño. Por otro lado, si tu perro es más tranquilo y prefiere descansar en casa, no será necesario bañarlo con tanta frecuencia, y algunas razas solo necesitarán un baño unas pocas veces al año.</p>
+
+    <h3>Tipo de pelaje</h3>
+    <p>La longitud y textura del pelaje también juegan un papel importante. Los perros con pelaje largo o mediano deben bañarse más a menudo, generalmente cada cuatro a seis semanas. Los perros de pelaje corto pueden bañarse con menos frecuencia, cada uno o tres meses.</p>
+    <p>El tipo de pelaje es más relevante que la longitud. Algunas razas tienen pelajes que repelen la suciedad naturalmente, mientras que otras acumulan más residuos.</p>
+    <ul>
+      <li><strong>Perros de pelaje suave o suelto:</strong> Razas como el caniche y el bichón frisé, que tienen un pelaje suave, tienden a acumular suciedad, por lo que requieren baños y cortes de pelo frecuentes.</li>
+      <li><strong>Perros sin pelo y razas con pelaje graso:</strong> Razas como el labrador retriever o el basset hound necesitan baños regulares, generalmente una vez cada dos semanas, para evitar problemas dermatológicos.</li>
+      <li><strong>Perros de pelaje grueso y doble:</strong> Razas como los huskies y golden retrievers pueden bañarse cada mes, ya que su proceso de muda elimina naturalmente la suciedad.</li>
+    </ul>
+
+    <h3>Condiciones de la piel</h3>
+    <p>Los perros con afecciones cutáneas o infecciones pueden requerir baños más frecuentes con champús especiales, recetados por su veterinario. Si a tu perro se le ha recetado un champú medicado para tratar una infección cutánea, es posible que deba bañarse dos veces por semana durante un tiempo, dependiendo de cómo evolucione la condición.</p>
+    <p>Si tu perro tiene la piel seca, consulta con el veterinario sobre la frecuencia adecuada para bañarlo, ya que el exceso de baños podría empeorar el problema.</p>
+
+    <h3>¿Es posible dañarlo si lo bañas demasiado?</h3>
+    <p>Sí, bañarlo en exceso no es recomendable. Al igual que ocurre con el cabello humano, los baños excesivos pueden eliminar los aceites naturales de la piel de tu perro, lo que puede causar irritación y resequedad. Si notas que la piel de tu perro está seca o irritada, probablemente sea el momento de reducir la frecuencia de los baños. Es fundamental usar un champú específico para perros y evitar los champús para humanos, que pueden alterar el equilibrio de la piel y causar problemas dermatológicos. Además, el uso de un acondicionador adecuado puede ayudar a mantener la piel hidratada. Un alimento alto en ácidos grasos de salmón ayudará a reforzar la barrera cutánea de tu perro, a que suelte menos pelaje y sea más saludable.</p>
+
+    <h3>Cepillado entre baños</h3>
+    <p>Independientemente de la frecuencia del baño, todos los perros se benefician del cepillado regular. Esto ayuda a eliminar el pelo muerto, la suciedad y a distribuir los aceites naturales de la piel, dejando el pelaje más brillante y saludable. El cepillado no solo mantiene el pelaje limpio, sino que también ayuda a reducir la presencia de parásitos externos. Un buen cepillo y un uso adecuado pueden hacer que el pelaje de tu perro se vea más fresco y libre de enredos, especialmente en razas de pelo largo.</p>
+
+    <p style="margin-top:1rem;">Fuente original: <a href="https://somosmaka.com/blogs/blog/con-que-frecuencia-debo-banar-a-mi-perro" target="_blank">Somos Maka</a></p>
+  `
+},{
+  titulo: "Enseña a tu cachorro dónde hacer del baño",
+  fecha: "marzo 18, 2025",
+  contenido: `
+    <p>Uno de los primeros retos que enfrentamos al traer un cachorro a casa es enseñarle dónde y cuándo hacer sus necesidades. Un cachorro bien entrenado hace la convivencia mucho más fácil y placentera tanto para él como para su familia humana. ¡No te preocupes! Con paciencia y constancia, podrás lograrlo.</p>
+
+    <h3>¿Cuánto tiempo lleva enseñarle a un cachorro dónde hacer el baño?</h3>
+    <p>El tiempo de aprendizaje varía según la edad del cachorro, su tamaño y la consistencia del entrenamiento. Los perros pequeños suelen tardar más en aprender a aguantar, mientras que los de razas grandes pueden progresar más rápido.</p>
+
+    <h3>Pasos para entrenar a tu cachorro:</h3>
+    <ol>
+      <li>
+        <strong>Lleva a tu cachorro al baño cada 30 minutos:</strong> Los cachorros no tienen mucho control sobre su vejiga, por lo que es importante llevarlos frecuentemente a su área designada para hacer del baño. Usa una correa para enseñarle a hacer sus necesidades con ella puesta. Esto será útil cuando necesites que haga del baño durante los paseos.
+      </li>
+      <li>
+        <strong>Espera hasta cinco minutos:</strong> Cuando llegues al lugar donde debe hacer del baño, quédate quieto y en silencio por hasta cinco minutos. Esto ayuda a que tu cachorro se enfoque en su tarea en lugar de distraerse explorando.
+      </li>
+      <li>
+        <strong>Refuerza el buen comportamiento con premios:</strong> Si tu cachorro hace del baño en el lugar adecuado, felicítalo y dale una recompensa (puede ser un premio o caricias). Hazlo justo después de que termine para no interrumpirlo. Si no hace nada en esos cinco minutos, regresa a casa y ponlo en un espacio limitado (como un corral o su jaula) por 10-20 minutos antes de intentarlo nuevamente.
+      </li>
+      <li>
+        <strong>Dale tiempo de juego después de hacer del baño:</strong> Si es posible, permite que tu cachorro juegue sin correa en un lugar seguro después de hacer el baño. Esto le enseñará que hacer sus necesidades en el lugar correcto trae recompensas, en lugar de que termine la diversión de inmediato.
+      </li>
+      <li>
+        <strong>Repite el proceso durante el día:</strong> Cuantas más oportunidades tenga tu cachorro de hacerlo bien, más rápido aprenderá. La clave es la repetición y el refuerzo positivo. Siempre premia con golosinas altamente palatables y saludables para que el aprendizaje se refuerce mejor.
+      </li>
+    </ol>
+
+    <h3>Supervisión y manejo entre descansos para ir al baño</h3>
+    <p>Hasta que su cachorro esté completamente entrenado, asegúrese de supervisarlo o restringir su acceso a la casa para evitar accidentes. Puedes usar:</p>
+    <ul>
+      <li>Una jaula (si está correctamente entrenado para usarla)</li>
+      <li>Un corral para cachorros</li>
+      <li>Puertas de seguridad para delimitar su espacio</li>
+    </ul>
+    <p>Estos métodos también evitan que haga del baño en lugares no deseados.</p>
+
+    <h3>Importante: Cuidado con el uso de la jaula</h3>
+    <p>No dejes a tu cachorro en su jaula por más de un par de horas durante el día. Si lo haces por demasiado tiempo, podría terminar haciendo sus necesidades allí dentro, lo que podría retrasar su entrenamiento.</p>
+
+    <h3>Consejos para acelerar el proceso</h3>
+    <ul>
+      <li><strong>Lleva un registro:</strong> Anota cuándo y dónde hace el baño para identificar patrones y optimizar los horarios de salida.</li>
+      <li><strong>Sácalo en momentos clave:</strong> Además de cada 30 minutos, llévalo a su área de baño:
+        <ul>
+          <li>Después de comer</li>
+          <li>Después de beber agua</li>
+          <li>Después de jugar</li>
+          <li>Al despertar de una siesta</li>
+        </ul>
+      </li>
+      <li><strong>Establece un horario de comidas:</strong> Si alimentas a tu cachorro a la misma hora cada día, su horario de evacuación también será más predecible.</li>
+    </ul>
+
+    <h3>¿Qué hacer si tu cachorro tiene un accidente en casa?</h3>
+    <p>Si atrapas a tu cachorro en el acto, llévalo inmediatamente al lugar correcto y refuérzalo con un premio si termina ahí. No lo regañes ni le frotes la nariz en el orín o excremento. Esto solo generará miedo y podría hacer que busque esconderse para hacer del baño en el futuro.</p>
+    <p>Para evitar que vuelva a usar el mismo lugar incorrecto, limpia bien los accidentes con productos especiales para eliminar olores (como Nature's Miracle o Skout's Honor). Los olores residuales pueden actuar como "señales" que invitan al cachorro a repetir la conducta.</p>
+
+    <h3>¡Tú puedes lograrlo!</h3>
+    <p>Recuerda que cada cachorro es diferente, y algunos tardarán más que otros en aprender. Con paciencia, consistencia y refuerzo positivo, pronto tendrás un perrito que sabe exactamente dónde hacer sus necesidades. ¡No te rindas y disfruta el proceso de enseñarle!</p>
+
+    <p style="margin-top:1rem;">Fuente original: <a href="https://somosmaka.com/blogs/blog/ensena-a-tu-cachorro-donde-hacer-del-bano" target="_blank">Somos Maka</a></p>
+  `
+},
+{
+  titulo: "Enfermedades que pueden transmitir las garrapatas",
+  fecha: "marzo 10, 2025",
+  contenido: `
+    <p>Proteger a nuestras mascotas contra las garrapatas es fundamental para garantizar su salud y bienestar. Estos pequeños parásitos, aunque aparentan ser inofensivos, son portadores de enfermedades graves que pueden afectar tanto a perros como a gatos, e incluso a humanos. Aunque la incidencia de estas enfermedades varía según la región, un solo contacto con una garrapata infectada puede desencadenar graves consecuencias.</p>
+
+    <p>Aquí te presentamos cinco de las principales enfermedades transmitidas por garrapatas que deberías conocer:</p>
+
+    <h3>1. Enfermedad de Lyme</h3>
+    <p>La enfermedad de Lyme es causada por la bacteria <em>Borrelia burgdorferi</em>, que las garrapatas del ciervo (Ixodes scapularis) transmiten al alimentarse de su huésped. Estas garrapatas suelen habitar en áreas boscosas o con alta vegetación.</p>
+    <p><strong>Signos clínicos:</strong> Los perros infectados pueden presentar cojera, fiebre, inflamación articular, pérdida de apetito y letargo. En casos severos, la enfermedad puede evolucionar a nefritis de Lyme, una condición que afecta gravemente los riñones y puede causar insuficiencia renal.</p>
+    <p><strong>Diagnóstico y tratamiento:</strong> Se diagnostica mediante un análisis de sangre y se trata con antibióticos, generalmente doxiciclina. Aunque existen vacunas contra la enfermedad de Lyme, su eficacia sigue siendo debatida entre veterinarios. La prevención mediante productos antiparasitarios sigue siendo la mejor defensa.</p>
+
+    <h3>2. Fiebre Maculosa de las Montañas Rocosas</h3>
+    <p>Transmitida por la garrapata americana del perro (<em>Dermacentor variabilis</em>) y la garrapata de la fiebre maculosa (<em>Dermacentor andersoni</em>), esta enfermedad es causada por la bacteria <em>Rickettsia rickettsii</em>.</p>
+    <p><strong>Signos clínicos:</strong> Fiebre, rigidez al caminar, dolor articular, letargo, vómitos y pérdida de apetito. En casos graves, pueden aparecer signos neurológicos, insuficiencia renal o daños hepáticos.</p>
+    <p><strong>Diagnóstico y tratamiento:</strong> Un análisis de sangre es clave para el diagnóstico, y los antibióticos como la doxiciclina pueden controlar la infección si se detecta a tiempo.</p>
+
+    <h3>3. Ehrlichiosis</h3>
+    <p>Esta enfermedad es causada por bacterias del género <em>Ehrlichia</em> y se transmite principalmente por la garrapata marrón del perro (<em>Rhipicephalus sanguineus</em>) y la garrapata estrella solitaria (<em>Amblyomma americanum</em>).</p>
+    <p><strong>Signos clínicos:</strong> Fiebre, letargo, hematomas en las encías o abdomen, dolor articular y pérdida de apetito. Puede tardar semanas en manifestarse.</p>
+    <p><strong>Diagnóstico y tratamiento:</strong> Se diagnostica con pruebas sanguíneas observando glóbulos blancos y plaquetas. Se trata con doxiciclina y, en casos graves, transfusiones de sangre.</p>
+
+    <h3>4. Anaplasmosis</h3>
+    <p>Provocada por bacterias del género <em>Anaplasma</em>, es transmitida por las garrapatas de patas negras (<em>Ixodes scapularis</em>) y occidentales (<em>Ixodes pacificus</em>).</p>
+    <p><strong>Signos clínicos:</strong> Fiebre, dolor articular, vómitos, diarrea y, en algunos casos, hemorragias nasales o signos neurológicos.</p>
+    <p><strong>Diagnóstico y tratamiento:</strong> Se confirma con análisis de sangre. Se trata con antibióticos durante varias semanas.</p>
+
+    <h3>5. Hemobartonelosis (Micoplasmosis hemotrópica)</h3>
+    <p>Es causada por bacterias del género <em>Mycoplasma</em> y afecta a perros y gatos. Las garrapatas y pulgas son los principales vectores.</p>
+    <p><strong>Signos clínicos:</strong> Anemia, fiebre, pérdida de peso y debilidad general. En casos graves, puede ser mortal.</p>
+    <p><strong>Diagnóstico y tratamiento:</strong> Diagnóstico por frotis sanguíneos y pruebas específicas. Tratamiento con antibióticos, esteroides y transfusiones en casos graves.</p>
+
+    <h3> Prevención: La mejor defensa</h3>
+    <ul>
+      <li><strong>Usa antiparasitarios:</strong> Aplicar tratamientos regulares es clave para la protección.</li>
+      <li><strong>Revisa a tu mascota:</strong> Inspecciónala tras paseos en zonas con vegetación.</li>
+      <li><strong>Mantén el entorno limpio:</strong> Corta el césped y aspira tu hogar frecuentemente.</li>
+      <li><strong>Alimentación balanceada:</strong> Refuerza su sistema inmunológico con una dieta adecuada.</li>
+    </ul>
+
+    <h3> ¿Qué hacer si encuentras una garrapata?</h3>
+    <ol>
+      <li><strong>Retírala con un gancho especial:</strong> Agárrala lo más cerca de la piel y gírala suavemente.</li>
+      <li><strong>Consulta a tu veterinario:</strong> Realiza pruebas para descartar enfermedades.</li>
+      <li><strong>Revisiones frecuentes:</strong> La detección temprana evita complicaciones graves.</li>
+    </ol>
+
+    <p>La amenaza que representan las garrapatas no debe subestimarse. Proteger a tus mascotas con medidas preventivas puede marcar la diferencia entre una mascota sana y una enfermedad grave. La prevención siempre será la mejor herramienta para cuidar de quienes tanto amamos.</p>
+
+    <p style="margin-top:1rem;">Fuente original: <a href="https://somosmaka.com/blogs/blog/enfermedades-que-pueden-transmitir-las-garrapatas" target="_blank">Somos Maka</a></p>
+  `
+},{
+  titulo: "¿Cómo puedo ayudar a mi perro a envejecer saludablemente?",
+  fecha: "diciembre 11, 2024",
+  contenido: `
+    <p>Al igual que los humanos, los perros experimentan cambios físicos y cognitivos a medida que envejecen. Estos cambios pueden incluir reducción de energía, pérdida de visión o audición, y mayor susceptibilidad a problemas de salud como la artritis. Sin embargo, con el cuidado adecuado y una dieta balanceada, los perros pueden disfrutar de una vida larga y saludable en su etapa senior. Aquí exploramos algunos aspectos clave para ayudar a tu perro a envejecer con bienestar y calidad de vida.</p>
+
+    <h3>1. Nutrición adecuada para perros senior</h3>
+    <p><strong>Alimentos para adultos mayores:</strong> A medida que el perro envejece, sus necesidades nutricionales cambian. Opta por alimentos formulados específicamente para perros senior, que suelen ser bajos en calorías y ricos en antioxidantes, vitaminas y minerales que promueven la salud articular y digestiva.</p>
+    <p><strong>Mantén el peso ideal:</strong> El sobrepeso puede aumentar la presión sobre las articulaciones y provocar problemas cardíacos. Controla las porciones y evita dar demasiados premios, asegurándote de que reciba una dieta balanceada.</p>
+    <p><strong>Suplementos para articulaciones:</strong> Muchos perros mayores se benefician de suplementos de glucosamina y condroitina para proteger las articulaciones y reducir los efectos de la artritis. Consulta con el veterinario antes de incluirlos en su dieta.</p>
+
+    <h3>2. Mantener una actividad física regular y suave</h3>
+    <p><strong>Ejercicio adaptado:</strong> Aunque ya no puedan correr o jugar tan enérgicamente como antes, el ejercicio regular sigue siendo importante. Realiza caminatas diarias de ritmo moderado y adapta la duración según su resistencia y condición física.</p>
+    <p><strong>Juegos de bajo impacto:</strong> Actividades como nadar pueden ser beneficiosas para los perros senior, ya que el agua reduce el impacto en las articulaciones. Otros juegos suaves, como lanzar juguetes dentro de casa, también son buenos para mantenerlos activos.</p>
+
+    <h3>3. Revisiones veterinarias regulares</h3>
+    <p><strong>Chequeos preventivos:</strong> Lleva a tu perro al veterinario al menos dos veces al año para realizar chequeos completos. Estos exámenes ayudan a detectar a tiempo condiciones comunes en perros mayores, como problemas renales, cardíacos o cáncer.</p>
+    <p><strong>Analíticas de sangre y orina:</strong> Las pruebas de laboratorio pueden detectar signos tempranos de enfermedades que podrían no ser evidentes en un examen físico, como problemas hepáticos o insuficiencia renal.</p>
+
+    <h3>4. Cuidado de los dientes</h3>
+    <p><strong>Higiene dental regular:</strong> Los problemas dentales son comunes en perros senior y pueden llevar a infecciones y pérdida de apetito. Cepilla los dientes de tu perro con regularidad y ofrécele juguetes o snacks diseñados para la salud dental.</p>
+    <p><strong>Limpiezas profesionales:</strong> En algunos casos, una limpieza dental profesional es necesaria para evitar que se acumule sarro y prevenir enfermedades orales.</p>
+
+    <h3>5. Cuidados para los sentidos (vista y audición)</h3>
+    <p><strong>Entorno seguro:</strong> Si tu perro empieza a perder visión o audición, asegúrate de mantener su entorno libre de obstáculos para evitar accidentes.</p>
+    <p><strong>Señales visuales y olfativas:</strong> A los perros con dificultades de audición, enséñales a responder a señales visuales. Para los perros con pérdida de visión, mantén los muebles y objetos en lugares fijos y usa olores como referencia.</p>
+
+    <h3>6. Estimulación mental</h3>
+    <p><strong>Juegos de inteligencia:</strong> Los perros senior también necesitan mantener su mente activa para prevenir el deterioro cognitivo. Juguetes interactivos, rompecabezas y juegos de olfato pueden ayudar a estimular su cerebro.</p>
+    <p><strong>Aprendizaje constante:</strong> Enséñales comandos nuevos o refuerza aquellos que ya conocen. La estimulación mental puede ayudar a reducir la ansiedad y mantener la mente en forma.</p>
+
+    <h3>7. Adaptación del entorno en casa</h3>
+    <p><strong>Rutas y rampas:</strong> Si tienes escaleras, considera instalar rampas para ayudarle a moverse sin forzar las articulaciones.</p>
+    <p><strong>Camas cómodas:</strong> Invierte en una cama ortopédica que le brinde apoyo a las articulaciones y alivie puntos de presión. Esto es especialmente útil para perros con artritis.</p>
+
+    <h3>8. Atención al estado emocional</h3>
+    <p><strong>Atención y cariño:</strong> Los perros mayores pueden sentirse más ansiosos o inseguros debido a cambios en su cuerpo o entorno. Asegúrate de dedicar tiempo a actividades tranquilas juntos, como sesiones de cepillado o paseos.</p>
+    <p><strong>Respetar sus ritmos:</strong> A medida que envejecen, los perros pueden preferir un estilo de vida más pausado. Permite que descanse lo necesario y evita forzarlo a actividades que le resulten incómodas.</p>
+
+    <p>Ayudar a un perro a envejecer saludablemente implica un enfoque integral que cubre tanto la parte física como emocional. Con una dieta adecuada, ejercicio suave, estimulación mental y cuidados preventivos, puedes ayudar a tu perro a disfrutar de sus años senior con calidad de vida. Estos pequeños ajustes en el cuidado diario harán que la transición a la vejez sea lo más placentera y saludable posible.</p>
+  `
+},
+{
+  titulo: "¿Por qué es importante socializar a mi perro?",
+  fecha: "marzo 03, 2025",
+  contenido: `
+    <p>La socialización es un aspecto crucial en el desarrollo de cualquier cachorro. Este proceso, que implica habituar al cachorro a su entorno, abarca desde aprender a interactuar con otros perros y personas hasta familiarizarse con diferentes lugares, sonidos y situaciones. Es una etapa clave para sentar las bases de un comportamiento equilibrado y una vida saludable para tu compañero peludo.</p>
+
+    <h3>¿Cuándo comienza la socialización?</h3>
+    <p>La etapa más sensible para la socialización ocurre entre las 3 semanas y los 3 meses de vida. Durante este período, los cachorros son particularmente receptivos a nuevos estímulos y experiencias. Este es el momento ideal para ayudarlos a establecer vínculos positivos con su entorno y a evitar el miedo hacia lo desconocido.</p>
+    <p>Un cachorro que no se socializa adecuadamente durante esta ventana crítica puede desarrollar miedos o comportamientos agresivos en el futuro. Aunque es posible socializar a un perro adulto, el proceso es considerablemente más complicado y lleva más tiempo.</p>
+
+    <h3>El papel de la madre en la socialización</h3>
+    <p>Desde el nacimiento, la madre del cachorro desempeña un papel fundamental. Ella no solo cuida de sus necesidades básicas, como la alimentación y el calor, sino que también les enseña las primeras normas de comportamiento canino. Por ejemplo, la madre corrige a los cachorros cuando su conducta no es aceptable y los guía en sus primeras interacciones sociales.</p>
+
+    <h3>Aprendizaje entre hermanos</h3>
+    <p>Los hermanos de camada son igualmente importantes en este proceso. A través del juego y la interacción, los cachorros aprenden sobre dominancia, sumisión y comunicación canina. Este periodo les permite desarrollar habilidades esenciales para relacionarse con otros perros.</p>
+    <p>Los cachorros que son separados de sus hermanos a una edad demasiado temprana pueden enfrentar dificultades para interactuar con otros perros en el futuro. Pueden mostrarse excesivamente tímidos o, por el contrario, agresivos, lo que puede complicar la convivencia en hogares con más de un perro.</p>
+
+    <h3>Interacción con los humanos</h3>
+    <p>El contacto temprano con los humanos es clave para que los cachorros aprendan a confiar en las personas. Las primeras siete semanas de vida son ideales para fomentar esta relación a través del juego y la manipulación.</p>
+    <p>Es especialmente útil que los cachorros tengan contacto con niños durante esta etapa, ya que esto les ayuda a acostumbrarse a su energía y comportamiento. Un cachorro que no interactúa con humanos de forma adecuada a temprana edad podría desarrollar dificultades para adaptarse a hogares con varias personas o niños.</p>
+
+    <h3>Exposición a diferentes entornos</h3>
+    <p>Para que un cachorro se desarrolle como un perro seguro y equilibrado, es fundamental exponerlo a una variedad de entornos, sonidos, texturas y situaciones. Esto incluye paseos al aire libre, visitas a parques y encuentros con diferentes tipos de personas y animales.</p>
+    <p>La falta de exposición a estos estímulos puede resultar en un perro temeroso, y el miedo a menudo puede derivar en comportamientos agresivos. Por ello, es crucial estimular su curiosidad y permitirles explorar bajo supervisión.</p>
+
+    <h3>El periodo crítico de las 7 a 12 semanas</h3>
+    <p>Entre las 7 y las 12 semanas de edad, muchos cachorros pasan por una fase en la que su confianza puede tambalearse. De repente, cosas que antes parecían inofensivas, como ruidos fuertes o personas desconocidas, pueden causarles miedo.</p>
+    <p>Este comportamiento no está relacionado con cambios en su entorno, como mudarse a un nuevo hogar o separarse de su madre, sino que es una etapa natural en su desarrollo. Durante este periodo, es importante exponer al cachorro gradualmente a nuevas experiencias y evitar situaciones abrumadoras.</p>
+    <p>Por ejemplo, presentar a tu cachorro a un grupo pequeño de personas en lugar de un gran grupo de niños ruidosos puede ser más efectivo. Este enfoque controlado le permite adaptarse de manera positiva y superar esta fase con confianza.</p>
+
+    <h3>Socialización continua durante el primer año</h3>
+    <p>La socialización no termina una vez que el cachorro pasa esta etapa inicial. Durante su primer año de vida, es esencial continuar exponiéndolo a nuevos entornos, personas y animales.</p>
+    <p>Llevar a tu cachorro contigo a paseos, parques o incluso a tiendas pet-friendly puede ser una excelente manera de reforzar su confianza. Este es también un buen momento para inscribirlo en clases de entrenamiento grupal o sesiones de juego para cachorros.</p>
+
+    <h3>Beneficios de las clases de entrenamiento y juego</h3>
+    <p>Una vez que tu cachorro haya completado su cuadro de vacunación, considera inscribirlo en clases de adiestramiento en grupo o sesiones de juego supervisadas. Estas actividades no solo refuerzan su socialización, sino que también promueven su desarrollo físico y mental. Siempre acompaña el entrenamiento con premios altamente nutritivos y palatables, así como masticables funcionales que ayudarán a gastar toda esa energía.</p>
+    <p>Por ejemplo, muchas tiendas para mascotas ofrecen programas como sesiones de juego para cachorros, donde pueden interactuar con otros perros en un entorno seguro y controlado. Esto es especialmente útil para aquellos que no tienen acceso regular a otros perros.</p>
+
+    <h3>Un cachorro bien socializado, un perro feliz</h3>
+    <p>La socialización adecuada es una inversión en el futuro de tu cachorro. Un perro que ha sido expuesto a una variedad de experiencias desde una edad temprana tiene más probabilidades de convertirse en un compañero equilibrado, seguro y feliz.</p>
+    <p>Recuerda que este proceso requiere paciencia y constancia, pero los beneficios a largo plazo valen cada esfuerzo. Un perro bien socializado no solo disfruta de una mejor calidad de vida, sino que también se adapta más fácilmente a diferentes situaciones, creando un vínculo más fuerte y saludable con su familia humana.</p>
+  `
+},{
+  titulo: "Adolescencia en perros",
+  fecha: "enero 20, 2025",
+  contenido: `
+    <p>La adolescencia no es exclusiva de los humanos; los perros también atraviesan esta etapa, llena de cambios físicos, emocionales y de comportamiento. Aunque puede ser desafiante, entender qué está ocurriendo y cómo manejarlo hará que esta fase sea más llevadera para ti y tu perro.</p>
+
+    <h3>¿Cuándo comienza y cuánto dura?</h3>
+    <p>La adolescencia en perros generalmente ocurre entre los 6 y 18 meses de edad, aunque esto varía dependiendo de la raza y el tamaño. En perros pequeños, esta etapa puede comenzar antes y terminar más rápido, mientras que en razas grandes o gigantes puede prolongarse. Durante este período, los perros experimentan un desarrollo similar al de los adolescentes humanos: su cerebro, hormonas y comportamientos están en pleno cambio.</p>
+
+    <h3>Cambios comunes durante la adolescencia</h3>
+    <p><strong>Mayor independencia:</strong> Los perros adolescentes suelen volverse más desafiantes. Pueden ignorar órdenes que antes obedecían fácilmente, ya que empiezan a probar sus límites y explorar su autonomía.</p>
+    <p><strong>Energía desbordante:</strong> Sus niveles de energía están en su punto más alto, lo que puede derivar en comportamientos destructivos como masticar muebles, cavar en el jardín o escaparse si no reciben suficiente estimulación.</p>
+    <p><strong>Reactividad social:</strong> Pueden mostrar comportamientos reactivos hacia otros perros, personas o situaciones nuevas. Esto no siempre significa agresividad, sino que están aprendiendo cómo interactuar con su entorno.</p>
+    <p><strong>Cambios hormonales:</strong> Pueden empezar a mostrar comportamientos relacionados con la reproducción, como montar objetos, marcar con orina o ser más territoriales.</p>
+
+    <h3>Cómo manejar la adolescencia en perros</h3>
+    <p><strong>Entrenamiento constante y positivo:</strong> La consistencia es clave. Refuerza las órdenes básicas que ya conoce y trabaja nuevos comandos para mantener su mente activa. Usa premios, caricias y palabras de aliento.</p>
+    <p><strong>Aumenta la actividad física y mental:</strong> Paseos largos, juegos interactivos, entrenamiento en agilidad y juguetes tipo rompecabezas ayudan a canalizar su energía.</p>
+    <p><strong>Socialización adecuada:</strong> Sigue exponiéndolo a otros perros y personas en un ambiente controlado. Esto desarrolla su confianza y habilidades sociales.</p>
+    <p><strong>Establece límites claros:</strong> Corrige conductas no deseadas con firmeza y empatía. Evita castigos severos, y en su lugar refuerza lo positivo.</p>
+    <p><strong>Sé paciente:</strong> Recuerda que esta fase es temporal. Tu perro madurará con tu guía y apoyo constante.</p>
+
+    <h3>Señales de alerta</h3>
+    <p>Si tu perro muestra agresividad severa, ansiedad intensa o comportamientos que no puedes manejar, consulta con un entrenador profesional o un etólogo canino.</p>
+
+    <h3>Una etapa desafiante, pero clave</h3>
+    <p>La adolescencia es una oportunidad única para fortalecer tu relación con tu perro y establecer las bases para un comportamiento equilibrado. Aunque los cambios pueden ser frustrantes, esta etapa es completamente normal y temporal.</p>
+    <p>Durante la adolescencia, tu perro está aprendiendo a relacionarse con su entorno y contigo. Es un momento para demostrar paciencia, consistencia y comprensión. Corrige desde el refuerzo positivo y la empatía.</p>
+    <p>Estos comportamientos son parte de su desarrollo, no una intención de portarse mal. Canaliza su energía con paseos, juegos y estimulación mental. Esto no solo reducirá comportamientos destructivos, sino que fortalecerá su vínculo contigo.</p>
+    <p>Refuerza su socialización y ayúdalo a desarrollar confianza. Exponerlo a personas, perros y situaciones distintas le dará herramientas sociales para su vida adulta.</p>
+    <p>Cada esfuerzo que hagas ahora tendrá frutos. La adolescencia es una etapa de transición, y tu dedicación se verá reflejada en un perro adulto feliz, equilibrado y confiable.</p>
+    <p>Si la situación te sobrepasa, busca ayuda profesional. Un entrenador o etólogo podrá darte estrategias específicas para superar los desafíos de esta etapa.</p>
+
+    <p>Recuerda: la adolescencia no es un obstáculo, sino una oportunidad para enseñar, guiar y construir una relación sólida con tu perro.</p>
+  `
+},
+{
+  titulo: "¿Cómo calmar a mi perro ansioso?",
+  fecha: "febrero 17, 2025",
+  contenido: `
+    <p>Si tu perro tiende a ponerse ansioso, ya sea por fuegos artificiales, la separación de ti, ambientes nuevos o incluso ese molesto pitido de batería baja de un detector de humo, no estás solo. Muchos perros experimentan ansiedad en diversas formas, pero la buena noticia es que hay múltiples maneras efectivas de ayudar a calmar a tu compañero peludo.</p>
+
+    <p>En este artículo, explicaremos qué es la ansiedad en los perros, sus causas, signos y estrategias para manejarla y prevenirla.</p>
+
+    <h3>¿Qué es la ansiedad en los perros?</h3>
+    <p>La ansiedad en perros es una condición caracterizada por un miedo, preocupación o aprehensión excesiva. No debe confundirse con el nerviosismo, que suele ser una reacción a corto plazo frente a situaciones específicas como ruidos fuertes o encuentros con personas nuevas. La ansiedad es más crónica y puede afectar la vida diaria de tu perro de manera significativa.</p>
+    <p>Un perro ansioso puede mantenerse en un estado de alerta incluso después de que desaparezca el estímulo inicial o, en algunos casos, sin ningún desencadenante aparente. Este estado prolongado de incomodidad puede llevar a comportamientos difíciles de manejar y un impacto negativo en su calidad de vida.</p>
+
+    <h3>Causas comunes de la ansiedad en perros</h3>
+    <ul>
+      <li><strong>Ruidos fuertes:</strong> Tormentas, fuegos artificiales u otros sonidos repentinos.</li>
+      <li><strong>Cambios en el entorno:</strong> Mudanzas, nuevas mascotas o personas.</li>
+      <li><strong>Alteraciones en la rutina:</strong> Cambios en horarios o ausencias prolongadas.</li>
+      <li><strong>Trauma pasado:</strong> Perros rescatados o maltratados pueden ser más propensos.</li>
+      <li><strong>Ansiedad por separación:</strong> Inquietud o angustia al quedarse solos.</li>
+      <li><strong>Envejecimiento:</strong> Cambios cognitivos o sensoriales pueden provocar confusión y ansiedad.</li>
+    </ul>
+
+    <h3>Señales de ansiedad en los perros</h3>
+    <p><strong>Conductuales:</strong></p>
+    <ul>
+      <li>Ladridos o lloriqueos excesivos</li>
+      <li>Destrucción de objetos</li>
+      <li>Inquietud o caminar en círculos</li>
+      <li>Escaparse, esconderse, pérdida de apetito</li>
+      <li>Accidentes dentro de casa</li>
+    </ul>
+    <p><strong>Físicas:</strong></p>
+    <ul>
+      <li>Jadeo, salivación excesiva</li>
+      <li>Pupilas dilatadas</li>
+      <li>Cola entre las patas</li>
+      <li>Temblores o caída de pelo</li>
+    </ul>
+
+    <h3>¿Cómo calmar a un perro ansioso?</h3>
+    <ul>
+      <li><strong>Feromonas sintéticas:</strong> En difusores, collares o sprays. Simulan la feromona calmante de la madre.</li>
+      <li><strong>Chalecos de presión:</strong> Aplican presión constante para generar seguridad, como si estuvieran abrazados.</li>
+      <li><strong>Suplementos naturales:</strong> L-teanina, triptófano, melatonina, manzanilla, etc. Consulta a tu veterinario.</li>
+      <li><strong>Juguetes interactivos:</strong> Pelotas con premio, rompecabezas, peluches con sonidos o texturas relajantes.</li>
+      <li><strong>Veterinario:</strong> En casos severos puede recetar medicación temporal bajo monitoreo.</li>
+    </ul>
+
+    <h3>Prevención de la ansiedad</h3>
+    <ul>
+      <li><strong>Socialización temprana:</strong> Expón al cachorro a personas, sonidos y entornos variados.</li>
+      <li><strong>Rutinas consistentes:</strong> Paseos, comida y descanso a horas similares cada día.</li>
+      <li><strong>Estimulación física y mental:</strong> Jugar, entrenar, explorar. Un perro cansado es un perro feliz.</li>
+      <li><strong>Refuerzo positivo:</strong> Recompensa conductas calmadas, ignora comportamientos ansiosos leves.</li>
+      <li><strong>Espacio seguro:</strong> Proporciónale un rincón tranquilo donde pueda relajarse.</li>
+      <li><strong>Chequeos veterinarios:</strong> Algunas condiciones médicas causan o empeoran la ansiedad.</li>
+    </ul>
+
+    <p>La ansiedad en perros es un desafío común, pero con paciencia, observación y las herramientas adecuadas, puedes ayudar a tu perro a sentirse más tranquilo y seguro. Siempre consulta a tu veterinario si sospechas que tu perro tiene ansiedad persistente, ya que ellos pueden ayudarte a diseñar un plan personalizado para las necesidades de tu mascota. Con amor y cuidado, tu perro puede superar su ansiedad y disfrutar de una vida más feliz y relajada.</p>
+  `
+}
+
+
+
+    ];
+    function obtenerIndiceDesdeURL() {
+  const parametros = new URLSearchParams(window.location.search);
+  const indice = parseInt(parametros.get('articulo'), 10);
+  return isNaN(indice) ? 0 : indice; // si no es válido, muestra el primero
+}
+
+// Mostrar el artículo correspondiente
+mostrarArticulo(obtenerIndiceDesdeURL());
+
+    // Función para renderizar un artículo por índice
+    function mostrarArticulo(index) {
+      const contenedor = document.getElementById('contenedor-articulo');
+      const articulo = articulos[index];
+
+      contenedor.innerHTML = `
+        <div class="articulo">
+          <h1 class="titulo-articulo">${articulo.titulo}</h1>
+          <p class="fecha-articulo">${articulo.fecha}</p>
+          <hr>
+          <div class="contenido-articulo">${articulo.contenido}</div>
+        </div>
+      `;
+    }
+  
+  </script>
+  <script src="js/buscarAndFullCard.js"></script>
+  <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            const micuenta = document.getElementById('micuenta');
+            const micuentaImg = document.getElementById('micuentaImg');
+            const menuUsuario = document.getElementById('menuUsuario');
+            const nombreUsuario = localStorage.getItem('usuario');
+
+            if (nombreUsuario) {
+               const primerNombre = nombreUsuario.trim().split(' ')[0];            
+                micuenta.textContent = primerNombre;                  
+                micuenta.href = '#'; // Evita redirección
+                micuentaImg.href = '#'
+                const toggleMenu = (e) => {
+                    e.preventDefault();
+                    menuUsuario.classList.toggle('show');
+                };
+
+                micuenta.addEventListener('click', toggleMenu);
+                micuentaImg.addEventListener('click', toggleMenu);
+
+
+                // Cerrar sesión aifbsifbweiufbeiribsfglisbegsebyu  aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+                document.getElementById('cerrarSesion').addEventListener('click', () => {
+                    localStorage.removeItem('usuario');
+                    window.location.href = 'login.html';
+                });
+                document.getElementById('btnBuyNow').addEventListener('click', () => {                    
+                    window.location.href = 'shop.html';
+                });
+                  document.getElementById('btnBuscarBlog').addEventListener('click', () => {                    
+                    window.location.href = 'blog.html';
+                });
+                  document.getElementById('btnServicios').addEventListener('click', () => {                    
+                    window.location.href = 'blog.html';
+                });
+                  document.getElementById('btnConviertete').addEventListener('click', () => {                    
+                    window.location.href = 'blog.html';
+                });
+            }
+        });
+    </script>
+</body>
+</html>

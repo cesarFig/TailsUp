@@ -1,0 +1,35 @@
+.articulo h1 {
+  font-size: 3rem;
+  font-family: 'Georgia', serif;
+  margin-bottom: 0.5rem;
+  font-family: flame;
+  color: #DE6600;
+}
+
+.fecha-articulo {
+  font-weight: bold;
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+  font-family: poppins;
+  color: #003F5A;
+}
+#contenedor-articulo {    
+  max-width: 900px;
+  margin: 10% auto;
+  padding: 2rem;
+}
+hr {
+  margin: 1.5rem 0;
+}
+.contenido-articulo p {
+  line-height: 1.6;
+  margin-bottom: 1rem;
+  font-family: poppins;  
+}
+
+.contenido-articulo h3 {
+  font-weight: bold;
+  margin-top: 1.5rem;
+  font-family: flame;
+  color: #003F5A;
+}

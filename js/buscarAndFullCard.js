@@ -3,10 +3,13 @@ const input = document.getElementById('inputBusqueda');
 const resultados = document.getElementById('resultadosBusqueda');
 const botonBuscar = document.getElementById('btnBuscar');
 
-function mostrarResultados(productos) {
+function mostrarResultados(productos) {    
+input.style.borderBottomRightRadius = '0';
+const boton = document.getElementById('btnBuscar');
+boton.style.borderBottomLeftRadius = '0';
     resultados.innerHTML = '';
     if (productos.length === 0) {
-        resultados.innerHTML = '<div class="resultado-item">No se encontraron productos</div>';
+        resultados.innerHTML = '<div class="resultado-item" style="font-family:poppins;">No se encontraron productos</div>';
         resultados.style.display = 'block';
         return;
     }
@@ -55,6 +58,7 @@ input.addEventListener('input', () => {
         buscarProductos(texto);
     } else {
         resultados.style.display = 'none';
+        restaurarBordes();
     }
 });
 
@@ -68,10 +72,17 @@ botonBuscar.addEventListener('click', () => {
 document.addEventListener('click', function (e) {
     if (!document.querySelector('.buscadorDiv').contains(e.target)) {
         resultados.style.display = 'none';
+        restaurarBordes();
     }
 });
 let comentariosMock = [];
 let estrellasSeleccionadas = 0;
+function restaurarBordes() {
+    input.style.borderBottomRightRadius = '';
+    const boton = document.getElementById('btnBuscar');
+    boton.style.borderBottomLeftRadius = '';
+}
+
 function renderEstrellasFormulario() {
     const contenedor = document.getElementById('estrellasFormulario');
     contenedor.innerHTML = '';
@@ -87,44 +98,74 @@ function renderEstrellasFormulario() {
         contenedor.appendChild(estrella);
     }
 }
-function mostrarComentarios() {
-    const lista = document.getElementById('comentariosLista');
-    lista.innerHTML = '';
+function mostrarComentarios(id_producto) {
+    fetch(`http://localhost/TailsUp-Backend/endPointGetComentarios.php?id_producto=${id_producto}`)
+        .then(res => res.json())
+        .then(data => {
+            const lista = document.getElementById('comentariosLista');
+            lista.innerHTML = '';
 
-    if (comentariosMock.length === 0) {
-        lista.innerHTML = '<p style="color: #777;">No hay comentarios aún.</p>';
-        return;
-    }
+            if (data.status !== 'success' || data.comentarios.length === 0) {
+                lista.innerHTML = '<p style="color: #777;">No hay comentarios aún.</p>';
+                return;
+            }
 
-    comentariosMock.forEach(c => {
-        const div = document.createElement('div');
-        div.className = 'comentario';
+            data.comentarios.forEach(c => {
+                const div = document.createElement('div');
+                div.className = 'comentario';
 
-        const estrellas = Array.from({ length: 5 }, (_, i) =>
-            `<i class="${i < c.rating ? 'fa-solid' : 'fa-regular'} fa-star"></i>`).join('');
+                const estrellas = Array.from({ length: 5 }, (_, i) =>
+                    `<i class="${i < c.rating ? 'fa-solid' : 'fa-regular'} fa-star"></i>`).join('');
 
-        div.innerHTML = `
-      <strong>${c.usuario}</strong>
-      <div class="estrellas-comentario">${estrellas}</div>
-      <p>${c.texto}</p>
-    `;
-        lista.appendChild(div);
-    });
+                div.innerHTML = `
+                    <strong>${c.usuario}</strong>
+                    <div class="estrellas-comentario">${estrellas}</div>
+                    <p>${c.texto}</p>
+                `;
+                lista.appendChild(div);
+            });
+        })
+        .catch(err => {
+            console.error("❌ Error al obtener comentarios:", err);
+        });
 }
+
 
 function agregarComentario() {
     const texto = document.getElementById('nuevoComentario').value.trim();
     const usuario = localStorage.getItem('usuario') || 'Anónimo';
+    const id_producto = window.productoActual?.id_producto || 0;
+    console.log(id_producto);
+    if (texto.length === 0 || estrellasSeleccionadas === 0 || !id_producto) return;
 
-    if (texto.length === 0 || estrellasSeleccionadas === 0) return;
+    const payload = {
+        usuario,
+        id_producto,
+        texto,
+        rating: estrellasSeleccionadas
+    };
 
-    comentariosMock.push({ usuario, texto, rating: estrellasSeleccionadas });
-
-    document.getElementById('nuevoComentario').value = '';
-    estrellasSeleccionadas = 0;
-    renderEstrellasFormulario();
-    mostrarComentarios();
+    fetch('http://localhost/TailsUp-Backend/endPointAgregarComentario.php', {
+        method: 'POST',
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
+    })
+    .then(res => res.json())
+    .then(data => {
+        if (data.status === "success") {
+            console.log("hola");
+            renderEstrellas(data.nuevo_rating);
+            document.getElementById('nuevoComentario').value = '';
+            estrellasSeleccionadas = 0;
+            renderEstrellasFormulario();
+            mostrarComentarios(id_producto);
+        } else {
+            console.warn("❌ Error al agregar comentario:", data.message);
+        }
+    })
+    .catch(err => console.error("❌ Error de red al agregar comentario:", err));
 }
+
 
 function cambiarCantidad(valor) {
     const input = document.getElementById('cantidad');
@@ -176,7 +217,7 @@ function renderEstrellasFormulario() {
 }
 
 function mostrarDetallesProducto(producto) {
-    localStorage.setItem('idProductoActual', producto.id_producto);
+     window.productoActual = producto;
     document.getElementById('modalImagenProducto').src = 'images/' + producto.imagen_producto;
     document.getElementById('modalNombreProducto').textContent = producto.nombre_producto;
     document.getElementById('modalMarcaProducto').textContent = producto.marca || 'Sin marca';
@@ -206,9 +247,9 @@ function mostrarDetallesProducto(producto) {
 
     imagenZoom.addEventListener('mouseleave', function () {
         this.style.transform = "scale(1)";
-    });
-    comentariosMock = []; // o cargar desde base de datos en el futuro
-    mostrarComentarios();
+    });    
+    mostrarComentarios(producto.id_producto);
+
     renderEstrellasFormulario();
 }
 
@@ -217,4 +258,32 @@ function mostrarDetallesProducto(producto) {
 function cerrarModalProducto() {
     document.getElementById('modalProducto').style.display = 'none';
 }
+
+const btnBuscar = document.getElementById('btnBuscar');
+const inputBusqueda = document.getElementById('inputBusqueda');
+const elementosAocultar = document.querySelectorAll('.logo, .iconos, .menu'); // Ajusta según tus clases reales
+
+btnBuscar.addEventListener('click', (e) => {
+    if (window.innerWidth <= 768) {
+        e.preventDefault();
+
+        inputBusqueda.classList.add('expandido');
+
+        // Ocultar otros elementos del header
+        elementosAocultar.forEach(el => el.classList.add('ocultar-header'));
+
+        inputBusqueda.focus();
+    }
+});
+
+// Ocultar búsqueda al perder foco (opcional)
+inputBusqueda.addEventListener('blur', () => {
+    if (window.innerWidth <= 768) {
+        inputBusqueda.classList.remove('expandido');
+        elementosAocultar.forEach(el => el.classList.remove('ocultar-header'));
+    }
+});
+
+
+
 

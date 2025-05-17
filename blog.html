@@ -88,7 +88,7 @@
         <div class="consejos-row">
             <div class="consejo-card consejo1">
                 <div class="consejo-texto">
-                    <a href="#" class="consejo-titulo">¿Por qué llevar a tu perro al veterinario?</a>
+                    <a href="infoblog.html?articulo=0" class="consejo-titulo">¿Por qué llevar a tu perro al veterinario?</a>
                     <p class="consejo-descripcion">responsabilidad, salud y bienestar</p>
                 </div>
                 <img src="images/veterinaria.png" alt="Veterinaria">
@@ -96,7 +96,7 @@
 
             <div class="consejo-card consejo2">
                 <div class="consejo-texto">
-                    <a href="hola" class="consejo-titulo">10 trucos para perros<br>para frenar a un comedor rápido</a>
+                    <a href="infoblog.html?articulo=1" class="consejo-titulo">10 trucos para perros<br>para frenar a un comedor rápido</a>
                     <p class="consejo-descripcion">tu perro devora su comida</p>
                 </div>
                 <img src="images/perro-croquetas.png" alt="Perro croquetas">
@@ -114,28 +114,28 @@
                     <img src="images/gato-enfermo.jpg" alt="Gato enfermo">
                     <h4 style="color: #f57c00;">¿Cómo saber si mi gato está enfermo?</h4>
                     <p>Tener un gato en casa es una de las cosas más lindas que existen...</p>
-                    <button>Ver ahora</button>
+                    <button onclick="window.location.href='infoblog.html?articulo=2'">Ver ahora</button>
                 </div>
 
                 <div class="faq-card verde">
                     <img src="images/perro-baño.png" alt="Perro bañándose">
                     <h4 style="color: #00695c;">¿Con qué frecuencia debo bañar a mi perro?</h4>
                     <p>Nadie quiere un cachorro con mal olor, pero un simple baño no siempre lo soluciona...</p>
-                    <button>Ver ahora</button>
+                    <button onclick="window.location.href='infoblog.html?articulo=3'">Ver ahora</button>
                 </div>
 
                 <div class="faq-card naranja">
                     <img src="images/cachorro-baño.jpg" alt="Cachorro baño">
                     <h4 style="color: #f57c00;">Enseña a tu cachorro dónde hacer del baño</h4>
                     <p>Tener un gato en casa es una de las cosas más lindas que existen...</p>
-                    <button>Ver ahora</button>
+                    <button onclick="window.location.href='infoblog.html?articulo=4'">Ver ahora</button>
                 </div>
 
                 <div class="faq-card verde">
                     <img src="images/garrapatas.jpg" alt="Garrapatas">
                     <h4 style="color: #00695c;">Enfermedades que pueden transmitir las garrapatas</h4>
                     <p>Proteger a nuestras mascotas contra las garrapatas es fundamental...</p>
-                    <button>Ver ahora</button>
+                    <button onclick="window.location.href='infoblog.html?articulo=5'">Ver ahora</button>
                 </div>
             </div>
         </div>
@@ -145,7 +145,7 @@
   <div class="col-izquierda">
     <img src="images/perro-viejo.png" alt="Perro mayor">
     <div class="texto-principal">
-      <a href="#">¿Cómo puedo ayudar a mi perro a envejecer saludablemente?</a>
+      <a href="infoblog.html?articulo=6">¿Cómo puedo ayudar a mi perro a envejecer saludablemente?</a>
       <p>
         Al igual que los humanos, los perros experimentan cambios físicos y cognitivos a medida que envejecen...
       </p>
@@ -156,7 +156,7 @@
     <div class="mini-card naranja">
       <img src="images/socializar-perro.png" alt="Socialización">
       <div class="mini-texto">
-        <a href="#" style="color: #f57c00;">¿Por qué es importante socializar a mi perro?</a>
+        <a href="infoblog.html?articulo=7" style="color: #f57c00;">¿Por qué es importante socializar a mi perro?</a>
         <p>La socialización es un aspecto crucial en el desarrollo de cualquier cachorro. Este proceso, que implica habituar al cachorro a su entorno, abarca desde aprender a interactuar con otros perros y personas hasta familiarizarse con ...</p>
       </div>
     </div>
@@ -164,7 +164,7 @@
     <div class="mini-card azul">
       <img src="images/adolescencia-perro.png" alt="Adolescencia perro">
       <div class="mini-texto">
-        <a href="#">Adolescencia en perros</a>
+        <a href="infoblog.html?articulo=8">Adolescencia en perros</a>
         <p>La adolescencia no es exclusiva de los humanos; los perros también atraviesan esta etapa, llena de cambios físicos, emocionales y de comportamiento. Aunque puede ser desafiante, entender qué está ocurriendo y cómo manejarlo hará que esta fase sea más llevadera para ti y tu perro.</p>
       </div>
     </div>
@@ -172,7 +172,7 @@
     <div class="mini-card naranja">
       <img src="images/perro-ansioso.png" alt="Perro ansioso">
       <div class="mini-texto">
-        <a href="#" style="color: #f57c00;">¿Cómo calmar a mi perro ansioso?</a>
+        <a href="infoblog.html?articulo=9" style="color: #f57c00;">¿Cómo calmar a mi perro ansioso?</a>
         <p>Si tu perro tiende a ponerse ansioso, ya sea por fuegos artificiales, la separación de ti, ambientes nuevos o incluso ese molesto pitido de batería baja de un detector de humo, no estás solo. Muchos perros experimentan ansiedad en diversas formas, pero la buena noticia es que hay ...</p>
       </div>
     </div>
@@ -286,11 +286,10 @@
             const nombreUsuario = localStorage.getItem('usuario');
 
             if (nombreUsuario) {
-                micuenta.textContent = nombreUsuario;
+               const primerNombre = nombreUsuario.trim().split(' ')[0];            
+                micuenta.textContent = primerNombre;                       
                 micuenta.href = '#'; // Evita redirección
                 micuentaImg.href = '#'
-                // Mostrar/ocultar menú al hacer clic
-                // Mostrar/ocultar menú al hacer clic
                 const toggleMenu = (e) => {
                     e.preventDefault();
                     menuUsuario.classList.toggle('show');
@@ -298,13 +297,11 @@
 
                 micuenta.addEventListener('click', toggleMenu);
                 micuentaImg.addEventListener('click', toggleMenu);
-
-
-                // Cerrar sesión
+               
                 document.getElementById('cerrarSesion').addEventListener('click', () => {
                     localStorage.removeItem('usuario');
                     window.location.href = 'login.html';
-                });
+                });               
             }
         });
     </script>

@@ -167,6 +167,7 @@ class DBManager
 
         return $resultado;
     }
+    
     public function obtenerIdUsuarioPorNombre($nombre)
     {
         $link = $this->open();
@@ -464,6 +465,50 @@ class DBManager
 
         return $carrito;
     }
+    public function agregarComentario($id_producto, $usuario, $texto, $rating)
+{
+    $link = $this->open();
+
+    $stmt = mysqli_prepare($link, "INSERT INTO comentarios (id_producto, usuario, texto, rating) VALUES (?, ?, ?, ?)");
+    mysqli_stmt_bind_param($stmt, "issi", $id_producto, $usuario, $texto, $rating);
+    mysqli_stmt_execute($stmt);
+
+    // Calcular nuevo promedio
+    $avgQuery = "SELECT AVG(rating) AS promedio FROM comentarios WHERE id_producto = ?";
+    $stmtAvg = mysqli_prepare($link, $avgQuery);
+    mysqli_stmt_bind_param($stmtAvg, "i", $id_producto);
+    mysqli_stmt_execute($stmtAvg);
+    $result = mysqli_stmt_get_result($stmtAvg);
+    $row = mysqli_fetch_assoc($result);
+    $nuevoRating = round($row['promedio'], 1);
+
+    // Actualizar productos
+    $stmtUpdate = mysqli_prepare($link, "UPDATE productos SET rating = ? WHERE id_producto = ?");
+    mysqli_stmt_bind_param($stmtUpdate, "di", $nuevoRating, $id_producto);
+    mysqli_stmt_execute($stmtUpdate);
+
+    $this->close($link);
+    return ['status' => 'success', 'nuevo_rating' => $nuevoRating];
+}
+public function obtenerComentariosPorProducto($id_producto)
+{
+    $link = $this->open();
+
+    $stmt = mysqli_prepare($link, "SELECT usuario, texto, rating, fecha FROM comentarios WHERE id_producto = ? ORDER BY fecha DESC");
+    mysqli_stmt_bind_param($stmt, "i", $id_producto);
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
+
+    $comentarios = [];
+    while ($row = mysqli_fetch_assoc($result)) {
+        $comentarios[] = $row;
+    }
+
+    $this->close($link);
+    return $comentarios;
+}
+
+
 
 }
 ?>

@@ -299,16 +299,42 @@ body {
         display: none;
     }
 
-    .buscador {
-        display: none;
+    #inputBusqueda {
+        display: none;        
     }
 
-    .buscadorDiv {
-        margin-right: -8%;
+    #inputBusqueda.visible {
+        display: inline-block; /* O flex, según tu estilo */
+        width: 100%; /* O un ancho que se adapte */
+        margin-left: 10px;
     }
 
+
+     #inputBusqueda.expandido {
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100%;
+        padding: 10px 20px;
+        font-size: 16px;
+        border: none;
+        border-radius: 0;
+        z-index: 999; /* Asegura que esté por encima de todo */
+        background-color: white;
+    }
+    .ocultar-header {
+        display: none !important;
+    }
     #btnBuscar {
+        margin-left: 60%;
         background: #ebd9c8 !important;
+        width: 50% !important;
+    }
+    #resultadosBusqueda{
+        width: 100% !important;
+        margin-left: -8% !important;
     }
 
     #btnBuscar img {

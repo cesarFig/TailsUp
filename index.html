@@ -189,7 +189,7 @@
             <h3>AHORRA 20% OFF</h3>
             <h4>ALIMENTOS PARA MASCOTAS</h4>
             <p>Compra y obten productos gratis</p>
-            <button class="btnBuyNow">Comprar ahora</button>
+            <button class="btnBuyNow" id="btnBuyNow">Comprar ahora</button>
         </div>
         <div class="LstDivSec2">
             <img src="images/comidaGato.png" alt="comidaGato.png">
@@ -214,7 +214,7 @@
             <img src="images/perritoNaranja.png" alt="perritoNaranja.png">
         </div>
         <div class="containerTexto">
-            <h1>PRUEBA</h1>
+            <h1>Visitanos</h1>
             <p>Cada perro tiene una raza y características diferentes, por lo que su estilo de vida, alimentación e
                 incluso entretenimiento son diferentes, por favor trae a tu mascota a nuestra tienda para que te
                 asesoremos por expertos.</p>
@@ -226,7 +226,7 @@
             <p>Como consentir a tus mascotas</p>
         </div>
         <div class="divButton">
-            <button class="btnServicios">Visita los servicios recomendados</button>
+            <button class="btnServicios" id="btnServicios">Visita los servicios recomendados</button>
         </div>
     </section>
     <div class="carruselWrapper">
@@ -386,18 +386,8 @@
             <img src="images/logoFinal.png" alt="tailsUp.png">
             <p>Terminos de servicio</p>
         </div>
-    </footer>
-    <script src="js/carrusel.js"></script>
+    </footer>    
     <script src="js/productCard2.js"></script>
-    <script>
-        window.addEventListener('DOMContentLoaded', () => {
-            const nombreUsuario = localStorage.getItem('usuario');
-            if (nombreUsuario) {
-                document.getElementById('micuenta').textContent = nombreUsuario;
-                document.getElementById('micuenta').href = '#'; // o a un perfil si tienes
-            }
-        });
-    </script>
     <script src="js/buscarAndFullCard.js"></script>
     <script>
         window.addEventListener('DOMContentLoaded', () => {
@@ -407,11 +397,10 @@
             const nombreUsuario = localStorage.getItem('usuario');
 
             if (nombreUsuario) {
-                micuenta.textContent = nombreUsuario;
+               const primerNombre = nombreUsuario.trim().split(' ')[0];            
+                micuenta.textContent = primerNombre;                       
                 micuenta.href = '#'; // Evita redirección
                 micuentaImg.href = '#'
-                // Mostrar/ocultar menú al hacer clic
-                // Mostrar/ocultar menú al hacer clic
                 const toggleMenu = (e) => {
                     e.preventDefault();
                     menuUsuario.classList.toggle('show');
@@ -419,12 +408,22 @@
 
                 micuenta.addEventListener('click', toggleMenu);
                 micuentaImg.addEventListener('click', toggleMenu);
-
-
-                // Cerrar sesión
+               
                 document.getElementById('cerrarSesion').addEventListener('click', () => {
                     localStorage.removeItem('usuario');
                     window.location.href = 'login.html';
+                });
+                document.getElementById('btnBuyNow').addEventListener('click', () => {                    
+                    window.location.href = 'shop.html';
+                });
+                  document.getElementById('btnBuscarBlog').addEventListener('click', () => {                    
+                    window.location.href = 'blog.html';
+                });
+                  document.getElementById('btnServicios').addEventListener('click', () => {                    
+                    window.location.href = 'blog.html';
+                });
+                  document.getElementById('btnConviertete').addEventListener('click', () => {                    
+                    window.location.href = 'blog.html';
                 });
             }
         });
@@ -458,7 +457,9 @@
         });
 
     </script>
+<script>
 
+</script>
     <script>
         function obtenerCantidad() {
             const cantidadInput = document.getElementById('cantidad');
@@ -504,7 +505,7 @@
             agregarAlCarrito(idProducto, cantidad);
             window.location.href = "carrito.html";
         }
-    </script>
+    </script>    
 
 </body>
 

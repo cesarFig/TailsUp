@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="css/shopStyles/stylesResponsive.css">
     <link rel="stylesheet" href="css/footer.css">
     <link rel="stylesheet" href="css/ProductosSection.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">    
 </head>
 
 <body>
@@ -168,15 +168,15 @@
         </div>
         <div class="containerProductos">
             <div class="titleSection" onclick="irACategoria('Comida')">
-                <h4>COMIDA</h4>
-                <img src="images/huellaNaranja.png" alt="huellaNaranja.png">
+                <h4>COMIDA (VER TODOS)</h4>
+                <img style="margin-top: 2%;" src="images/huellaNaranja.png" alt="huellaNaranja.png">
             </div>
             <section class="seccionProducts" id="contenedorProductos">
                 <!-- Aqui van los productos mas vendidos de comida-->
             </section>
             <div class="titleSection2" onclick="irACategoria('Juguetes')">
-                <h4>JUGUETES</h4>
-                <img src="images/huellaNaranja.png" alt="huellaNaranja.png">
+                <h4>JUGUETES (VER TODOS)</h4>
+                <img style="margin-top: 2%;" src="images/huellaNaranja.png" alt="huellaNaranja.png">
             </div>
             <section class="seccionProducts" id="contenedorToys">
                 <!-- Aqui van los productos mas vendidos de juguetes-->
@@ -199,15 +199,15 @@
     </div>
     <div class="containerProductos1">
         <div class="titleSection">
-            <h4>ROPA PARA MASCOTA</h4>
-            <img src="images/huellaNaranja.png" alt="huellaNaranja.png">
+            <h4>ROPA PARA MASCOTA (VER TODOS)</h4>
+            <img style="margin-top: 2%;" src="images/huellaNaranja.png" alt="huellaNaranja.png">
         </div>
         <section class="seccionProducts" id="contenedorProductos2">
             <!-- Aqui van los productos mas vendidos de comida-->
         </section>
         <div class="titleSection2">
-            <h4>ASEO PARA TU MASCOTA</h4>
-            <img src="images/huellaNaranja.png" alt="huellaNaranja.png">
+            <h4>ASEO PARA TU MASCOTA (VER TODOS)</h4>
+            <img style="margin-top: 2%;" src="images/huellaNaranja.png" alt="huellaNaranja.png">
         </div>
         <section class="seccionProducts" id="contenedorToys2">
             <!-- Aqui van los productos mas vendidos de juguetes-->
@@ -368,9 +368,25 @@
             filtros.classList.remove('visible');
         }
     </script>
+    <script>
+        
+function agregarComentario() {
+    const texto = document.getElementById('nuevoComentario').value.trim();
+    const usuario = localStorage.getItem('usuario') || 'Anónimo';
+
+    if (texto.length === 0 || estrellasSeleccionadas === 0) return;
+
+    comentariosMock.push({ usuario, texto, rating: estrellasSeleccionadas });
+
+    document.getElementById('nuevoComentario').value = '';
+    estrellasSeleccionadas = 0;
+    renderEstrellasFormulario();
+    mostrarComentarios();
+}
+    </script>
  
     <script src="js/buscarAndFullCard.js"></script>
-    <script>
+   <script>
         window.addEventListener('DOMContentLoaded', () => {
             const micuenta = document.getElementById('micuenta');
             const micuentaImg = document.getElementById('micuentaImg');
@@ -378,11 +394,10 @@
             const nombreUsuario = localStorage.getItem('usuario');
 
             if (nombreUsuario) {
-                micuenta.textContent = nombreUsuario;
+               const primerNombre = nombreUsuario.trim().split(' ')[0];            
+                micuenta.textContent = primerNombre;                       
                 micuenta.href = '#'; // Evita redirección
                 micuentaImg.href = '#'
-                // Mostrar/ocultar menú al hacer clic
-                // Mostrar/ocultar menú al hacer clic
                 const toggleMenu = (e) => {
                     e.preventDefault();
                     menuUsuario.classList.toggle('show');
@@ -390,13 +405,11 @@
 
                 micuenta.addEventListener('click', toggleMenu);
                 micuentaImg.addEventListener('click', toggleMenu);
-
-
-                // Cerrar sesión
+               
                 document.getElementById('cerrarSesion').addEventListener('click', () => {
                     localStorage.removeItem('usuario');
                     window.location.href = 'login.html';
-                });
+                });               
             }
         });
     </script>

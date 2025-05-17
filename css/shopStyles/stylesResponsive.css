@@ -50,6 +50,12 @@
     .cerrarBtn {
         display: block !important;
     }
+    .btnCategoriaPet{
+        font-size: 12px !important;                
+    }
+     .btnCategoriaPet img{
+        margin-bottom: -10px !important;             
+    }
 }
 
 @media (max-width:1145px) {

@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/nav.css">
     <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/ProductosSection.css">
     <link rel="stylesheet" href="css/category/mystylecategory.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
@@ -161,15 +162,76 @@
         <div id="contenedor">
             
         </div>
+        <div id="modalProducto" class="modal-producto">
+        <div class="modal-contenido-wrapper">
+            <span class="cerrar-modal" onclick="cerrarModalProducto()">&times;</span>
+
+            <!-- Sección principal con imagen e info -->
+            <div class="modal-contenido-grid">
+                <div class="modal-img">
+                    <img id="modalImagenProducto" src="" alt="Imagen del producto">
+                    <p class="ampliarTexto">Coloca el cursor sobre la imagen para hacer zoom</p>
+                </div>
+
+                <div class="modal-info">
+                    <h2 id="modalNombreProducto" class="titulo"></h2>
+                    <p id="modalMarcaProducto" class="marca-link"></p>
+
+                    <div class="rating">
+                        <div id="modalEstrellas" class="estrellas-dinamicas"></div>
+                        <span id="modalRatingVentas"></span>
+                    </div>
+
+                    <div class="precioSeccion">
+                        <p class="precio-actual" id="modalPrecioProducto"></p>
+                        <p class="precio-anterior" id="modalPrecioAnteriorProducto"></p>
+                    </div>
+
+                    <p id="modalDescripcionProducto" class="descripcion"></p>
+
+                    <div class="cantidadCompra">
+                        <label for="cantidad" style="font-family: poppins;">Cantidad:</label>
+                        <div class="cantidadControles">
+                            <button type="button" onclick="cambiarCantidad(-1)">−</button>
+                            <input type="number" id="cantidad" name="cantidad" value="1" min="1" readonly>
+                            <button type="button" onclick="cambiarCantidad(1)">+</button>
+                        </div>
+                    </div>
+
+                    <div class="botonesModal">
+                        <button class="btnCompraModal">Comprar ahora</button>
+                        <button class="btnCarritoModal">
+                            <img src="images/CarritoSimple.png" alt="carrito"> Agregar al carrito
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Comentarios -->
+            <div class="zonaComentarios">
+                <h3>Reseñas</h3>
+                <div id="comentariosLista" class="comentarios-lista">
+                    <!-- Comentarios cargados dinámicamente -->
+                </div>
+
+                <div class="comentarioForm">
+                    <label for="ratingComentario">Tu calificación:</label>
+                    <div id="estrellasFormulario" class="estrellas-formulario">
+                        <!-- Se llenan dinámicamente -->
+                    </div>
+
+                    <textarea id="nuevoComentario" placeholder="Escribe tu comentario..."></textarea>
+                    <button onclick="agregarComentario()">Enviar</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+        <script src="js/buscarAndFullCard.js"></script>
 <script>
 document.addEventListener('DOMContentLoaded', () => {
   // Opción 1: si usaste localStorage
   const categoria = localStorage.getItem('categoriaSeleccionada');
-
-  // Opción 2 (si usas URLSearchParams)
-  // const params = new URLSearchParams(window.location.search);
-  // const categoria = params.get('categoria');
-
   if (categoria) {
     document.querySelector('h1').textContent = `${categoria}`;    
   }
@@ -179,17 +241,21 @@ document.addEventListener('DOMContentLoaded', () => {
 <script>
 let productosFavoritos = [];
 let productosCategoria = [];
-let categoriaSeleccionada = localStorage.getItem('categoriaSeleccionada');
+let categoriaSeleccionada = localStorage.getItem('categoriaSeleccionada'); // comida, juguetes, etc.
+let categoriaBotonSeleccionada = null; // gato, perro, etc.
 
-// Palabras clave por categoría
 const aliasCategorias = {
-  comida: ['alimento', 'comida', 'alimentación'],
-  juguetes: ['juguetes', 'juguete'],
-  ropa: ['ropa'],
-  aseo: ['aseo', 'higiene'],
-  tortugas: ['tortuga'],
-  gatos: ['gato'],
-  perros: ['perro']
+  comida: ['alimento'],
+  juguetes: ['juguete']
+};
+
+const aliasAnimales = {
+  gatos: ['gato', 'gatito'],
+  perros: ['perro', 'perrito'],
+  tortuga: ['tortuga'],
+  conejo: ['conejo'],
+  hamster: ['hamster'],
+  ave: ['ave', 'pájaro', 'perico']
 };
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -200,11 +266,21 @@ document.addEventListener('DOMContentLoaded', function () {
 
   inicializar();
 
-  document.querySelectorAll('.filtro-tag').forEach(btn => {
-    btn.addEventListener('click', function () {
-      this.classList.toggle('activo');
-      aplicarFiltros();
-    });
+  document.querySelectorAll('.btnCategoriaPet').forEach(btn => {
+   btn.addEventListener('click', function () {
+    const categoria = this.getAttribute('data-categoria').toLowerCase();
+
+    if (this.classList.contains('selected')) {
+      this.classList.remove('selected');
+      categoriaBotonSeleccionada = null;
+    } else {
+      document.querySelectorAll('.btnCategoriaPet').forEach(b => b.classList.remove('selected'));
+      this.classList.add('selected');
+      categoriaBotonSeleccionada = categoria + 's'; // 👈 ajuste aquí
+    }
+
+    aplicarFiltros();
+  });
   });
 
   document.querySelectorAll('.filter-option input[type=checkbox]').forEach(cb => {
@@ -218,6 +294,13 @@ document.addEventListener('DOMContentLoaded', function () {
     });
     document.querySelector('.btnAplicar').addEventListener('click', aplicarFiltros);
   }
+
+  document.querySelectorAll('.filtro-tag').forEach(btn => {
+    btn.addEventListener('click', function () {
+      this.classList.toggle('activo');
+      aplicarFiltros();
+    });
+  });
 });
 
 function inicializar() {
@@ -250,11 +333,10 @@ function obtenerProductosCategoria() {
     .then(data => {
       const claves = aliasCategorias[categoriaSeleccionada.toLowerCase()] || [];
       productosCategoria = data.filter(p => {
-        const cat = p.categoria.toLowerCase();
+        const cat = p.categoria?.toLowerCase() || '';
         return claves.some(clave => cat.includes(clave));
       });
 
-      console.log("✅ Productos filtrados por alias:", productosCategoria);
       aplicarFiltros();
     })
     .catch(err => {
@@ -271,16 +353,53 @@ function aplicarFiltros() {
   const tagsSeleccionados = Array.from(document.querySelectorAll('.filtro-tag.activo'))
     .map(btn => btn.dataset.tag.toLowerCase());
 
+  const clavesAnimal = categoriaBotonSeleccionada
+    ? aliasAnimales[categoriaBotonSeleccionada] || []
+    : [];
+
   const productosFiltrados = productosCategoria.filter(p => {
+    const nombre = p.nombre_producto?.toLowerCase() || '';
+    const descripcion = p.descripcion?.toLowerCase() || '';
+    const categoriaTexto = p.categoria?.toLowerCase() || '';
+
+    const cumpleAnimal = clavesAnimal.length === 0 ||
+      clavesAnimal.some(palabra =>
+        nombre.includes(palabra) ||
+        descripcion.includes(palabra) ||
+        categoriaTexto.includes(palabra)
+      );
+
     const cumplePrecio = Number(p.precio_actual) <= maxPrecio;
     const cumpleMarca = marcasSeleccionadas.length === 0 || marcasSeleccionadas.includes(p.marca?.toLowerCase());
     const cumpleTags = tagsSeleccionados.length === 0 ||
-      (p.tags && tagsSeleccionados.some(tag => p.tags.toLowerCase().includes(tag)));
-    return cumplePrecio && cumpleMarca && cumpleTags;
+      tagsSeleccionados.some(tag =>
+        nombre.includes(tag) || descripcion.includes(tag)
+      );
+
+    return cumpleAnimal && cumplePrecio && cumpleMarca && cumpleTags;
   });
+  actualizarContadoresMarca(productosCategoria); 
 
   renderProductos(productosFiltrados);
 }
+function actualizarContadoresMarca(listaProductos) {
+  const marcas = document.querySelectorAll('.filter-option input[type=checkbox]');
+  const spans = document.querySelectorAll('.containerNumInputs span');
+
+  const conteo = {}; // objeto tipo: { "natural food": 3, ... }
+
+  listaProductos.forEach(p => {
+    const marca = p.marca?.toLowerCase();
+    if (!conteo[marca]) conteo[marca] = 0;
+    conteo[marca]++;
+  });
+
+  marcas.forEach((input, index) => {
+    const marca = input.value.toLowerCase();
+    spans[index].textContent = conteo[marca] || 0;
+  });
+}
+
 
 function renderProductos(productos) {
   const contenedor = document.getElementById('contenedor');
@@ -307,11 +426,11 @@ function renderProductos(productos) {
         <img src="images/${p.imagen_producto}" alt="${p.nombre_producto}">
       </div>
       <div class="productTitle"><h4>${p.nombre_producto}</h4></div>
-      <div class="productRating">
+      <div class="productRating" style="font-family:poppins;">
         <img src="images/Star.png" alt="Estrella">
         <p>(${p.rating}) ${p.unidades_vendidas} Sold</p>
       </div>
-      <div class="productPrice">
+      <div class="productPrice" style="font-family:poppins;">
         <p>
           $${formatearPrecio(p.precio_actual)}
           ${p.precio_anterior && p.precio_anterior !== p.precio_actual
@@ -327,13 +446,70 @@ function renderProductos(productos) {
     `;
 
     card.addEventListener('click', function (e) {
-      if (e.target.closest('.heart-button') || e.target.closest('.btnCompra') || e.target.closest('.btnCarrito')) return;
+      if (e.target.closest('button')) return;
       mostrarDetallesProducto(p);
-    });
-
+    });        
     contenedor.appendChild(card);
+    
+  });
+    manejarTruncadoResponsivo('.productTitle');
+  iniciarAjustes();
+}
+function manejarTruncadoResponsivo(selector) {
+  const maxCaracteres = window.innerWidth <= 768 ? 10 : 22;
+  document.querySelectorAll(selector).forEach(elemento => {
+    const titulo = elemento.querySelector('h4');
+    if (!titulo) return;
+    if (!titulo.hasAttribute('data-texto-completo')) {
+      titulo.setAttribute('data-texto-completo', titulo.textContent.trim());
+    }
+    const textoOriginal = titulo.getAttribute('data-texto-completo');
+    titulo.textContent = textoOriginal.length > maxCaracteres
+      ? textoOriginal.substring(0, maxCaracteres) + '...'
+      : textoOriginal;
+    titulo.setAttribute('title', textoOriginal);
   });
 }
+
+function iniciarAjustes() {
+  const reglas = {
+    default: '13px',
+    condiciones: [
+      { maxCaracteres: 10, fontSize: '16px' },
+      { maxCaracteres: 14, fontSize: '14px' },
+      { maxCaracteres: 18, fontSize: '12px' }
+    ]
+  };
+  ajustarTamañoFuente('.productRating p', reglas);
+  ajustarTamañoFuente('.productPrice p', reglas);
+}
+function ajustarTamañoFuente(selector, reglas) {
+  document.querySelectorAll(selector).forEach(elemento => {
+    const texto = elemento.textContent.trim();
+    let fontSize = reglas.default;
+    for (let regla of reglas.condiciones) {
+      if (texto.length >= regla.maxCaracteres) {
+        fontSize = regla.fontSize;
+      }
+    }
+    elemento.style.fontSize = fontSize;
+  });
+}
+function manejarTruncadoResponsivo(selector) {
+    const maxCaracteres = window.innerWidth <= 768 ? 10 : 22;
+    document.querySelectorAll(selector).forEach(elemento => {
+      const titulo = elemento.querySelector('h4');
+      if (!titulo) return;
+      if (!titulo.hasAttribute('data-texto-completo')) {
+        titulo.setAttribute('data-texto-completo', titulo.textContent.trim());
+      }
+      const textoOriginal = titulo.getAttribute('data-texto-completo');
+      titulo.textContent = textoOriginal.length > maxCaracteres
+        ? textoOriginal.substring(0, maxCaracteres) + '...'
+        : textoOriginal;
+      titulo.setAttribute('title', textoOriginal);
+    });
+  }
 
 function toggleHeart(btn, idProducto) {
   const nombreUsuario = localStorage.getItem('usuario');
@@ -385,6 +561,25 @@ function formatearPrecio(precio) {
   return partes[1].length === 1 ? `${p}0` : p;
 }
 </script>
+
+
+
+<script>
+        const toggleBtn = document.querySelector('.toggleFiltrosBtn');
+        const cerrarBtn = document.querySelector('.cerrarBtn');
+        const filtros = document.querySelector('.containerFiltros');
+
+        toggleBtn.addEventListener('click', () => {
+            filtros.classList.add('visible');
+        });
+        cerrarBtn.addEventListener('click', () => {
+            filtros.classList.remove('visible');
+        });
+
+        function cerrarFiltros() {
+            filtros.classList.remove('visible');
+        }
+    </script>
  <script>
         window.addEventListener('DOMContentLoaded', () => {
             const micuenta = document.getElementById('micuenta');

@@ -243,7 +243,17 @@ document.addEventListener('DOMContentLoaded', function () {
           <button class="btnCarrito"><img src="images/CarritoSimple.png" alt="carritoSimple.png"></button>
         </div>
       `;
-      contenedor.appendChild(card);
+       card.addEventListener('click', () => {
+    mostrarDetallesProducto(producto);
+  });
+
+  // Asegúrate también de STOP_PROPAGATION en botones internos:
+  const btns = card.querySelectorAll('button');
+  btns.forEach(btn => {
+    btn.addEventListener('click', e => e.stopPropagation());
+  });
+
+  contenedor.appendChild(card);
     };
 
     comida.forEach(p => renderProducto(p, contenedorComida));
