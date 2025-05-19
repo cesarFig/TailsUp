@@ -112,7 +112,7 @@
     }
   </script>
   
-<script>
+ <script>
         window.addEventListener('DOMContentLoaded', () => {
             const micuenta = document.getElementById('micuenta');
             const micuentaImg = document.getElementById('micuentaImg');
@@ -120,23 +120,23 @@
             const nombreUsuario = localStorage.getItem('usuario');
 
             if (nombreUsuario) {
-                micuenta.textContent = nombreUsuario;
+               const primerNombre = nombreUsuario.trim().split(' ')[0];            
+                micuenta.textContent = primerNombre;                       
                 micuenta.href = '#'; // Evita redirección
+                micuenta.style.marginTop="-42%";  
                 micuentaImg.href = '#'
-                // Mostrar/ocultar menú al hacer clic
-               const toggleMenu = (e) => {
-    e.preventDefault();
-    menuUsuario.classList.toggle('show');
-  };
+                const toggleMenu = (e) => {
+                    e.preventDefault();
+                    menuUsuario.classList.toggle('show');
+                };
 
-  micuenta.addEventListener('click', toggleMenu);
-  micuentaImg.addEventListener('click', toggleMenu);
-
-                // Cerrar sesión
+                micuenta.addEventListener('click', toggleMenu);
+                micuentaImg.addEventListener('click', toggleMenu);
+               
                 document.getElementById('cerrarSesion').addEventListener('click', () => {
                     localStorage.removeItem('usuario');
                     window.location.href = 'login.html';
-                });
+                });             
             }
         });
     </script>
