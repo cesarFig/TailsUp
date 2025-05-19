@@ -1,0 +1,140 @@
+.rounded-container {
+    background-color: #f0f0f0; 
+    border-radius: 15px; 
+    padding: 20px;
+    margin: 20px auto;
+    max-width: 80%;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+}
+
+.left-section {
+    width: 60%;
+    padding: 20px;
+    background-color: #f0f0f0;
+}
+
+.orden-container {
+    width: 30%;
+    padding: 20px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.blue-rounded-container {
+    background-color: #e5ebeb;
+    border: 2px solid #003F5A;
+    border-radius: 15px;
+    padding: 20px;
+    text-align: center;
+}
+
+.opciones-envio {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.lista-direcciones {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+}
+
+.envio-opcion {
+    display: flex;
+    align-items: center;
+    background-color: #fdffff;
+    border-radius: 15px;
+    padding: 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.envio-icon {
+    width: 70px;
+    height: 70px;
+    margin-right: 15px;
+}
+
+.envio-text {
+    flex-grow: 1;
+}
+
+.envio-text h4 {
+    margin: 0;
+    font-size: 1.2em;
+    color: #333;
+}
+
+.envio-text p {
+    margin: 5px 0 0;
+    font-size: 0.9em;
+    color: #666;
+}
+
+.envio-checkbox {
+    width: 20px;
+    height: 20px;
+    accent-color: #003F5A;
+}
+
+.dog-cart-img {
+    width: 420px;
+    height: auto;
+    border-radius: 15px;
+    justify-self: center;
+    align-self: center;
+}
+
+.resumen-compra {
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    align-items: center;
+    gap: 40px;
+    text-align: center;
+}
+
+.contenedor-resumen {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+}
+
+.exito-titulo {
+    color: #1ca000;
+    font-size: 3rem;
+    font-weight: bold;
+    margin: 0 0 18px 0;
+    text-align: center;
+    line-height: 1.1;
+}
+
+.exito-detalle {
+    color: #093101;
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 18px;
+    text-align: center;
+}
+
+.exito-folio {
+    color: #137000;
+    font-size: 1.7rem;
+    font-weight: bold;
+    letter-spacing: 2px;
+    text-align: center;
+    margin: 0;
+}
+
+.exito-folio span {
+    font-family: 'FlameBold', Arial, sans-serif;
+    text-transform: uppercase;
+}

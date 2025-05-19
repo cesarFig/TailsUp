@@ -420,6 +420,24 @@ html, body{
     background-color: #003355; /* Slightly darker on hover */
 }
 
+.agregar-order-btn {
+    background-color: #FEA02F; /* Dark teal/blue background */
+    color: white;
+    border: none;
+    border-radius: 6px; /* Rounded corners */
+    padding: 12px 30px;
+    font-size: 1em; /* Adjust font size */
+    font-weight: bold;
+    cursor: pointer;
+    width: 100%;
+    box-sizing: border-box;
+    transition: background-color 0.2s ease;
+}
+
+.agregar-order-btn:hover {
+    background-color: #fc971d; /* Slightly darker on hover */
+}
+
 
 /* Responsive adjustments */
 @media (max-width: 992px) {

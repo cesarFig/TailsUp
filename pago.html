@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Simulador de Pago PayPal</title>
+    <!-- SDK de PayPal -->
+    <script src="https://www.paypal.com/sdk/js?client-id=AT1JehFtby5iK39K2qPw4vvcEJ0HHbLKb50kC06baQBrTDu8Hci8EEJ920LYJkdncH4lC8v7BA3JEB08&currency=MXN"></script>
+</head>
+<body>
+    <h1>Simulador de Pago</h1>
+    
+    <!-- Contenedor del botón -->
+    <div id="paypal-button-container"></div>
+
+    <script>
+        paypal.Buttons({
+            createOrder: function(data, actions) {
+                return actions.order.create({
+                    purchase_units: [{
+                        amount: {
+                            value: '5.00', // Monto simulado (sin cargos reales)
+                            currency_code: 'MXN'
+                        },
+                        description: "Compra simulada de prueba"
+                    }]
+                });
+            },
+            onApprove: function(data, actions) {
+                return actions.order.capture().then(function(details) {
+                    alert("¡Pago simulado exitoso!\nID de transacción: " + details.id);
+                    console.log(details); // Ver detalles en consola
+                });
+            },
+            onError: function(err) {
+                console.error("Error en el pago simulado:", err);
+                alert("Ocurrió un error en la simulación.");
+            }
+        }).render('#paypal-button-container');
+    </script>
+</body>
+</html>

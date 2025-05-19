@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/fonts.css">
+    <link rel="stylesheet" href="css/carritoStyles/styles.css">
+    <link rel="stylesheet" href="css/carritoStyles/footer.css">
+    <link rel="stylesheet" href="css/carritoStyles/navbar-style.css">
+    <link rel="stylesheet" href="css/carritoStyles/procesoOrdenStyles.css">
+    <link rel="stylesheet" href="css/carritoStyles/datosEntrega.css">
+    <title>Tails Up | Carrito</title>
+    <link rel="shortcut icon" href="images/isotipoTailsUp.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="nav-left">
+                <img src="images/isotipo.png" alt="Isotipo" class="isotipo">
+                <img src="images/logoFinal.png" alt="Logo Tails Up" class="logotipo">
+            </div>
+            <div class="nav-center">
+                <a href="/index.html" class="nav-link">Home</a>
+                <a href="/shop.html" class="nav-link">Tienda</a>
+                <a href="#" class="nav-link">Consejos</a>
+                <a href="#" class="nav-link">Acerca</a>
+            </div>
+            <div class="nav-right">
+                <div class="cart-wrapper">
+                    <div class="cart-icon-background">
+                        <a href="carrito.html">
+                            <img src="images/shopping_cart_icon.svg" alt="Carrito" class="cart-icon">
+                        </a>
+                    </div>
+                    <img src="images/no-profile.png" alt="Usuario" class="user-icon">
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="payment-steps">
+        <div class="step">
+            <span class="number">1</span>
+            <span class="text">Selecciona productos</span>
+        </div>
+        <div class="step active">
+            <span class="number">2</span>
+            <span class="text">Información de envío</span>
+        </div>
+        <div class="step">
+            <span class="number">3</span>
+            <span class="text">Información de pago</span>
+        </div>
+        <div class="step">
+            <span class="number">4</span>
+            <span class="text">Resumen </span>
+        </div>
+    </div>
+
+    <main>
+        <div class="rounded-container">
+            <div class="left-section">
+                <div class="metodos-envio">
+                    <h2>Selecciona un método de entrega</h2>
+                    <div class="opciones-envio">
+                        <div class="agregar-button-container">
+                            <button class="agregar-order-btn">Agregar dirección de entrega</button>
+                        </div>
+                        <div id="lista-direcciones">
+                        </div>
+                        <div class="envio-opcion">
+                            <img src="https://cdn-icons-png.flaticon.com/512/5088/5088218.png"
+                                alt="Retiro en punto de entrega" class="envio-icon">
+                            <div class="envio-text">
+                                <h4>Retiro en un punto de entrega</h4>
+                            </div>
+                            <input type="checkbox" class="envio-checkbox">
+                        </div>
+                    </div>
+                    <div class="confirm-button-container">
+                        <button class="confirm-order-btn">Confirmar</button>
+                    </div>
+                </div>
+                <div class="metodos-pago">
+                    <h2>Selecciona un método de pago</h2>
+                    <div id="paypal-button-container"></div>
+                </div>
+                <div class="resumen-compra">
+                    <img src="https://png.pngtree.com/png-clipart/20240202/original/pngtree-shopping-cart-dog-cart-photo-png-image_14214513.png"
+                        alt="Hamster" class="dog-cart-img">
+                    <div class="contenedor-resumen">
+                        <h1 class="exito-titulo">¡Tu compra fue exitosa!</h1>
+                        <p class="exito-detalle">En la ventana pedidos podrás ver más detalles</p>
+                        <p class="exito-folio">FOLIO: <span id="folio-exito"></span></p>
+                    </div>
+                </div>
+            </div>
+            <div class="orden-container">
+                <div class="blue-rounded-container">
+                    <h3>Tu orden</h3>
+                    <div id="cart-items">
+                    </div>
+                </div>
+            </div>
+    </main>
+
+    <div id="popup-container" class="popup hidden">
+        <div class="popup-content">
+            <button class="close-popup-btn">X</button>
+            <h3>Lugar de entrega</h3>
+            <form id="delivery-form">
+                <label for="direccion">Dirección o lugar de entrega</label>
+                <input type="text" id="direccion" name="direccion" placeholder="Ej: Avenida los leones 4563" required>
+
+                <label for="codigo_postal">Código postal</label>
+                <input type="text" id="codigo_postal" name="codigo_postal" placeholder="Ej: 09440" required>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="estado">Estado</label>
+                        <input type="text" id="estado" name="estado" placeholder="Ej: Estado" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="municipio">Municipio o alcaldía</label>
+                        <input type="text" id="municipio" name="municipio" placeholder="Ej: Municipio" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="localidad">Localidad</label>
+                        <input type="text" id="localidad" name="localidad" placeholder="Ej: Localidad" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="colonia">Colonia o barrio</label>
+                        <input type="text" id="colonia" name="colonia" placeholder="Ej: Colonia" required>
+                    </div>
+                </div>
+
+                <label for="numero_interior">Número interior / Departamento (opcional)</label>
+                <input type="text" id="numero_interior" name="numero_interior" placeholder="Ej: 201">
+
+                <label for="nombre">Nombre y apellido</label>
+                <input type="text" id="nombre" name="nombre" placeholder="Juan perez" required>
+
+                <label for="telefono">Teléfono</label>
+                <input type="tel" id="telefono" name="telefono" placeholder="4438459568" required>
+
+                <button type="submit" class="submit-btn">Guardar</button>
+            </form>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-top-paw">
+                <img src="images/isotipo.png" alt="Huella de mascota">
+            </div>
+            <div class="footer-main-content">
+                <div class="footer-about">
+                    <p>Bienvenido a Tails Up! Estamos contentos que formes parte de nuestra familia, puedes contactarnos
+                        en cualquiera de nuestros medios</p>
+                    <div class="footer-contact">
+                        <p><img src="images/email-icon.png" alt="Email"> tailsup@gmail.com</p>
+                        <p><img src="images/email-icon.png" alt="Email"> tailssuport@gmail.com</p>
+                        <p><img src="https://cdn-icons-png.flaticon.com/512/15/15407.png" alt="Teléfono"> +524436568709
+                        </p>
+                        <p><img src="https://cdn-icons-png.flaticon.com/512/15/15407.png" alt="Teléfono"> +52443870989
+                        </p>
+                    </div>
+                    <div class="footer-social">
+                        <a href="#"><img src="https://1000marcas.net/wp-content/uploads/2019/11/insta-logo.png"
+                                alt="Instagram"></a>
+                        <a href="#"><img src="https://img.icons8.com/m_rounded/512/facebook-new.png" alt="Facebook"></a>
+                    </div>
+                </div>
+                <div clas="image-container">
+                    <div class="footer-image-dashed-box"></div>
+                    <div class="footer-image-wrapper">
+                        <img src="images/hamster.png" alt="Hamster">
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-questions">
+                        <h4>Preguntas</h4>
+                        <ul>
+                            <li><a href="#">¿Qué métodos de pa...</a></li>
+                            <li><a href="#">¿Cómo puedo comp...</a></li>
+                            <li><a href="#">Envíos y devoluciones</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-site">
+                        <h4>Sitio</h4>
+                        <ul>
+                            <li><a href="index.html">Inicio</a></li>
+                            <li><a href="#">About</a></li>
+                            <li><a href="#">Categorías</a></li>
+                            <li><a href="#">Consejos</a></li>
+                            <li><a href="#">Tienda</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="js/procesarOrden.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const confirmButton = document.querySelector('.agregar-order-btn');
+            const popupContainer = document.getElementById('popup-container');
+            const closeButton = document.querySelector('.close-popup-btn');
+
+            confirmButton.addEventListener('click', () => {
+                popupContainer.classList.remove('hidden');
+            });
+
+            closeButton.addEventListener('click', () => {
+                popupContainer.classList.add('hidden');
+            });
+        });
+    </script>
+    <script
+        src="https://www.paypal.com/sdk/js?client-id=AT1JehFtby5iK39K2qPw4vvcEJ0HHbLKb50kC06baQBrTDu8Hci8EEJ920LYJkdncH4lC8v7BA3JEB08&currency=MXN"></script>
+</body>
+
+</html>
