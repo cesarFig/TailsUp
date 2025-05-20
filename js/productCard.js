@@ -79,7 +79,7 @@ document.addEventListener('DOMContentLoaded', function () {
   let productosGlobales = [];
   let productosFavoritos = [];
 
-  let filtroPrecioMaximo = 399;
+  let filtroPrecioMaximo = 1300;
   let marcasSeleccionadas = new Set();
   let tagSeleccionado = null;
 
@@ -157,9 +157,36 @@ document.addEventListener('DOMContentLoaded', function () {
         mapearContadoresMarcas();
         actualizarContadoresMarcas(productosGlobales);
         filtrarPorCategoria("Todos");
+        renderPopularProducts(productosGlobales); 
       })
       .catch(error => console.error('❌ Error al cargar productos o favoritos:', error));
   }
+  function renderPopularProducts(productos) {
+  // Ordena por unidades_vendidas descendente y toma 4
+  const top4 = [...productos]
+    .sort((a, b) => b.unidades_vendidas - a.unidades_vendidas)
+    .slice(0, 4);
+  
+  const container = document.querySelector('.containerPopPrd');
+  container.innerHTML = ''; // limpia contenido
+
+  top4.forEach(p => {
+    const div = document.createElement('div');
+    div.className = 'PopularPrd';
+    div.innerHTML = `
+      <div class="imgProduct">
+        <img src="images/${p.imagen_producto}" alt="${p.nombre_producto}">
+      </div>
+      <div class="textPopPrd">
+        <h4>${p.nombre_producto}</h4>
+        <p>$${formatearPrecio(String(p.precio_actual))}</p>
+      </div>
+    `;
+    // Al hacer clic, mostramos modal
+    div.addEventListener('click', () => mostrarDetallesProducto(p));
+    container.appendChild(div);
+  });
+}
 
   function filtrarPorCategoria(categoria) {
     const contenedorComida = document.getElementById('contenedorProductos');
