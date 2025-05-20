@@ -83,16 +83,26 @@
     transform: scale(1.05);
     box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
 }
-.productImage{
+/* 1) Contenedor fijo y overflow oculto */
+.productImage {
+    width: 100%;              /* ocupa todo el ancho de .productCard */
+    aspect-ratio: 4 / 3;      /* proporción ancho:alto (ajusta a tu gusto) */
+    overflow: hidden;         /* oculta los trozos que sobresalgan */
     position: relative;
     background-color: #f1f1f1;
-    border-radius: 10px 10px 0px 0px;
+    border-radius: 10px 10px 0 0;
 }
-.productImage img{
-   width: 80%;
-   max-height: 100% !important;
-   transform: translateX(6%);
+
+/* 2) Imagen adaptada al contenedor y recortada */
+.productImage img {
+    width: 70%;        /* Ajusta este % al tamaño deseado */
+    height: auto;      /* Mantiene la proporción original */
+    display: block;    /* Para que margenes automáticos funcionen */
+    margin: 10px auto; /* 10px de separación arriba/abajo y auto a los lados */
 }
+
+
+
 .productTitle{       
     font-family: poppins; 
     border-left: 0.1px solid #003f5a;   
