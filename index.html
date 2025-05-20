@@ -399,7 +399,8 @@
 
             if (nombreUsuario) {
                const primerNombre = nombreUsuario.trim().split(' ')[0];            
-                micuenta.textContent = primerNombre;                       
+                micuenta.textContent = primerNombre;   
+                micuenta.style.marginTop="-42%";                    
                 micuenta.href = '#'; // Evita redirección
                 micuentaImg.href = '#'
                 const toggleMenu = (e) => {

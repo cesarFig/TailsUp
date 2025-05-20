@@ -229,7 +229,7 @@ document.addEventListener('DOMContentLoaded', function () {
         </div>
         <div class="productRating">
           <img src="images/Star.png" alt="Estrella">
-          <p>(${producto.rating}) ${producto.unidades_vendidas} Sold</p>
+          <p>(${producto.rating}) ${producto.unidades_vendidas} Vendidas</p>
         </div>
         <div class="productPrice">
           <p>

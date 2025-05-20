@@ -283,35 +283,6 @@ class DBManager
         return $items;
     }
 
-    public function getItemsOrdenUsuario($idUsuario)
-    {
-        $link = $this->open();
-
-        $sql = "SELECT ci.id_item, ci.id_producto, ci.cantidad, p.nombre_producto, p.precio_actual, p.precio_anterior, p.imagen_producto, ci.is_selected 
-                FROM carrito_items ci 
-                INNER JOIN productos p ON ci.id_producto = p.id_producto 
-                WHERE ci.id_carrito = (SELECT id_carrito FROM carritos WHERE idUsuario = ?) AND ci.is_selected = 1";
-        error_log("Ejecutando consulta SQL: $sql con idUsuario=$idUsuario");
-        $query = mysqli_prepare($link, $sql);
-
-        if (!$query) {
-            $this->close($link);
-            return false;
-        }
-
-        mysqli_stmt_bind_param($query, "i", $idUsuario);
-        mysqli_stmt_execute($query);
-        $result = mysqli_stmt_get_result($query);
-
-        $items = [];
-        while ($row = mysqli_fetch_assoc($result)) {
-            $items[] = $row;
-        }
-
-        $this->close($link);
-        return $items;
-    }
-
 
 
     public function eliminarCarritoItem($id, $idUsuario)
@@ -537,86 +508,7 @@ public function obtenerComentariosPorProducto($id_producto)
     return $comentarios;
 }
 
-public function guardarDireccion($idUsuario, $direccion, $codigoPostal, $estado, $municipio, $localidad, $colonia, $numeroInterior, $nombre, $telefono)
-{
-    $link = $this->open();
 
-    $query = "INSERT INTO direccion (idUsuario, direccion, codigo_postal, estado, municipio, localidad, colonia, numero_interior, nombre, telefono) 
-              VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-    $stmt = $link->prepare($query);
-
-    if (!$stmt) {
-        error_log('Error al preparar la consulta: ' . $link->error);
-        return false;
-    }
-
-    $stmt->bind_param("isssssssss", $idUsuario, $direccion, $codigoPostal, $estado, $municipio, $localidad, $colonia, $numeroInterior, $nombre, $telefono);
-
-    $result = $stmt->execute();
-
-    if (!$result) {
-        error_log('Error al ejecutar la consulta: ' . $stmt->error);
-    }
-
-    $stmt->close();
-    $this->close($link);
-
-    return $result;
-}
-
-public function listarDirecciones($idUsuario)
-    {
-        $link = $this->open();
-
-        $query = "SELECT id_direccion, direccion, codigo_postal, estado, municipio, localidad, colonia, numero_interior, nombre, telefono 
-                  FROM direccion WHERE idUsuario = ?";
-        $stmt = $link->prepare($query);
-
-        if (!$stmt) {
-            error_log('Error al preparar la consulta: ' . $link->error);
-            return false;
-        }
-
-        $stmt->bind_param("i", $idUsuario);
-
-        if (!$stmt->execute()) {
-            error_log('Error al ejecutar la consulta: ' . $stmt->error);
-            return false;
-        }
-
-        $result = $stmt->get_result();
-        $direcciones = $result->fetch_all(MYSQLI_ASSOC);
-
-        $stmt->close();
-        $this->close($link);
-
-        return $direcciones;
-    }
-
-    public function executeInsert($query, $params, $types) {
-        $link = $this->open();
-        $stmt = mysqli_prepare($link, $query);
-
-        if (!$stmt) {
-            $this->close($link);
-            throw new Exception('Error al preparar la consulta: ' . mysqli_error($link));
-        }
-
-        mysqli_stmt_bind_param($stmt, $types, ...$params);
-
-        if (!mysqli_stmt_execute($stmt)) {
-            $error = mysqli_error($link);
-            mysqli_stmt_close($stmt);
-            $this->close($link);
-            throw new Exception('Error al ejecutar la consulta: ' . $error);
-        }
-
-        $insertId = mysqli_insert_id($link);
-        mysqli_stmt_close($stmt);
-        $this->close($link);
-
-        return $insertId;
-    }
 
 }
 ?>

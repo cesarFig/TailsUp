@@ -116,15 +116,15 @@ h1{
     box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
 }
 .productImage {
+    width: 100%;    
     position: relative;
     background-color: #f1f1f1;
     border-radius: 10px 10px 0px 0px;
-    overflow: hidden; /* evita desbordamiento */
-    aspect-ratio: 1 / 1; /* puedes ajustar la proporción si es necesario */
+    overflow: hidden; /* evita desbordamiento */    
 }
 
 .productImage img {
-    width: 100%;
+    width: 90%;
     height: 100%;
     object-fit: contain; /* o cover si prefieres que llene todo el espacio */
     display: block;

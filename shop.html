@@ -198,15 +198,15 @@
         </div>
     </div>
     <div class="containerProductos1">
-        <div class="titleSection">
+        <div class="titleSection" onclick="irACategoria('Ropa')">
             <h4>ROPA PARA MASCOTA (VER TODOS)</h4>
             <img style="margin-top: 2%;" src="images/huellaNaranja.png" alt="huellaNaranja.png">
         </div>
         <section class="seccionProducts" id="contenedorProductos2">
             <!-- Aqui van los productos mas vendidos de comida-->
         </section>
-        <div class="titleSection2">
-            <h4>ASEO PARA TU MASCOTA (VER TODOS)</h4>
+        <div class="titleSection2" onclick="irACategoria('higiene')">
+            <h4>ASEO PARA TU MASCOTA (VER TODOS) </h4>
             <img style="margin-top: 2%;" src="images/huellaNaranja.png" alt="huellaNaranja.png">
         </div>
         <section class="seccionProducts" id="contenedorToys2">
@@ -228,14 +228,7 @@
         </div>
 
     </div>
-    <div class="containerProductos3">
-        <div class="titleSection">
-            <h4></h4>
-            <img src="images/huellaNaranja.png" alt="huellaNaranja.png">
-        </div>
-        <section class="seccionProducts" id="contenedorProductos3">
-            <!-- Aqui van los productos mas vendidos de comida-->
-        </section>
+    <div class="containerProductos3">        
     </div>
      <div id="modalProducto" class="modal-producto">
         <div class="modal-contenido-wrapper">
@@ -395,7 +388,8 @@ function agregarComentario() {
 
             if (nombreUsuario) {
                const primerNombre = nombreUsuario.trim().split(' ')[0];            
-                micuenta.textContent = primerNombre;                       
+                micuenta.textContent = primerNombre;    
+                micuenta.style.marginTop="-42%";                     
                 micuenta.href = '#'; // Evita redirección
                 micuentaImg.href = '#'
                 const toggleMenu = (e) => {

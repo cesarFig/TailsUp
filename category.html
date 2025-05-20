@@ -246,7 +246,9 @@ let categoriaBotonSeleccionada = null; // gato, perro, etc.
 
 const aliasCategorias = {
   comida: ['alimento'],
-  juguetes: ['juguete']
+  juguetes: ['juguete'],
+  ropa:['ropa'],
+  higiene:['higiene']
 };
 
 const aliasAnimales = {
@@ -428,7 +430,7 @@ function renderProductos(productos) {
       <div class="productTitle"><h4>${p.nombre_producto}</h4></div>
       <div class="productRating" style="font-family:poppins;">
         <img src="images/Star.png" alt="Estrella">
-        <p>(${p.rating}) ${p.unidades_vendidas} Sold</p>
+        <p>(${p.rating}) ${p.unidades_vendidas} Vendidas</p>
       </div>
       <div class="productPrice" style="font-family:poppins;">
         <p>
@@ -588,11 +590,10 @@ function formatearPrecio(precio) {
             const nombreUsuario = localStorage.getItem('usuario');
 
             if (nombreUsuario) {
-                micuenta.textContent = nombreUsuario;
+               const primerNombre = nombreUsuario.trim().split(' ')[0];            
+                micuenta.textContent = primerNombre;                       
                 micuenta.href = '#'; // Evita redirección
                 micuentaImg.href = '#'
-                // Mostrar/ocultar menú al hacer clic
-                // Mostrar/ocultar menú al hacer clic
                 const toggleMenu = (e) => {
                     e.preventDefault();
                     menuUsuario.classList.toggle('show');
@@ -600,16 +601,15 @@ function formatearPrecio(precio) {
 
                 micuenta.addEventListener('click', toggleMenu);
                 micuentaImg.addEventListener('click', toggleMenu);
-
-
-                // Cerrar sesión
+               
                 document.getElementById('cerrarSesion').addEventListener('click', () => {
                     localStorage.removeItem('usuario');
                     window.location.href = 'login.html';
-                });
+                });             
             }
         });
     </script>
+
 
 
 
