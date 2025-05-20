@@ -1,0 +1,99 @@
+.pedidos-main{
+  padding: 30px;
+  justify-content: center;
+  text-align: center;
+}
+
+.pedidos-title{
+  font-size: 30px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.filtros-ordenes{
+  text-align: center;
+  width: 95%;
+  height: 55px;
+  background-color: #F0F0F0;
+  border-radius: 50px;
+  padding: 8px; /* Added internal padding */
+  display: flex; /* To center content */
+  align-items: center; /* Vertical centering */
+  justify-content: center; /* Horizontal centering of the button group */
+  box-sizing: border-box; /* Padding included in height */
+  margin: 0 auto; /* To center the .filtros-ordenes div itself */
+}
+
+.filtros-ordenes-button{
+  background-color: #F0F0F0;
+  border-radius: 20px; /* Adjusted for a 40px height to be pill-shaped */
+  height: 100%; /* Fill the available height within .filtros-ordenes (40px) */
+  padding: 0 15px; /* Horizontal padding for text inside button */
+  width: 100%; 
+  margin: 0 3px; /* Spacing between buttons */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  cursor: pointer;
+  font-size: 14px; /* Adjust as needed */
+  box-sizing: border-box;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.filtros-ordenes-button.active{
+  background-color: #fba53d;
+  color: white;
+  font-size: 18px;
+}
+
+.filtros-ordenes-button:hover{
+  background-color: rgb(229, 229, 229);
+  color: rgb(0, 0, 0);
+  font-size: 18px;
+}
+
+.filtros-ordenes-button.active:hover{
+  background-color: #f1982b;
+  color: white;
+}
+
+.pedidos-container{
+  background-color: #dbdbdb;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  border-radius: 20px;
+  width: 95%;
+  min-height: 50px;
+  margin: 15px auto;
+}
+
+.pedido-item{
+  background-color: white;
+  border-radius: 20px;
+  width: 95%;
+  height: 100px;
+  margin: 15px auto;
+  display: flex;
+  align-items: center;
+  box-shadow: #c7c7c7 0px 5px 5px 0px;
+}
+
+.pedido-item img {
+  max-width: 100%; /* Asegura que la imagen no exceda el ancho del contenedor */
+  max-height: 100%; /* Asegura que la imagen no exceda la altura del contenedor */
+  height: 90px; /* Mantiene la proporción de la imagen al ajustar la altura automáticamente */
+  width: auto; /* Permite que el ancho se ajuste manteniendo la proporción, si la altura es la limitante */
+  object-fit: contain; /* Escala la imagen para que quepa dentro del contenedor manteniendo su aspect ratio, puede dejar espacio vacío */
+  margin-left: 10px;
+}
+
+.num-orden{
+  font-size: 30px;
+  color: #585858;
+  font-weight: bold;
+  margin-left: 30px;
+}
