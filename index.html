@@ -413,6 +413,7 @@
                
                 document.getElementById('cerrarSesion').addEventListener('click', () => {
                     localStorage.removeItem('usuario');
+                    localStorage.removeItem('idUsuario');
                     window.location.href = 'login.html';
                 });
                 document.getElementById('btnBuyNow').addEventListener('click', () => {                    
