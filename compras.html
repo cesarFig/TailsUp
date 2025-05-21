@@ -40,22 +40,26 @@
     </header>
 
     <main class="pedidos-main">
-      <h1 class="pedidos-title">Mis Pedidos</h1>
-      <div class="filtros-ordenes">
-        <button class="filtros-ordenes-button active"><P>Próximos</P></button>
-        <button class="filtros-ordenes-button"><P>Entregados</P></button>
-        <button class="filtros-ordenes-button"><P>Todos</P></button>
-      </div>
-      <div class="pedidos-container">
-        <h1 class="pedidos-title">No hay pedidos</h1>
-        <div class="pedido-item">
-          <img src="https://cdn-icons-png.flaticon.com/512/10053/10053703.png" alt="Carrito vacío" class="pedido-icon">
-          <h1 class="num-orden">Orden #1FD6S6DSD54DS54D</h1>
-          <p>Llega hoy</p>
+        <h1 class="pedidos-title">Mis Pedidos</h1>
+        <div class="filtros-ordenes">
+            <button class="filtros-ordenes-button active">
+                <P>Próximos</P>
+            </button>
+            <button class="filtros-ordenes-button">
+                <P>Entregados</P>
+            </button>
+            <button class="filtros-ordenes-button">
+                <P>Todos</P>
+            </button>
         </div>
-      </div>
+        <div class="pedidos-container">
+            <h1 class="pedidos-title empty-message">No hay pedidos</h1>
+            <!-- Los pedidos se inyectarán aquí -->
+            
+        </div>
     </main>
 
+    <!-- Footer Section -->
     <footer>
         <div class="footer-container">
             <div class="footer-top-paw">
@@ -109,5 +113,6 @@
         </div>
     </footer>
 </body>
+<script src="js/compras.js"></script>
 
 </html>

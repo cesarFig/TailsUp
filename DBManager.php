@@ -538,33 +538,33 @@ class DBManager
     }
 
     public function guardarDireccion($idUsuario, $direccion, $codigoPostal, $estado, $municipio, $localidad, $colonia, $numeroInterior, $nombre, $telefono)
-{
-    $link = $this->open();
+    {
+        $link = $this->open();
 
-    $query = "INSERT INTO direccion (idUsuario, direccion, codigo_postal, estado, municipio, localidad, colonia, numero_interior, nombre, telefono) 
+        $query = "INSERT INTO direccion (idUsuario, direccion, codigo_postal, estado, municipio, localidad, colonia, numero_interior, nombre, telefono) 
               VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-    $stmt = $link->prepare($query);
+        $stmt = $link->prepare($query);
 
-    if (!$stmt) {
-        error_log('Error al preparar la consulta: ' . $link->error);
-        return false;
+        if (!$stmt) {
+            error_log('Error al preparar la consulta: ' . $link->error);
+            return false;
+        }
+
+        $stmt->bind_param("isssssssss", $idUsuario, $direccion, $codigoPostal, $estado, $municipio, $localidad, $colonia, $numeroInterior, $nombre, $telefono);
+
+        $result = $stmt->execute();
+
+        if (!$result) {
+            error_log('Error al ejecutar la consulta: ' . $stmt->error);
+        }
+
+        $stmt->close();
+        $this->close($link);
+
+        return $result;
     }
 
-    $stmt->bind_param("isssssssss", $idUsuario, $direccion, $codigoPostal, $estado, $municipio, $localidad, $colonia, $numeroInterior, $nombre, $telefono);
-
-    $result = $stmt->execute();
-
-    if (!$result) {
-        error_log('Error al ejecutar la consulta: ' . $stmt->error);
-    }
-
-    $stmt->close();
-    $this->close($link);
-
-    return $result;
-}
-
-public function listarDirecciones($idUsuario)
+    public function listarDirecciones($idUsuario)
     {
         $link = $this->open();
 
@@ -593,7 +593,8 @@ public function listarDirecciones($idUsuario)
         return $direcciones;
     }
 
-    public function executeInsert($query, $params, $types) {
+    public function executeInsert($query, $params, $types)
+    {
         $link = $this->open();
         $stmt = mysqli_prepare($link, $query);
 
@@ -618,7 +619,52 @@ public function listarDirecciones($idUsuario)
         return $insertId;
     }
 
+    public function getTickets($idUsuario)
+    {
+        $link = $this->open();
 
+        $sql = "SELECT * FROM tickets WHERE idUsuario = ?";
+        $stmt = mysqli_prepare($link, $sql);
 
+        if (!$stmt) {
+            $this->close($link);
+            return false;
+        }
+
+        mysqli_stmt_bind_param($stmt, "i", $idUsuario);
+        mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_get_result($stmt);
+
+        $tickets = mysqli_fetch_all($result, MYSQLI_ASSOC);
+
+        mysqli_stmt_close($stmt);
+        $this->close($link);
+
+        return $tickets;
+    }
+
+    public function getTicketItems($id_ticket)
+    {
+        $link = $this->open();
+
+        $sql = "SELECT ti.*, p.marca, p.imagen_producto FROM ticket_items ti JOIN productos p ON ti.nombre_producto = p.nombre_producto WHERE ti.id_ticket = ?";
+        $stmt = mysqli_prepare($link, $sql);
+
+        if (!$stmt) {
+            $this->close($link);
+            return false;
+        }
+
+        mysqli_stmt_bind_param($stmt, "i", $id_ticket);
+        mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_get_result($stmt);
+
+        $ticketItems = mysqli_fetch_all($result, MYSQLI_ASSOC);
+
+        mysqli_stmt_close($stmt);
+        $this->close($link);
+
+        return $ticketItems;
+    }
 }
 ?>
