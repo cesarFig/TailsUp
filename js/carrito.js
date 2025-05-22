@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const userId = localStorage.getItem('idUsuario');
 
     if (!userId) {
-      alert('Usuario no autenticado');
+      showCustomAlert('Usuario no autenticado', '#E52727');
       window.location.href = 'login.html';
       return;
     }
@@ -269,7 +269,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const userId = localStorage.getItem('idUsuario');
 
     if (!cuponCodigo) {
-      alert('Por favor, ingresa un código de cupón.');
+      showCustomAlert('Por favor, ingresa un código de cupón.', '#E52727');
       return;
     }
 
@@ -285,12 +285,12 @@ document.addEventListener('DOMContentLoaded', function() {
         const fechaVencimiento = new Date(cuponData.fecha_vencimiento);
 
         if (!cuponData.activo) {
-          alert('El cupón ingresado no está activo.');
+          showCustomAlert('El cupón ingresado no está activo.', '#E52727');
           return;
         }
 
         if (fechaActual > fechaVencimiento) {
-          alert('El cupón ingresado ha expirado.');
+          showCustomAlert('El cupón ingresado ha expirado.', '#E52727');
           return;
         }
 
@@ -309,15 +309,15 @@ document.addEventListener('DOMContentLoaded', function() {
           })
           .then(data => {
             if (data.success) {
-              alert('Cupón aplicado exitosamente.');
+              showCustomAlert('Cupón aplicado exitosamente.', '#41BB74');
               actualizarTuOrden();
             } else {
-              alert('No se pudo aplicar el cupón.');
+              showCustomAlert('No se pudo aplicar el cupón.', '#E52727');
             }
           })
           .catch(error => console.error('Error al actualizar el carrito con el cupón:', error));
       })
-      .catch(error => alert(error.message));
+      .catch(error => showCustomAlert(error.message, '#E52727'));
   }
 
   const aplicarCuponBtn = document.querySelector('.apply-coupon-btn');
@@ -329,7 +329,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const seleccionados = document.querySelectorAll('.cart-table tbody tr input[type="checkbox"]:checked');
 
     if (seleccionados.length === 0) {
-      alert('Por favor, selecciona al menos un producto para confirmar la orden.');
+      showCustomAlert('Por favor, selecciona al menos un producto para confirmar la orden.', '#E52727');
       event.preventDefault();
       return; 
     }

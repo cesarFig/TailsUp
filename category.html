@@ -440,8 +440,8 @@ function renderProductos(productos) {
         </p>
       </div>
       <div class="productBtns">
-        <button class="btnCompra" onclick="verificarAccionUsuario(() => alert('Comprar ${p.id_producto}'))">Comprar ahora</button>
-        <button class="btnCarrito" onclick="verificarAccionUsuario(() => alert('Agregar al carrito ${p.id_producto}'))">
+        <button class="btnCompra" onclick="verificarAccionUsuario(() => showCustomAlert('Comprar ${p.id_producto}', '#41BB74'))">Comprar ahora</button>
+        <button class="btnCarrito" onclick="verificarAccionUsuario(() => showCustomAlert('Agregar al carrito ${p.id_producto}', '#41BB74'))">
           <img src="images/CarritoSimple.png" alt="carritoSimple.png">
         </button>
       </div>
@@ -609,6 +609,8 @@ function formatearPrecio(precio) {
             }
         });
     </script>
+    <script src="js/customAlerts.js"></script>
+
 
 
 

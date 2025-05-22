@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="css/carritoStyles/navbar-style.css">
     <link rel="stylesheet" href="css/carritoStyles/procesoOrdenStyles.css">
     <link rel="stylesheet" href="css/carritoStyles/datosEntrega.css">
+    <link rel="stylesheet" href="css/mensajesAlerta.css">
     <title>Tails Up | Carrito</title>
     <link rel="shortcut icon" href="images/isotipoTailsUp.png" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -153,6 +154,9 @@
         </div>
     </div>
 
+    
+    <div id="customAlertContainer" class="custom-alert-container"></div>
+
     <footer>
         <div class="footer-container">
             <div class="footer-top-paw">
@@ -206,6 +210,7 @@
         </div>
     </footer>
     <script src="js/procesarOrden.js"></script>
+    <script src="js/customAlerts.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const confirmButton = document.querySelector('.agregar-order-btn');
@@ -224,5 +229,5 @@
     <script
         src="https://www.paypal.com/sdk/js?client-id=AT1JehFtby5iK39K2qPw4vvcEJ0HHbLKb50kC06baQBrTDu8Hci8EEJ920LYJkdncH4lC8v7BA3JEB08&currency=MXN"></script>
 </body>
-
+<script src="js/customAlerts.js"></script>
 </html>

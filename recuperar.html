@@ -62,15 +62,16 @@
                         localStorage.setItem("emailRecuperacion", email);
                         window.location.href = "ingresar.html";
                     } else {
-                        alert(data.message);
+                        showCustomAlert(data.message, '#E52727');
                     }
                 })
                 .catch(error => {
                     console.error("Error:", error);
-                    alert("Hubo un problema al procesar la solicitud.");
+                    showCustomAlert("Hubo un problema al procesar la solicitud.", '#E52727');
                 });
         });
     </script>
+    <script src="js/customAlerts.js"></script>
 </body>
 
 </html>

@@ -27,15 +27,16 @@
             },
             onApprove: function(data, actions) {
                 return actions.order.capture().then(function(details) {
-                    alert("¡Pago simulado exitoso!\nID de transacción: " + details.id);
+                    showCustomAlert("¡Pago simulado exitoso!\nID de transacción: " + details.id, "#41BB74");
                     console.log(details); // Ver detalles en consola
                 });
             },
             onError: function(err) {
                 console.error("Error en el pago simulado:", err);
-                alert("Ocurrió un error en la simulación.");
+                showCustomAlert("Ocurrió un error en la simulación.", "#E52727");
             }
         }).render('#paypal-button-container');
     </script>
 </body>
+<script src="js/customAlerts.js"></script>
 </html>

@@ -288,7 +288,7 @@ document.addEventListener("DOMContentLoaded", () => {
             // Obtener nombre de usuario
             const nombreUsuario = localStorage.getItem('usuario');
             if (!nombreUsuario) {
-                alert("Debes iniciar sesión para usar esta función.");
+                showCustomAlert('Debes iniciar sesión para usar esta función.', '#E52727');
                 return;
             }
 
@@ -318,6 +318,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 });
         }
     </script>
+    <script src="js/customAlerts.js"></script>
 
 
 

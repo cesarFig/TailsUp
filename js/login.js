@@ -21,7 +21,11 @@ document.getElementById('Formlogin').addEventListener('submit', async function(e
             localStorage.setItem('userAuth', 'true');
             window.location.href = '../index.html';
         } else {
-            alert(result.message || 'Credenciales incorrectas');
+            if (result.message) {
+                showCustomAlert(result.message, '#E52727');
+            } else {
+                showCustomAlert('Credenciales incorrectas', '#E52727');
+            }
         }
     } catch (error) {
         console.error('Error en la petición:', error);

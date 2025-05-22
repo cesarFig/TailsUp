@@ -65,7 +65,7 @@ function agregarAlCarrito(idProducto) {
     .then(res => res.json())
     .then(data => {
       if (data.success) {
-        alert("✅ Producto añadido al carrito correctamente.");
+        showCustomAlert("✅ Producto añadido al carrito correctamente.", '#41BB74');
       } else {
         console.warn("⚠️ Error al añadir al carrito:", data.error);
       }

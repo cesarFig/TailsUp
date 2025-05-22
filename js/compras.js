@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Obtener ID de usuario desde almacenamiento local
     const userId = localStorage.getItem('idUsuario');
     if (!userId) {
-        alert('Usuario no autenticado');
+        showCustomAlert('Usuario no autenticado', '#E52727');
         window.location.href = 'login.html';
         return;
     }

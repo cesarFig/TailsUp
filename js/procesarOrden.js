@@ -169,13 +169,13 @@ document.addEventListener('DOMContentLoaded', () => {
               const deleteResult = await deleteResponse.json();
 
               if (deleteResult.success) {
-                alert('Dirección eliminada correctamente.');
+                showCustomAlert('Dirección eliminada correctamente.', '#41BB74');
                 await refreshDirecciones(idUsuario); // Refrescar las direcciones listadas
               } else {
-                alert('Error al eliminar la dirección: ' + deleteResult.message);
+                showCustomAlert('Error al eliminar la dirección: ' + deleteResult.message, '#E52727');
               }
             } catch (error) {
-              alert('Error al conectar con el servidor: ' + error.message);
+              showCustomAlert('Error al conectar con el servidor: ' + error.message, '#E52727');
             }
           });
         });
@@ -263,7 +263,7 @@ document.addEventListener('DOMContentLoaded', () => {
         closePopupBtn.addEventListener('click', () => {
             const selectedPoint = localStorage.getItem('id_punto');
             if (!selectedPoint) {
-                alert('Por favor, selecciona una sucursal antes de cerrar.');
+                showCustomAlert('Por favor selecciona una sucursal antes de cerrar.', '#ff0000');
                 return;
             }
             document.body.removeChild(sucursalesPopup);
@@ -286,14 +286,14 @@ document.addEventListener('DOMContentLoaded', () => {
       const result = await response.json();
 
       if (result.success) {
-        alert('Dirección guardada correctamente.');
+        showCustomAlert('Dirección guardada correctamente.', '#28a745');
         popupContainer.classList.add('hidden');
         await refreshDirecciones(idUsuario); // Refrescar las direcciones listadas
       } else {
-        alert('Error al guardar la dirección: ' + result.message);
+        showCustomAlert('Error al guardar la dirección: ' + result.message, '#ff0000');
       }
     } catch (error) {
-      alert('Error al conectar con el servidor: ' + error.message);
+      showCustomAlert('Error al conectar con el servidor: ' + error.message, '#ff0000');
     }
   });
 
@@ -329,7 +329,7 @@ document.addEventListener('DOMContentLoaded', () => {
     },
     onApprove: function (data, actions) {
         return actions.order.capture().then(async function (details) {
-            alert("¡Pago simulado exitoso!\nID de transacción: " + details.id);
+            showCustomAlert("¡Compra completa!\nID de transacción: " + details.id, '#41BB74');
             console.log(details);
 
             // Prepare ticket data
@@ -376,8 +376,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 const result = await response.json();
 
                 if (result.success) {
-                    alert('Ticket guardado correctamente.');
-
                     localStorage.removeItem('id_punto');
                     localStorage.removeItem('id_direccion');
 
@@ -410,17 +408,17 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                 } else {
                     console.error('Error al guardar el ticket:', result.message);
-                    alert('Error al guardar el ticket: ' + result.message);
+                    showCustomAlert('Error al guardar el ticket: ' + result.message, '#E52727');
                 }
             } catch (error) {
                 console.error('Error al conectar con el servidor:', error);
-                alert('Error al conectar con el servidor: ' + error.message);
+                showCustomAlert('Error al conectar con el servidor: ' + error.message, '#E52727');
             }
         });
     },
     onError: function (err) {
         console.error("Error en el pago simulado:", err);
-        alert("Ocurrió un error en la simulación.");
+        showCustomAlert("Error en el pago simulado: " + err.message, '#E52727');
     }
   }).render('#paypal-button-container');
 

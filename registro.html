@@ -68,12 +68,13 @@
             localStorage.setItem('usuario', result.nombre);
             window.location.href = 'index.html';
         } else {
-            alert(result.error || 'Error en el registro');
+            showCustomAlert(result.error || 'Error en el registro', '#E52727');
         }
     } catch (err) {
-        alert('Error de red o servidor');
+        showCustomAlert('Error de red o servidor', '#E52727');
     }
 });
     </script>   
+    <script src="js/customAlerts.js"></script>
 </body>
 </html>

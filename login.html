@@ -72,15 +72,15 @@ document.getElementById('loginForm').addEventListener('submit', async function (
             // Redirige al index
             window.location.href = 'index.html';
         } else {
-            alert('Credenciales incorrectas');
+            showCustomAlert('Credenciales incorrectas', '#E52727');
         }
     } catch (error) {
         console.error('Error:', error);
-        alert('Error al iniciar sesión');
+        showCustomAlert('Error al iniciar sesión', '#E52727');
     }
 });
 </script>   
 
 </body>
-
+<script src="js/customAlerts.js"></script>
 </html>
