@@ -89,6 +89,68 @@
     align-items: center;
 }
 
+.dropdown-menu {
+  font-family: 'Poppins', sans-serif;
+  width: 220px; /* mejor fijo para mantener consistencia */
+  background-color: white;
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 10px;
+  position: fixed;
+  right: 3.9%;
+  top: 9%; /* ajustado para que no se solape */
+  z-index: 101;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  opacity: 0;
+  transform: translateY(-10px);
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* Cuando está visible */
+.dropdown-menu.show {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+/* Triangulito */
+.cart-tab {
+  position: absolute;
+  top: -15px;
+  left: 75%;
+  width: 0;
+  height: 0;
+  border-left: 15px solid transparent;
+  border-right: 15px solid transparent;
+  border-bottom: 15px solid white;
+  z-index: 102;
+}
+
+/* Lista interna */
+.dropdown-menu ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.dropdown-menu ul li {
+  margin: 8px 0;
+}
+
+.dropdown-menu ul li a {
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+  display: block;
+  transition: color 0.2s ease;
+}
+
+.dropdown-menu ul li a:hover {
+  color: #de6600;
+}
+
+
 @media (max-width:768px){
     .navbar {
         flex-direction: column;
