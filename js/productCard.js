@@ -44,6 +44,38 @@ function verificarAccionUsuario(callback) {
   }
 }
 
+function comprarAhora(idProducto) {
+  const idUsuario = localStorage.getItem('idUsuario');
+  if (!idUsuario) {
+    console.warn("⚠️ Usuario no autenticado. Redirigiendo a la página de inicio de sesión.");
+    window.location.href = "login.html";
+    return;
+  }
+
+  const payload = {
+    idUsuario: idUsuario,
+    idProducto: idProducto,
+    cantidad: 1 // Default quantity, can be adjusted as needed
+  };
+
+  fetch("http://localhost/TailsUp-Backend/endPointAddToCart.php", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payload)
+  })
+    .then(res => res.json())
+    .then(data => {
+      if (data.success) {
+        setTimeout(() => {
+          window.location.href = "carrito.html";
+        }, 10);
+      } else {
+        console.warn("⚠️ Error al añadir al carrito:", data.error);
+      }
+    })
+    .catch(err => console.error("❌ Error al conectar con el servidor:", err));
+}
+
 function agregarAlCarrito(idProducto) {
   const idUsuario = localStorage.getItem('idUsuario');
   if (!idUsuario) {
@@ -156,24 +188,24 @@ document.addEventListener('DOMContentLoaded', function () {
         mapearContadoresMarcas();
         actualizarContadoresMarcas(productosGlobales);
         filtrarPorCategoria("Todos");
-        renderPopularProducts(productosGlobales); 
+        renderPopularProducts(productosGlobales);
       })
       .catch(error => console.error('❌ Error al cargar productos o favoritos:', error));
   }
   function renderPopularProducts(productos) {
-  // Ordena por unidades_vendidas descendente y toma 4
-  const top4 = [...productos]
-    .sort((a, b) => b.unidades_vendidas - a.unidades_vendidas)
-    .slice(0, 4);
-  
-  const container = document.querySelector('.containerPopPrd');
-  container.innerHTML = ''; // limpia contenido
+    // Ordena por unidades_vendidas descendente y toma 4
+    const top4 = [...productos]
+      .sort((a, b) => b.unidades_vendidas - a.unidades_vendidas)
+      .slice(0, 4);
 
-  top4.forEach(p => {
-    const div = document.createElement('div');
-    div.className = 'PopularPrd';
+    const container = document.querySelector('.containerPopPrd');
+    container.innerHTML = ''; // limpia contenido
+
+    top4.forEach(p => {
+      const div = document.createElement('div');
+      div.className = 'PopularPrd';
     div.style.cursor = 'pointer';
-    div.innerHTML = `
+      div.innerHTML = `
       <div class="imgProduct">
         <img src="images/${p.imagen_producto}" alt="${p.nombre_producto}">
       </div>
@@ -182,11 +214,11 @@ document.addEventListener('DOMContentLoaded', function () {
         <p>$${formatearPrecio(String(p.precio_actual))}</p>
       </div>
     `;
-    // Al hacer clic, mostramos modal
-    div.addEventListener('click', () => mostrarDetallesProducto(p));
-    container.appendChild(div);
-  });
-}
+      // Al hacer clic, mostramos modal
+      div.addEventListener('click', () => mostrarDetallesProducto(p));
+      container.appendChild(div);
+    });
+  }
 
   function filtrarPorCategoria(categoria) {
   const contenedorComida = document.getElementById('contenedorProductos');
@@ -275,13 +307,13 @@ document.addEventListener('DOMContentLoaded', function () {
       mostrarDetallesProducto(producto);
     });
 
-    // Previene que los botones propaguen el evento al card
-    const btns = card.querySelectorAll('button');
-    btns.forEach(btn => {
-      btn.addEventListener('click', e => e.stopPropagation());
-    });
+        // Previene que los botones propaguen el evento al card
+        const btns = card.querySelectorAll('button');
+        btns.forEach(btn => {
+          btn.addEventListener('click', e => e.stopPropagation());
+        });
 
-    contenedor.appendChild(card);
+        contenedor.appendChild(card);
   };
 
   const renderVacio = (contenedor) => {
