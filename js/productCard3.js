@@ -8,6 +8,38 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   }
 
+  function comprarAhora(idProducto) {
+  const idUsuario = localStorage.getItem('idUsuario');
+  if (!idUsuario) {
+    console.warn("⚠️ Usuario no autenticado. Redirigiendo a la página de inicio de sesión.");
+    window.location.href = "login.html";
+    return;
+  }
+
+  const payload = {
+    idUsuario: idUsuario,
+    idProducto: idProducto,
+    cantidad: 1 // Default quantity, can be adjusted as needed
+  };
+
+  fetch("http://localhost/TailsUp-Backend/endPointAddToCart.php", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payload)
+  })
+    .then(res => res.json())
+    .then(data => {
+      if (data.success) {
+        setTimeout(() => {
+          window.location.href = "carrito.html";
+        }, 10);
+      } else {
+        console.warn("⚠️ Error al añadir al carrito:", data.error);
+      }
+    })
+    .catch(err => console.error("❌ Error al conectar con el servidor:", err));
+}
+
   function agregarAlCarrito(idProducto) {
     const idUsuario = localStorage.getItem('idUsuario');
     if (!idUsuario) {
@@ -68,8 +100,8 @@ document.addEventListener('DOMContentLoaded', function () {
                   </p>
               </div>
               <div class="productBtns">
-                  <button class="btnCompra" onclick="verificarAccionUsuario(() => agregarAlCarrito(${producto.id_producto}))">Comprar ahora</button>
-                  <button class="btnCarrito"><img src="images/CarritoSimple.png" alt="carritoSimple.png"></button>
+                  <button class="btnCompra" onclick="verificarAccionUsuario(() => comprarAhora(${producto.id_producto}))">Comprar ahora</button>
+        <button class="btnCarrito" onclick="verificarAccionUsuario(() => agregarAlCarrito(${producto.id_producto}))">
               </div>
               
             `;
