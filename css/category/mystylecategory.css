@@ -62,7 +62,14 @@ h1{
 .containerProductos{
     width: 85%;
 }
-
+#btnTortuga{
+   transform: scale(1.2);      
+}
+.textoBtnTortuga {
+  position: relative;
+  top: -10% !important; /* súbelo, ajusta el valor a tu gusto */
+  font-size: 12px !important;
+}
 .containerProductos1{
     width: 100%;
 }
@@ -488,6 +495,9 @@ h4{
     padding: 20px;
     margin-left: 1%;
       }
+      .textoBtnTortuga {
+  font-size: 10px !important;
+}
     .containerShopByPet {
         margin-top: 110px !important;
     }

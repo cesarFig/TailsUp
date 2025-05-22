@@ -29,6 +29,15 @@ h1{
   .btnAplicar.animate {
   animation: pulse 0.3s ease;
 }
+#btnTortuga{
+   transform: scale(1.2);     
+}
+.textoBtnTortuga {
+  position: relative;
+  top: -10% !important; /* súbelo, ajusta el valor a tu gusto */
+  font-size: 12px !important;
+}
+
 .btnCategoriaPet img{ 
     width: 100%;
     height: 100%;

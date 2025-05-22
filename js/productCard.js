@@ -172,6 +172,7 @@ document.addEventListener('DOMContentLoaded', function () {
   top4.forEach(p => {
     const div = document.createElement('div');
     div.className = 'PopularPrd';
+    div.style.cursor = 'pointer';
     div.innerHTML = `
       <div class="imgProduct">
         <img src="images/${p.imagen_producto}" alt="${p.nombre_producto}">
@@ -188,108 +189,136 @@ document.addEventListener('DOMContentLoaded', function () {
 }
 
   function filtrarPorCategoria(categoria) {
-    const contenedorComida = document.getElementById('contenedorProductos');
-    const contenedorJuguetes = document.getElementById('contenedorToys');
-    const contenedorRopa = document.getElementById('contenedorProductos2');
-    const contenedorAseo = document.getElementById('contenedorToys2');
+  const contenedorComida = document.getElementById('contenedorProductos');
+  const contenedorJuguetes = document.getElementById('contenedorToys');
+  const contenedorRopa = document.getElementById('contenedorProductos2');
+  const contenedorAseo = document.getElementById('contenedorToys2');
 
-    contenedorComida.innerHTML = '';
-    contenedorJuguetes.innerHTML = '';
-    contenedorRopa.innerHTML = '';
-    contenedorAseo.innerHTML = '';
+  contenedorComida.innerHTML = '';
+  contenedorJuguetes.innerHTML = '';
+  contenedorRopa.innerHTML = '';
+  contenedorAseo.innerHTML = '';
 
-    const productosFiltrados = productosGlobales.filter(p => {
-      const categoriaMatch = categoria === "Todos" || p.categoria.toLowerCase().includes(categoria.toLowerCase());
-      const precioMatch = Number(p.precio_actual) <= filtroPrecioMaximo;
-      const marcaMatch = marcasSeleccionadas.size === 0 || marcasSeleccionadas.has(p.marca);
-      const tagMatch = !tagSeleccionado || (
-        p.nombre_producto.toLowerCase().includes(tagSeleccionado.toLowerCase()) ||
-        (p.etiquetas && p.etiquetas.toLowerCase().includes(tagSeleccionado.toLowerCase()))
-      );
-      return categoriaMatch && precioMatch && marcaMatch && tagMatch;
+  const productosFiltrados = productosGlobales.filter(p => {
+    const categoriaMatch = categoria === "Todos" || p.categoria.toLowerCase().includes(categoria.toLowerCase());
+    const precioMatch = Number(p.precio_actual) <= filtroPrecioMaximo;
+    const marcaMatch = marcasSeleccionadas.size === 0 || marcasSeleccionadas.has(p.marca);
+    const tagMatch = !tagSeleccionado || (
+      p.nombre_producto.toLowerCase().includes(tagSeleccionado.toLowerCase()) ||
+      (p.etiquetas && p.etiquetas.toLowerCase().includes(tagSeleccionado.toLowerCase()))
+    );
+    return categoriaMatch && precioMatch && marcaMatch && tagMatch;
+  });
+
+  actualizarContadoresMarcas(productosGlobales);
+
+  const comida = productosFiltrados.filter(p => {
+    const cat = p.categoria.toLowerCase();
+    return cat.includes('comida') || cat.includes('alimento') || cat.includes('alimentación') ||
+      (!cat.includes('juguete') && !cat.includes('ropa') && !cat.includes('aseo') && !cat.includes('higiene'));
+  }).slice(0, 4);
+
+  const juguetes = productosFiltrados
+    .filter(p => p.categoria.toLowerCase().includes('juguete'))
+    .slice(0, 4);
+
+  const ropa = productosFiltrados
+    .filter(p => p.categoria.toLowerCase().includes('ropa'))
+    .slice(0, 4);
+
+  const aseo = productosFiltrados
+    .filter(p => {
+      const cat = p.categoria.toLowerCase();
+      return cat.includes('aseo') || cat.includes('higiene');
+    })
+    .slice(0, 4);
+
+  const renderProducto = (producto, contenedor) => {
+    const card = document.createElement('div');
+    card.className = 'productCard';
+    card.dataset.idProducto = producto.id_producto;
+
+    const esFavorito = productosFavoritos.map(Number).includes(Number(producto.id_producto));
+    const claseCorazon = esFavorito ? 'fa-solid' : 'fa-regular';
+    const claseLiked = esFavorito ? 'liked' : '';
+
+    card.innerHTML = `
+      <div class="productImage">
+        <button class="heart-button ${claseLiked}" onclick="toggleHeart(this, ${producto.id_producto})">
+          <i class="${claseCorazon} fa-heart"></i>
+        </button>
+        <img src="images/${producto.imagen_producto}" alt="${producto.nombre_producto}">
+      </div>
+      <div class="productTitle">
+        <h4>${producto.nombre_producto}</h4>
+      </div>
+      <div class="productRating">
+        <img src="images/Star.png" alt="Estrella">
+        <p>(${producto.rating}) ${producto.unidades_vendidas} Vendidas</p>
+      </div>
+      <div class="productPrice">
+        <p>
+          $${formatearPrecio(String(producto.precio_actual))}
+          ${producto.precio_anterior && producto.precio_anterior !== producto.precio_actual
+            ? `<s>$${formatearPrecio(String(producto.precio_anterior))}</s>` : ''}
+        </p>
+      </div>
+      <div class="productBtns">
+        <button class="btnCompra" onclick="verificarAccionUsuario(() => agregarAlCarrito(${producto.id_producto}))">Comprar ahora</button>
+        <button class="btnCarrito"><img src="images/CarritoSimple.png" alt="carritoSimple.png"></button>
+      </div>
+    `;
+
+    // Click en la tarjeta (excepto botones) abre el modal
+    card.addEventListener('click', function (e) {
+      if (e.target.closest('button')) return;
+      mostrarDetallesProducto(producto);
     });
 
-    actualizarContadoresMarcas(productosGlobales); // 👈 Actualiza siempre desde el total, no filtrado
+    // Previene que los botones propaguen el evento al card
+    const btns = card.querySelectorAll('button');
+    btns.forEach(btn => {
+      btn.addEventListener('click', e => e.stopPropagation());
+    });
 
-    const comida = productosFiltrados
-      .filter(p => {
-        const cat = p.categoria.toLowerCase();
-        return cat.includes('comida') || cat.includes('alimento') || cat.includes('alimentación') ||
-          (!cat.includes('juguete') && !cat.includes('ropa') && !cat.includes('aseo') && !cat.includes('higiene'));
-      }).slice(0, 4);
+    contenedor.appendChild(card);
+  };
 
-    const juguetes = productosFiltrados
-      .filter(p => p.categoria.toLowerCase().includes('juguete'))
-      .slice(0, 4);
+  const renderVacio = (contenedor) => {
+    contenedor.innerHTML = `
+      <div style="
+        grid-column: 1 / -1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        height: 300px;
+        margin: auto;
+      ">
+        <i class="fa-solid fa-face-sad-tear" style="font-size: 60px; color: #999;"></i>
+        <p style="
+          font-family: 'Poppins', sans-serif;
+          font-size: 20px;
+          color: #555;
+          margin-top: 10px;
+        ">
+          No se encontraron productos para esta categoría.
+        </p>
+      </div>
+    `;
+  };
 
-    const ropa = productosFiltrados
-      .filter(p => p.categoria.toLowerCase().includes('ropa'))
-      .slice(0, 4);
+  // Renderizar o mostrar mensaje vacío por categoría
+  comida.length > 0 ? comida.forEach(p => renderProducto(p, contenedorComida)) : renderVacio(contenedorComida);
+  juguetes.length > 0 ? juguetes.forEach(p => renderProducto(p, contenedorJuguetes)) : renderVacio(contenedorJuguetes);
+  ropa.length > 0 ? ropa.forEach(p => renderProducto(p, contenedorRopa)) : renderVacio(contenedorRopa);
+  aseo.length > 0 ? aseo.forEach(p => renderProducto(p, contenedorAseo)) : renderVacio(contenedorAseo);
 
-    const aseo = productosFiltrados
-      .filter(p => {
-        const cat = p.categoria.toLowerCase();
-        return cat.includes('aseo') || cat.includes('higiene');
-      })
-      .slice(0, 4);
+  manejarTruncadoResponsivo('.productTitle');
+  iniciarAjustes();
+}
 
-    const renderProducto = (producto, contenedor) => {
-      const card = document.createElement('div');
-      card.className = 'productCard';
-      card.dataset.idProducto = producto.id_producto;
-
-      const esFavorito = productosFavoritos.map(Number).includes(Number(producto.id_producto));
-
-      const claseCorazon = esFavorito ? 'fa-solid' : 'fa-regular';
-      const claseLiked = esFavorito ? 'liked' : '';
-
-      card.innerHTML = `
-        <div class="productImage">
-          <button class="heart-button ${claseLiked}" onclick="toggleHeart(this, ${producto.id_producto})">
-            <i class="${claseCorazon} fa-heart"></i>
-          </button>
-          <img src="images/${producto.imagen_producto}" alt="${producto.nombre_producto}">
-        </div>
-        <div class="productTitle">
-          <h4>${producto.nombre_producto}</h4>
-        </div>
-        <div class="productRating">
-          <img src="images/Star.png" alt="Estrella">
-          <p>(${producto.rating}) ${producto.unidades_vendidas} Vendidas</p>
-        </div>
-        <div class="productPrice">
-          <p>
-            $${formatearPrecio(String(producto.precio_actual))}
-            ${producto.precio_anterior && producto.precio_anterior !== producto.precio_actual
-          ? `<s>$${formatearPrecio(String(producto.precio_anterior))}</s>` : ''}
-          </p>
-        </div>
-        <div class="productBtns">
-          <button class="btnCompra" onclick="verificarAccionUsuario(() => agregarAlCarrito(${producto.id_producto}))">Comprar ahor</button>
-          <button class="btnCarrito"><img src="images/CarritoSimple.png" alt="carritoSimple.png"></button>
-        </div>
-      `;
-       card.addEventListener('click', () => {
-    mostrarDetallesProducto(producto);
-  });
-
-  // Asegúrate también de STOP_PROPAGATION en botones internos:
-  const btns = card.querySelectorAll('button');
-  btns.forEach(btn => {
-    btn.addEventListener('click', e => e.stopPropagation());
-  });
-
-  contenedor.appendChild(card);
-    };
-
-    comida.forEach(p => renderProducto(p, contenedorComida));
-    juguetes.forEach(p => renderProducto(p, contenedorJuguetes));
-    ropa.forEach(p => renderProducto(p, contenedorRopa));
-    aseo.forEach(p => renderProducto(p, contenedorAseo));
-
-    manejarTruncadoResponsivo('.productTitle');
-    iniciarAjustes();
-  }
 
   function formatearPrecio(precio) {
     if (!precio.includes('.')) return `${precio}.00`;

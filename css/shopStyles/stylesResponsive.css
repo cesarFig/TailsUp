@@ -10,6 +10,10 @@
     .containerProductos {
         width: 100% !important;
     }
+    .textoBtnTortuga {
+
+  font-size: 10px !important;
+}
 
     .containerImgPerros {
         display: grid !important;

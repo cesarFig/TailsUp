@@ -67,36 +67,35 @@
                     alt="btnCat.png">Ave</button>
             <button class="btnCategoriaPet" data-categoria="Conejo"><img src="images/imgBtnConejo.png"
                     alt="btnCat.png">Conejo</button>
-            <button class="btnCategoriaPet" data-categoria="Tortuga"><img src="images/imgBtnTortuga.png"
-                    alt="btnCat.png">Tortuga</button>
+            <button  id="btnTortuga" class="btnCategoriaPet" data-categoria="Tortuga"><img src="images/imgBtnTortuga.png"
+                    alt="btnCat.png"><span class="textoBtnTortuga">Tortuga</span></button>
         </div>
     </div>
     <div class="divBtnFiltros">
         <button class="toggleFiltrosBtn">☰ Filtros</button>
     </div>
-    <div class="containerFiltro-Products">
+     <div class="containerFiltro-Products">
         <div class="containerFiltros">
             <button class="cerrarBtn">X</button>
             <h4 class="titlePrecio">Filtrar por precio</h4>
-            <input type="range" class="rangoPrecio" min="9" max="399">
+            <input type="range" class="rangoPrecio" min="9" max="1300">
             <div class="containerTextFiltro">
-                <p>Price: $9 - $399</p><button class="btnAplicar">Aplicar</button>
+                <p>Price: $9 - $1300</p><button class="btnAplicar">Aplicar</button>
             </div>
-            <h4 class="titleBrands">Filter by brands</h4>
+            <h4 class="titleBrands">Filtrar por marcas</h4>
             <div class="containerInputs">
                 <div>
-                    <label class="filter-option"><input type="checkbox" value="Natural food">
-                        Natural food </label>
-                    <label class="filter-option"><input type="checkbox" value="Pet care"> Pet care
+                    <label class="filter-option"><input type="checkbox" value="Purina">
+                        Purina </label>
+                    <label class="filter-option"><input type="checkbox" value="pedigree"> Pedigree
                     </label>
-                    <label class="filter-option"><input type="checkbox" value="Dogs friend"> Dogs
-                        friend </label>
-                    <label class="filter-option"><input type="checkbox" value="Pet food"> Pet food
+                    <label class="filter-option"><input type="checkbox" value="ganador"> Ganador
+                         </label>
+                    <label class="filter-option"><input type="checkbox" value="purina dog chow"> Purina dog chow
                     </label>
-                    <label class="filter-option"><input type="checkbox" value="Favorite pet">
-                        Favorite pet </label>
-                    <label class="filter-option"><input type="checkbox" value="Green line"> Green
-                        line </label>
+                    <label class="filter-option"><input type="checkbox" value="Huppy">
+                        Huppy</label>
+                    <label class="filter-option"><input type="checkbox" value="Whiskas"> Whiskas </label>
                 </div>
                 <div class="containerNumInputs">
                     <span>28</span>
@@ -107,17 +106,17 @@
                     <span>15</span>
                 </div>
             </div>
-            <h4 class="titleBrands">Filter by tags</h4>
+            <h4 class="titleBrands">Filtrar por etiquetas</h4>
             <div class="tags">
                 <div>
-                    <button class="tag filtro-tag" data-tag="Dog food">Dog food</button>
-                    <button class="tag filtro-tag" data-tag="Cat food">Cat food</button>
-                    <button class="tag filtro-tag" data-tag="Natural">Natural</button>
+                    <button class="tag filtro-tag" data-tag="Croquetas">Croquetas</button>
+                    <button class="tag filtro-tag" data-tag="Shampoo">Shampoo</button>
+                    <button class="tag filtro-tag" data-tag="Vestido">Vestidos</button>
                 </div>
                 <div>
-                    <button class="tag filtro-tag" data-tag="Parrot">Parrot</button>
-                    <button class="tag filtro-tag" data-tag="Small dog">Small dog</button>
-                    <button class="tag filtro-tag" data-tag="Cat">Cat</button>
+                    <button class="tag filtro-tag" data-tag="kg">Kilogramos</button>
+                    <button class="tag filtro-tag" data-tag="Jaula">Jaula</button>
+                    <button class="tag filtro-tag" data-tag="Plato">Platos</button>
                 </div>
                 <h4 class="titleBrands">Productos populares</h4>
                 <div class="containerPopPrd">
@@ -280,7 +279,10 @@ document.addEventListener('DOMContentLoaded', function () {
     } else {
       document.querySelectorAll('.btnCategoriaPet').forEach(b => b.classList.remove('selected'));
       this.classList.add('selected');
-      categoriaBotonSeleccionada = categoria + 's'; // 👈 ajuste aquí
+     const excepciones = ['hamster', 'conejo', 'ave', 'tortuga'];
+categoriaBotonSeleccionada = excepciones.includes(categoria)
+  ? categoria
+  : categoria + 's'; // 👈 ajuste aquí
     }
 
     aplicarFiltros();
@@ -385,6 +387,7 @@ function aplicarFiltros() {
   actualizarContadoresMarca(productosCategoria); 
 
   renderProductos(productosFiltrados);
+  renderTop4Productos(); 
 }
 function actualizarContadoresMarca(listaProductos) {
   const marcas = document.querySelectorAll('.filter-option input[type=checkbox]');
@@ -403,6 +406,35 @@ function actualizarContadoresMarca(listaProductos) {
     spans[index].textContent = conteo[marca] || 0;
   });
 }
+function renderTop4Productos() {
+  const top4Container = document.querySelector('.containerPopPrd');
+  if (!top4Container) return;
+
+  top4Container.innerHTML = ''; // limpia contenido anterior
+
+  const top4 = productosCategoria.slice(0, 4); // o usa lógica propia para los top
+
+  top4.forEach(p => {
+    const div = document.createElement('div');
+    div.className = 'PopularPrd';
+    div.style.cursor = 'pointer'; // 👈 hace que se vea interactivo
+    div.innerHTML = `
+      <div class="imgProduct">
+        <img src="images/${p.imagen_producto}" alt="${p.nombre_producto}">
+      </div>
+      <div class="textPopPrd">
+        <h4>${p.nombre_producto}</h4>
+        <p>$${formatearPrecio(String(p.precio_actual))}</p>
+      </div>
+    `;
+
+    // Evento para mostrar el modal al hacer clic
+    div.addEventListener('click', () => mostrarDetallesProducto(p));
+
+    top4Container.appendChild(div);
+  });
+}
+
 
 
 function renderProductos(productos) {
@@ -410,8 +442,29 @@ function renderProductos(productos) {
   contenedor.innerHTML = '';
 
   if (productos.length === 0) {
-    contenedor.innerHTML = '<p>No se encontraron productos.</p>';
-    return;
+    contenedor.innerHTML = `
+    <div style="
+      grid-column: 1 / -1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      height: 300px;
+      margin: auto;
+    ">
+      <i class="fa-solid fa-face-sad-tear" style="font-size: 60px; color: #999;"></i>
+      <p style="
+        font-family: 'Poppins', sans-serif;
+        font-size: 20px;
+        color: #555;
+        margin-top: 10px;
+      ">
+        No se encontraron productos que coincidan con tu búsqueda.
+      </p>
+    </div>
+  `;
+  return;
   }
 
   productos.forEach(p => {

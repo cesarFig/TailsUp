@@ -177,44 +177,67 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
   function renderizarFavoritos(productos) {
-    const contenedorFavoritos = document.getElementById('contenedorProductos');    
+  const contenedorFavoritos = document.getElementById('contenedorProductos');    
+  contenedorFavoritos.innerHTML = '';
 
-    productos.forEach(producto => {
-      const card = document.createElement('div');
-      card.className = 'productCard';
-      card.dataset.idProducto = producto.id_producto;
-      card.innerHTML = `
-        <div class="productImage">
-          <button class="heart-button liked" onclick="toggleHeart(this)">
-          <i class="fa-solid fa-heart"></i>
-          </button>
-          <img src="images/${producto.imagen_producto}" alt="${producto.nombre_producto}">
-        </div>
-        <div class="productTitle">
-          <h4>${producto.nombre_producto}</h4>
-        </div>
-        <div class="productRating">
-          <img src="images/Star.png" alt="Estrella">
-          <p>(${producto.rating}) ${producto.unidades_vendidas} Sold</p>
-        </div>
-        <div class="productPrice">
-          <p>
-            $${formatearPrecio(String(producto.precio_actual))}
-            ${producto.precio_anterior && producto.precio_anterior !== producto.precio_actual
-              ? `<s>$${formatearPrecio(String(producto.precio_anterior))}</s>` : ''}
-          </p>
-        </div>
-        <div class="productBtns">
-          <button class="btnCompra">Comprar ahora</button>
-          <button class="btnCarrito"><img src="images/CarritoSimple.png" alt="carritoSimple.png"></button>
-        </div>
-      `;
-      contenedorFavoritos.appendChild(card);
-    });
-
-    manejarTruncadoResponsivo('.productTitle');
-    iniciarAjustes();
+  if (!productos || productos.length === 0) {
+    contenedorFavoritos.innerHTML = `
+      <div style="
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        height: 200px;
+        margin: 40px auto;
+        font-family: 'Poppins', sans-serif;
+      ">
+        <i class="fa-solid fa-heart-crack" style="font-size: 60px; color: #DE6600; margin-left:-9%"></i>
+        <p style="font-size: 20px; color: #003F5A;  margin-left:-9%">
+          Aún no tienes productos en favoritos.
+        </p>
+      </div>
+    `;
+    return;
   }
+
+  productos.forEach(producto => {
+    const card = document.createElement('div');
+    card.className = 'productCard';
+    card.dataset.idProducto = producto.id_producto;
+    card.innerHTML = `
+      <div class="productImage">
+        <button class="heart-button liked" onclick="toggleHeart(this)">
+          <i class="fa-solid fa-heart"></i>
+        </button>
+        <img src="images/${producto.imagen_producto}" alt="${producto.nombre_producto}">
+      </div>
+      <div class="productTitle">
+        <h4>${producto.nombre_producto}</h4>
+      </div>
+      <div class="productRating">
+        <img src="images/Star.png" alt="Estrella">
+        <p>(${producto.rating}) ${producto.unidades_vendidas} Sold</p>
+      </div>
+      <div class="productPrice">
+        <p>
+          $${formatearPrecio(String(producto.precio_actual))}
+          ${producto.precio_anterior && producto.precio_anterior !== producto.precio_actual
+            ? `<s>$${formatearPrecio(String(producto.precio_anterior))}</s>` : ''}
+        </p>
+      </div>
+      <div class="productBtns">
+        <button class="btnCompra">Comprar ahora</button>
+        <button class="btnCarrito"><img src="images/CarritoSimple.png" alt="carritoSimple.png"></button>
+      </div>
+    `;
+    contenedorFavoritos.appendChild(card);
+  });
+
+  manejarTruncadoResponsivo('.productTitle');
+  iniciarAjustes();
+}
+
   function iniciarAjustes() {
     // Definir reglas de ajuste de fuente
     const reglas = {

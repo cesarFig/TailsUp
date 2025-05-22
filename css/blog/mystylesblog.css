@@ -9,12 +9,16 @@
   width: 100%;
   height: auto;
   object-fit: cover;
+  margin-top: -5%;
 }
 
 .mascotas-titulo {
   background-color: #f9a825;
   text-align: center;
   font-family: flame;
+  margin-top: -3%;
+   position: relative;
+  z-index: 10;
 }
 
 .mascotas-titulo h1 {
@@ -416,6 +420,11 @@
   font-weight: bold;  
   font-family: poppins;
 }
+.n-card a {
+  all: unset;
+  cursor: pointer;
+  display: inline-block;
+}
 
 /*Seccion huskis*/
 .seccion-curiosidades {
@@ -596,6 +605,9 @@
   /* Header mascots */
   .mascotas-titulo h1 {
     font-size: 8vw;
+  }
+  .mascotas-full{
+    margin-top: 15% !important;    
   }
 
   /* Services cards: 2 por fila */

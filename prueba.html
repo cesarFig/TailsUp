@@ -2,42 +2,168 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Corazón Toggle Contorno</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <link rel="stylesheet" href="css/mensajesAlerta.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Acerca de Nosotros | Tails Up</title>
+  <link rel="shortcut icon" href="images/isotipoTailsUp.png" type="image/x-icon">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
   <style>
-    .heart-btn {
-      background: none;
-      border: none;
-      font-size: 40px;
-      cursor: pointer;
-      color: grey;
-      transition: color 0.3s ease;
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
 
-    .heart-btn.active {
-      color: red;
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #fff8f0;
+      color: #333;
+    }
+
+    header {
+      background-color: #00695c;
+      padding: 20px 40px;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    header h1 {
+      font-size: 28px;
+      color: #f9a825;
+    }
+
+    nav a {
+      color: white;
+      margin-left: 20px;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .hero {
+      background: linear-gradient(to right, #f9a825, #f57f17);
+      color: white;
+      text-align: center;
+      padding: 80px 20px;
+    }
+
+    .hero h2 {
+      font-size: 40px;
+      margin-bottom: 10px;
+    }
+
+    .hero p {
+      font-size: 18px;
+    }
+
+    .about-section {
+      padding: 60px 20px;
+      max-width: 1100px;
+      margin: auto;
+    }
+
+    .about-section h3 {
+      color: #f9a825;
+      margin-bottom: 20px;
+      text-align: center;
+      font-size: 28px;
+    }
+
+    .about-cards {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+      justify-content: center;
+    }
+
+    .card {
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      padding: 25px;
+      max-width: 300px;
+      transition: transform 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-10px);
+    }
+
+    .card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 10px;
+      margin-bottom: 15px;
+    }
+
+    .card h4 {
+      color: #f57f17;
+      margin-bottom: 10px;
+    }
+
+    .card p {
+      font-size: 14px;
+      color: #555;
+    }
+
+    footer {
+      background-color: #00695c;
+      color: white;
+      text-align: center;
+      padding: 25px;
+      margin-top: 50px;
+    }
+
+    @media (max-width: 768px) {
+      .about-cards {
+        flex-direction: column;
+        align-items: center;
+      }
     }
   </style>
 </head>
 <body>
 
-  <button class="heart-btn" id="heart-button">
-    <i class="fa-regular fa-heart" id="heart-icon"></i>
-  </button>
+  <header>
+    <h1>Tails Up</h1>
+    <nav>
+      <a href="index.html">Inicio</a>
+      <a href="shop.html">Tienda</a>
+      <a href="blog.html">Consejos</a>
+      <a href="acerca.html">Acerca de</a>
+    </nav>
+  </header>
 
-  <script>
-    const button = document.getElementById('heart-button');
-    const icon = document.getElementById('heart-icon');
+  <section class="hero">
+    <h2>Acerca de Nosotros</h2>
+    <p>Cuidamos con amor, jugamos con alegría, educamos con empatía</p>
+  </section>
 
-    button.addEventListener('click', () => {
-      button.classList.toggle('active');
-      icon.classList.toggle('fa-regular');
-      icon.classList.toggle('fa-solid');
-    });
-  </script>
-  
-<div id="customAlertContainer" class="custom-alert-container"></div>
+  <section class="about-section">
+    <h3>¿Quiénes somos?</h3>
+    <div class="about-cards">
+      <div class="card">
+        <img src="images/about1.jpg" alt="Misión">
+        <h4>Nuestra Misión</h4>
+        <p>Brindar a las mascotas una vida plena y feliz a través de información, productos y servicios de calidad.</p>
+      </div>
+      <div class="card">
+        <img src="images/about2.jpg" alt="Visión">
+        <h4>Nuestra Visión</h4>
+        <p>Ser la comunidad más confiable para tutores responsables que buscan bienestar y diversión para sus mascotas.</p>
+      </div>
+      <div class="card">
+        <img src="images/about3.jpg" alt="Valores">
+        <h4>Nuestros Valores</h4>
+        <p>Amor, respeto, compromiso, educación positiva y bienestar animal en el centro de todo lo que hacemos.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    &copy; 2025 Tails Up. Todos los derechos reservados. | Cuidado, Amor y Diversión
+  </footer>
+
 </body>
-<script src="js/customAlerts.js"></script>
 </html>
