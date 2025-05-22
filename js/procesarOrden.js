@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const cartItemsContainer = document.getElementById('cart-items');
   const idUsuario = localStorage.getItem('idUsuario');
   let totalOrden = 0;
+  localStorage.removeItem('id_punto');
   if (!idUsuario) {
     console.error('Error: idUsuario no encontrado en localStorage.');
     cartItemsContainer.innerHTML = '<p>Error: No se pudo obtener el ID del usuario.</p>';
@@ -126,14 +127,17 @@ document.addEventListener('DOMContentLoaded', () => {
           li.style.listStyleType = 'none';
           li.style.marginBottom = '10px';
           li.innerHTML = `
-                        <div class="envio-opcion">
-                            <div class="envio-text">
-                                <h4>Dirección Guardada ${index + 1}</h4>
-                                <p>${direccion.direccion}, ${direccion.codigo_postal}, ${direccion.estado}</p>
-                            </div>
-                            <input type="checkbox" class="envio-checkbox" name="direccion" data-id-direccion="${direccion.id_direccion}" ${index === 0 ? 'checked' : ''}>
+                    <div class="envio-opcion">
+                        <button class="delete-address-btn" data-id-direccion="${direccion.id_direccion}" style="margin-right: 10px; background-color: transparent; border: none;">
+                            <img src="https://cdn-icons-png.flaticon.com/512/542/542724.png" alt="Eliminar" style="width: 20px; height: 20px; opacity: 0.7;">
+                        </button>
+                        <div class="envio-text">
+                            <h4>Dirección Guardada ${index + 1}</h4>
+                            <p>${direccion.direccion}, ${direccion.codigo_postal}, ${direccion.estado}</p>
                         </div>
-                    `;
+                        <input type="checkbox" class="envio-checkbox" name="direccion" data-id-direccion="${direccion.id_direccion}" ${index === 0 ? 'checked' : ''}>
+                    </div>
+                `;
           listaDirecciones.appendChild(li);
 
           if (index === 0) {
@@ -147,6 +151,34 @@ document.addEventListener('DOMContentLoaded', () => {
         if (firstCheckbox) {
           retiroCheckbox.checked = false;
         }
+
+        // Agregar eventos a los botones de eliminar
+        const deleteButtons = document.querySelectorAll('.delete-address-btn');
+        deleteButtons.forEach(button => {
+          button.addEventListener('click', async (event) => {
+            const idDireccion = event.currentTarget.dataset.idDireccion;
+            try {
+              const deleteResponse = await fetch('http://localhost/TailsUp-Backend/endPointEliminarDireccion.php', {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ idDireccion, idUsuario })
+              });
+
+              const deleteResult = await deleteResponse.json();
+
+              if (deleteResult.success) {
+                alert('Dirección eliminada correctamente.');
+                await refreshDirecciones(idUsuario); // Refrescar las direcciones listadas
+              } else {
+                alert('Error al eliminar la dirección: ' + deleteResult.message);
+              }
+            } catch (error) {
+              alert('Error al conectar con el servidor: ' + error.message);
+            }
+          });
+        });
       } else {
         console.error('Error al obtener las direcciones:', data.message);
       }
@@ -167,6 +199,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (event.target.checked) {
         const idDireccion = event.target.dataset.idDireccion;
         localStorage.setItem('id_direccion', idDireccion);
+        localStorage.removeItem('id_punto');
       } else {
         localStorage.removeItem('id_direccion');
       }
@@ -178,15 +211,65 @@ document.addEventListener('DOMContentLoaded', () => {
 
   retiroCheckbox.addEventListener('change', () => {
     if (retiroCheckbox.checked) {
-      // Desmarcar todos los checkboxes de direcciones si se selecciona "Retiro en punto de entrega"
-      const checkboxes = listaDirecciones.querySelectorAll('.envio-checkbox');
-      localStorage.removeItem('id_direccion');
-      localStorage.setItem('es_en_retiro', true);
-      checkboxes.forEach(checkbox => {
-        checkbox.checked = false;
-      });
+        // Desmarcar todos los checkboxes de direcciones si se selecciona "Retiro en punto de entrega"
+        const checkboxes = listaDirecciones.querySelectorAll('.envio-checkbox');
+        localStorage.removeItem('id_direccion');
+        localStorage.setItem('es_en_retiro', true);
+        checkboxes.forEach(checkbox => {
+            checkbox.checked = false;
+        });
+
+        // Mostrar ventana emergente con sucursales
+        const sucursalesPopup = document.createElement('div');
+        sucursalesPopup.classList.add('popup');
+        sucursalesPopup.innerHTML = `
+            <div class="popup-content" style="text-align: center;background-color: #ebd9c8">
+                <h3>Selecciona una sucursal</h3>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; ">
+                    <button class="sucursal-btn" data-id-punto="1" style="border-radius: 50px; padding: 10px; background-color: #f0f0f0; border: none; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">Morelia</button>
+                    <button class="sucursal-btn" data-id-punto="2" style="border-radius: 50px; padding: 10px; background-color: #f0f0f0; border: none; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">Guadalajara</button>
+                    <button class="sucursal-btn" data-id-punto="3" style="border-radius: 50px; padding: 10px; background-color: #f0f0f0; border: none; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">CDMX</button>
+                    <button class="sucursal-btn" data-id-punto="4" style="border-radius: 50px; padding: 10px; background-color: #f0f0f0; border: none; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">Monterrey</button>
+                </div>
+                <button class="close-popup-btn" style="padding: 10px; border-radius: 10px; background-color: #003f5a; color: white;">Cerrar</button>
+            </div>
+        `;
+        document.body.appendChild(sucursalesPopup);
+
+        // Resaltar la sucursal previamente seleccionada
+        const selectedPoint = localStorage.getItem('id_punto');
+        if (selectedPoint) {
+            const selectedButton = sucursalesPopup.querySelector(`.sucursal-btn[data-id-punto="${selectedPoint}"]`);
+            if (selectedButton) {
+                selectedButton.style.backgroundColor = '#d1e7dd';
+            }
+        }
+
+        // Manejar selección de sucursal
+        const sucursalButtons = sucursalesPopup.querySelectorAll('.sucursal-btn');
+        sucursalButtons.forEach(button => {
+            button.addEventListener('click', (event) => {
+                sucursalButtons.forEach(btn => {
+                    btn.style.backgroundColor = '#f0f0f0';
+                });
+                event.target.style.backgroundColor = '#d1e7dd'; // Cambiar color para indicar selección
+                const idPunto = event.target.dataset.idPunto;
+                localStorage.setItem('id_punto', idPunto);
+            });
+        });
+
+        // Manejar cierre de la ventana emergente
+        const closePopupBtn = sucursalesPopup.querySelector('.close-popup-btn');
+        closePopupBtn.addEventListener('click', () => {
+            const selectedPoint = localStorage.getItem('id_punto');
+            if (!selectedPoint) {
+                alert('Por favor, selecciona una sucursal antes de cerrar.');
+                return;
+            }
+            document.body.removeChild(sucursalesPopup);
+        });
     }
-  });
+});
 
   deliveryForm.addEventListener('submit', async (event) => {
     event.preventDefault();
@@ -294,6 +377,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 if (result.success) {
                     alert('Ticket guardado correctamente.');
+
+                    localStorage.removeItem('id_punto');
+                    localStorage.removeItem('id_direccion');
+
 
                     // Cambiar al paso 4 "resumen"
                     const paymentSteps = document.querySelectorAll('.payment-steps .step');

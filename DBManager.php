@@ -593,6 +593,27 @@ class DBManager
         return $direcciones;
     }
 
+    public function eliminarDireccion($idDireccion, $idUsuario)
+    {
+        $link = $this->open();
+
+        $query = "DELETE FROM direccion WHERE id_direccion = ? AND idUsuario = ?";
+        $stmt = mysqli_prepare($link, $query);
+
+        if (!$stmt) {
+            $this->close($link);
+            return false;
+        }
+
+        mysqli_stmt_bind_param($stmt, "ii", $idDireccion, $idUsuario);
+        $result = mysqli_stmt_execute($stmt);
+
+        mysqli_stmt_close($stmt);
+        $this->close($link);
+
+        return $result;
+    }
+
     public function executeInsert($query, $params, $types)
     {
         $link = $this->open();
