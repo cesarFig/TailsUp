@@ -334,8 +334,8 @@ class DBManager
             mysqli_stmt_bind_param($updateStmt, "iii", $newCantidad, $idCarrito, $idProducto);
             $resultado = mysqli_stmt_execute($updateStmt);
         } else {
-            // If the item does not exist, insert a new row
-            $insertQuery = "INSERT INTO carrito_items (id_carrito, id_producto, cantidad) VALUES (?, ?, ?)";
+            // If the item does not exist, insert a new row with is_selected set to 1
+            $insertQuery = "INSERT INTO carrito_items (id_carrito, id_producto, cantidad, is_selected) VALUES (?, ?, ?, 1)";
             $insertStmt = mysqli_prepare($link, $insertQuery);
             mysqli_stmt_bind_param($insertStmt, "iii", $idCarrito, $idProducto, $cantidad);
             $resultado = mysqli_stmt_execute($insertStmt);

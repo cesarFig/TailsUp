@@ -45,7 +45,22 @@ try {
     foreach ($items as $item) {
         $itemParams = [$idTicket, $item['nombre_producto'], $item['cantidad'], $item['precio_unitario'], $item['precio_total']];
         $db->executeInsert($itemQuery, $itemParams, 'isidd');
+
+        // Actualizar stock y unidades vendidas en la tabla productos
+        $updateProductQuery = "UPDATE productos SET stock = stock - ?, unidades_vendidas = unidades_vendidas + ? WHERE nombre_producto = ?";
+        $db->executeInsert($updateProductQuery, [$item['cantidad'], $item['cantidad'], $item['nombre_producto']], 'iis');
     }
+
+    // Quitar el cupón del carrito
+    $removeCouponQuery = "UPDATE carritos SET id_cupon = NULL WHERE idUsuario = ?";
+    $db->executeInsert($removeCouponQuery, [$idUsuario], 'i');
+
+    // Eliminar los items comprados del carrito del usuario
+    $deleteCartItemsQuery = "DELETE FROM carrito_items WHERE id_carrito = (SELECT id_carrito FROM carritos WHERE idUsuario = ?) AND id_producto IN (SELECT id_producto FROM productos WHERE nombre_producto IN (" . implode(",", array_fill(0, count($items), '?')) . "))";
+    $productNames = array_map(fn($item) => $item['nombre_producto'], $items);
+    $params = array_merge([$idUsuario], $productNames);
+    $types = 'i' . str_repeat('s', count($productNames));
+    $db->executeInsert($deleteCartItemsQuery, $params, $types); 
 
     echo json_encode(['success' => true, 'message' => 'Ticket y items guardados correctamente']);
 } catch (Exception $e) {

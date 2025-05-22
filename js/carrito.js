@@ -325,5 +325,18 @@ document.addEventListener('DOMContentLoaded', function() {
     aplicarCuponBtn.addEventListener('click', aplicarCupon);
   }
 
+  document.querySelector('.confirm-order-btn').addEventListener('click', function(event) {
+    const seleccionados = document.querySelectorAll('.cart-table tbody tr input[type="checkbox"]:checked');
+
+    if (seleccionados.length === 0) {
+      alert('Por favor, selecciona al menos un producto para confirmar la orden.');
+      event.preventDefault();
+      return; 
+    }
+
+    // Redirigir a la página de procesar orden
+    window.location.href = 'procesarOrden.html';
+  });
+
   obtenerCarrito();
 });
