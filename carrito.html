@@ -29,12 +29,18 @@
             <div class="nav-right">
                 <div class="cart-wrapper">
                     <div class="cart-icon-background">
-                        <img src="images/shopping_cart_icon.svg" alt="Carrito" class="cart-icon">
+                        <img src="images/shopping_cart_icon.svg" id="carritoImg" alt="Carrito" class="cart-icon">
                     </div>
-                    <img src="images/no-profile.png" alt="Usuario" class="user-icon">
+                    <img src="images/no-profile.png" id="micuentaImg" alt="Usuario" class="user-icon">
                 </div>
             </div>
         </nav>
+        <div id="menuUsuario" class="dropdown-menu">
+            <div class="cart-tab"></div>
+            <ul>
+                <li><a href="compras.html">Mis compras</a></li>
+            </ul>
+        </div>
     </header>
 
     <div class="payment-steps">
@@ -149,6 +155,31 @@
     </footer>
     <script src="js/carrito.js"></script>
     <script src="js/customAlerts.js"></script>
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            const micuenta = document.getElementById('micuenta');
+            const micuentaImg = document.getElementById('micuentaImg');
+            const menuUsuario = document.getElementById('menuUsuario');
+            const carritoImg = document.getElementById('carritoImg');
+            const nombreUsuario = localStorage.getItem('usuario');
+
+            if (nombreUsuario) {
+               const primerNombre = nombreUsuario.trim().split(' ')[0];            
+                const toggleMenu = (e) => {
+                    e.preventDefault();
+                    menuUsuario.classList.toggle('show');
+                };
+
+                micuentaImg.addEventListener('click', toggleMenu);
+                carritoImg.addEventListener('click', toggleMenu);
+               
+                document.getElementById('cerrarSesion').addEventListener('click', () => {
+                    localStorage.removeItem('usuario');
+                    window.location.href = 'login.html';
+                });               
+            }
+        });
+    </script>
 </body>
 
 </html>

@@ -164,13 +164,13 @@
 }
 
 .pedido-item-detalle{
+  display: grid; /* Cambiar a grid layout */
+  grid-template-columns: 0.5fr 1fr 1fr 1fr 1fr; /* Definir anchos consistentes para las columnas */
+  align-items: center; /* Alinear verticalmente los elementos */
+  gap: 10px; /* Espaciado entre columnas */
   width: 100%;
   margin-left: 10px;
   margin-right: 25px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-direction: row !important;
 }
 
 .producto-imagen{

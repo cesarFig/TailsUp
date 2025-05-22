@@ -152,6 +152,12 @@ document.addEventListener('DOMContentLoaded', () => {
           retiroCheckbox.checked = false;
         }
 
+        if (data.direcciones.length === 0) {
+          retiroCheckbox.checked = false; // No marcar "Retiro en punto de entrega" si no hay direcciones
+          localStorage.removeItem('id_direccion');
+          localStorage.removeItem('es_en_retiro');
+        }
+
         // Agregar eventos a los botones de eliminar
         const deleteButtons = document.querySelectorAll('.delete-address-btn');
         deleteButtons.forEach(button => {
