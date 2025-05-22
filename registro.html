@@ -66,6 +66,7 @@
 
         if (result.success) {
             localStorage.setItem('usuario', result.nombre);
+            localStorage.setItem('idUsuario', result.idUsuario);
             window.location.href = 'index.html';
         } else {
             showCustomAlert(result.error || 'Error en el registro', '#E52727');
