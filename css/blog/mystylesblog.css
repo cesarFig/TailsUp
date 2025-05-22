@@ -439,6 +439,7 @@
   color: #002b45;
   margin-bottom: 2rem;
   text-align: left;
+  font-family: flame;
 }
 
 /* Contenedor principal en 3 columnas */
@@ -462,6 +463,7 @@
   overflow: hidden;
   border-radius: 10px;
   flex: 1;           /* se expanden para llenar toda la columna */
+  font-family: flame;
 }
 
 /* Imagen y texto dentro de cada mini-card */
@@ -504,13 +506,15 @@
 /* Texto central debajo */
 .central-texto {
   padding: 1.5rem 1rem;
-  background-color: #f4e2cf;
+  background-color: #f4e2cf;  
 }
+
 
 .central-texto h3 {
   margin: 0 0 0.5rem;
   font-size: 1.3rem;
   color: #002b45;
+  font-family: flame;
 }
 
 .central-texto p {
