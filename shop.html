@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="css/footer.css">
     <link rel="stylesheet" href="css/ProductosSection.css">
     <link rel="stylesheet" href="css/mensajesAlerta.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 
 <body>
@@ -59,7 +59,7 @@
         </nav>
     </header>
     <!--Shop by pet-->
-    <div class="containerShopByPet">        
+    <div class="containerShopByPet">
         <div class="containerBtnCategoria">
             <button class="btnCategoriaPet" data-categoria="Gato"><img src="images/imgBtnCat.png" alt="btnCat.png">
                 Gato</button>
@@ -71,7 +71,7 @@
                     alt="btnCat.png">Ave</button>
             <button class="btnCategoriaPet" data-categoria="Conejo"><img src="images/imgBtnConejo.png"
                     alt="btnCat.png">Conejo</button>
-            <button  id="btnTortuga" class="btnCategoriaPet"  data-categoria="Tortuga"><img src="images/imgBtnTortuga.png"
+            <button id="btnTortuga" class="btnCategoriaPet" data-categoria="Tortuga"><img src="images/imgBtnTortuga.png"
                     alt="btnCat.png"><span class="textoBtnTortuga">Tortuga</span></button>
         </div>
     </div>
@@ -97,7 +97,7 @@
                     <label class="filter-option"><input type="checkbox" value="pedigree"> Pedigree
                     </label>
                     <label class="filter-option"><input type="checkbox" value="ganador"> Ganador
-                         </label>
+                    </label>
                     <label class="filter-option"><input type="checkbox" value="purina dog chow"> Purina dog chow
                     </label>
                     <label class="filter-option"><input type="checkbox" value="Huppy">
@@ -228,9 +228,9 @@
         </div>
 
     </div>
-    <div class="containerProductos3">        
+    <div class="containerProductos3">
     </div>
-     <div id="modalProducto" class="modal-producto">
+    <div id="modalProducto" class="modal-producto">
         <div class="modal-contenido-wrapper">
             <span class="cerrar-modal" onclick="cerrarModalProducto()">&times;</span>
 
@@ -267,8 +267,8 @@
                     </div>
 
                     <div class="botonesModal">
-                        <button class="btnCompraModal">Comprar ahora</button>
-                        <button class="btnCarritoModal">
+                        <button class="btnCompraModal" onclick="verificarAccionUsuario(() => agregarAlCarritoYRedirigir(localStorage.getItem('idProductoActual'), obtenerCantidad()))">Comprar ahora</button>
+                        <button class="btnCarritoModal" onclick="verificarAccionUsuario(() => agregarAlCarrito(localStorage.getItem('idProductoActual'), obtenerCantidad()))">
                             <img src="images/CarritoSimple.png" alt="carrito"> Agregar al carrito
                         </button>
                     </div>
@@ -334,15 +334,15 @@
 
     <script src="js/productCard.js"></script>
     <script>
-  function irACategoria(nombreCategoria) {
-    // Opción 1: Usar localStorage
-    localStorage.setItem('categoriaSeleccionada', nombreCategoria);
-    window.location.href = 'category.html';
+        function irACategoria(nombreCategoria) {
+            // Opción 1: Usar localStorage
+            localStorage.setItem('categoriaSeleccionada', nombreCategoria);
+            window.location.href = 'category.html';
 
-    // Opción 2 (alternativa): pasar por URL
-    // window.location.href = 'category.html?categoria=' + encodeURIComponent(nombreCategoria);
-  }
-</script>
+            // Opción 2 (alternativa): pasar por URL
+            // window.location.href = 'category.html?categoria=' + encodeURIComponent(nombreCategoria);
+        }
+    </script>
     <script src="js/productCard2.js"></script>
     <script src="js/productCard3.js"></script>
     <script>
@@ -362,24 +362,24 @@
         }
     </script>
     <script>
-        
-function agregarComentario() {
-    const texto = document.getElementById('nuevoComentario').value.trim();
-    const usuario = localStorage.getItem('usuario') || 'Anónimo';
 
-    if (texto.length === 0 || estrellasSeleccionadas === 0) return;
+        function agregarComentario() {
+            const texto = document.getElementById('nuevoComentario').value.trim();
+            const usuario = localStorage.getItem('usuario') || 'Anónimo';
 
-    comentariosMock.push({ usuario, texto, rating: estrellasSeleccionadas });
+            if (texto.length === 0 || estrellasSeleccionadas === 0) return;
 
-    document.getElementById('nuevoComentario').value = '';
-    estrellasSeleccionadas = 0;
-    renderEstrellasFormulario();
-    mostrarComentarios();
-}
+            comentariosMock.push({ usuario, texto, rating: estrellasSeleccionadas });
+
+            document.getElementById('nuevoComentario').value = '';
+            estrellasSeleccionadas = 0;
+            renderEstrellasFormulario();
+            mostrarComentarios();
+        }
     </script>
- 
+
     <script src="js/buscarAndFullCard.js"></script>
-   <script>
+    <script>
         window.addEventListener('DOMContentLoaded', () => {
             const micuenta = document.getElementById('micuenta');
             const micuentaImg = document.getElementById('micuentaImg');
@@ -387,9 +387,9 @@ function agregarComentario() {
             const nombreUsuario = localStorage.getItem('usuario');
 
             if (nombreUsuario) {
-               const primerNombre = nombreUsuario.trim().split(' ')[0];            
-                micuenta.textContent = primerNombre;    
-                micuenta.style.marginTop="-42%";                     
+                const primerNombre = nombreUsuario.trim().split(' ')[0];
+                micuenta.textContent = primerNombre;
+                micuenta.style.marginTop = "-42%";
                 micuenta.href = '#'; // Evita redirección
                 micuentaImg.href = '#'
                 const toggleMenu = (e) => {
@@ -399,13 +399,59 @@ function agregarComentario() {
 
                 micuenta.addEventListener('click', toggleMenu);
                 micuentaImg.addEventListener('click', toggleMenu);
-               
+
                 document.getElementById('cerrarSesion').addEventListener('click', () => {
                     localStorage.removeItem('usuario');
                     window.location.href = 'login.html';
-                });               
+                });
             }
         });
+    </script>
+    <script>
+        function obtenerCantidad() {
+            const cantidadInput = document.getElementById('cantidad');
+            return cantidadInput ? parseInt(cantidadInput.value, 10) : 1;
+        }
+
+        function agregarAlCarrito(idProducto, cantidad) {
+            const idUsuario = localStorage.getItem('idUsuario');
+
+            console.log("ID Usuario:", idUsuario);
+            console.log("ID Producto:", idProducto);
+            console.log("Cantidad:", cantidad);
+
+            if (!idUsuario) {
+                console.warn("⚠️ Usuario no autenticado. Redirigiendo a la página de inicio de sesión.");
+                window.location.href = "login.html";
+                return;
+            }
+
+            const payload = {
+                idUsuario: idUsuario,
+                idProducto: idProducto,
+                cantidad: cantidad
+            };
+
+            fetch("http://localhost/TailsUp-Backend/endPointAddToCart.php", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(payload)
+            })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.success) {
+                        showCustomAlert("✅ Producto añadido al carrito correctamente.", "#41BB74");
+                    } else {
+                        console.warn("⚠️ Error al añadir al carrito:", data.error);
+                    }
+                })
+                .catch(err => console.error("❌ Error al conectar con el servidor:", err));
+        }
+
+        function agregarAlCarritoYRedirigir(idProducto, cantidad) {
+            agregarAlCarrito(idProducto, cantidad);
+            window.location.href = "carrito.html";
+        }
     </script>
     <script src="js/customAlerts.js"></script>
 </body>
