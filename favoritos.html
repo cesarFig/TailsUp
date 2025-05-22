@@ -304,7 +304,18 @@
         </button>
       </div>
     `;
-          contenedorFavoritos.appendChild(card);
+          card.addEventListener('click', function (e) {
+      if (e.target.closest('button')) return;
+      mostrarDetallesProducto(producto);
+    });
+
+        // Previene que los botones propaguen el evento al card
+        const btns = card.querySelectorAll('button');
+        btns.forEach(btn => {
+          btn.addEventListener('click', e => e.stopPropagation());
+        });
+
+        contenedorFavoritos.appendChild(card);
         });
 
         manejarTruncadoResponsivo('.productTitle');
