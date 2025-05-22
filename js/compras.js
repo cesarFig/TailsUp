@@ -55,6 +55,7 @@ document.addEventListener('DOMContentLoaded', function() {
                                 <h1 class="num-orden">Orden #${ticket.folio}</h1>
                             </div>
                             <p class="dia-entrega">${diaEntregaText}</p>
+                            <p class="total-pedido" style="font-weight: bold;">Total: $${ticket.total}</p>
                             <div class="pedido-item-info">
                                 <img src="https://static.thenounproject.com/png/2958546-200.png" alt="Productos" class="num-items-icon">
                                 <p class="num-items">${count} producto${count !== 1 ? 's' : ''}</p>
