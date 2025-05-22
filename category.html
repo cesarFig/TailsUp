@@ -161,74 +161,116 @@
         </div>
       </div>
     </div>
+  
     <div id="contenedor">
 
     </div>
+
     <div id="modalProducto" class="modal-producto">
-        <div class="modal-contenido-wrapper">
-            <span class="cerrar-modal" onclick="cerrarModalProducto()">&times;</span>
+      <div class="modal-contenido-wrapper">
+        <span class="cerrar-modal" onclick="cerrarModalProducto()">&times;</span>
 
-            <!-- Sección principal con imagen e info -->
-            <div class="modal-contenido-grid">
-                <div class="modal-img">
-                    <img id="modalImagenProducto" src="" alt="Imagen del producto">
-                    <p class="ampliarTexto">Coloca el cursor sobre la imagen para hacer zoom</p>
-                </div>
+        <!-- Sección principal con imagen e info -->
+        <div class="modal-contenido-grid">
+          <div class="modal-img">
+            <img id="modalImagenProducto" src="" alt="Imagen del producto">
+            <p class="ampliarTexto">Coloca el cursor sobre la imagen para hacer zoom</p>
+          </div>
 
-                <div class="modal-info">
-                    <h2 id="modalNombreProducto" class="titulo"></h2>
-                    <p id="modalMarcaProducto" class="marca-link"></p>
+          <div class="modal-info">
+            <h2 id="modalNombreProducto" class="titulo"></h2>
+            <p id="modalMarcaProducto" class="marca-link"></p>
 
-                    <div class="rating">
-                        <div id="modalEstrellas" class="estrellas-dinamicas"></div>
-                        <span id="modalRatingVentas"></span>
-                    </div>
-
-                    <div class="precioSeccion">
-                        <p class="precio-actual" id="modalPrecioProducto"></p>
-                        <p class="precio-anterior" id="modalPrecioAnteriorProducto"></p>
-                    </div>
-
-                    <p id="modalDescripcionProducto" class="descripcion"></p>
-
-                    <div class="cantidadCompra">
-                        <label for="cantidad" style="font-family: poppins;">Cantidad:</label>
-                        <div class="cantidadControles">
-                            <button type="button" onclick="cambiarCantidad(-1)">−</button>
-                            <input type="number" id="cantidad" name="cantidad" value="1" min="1" readonly>
-                            <button type="button" onclick="cambiarCantidad(1)">+</button>
-                        </div>
-                    </div>
-
-                    <div class="botonesModal">
-                        <button class="btnCompraModal" onclick="verificarAccionUsuario(() => agregarAlCarritoYRedirigir(localStorage.getItem('idProductoActual'), obtenerCantidad()))">Comprar ahora</button>
-                        <button class="btnCarritoModal" onclick="verificarAccionUsuario(() => agregarAlCarrito(localStorage.getItem('idProductoActual'), obtenerCantidad()))">
-                            <img src="images/CarritoSimple.png" alt="carrito"> Agregar al carrito
-                        </button>
-                    </div>
-                </div>
+            <div class="rating">
+              <div id="modalEstrellas" class="estrellas-dinamicas"></div>
+              <span id="modalRatingVentas"></span>
             </div>
 
-            <!-- Comentarios -->
-            <div class="zonaComentarios">
-                <h3>Reseñas</h3>
-                <div id="comentariosLista" class="comentarios-lista">
-                    <!-- Comentarios cargados dinámicamente -->
-                </div>
-
-                <div class="comentarioForm">
-                    <label for="ratingComentario">Tu calificación:</label>
-                    <div id="estrellasFormulario" class="estrellas-formulario">
-                        <!-- Se llenan dinámicamente -->
-                    </div>
-
-                    <textarea id="nuevoComentario" placeholder="Escribe tu comentario..."></textarea>
-                    <button onclick="agregarComentario()">Enviar</button>
-                </div>
+            <div class="precioSeccion">
+              <p class="precio-actual" id="modalPrecioProducto"></p>
+              <p class="precio-anterior" id="modalPrecioAnteriorProducto"></p>
             </div>
 
+            <p id="modalDescripcionProducto" class="descripcion"></p>
+
+            <div class="cantidadCompra">
+              <label for="cantidad" style="font-family: poppins;">Cantidad:</label>
+              <div class="cantidadControles">
+                <button type="button" onclick="cambiarCantidad(-1)">−</button>
+                <input type="number" id="cantidad" name="cantidad" value="1" min="1" readonly>
+                <button type="button" onclick="cambiarCantidad(1)">+</button>
+              </div>
+            </div>
+
+            <div class="botonesModal">
+              <button class="btnCompraModal"
+                onclick="verificarAccionUsuario(() => agregarAlCarritoYRedirigir(localStorage.getItem('idProductoActual'), obtenerCantidad()))">Comprar
+                ahora</button>
+              <button class="btnCarritoModal"
+                onclick="verificarAccionUsuario(() => agregarAlCarrito(localStorage.getItem('idProductoActual'), obtenerCantidad()))">
+                <img src="images/CarritoSimple.png" alt="carrito"> Agregar al carrito
+              </button>
+            </div>
+          </div>
         </div>
+
+        <!-- Comentarios -->
+        <div class="zonaComentarios">
+          <h3>Reseñas</h3>
+          <div id="comentariosLista" class="comentarios-lista">
+            <!-- Comentarios cargados dinámicamente -->
+          </div>
+
+          <div class="comentarioForm">
+            <label for="ratingComentario">Tu calificación:</label>
+            <div id="estrellasFormulario" class="estrellas-formulario">
+              <!-- Se llenan dinámicamente -->
+            </div>
+
+            <textarea id="nuevoComentario" placeholder="Escribe tu comentario..."></textarea>
+            <button onclick="agregarComentario()">Enviar</button>
+          </div>
+        </div>
+
+      </div>
     </div>
+    </div>
+    
+    <footer>
+        <img class="imgPatita" src="images/patita.png" alt="patita.png">
+        <div class="containerNaranja">
+            <div class="divTextoRegistro">
+                <p>Registrate para obtener actualizaciones y novedades.</p>
+            </div>
+            <div class="divIngresa">
+                <input class="inputRegistra" type="text" placeholder="Ingresa tu email">
+                <button class="btnSuscribirse">Suscribirse</button>
+            </div>
+        </div>
+        <div class="containerRedes">
+            <div class="containerEnlaces">
+                <a href="/index.html">Home</a>
+                <a href="/shop.html">Categoria</a>
+                <a href="/Acerca">Acerca</a>
+                <a href="/contacto">Contacto</a>
+            </div>
+            <div class="containerImagenes">
+                <a href="/facebook"><img src="images/facebook.png" alt="facebook.png"></a>
+                <a href="/twitter"><img src="images/twitter.png" alt="twitter.com"></a>
+                <a href="/insta"><img src="images/instagram.png" alt="instagram.png"></a>
+                <a href="/youtube"><img src="images/youTube.png" alt="youtube.png"></a>
+            </div>
+        </div>
+        <hr>
+        <div class="containerFinal">
+            <p>Derechos reservados al ITM</p>
+            <img src="images/logoFinal.png" alt="tailsUp.png">
+            <p>Terminos de servicio</p>
+        </div>
+    </footer>
+
+
+
     <script src="js/buscarAndFullCard.js"></script>
     <script>
       document.addEventListener('DOMContentLoaded', () => {

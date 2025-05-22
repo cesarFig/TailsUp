@@ -201,11 +201,10 @@ document.addEventListener('DOMContentLoaded', function () {
     const container = document.querySelector('.containerPopPrd');
     container.innerHTML = ''; // limpia contenido
 
-    top4.forEach(p => {
-      const div = document.createElement('div');
-      div.className = 'PopularPrd';
-    div.style.cursor = 'pointer';
-      div.innerHTML = `
+  top4.forEach(p => {
+    const div = document.createElement('div');
+    div.className = 'PopularPrd';
+    div.innerHTML = `
       <div class="imgProduct">
         <img src="images/${p.imagen_producto}" alt="${p.nombre_producto}">
       </div>
@@ -274,47 +273,44 @@ document.addEventListener('DOMContentLoaded', function () {
     const claseCorazon = esFavorito ? 'fa-solid' : 'fa-regular';
     const claseLiked = esFavorito ? 'liked' : '';
 
-    card.innerHTML = `
-      <div class="productImage">
-        <button class="heart-button ${claseLiked}" onclick="toggleHeart(this, ${producto.id_producto})">
-          <i class="${claseCorazon} fa-heart"></i>
-        </button>
-        <img src="images/${producto.imagen_producto}" alt="${producto.nombre_producto}">
-      </div>
-      <div class="productTitle">
-        <h4>${producto.nombre_producto}</h4>
-      </div>
-      <div class="productRating">
-        <img src="images/Star.png" alt="Estrella">
-        <p>(${producto.rating}) ${producto.unidades_vendidas} Vendidas</p>
-      </div>
-      <div class="productPrice">
-        <p>
-          $${formatearPrecio(String(producto.precio_actual))}
-          ${producto.precio_anterior && producto.precio_anterior !== producto.precio_actual
-            ? `<s>$${formatearPrecio(String(producto.precio_anterior))}</s>` : ''}
-        </p>
-      </div>
-      <div class="productBtns">
-        <button class="btnCompra" onclick="verificarAccionUsuario(() => agregarAlCarrito(${producto.id_producto}))">Comprar ahora</button>
-        <button class="btnCarrito"><img src="images/CarritoSimple.png" alt="carritoSimple.png"></button>
-      </div>
-    `;
+      card.innerHTML = `
+        <div class="productImage">
+          <button class="heart-button ${claseLiked}" onclick="toggleHeart(this, ${producto.id_producto})">
+            <i class="${claseCorazon} fa-heart"></i>
+          </button>
+          <img src="images/${producto.imagen_producto}" alt="${producto.nombre_producto}">
+        </div>
+        <div class="productTitle">
+          <h4>${producto.nombre_producto}</h4>
+        </div>
+        <div class="productRating">
+          <img src="images/Star.png" alt="Estrella">
+          <p>(${producto.rating}) ${producto.unidades_vendidas} Vendidas</p>
+        </div>
+        <div class="productPrice">
+          <p>
+            $${formatearPrecio(String(producto.precio_actual))}
+            ${producto.precio_anterior && producto.precio_anterior !== producto.precio_actual
+          ? `<s>$${formatearPrecio(String(producto.precio_anterior))}</s>` : ''}
+          </p>
+        </div>
+        <div class="productBtns">
+          <button class="btnCompra" onclick="verificarAccionUsuario(() => agregarAlCarrito(${producto.id_producto}))">Comprar ahor</button>
+          <button class="btnCarrito"><img src="images/CarritoSimple.png" alt="carritoSimple.png"></button>
+        </div>
+      `;
+       card.addEventListener('click', () => {
+    mostrarDetallesProducto(producto);
+  });
 
-    // Click en la tarjeta (excepto botones) abre el modal
-    card.addEventListener('click', function (e) {
-      if (e.target.closest('button')) return;
-      mostrarDetallesProducto(producto);
-    });
+  // Asegúrate también de STOP_PROPAGATION en botones internos:
+  const btns = card.querySelectorAll('button');
+  btns.forEach(btn => {
+    btn.addEventListener('click', e => e.stopPropagation());
+  });
 
-        // Previene que los botones propaguen el evento al card
-        const btns = card.querySelectorAll('button');
-        btns.forEach(btn => {
-          btn.addEventListener('click', e => e.stopPropagation());
-        });
-
-        contenedor.appendChild(card);
-  };
+  contenedor.appendChild(card);
+    };
 
   const renderVacio = (contenedor) => {
     contenedor.innerHTML = `

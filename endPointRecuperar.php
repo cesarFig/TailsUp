@@ -33,7 +33,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $mail->SMTPSecure = 'tls';
             $mail->Port       = 587;
 
-            $mail->setFrom('tu_correo@gmail.com', 'TailsUp');
+            $mail->setFrom('tailsUp117@gmail.com', 'TailsUp');
             $mail->addAddress($email, $usuario['nombre']);
 
             $mail->Subject = 'Codigo de recuperacion';
